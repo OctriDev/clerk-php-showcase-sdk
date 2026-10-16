@@ -14,11 +14,26 @@ final readonly class VerificationPasskeyStrategyEnum implements SdkOpenEnum
 {
     public const PASSKEY = "passkey";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -28,11 +43,26 @@ final readonly class VerificationPasskeyNonceEnum implements SdkOpenEnum
 {
     public const NONCE = "nonce";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -151,10 +181,18 @@ class VerificationPasskey implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "strategy") || $data->strategy === null) { throw new SdkValidationError("strategy", 'required', "Required property 'strategy' is missing or null"); }
-        if (!property_exists($data, "attempts")) { throw new SdkValidationError("attempts", 'required', "Missing required property 'attempts'"); }
-        if (!property_exists($data, "expire_at")) { throw new SdkValidationError("expire_at", 'required', "Missing required property 'expire_at'"); }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "strategy") || $data->strategy === null) {
+            throw new SdkValidationError("strategy", 'required', "Required property 'strategy' is missing or null");
+        }
+        if (!property_exists($data, "attempts")) {
+            throw new SdkValidationError("attempts", 'required', "Missing required property 'attempts'");
+        }
+        if (!property_exists($data, "expire_at")) {
+            throw new SdkValidationError("expire_at", 'required', "Missing required property 'expire_at'");
+        }
         return new self(
             status: SdkClient::hydrateStringEnumOrString($data->status, VerificationPasskeyStatusEnum::class),
             strategy: SdkClient::hydrateStringEnumOrString($data->strategy, VerificationPasskeyStrategyEnum::class),
@@ -186,11 +224,26 @@ final readonly class VerificationWeb3StatusEnum implements SdkOpenEnum
     public const FAILED = "failed";
     public const EXPIRED = "expired";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -204,11 +257,26 @@ final readonly class VerificationWeb3StrategyEnum implements SdkOpenEnum
     public const WEB3_OKX_WALLET_SIGNATURE = "web3_okx_wallet_signature";
     public const WEB3_SOLANA_SIGNATURE = "web3_solana_signature";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -327,10 +395,18 @@ class VerificationWeb3 implements Web3WalletVerification, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "strategy") || $data->strategy === null) { throw new SdkValidationError("strategy", 'required', "Required property 'strategy' is missing or null"); }
-        if (!property_exists($data, "attempts")) { throw new SdkValidationError("attempts", 'required', "Missing required property 'attempts'"); }
-        if (!property_exists($data, "expire_at")) { throw new SdkValidationError("expire_at", 'required', "Missing required property 'expire_at'"); }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "strategy") || $data->strategy === null) {
+            throw new SdkValidationError("strategy", 'required', "Required property 'strategy' is missing or null");
+        }
+        if (!property_exists($data, "attempts")) {
+            throw new SdkValidationError("attempts", 'required', "Missing required property 'attempts'");
+        }
+        if (!property_exists($data, "expire_at")) {
+            throw new SdkValidationError("expire_at", 'required', "Missing required property 'expire_at'");
+        }
         return new self(
             status: SdkClient::hydrateStringEnumOrString($data->status, VerificationWeb3StatusEnum::class),
             strategy: SdkClient::hydrateStringEnumOrString($data->strategy, VerificationWeb3StrategyEnum::class),

@@ -142,7 +142,9 @@ class CommerceSubscriptionItemSeatsResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "quantity")) { throw new SdkValidationError("quantity", 'required', "Missing required property 'quantity'"); }
+        if (!property_exists($data, "quantity")) {
+            throw new SdkValidationError("quantity", 'required', "Missing required property 'quantity'");
+        }
         return new self(
             quantity: ($data->quantity === null ? null : SdkClient::intValue($data->quantity)),
             tiers: (property_exists($data, "tiers") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CommercePerUnitTotalTier2::class), SdkClient::arrayValue($data->tiers))) : SdkNotGiven::Value),
@@ -222,8 +224,12 @@ class CommerceSubscriptionNextPayment implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "date") || $data->date === null) { throw new SdkValidationError("date", 'required', "Required property 'date' is missing or null"); }
-        if (!property_exists($data, "amount") || $data->amount === null) { throw new SdkValidationError("amount", 'required', "Required property 'amount' is missing or null"); }
+        if (!property_exists($data, "date") || $data->date === null) {
+            throw new SdkValidationError("date", 'required', "Required property 'date' is missing or null");
+        }
+        if (!property_exists($data, "amount") || $data->amount === null) {
+            throw new SdkValidationError("amount", 'required', "Required property 'amount' is missing or null");
+        }
         return new self(
             date: SdkClient::intValue($data->date),
             amount: SdkClient::hydrateClass($data->amount, CommerceMoneyResponse::class),
@@ -337,10 +343,18 @@ class CommerceTotalsResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "subtotal") || $data->subtotal === null) { throw new SdkValidationError("subtotal", 'required', "Required property 'subtotal' is missing or null"); }
-        if (!property_exists($data, "base_fee") || $data->base_fee === null) { throw new SdkValidationError("base_fee", 'required', "Required property 'base_fee' is missing or null"); }
-        if (!property_exists($data, "tax_total") || $data->tax_total === null) { throw new SdkValidationError("tax_total", 'required', "Required property 'tax_total' is missing or null"); }
-        if (!property_exists($data, "grand_total") || $data->grand_total === null) { throw new SdkValidationError("grand_total", 'required', "Required property 'grand_total' is missing or null"); }
+        if (!property_exists($data, "subtotal") || $data->subtotal === null) {
+            throw new SdkValidationError("subtotal", 'required', "Required property 'subtotal' is missing or null");
+        }
+        if (!property_exists($data, "base_fee") || $data->base_fee === null) {
+            throw new SdkValidationError("base_fee", 'required', "Required property 'base_fee' is missing or null");
+        }
+        if (!property_exists($data, "tax_total") || $data->tax_total === null) {
+            throw new SdkValidationError("tax_total", 'required', "Required property 'tax_total' is missing or null");
+        }
+        if (!property_exists($data, "grand_total") || $data->grand_total === null) {
+            throw new SdkValidationError("grand_total", 'required', "Required property 'grand_total' is missing or null");
+        }
         return new self(
             subtotal: SdkClient::hydrateClass($data->subtotal, CommerceMoneyResponse::class),
             baseFee: SdkClient::hydrateClass($data->base_fee, CommerceMoneyResponse::class),

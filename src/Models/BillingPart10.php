@@ -321,19 +321,45 @@ class CommerceSubscriptionItem2 implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "instance_id") || $data->instance_id === null) { throw new SdkValidationError("instance_id", 'required', "Required property 'instance_id' is missing or null"); }
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "plan_id") || $data->plan_id === null) { throw new SdkValidationError("plan_id", 'required', "Required property 'plan_id' is missing or null"); }
-        if (!property_exists($data, "plan")) { throw new SdkValidationError("plan", 'required', "Missing required property 'plan'"); }
-        if (!property_exists($data, "plan_period") || $data->plan_period === null) { throw new SdkValidationError("plan_period", 'required', "Required property 'plan_period' is missing or null"); }
-        if (!property_exists($data, "payment_source_id") || $data->payment_source_id === null) { throw new SdkValidationError("payment_source_id", 'required', "Required property 'payment_source_id' is missing or null"); }
-        if (!property_exists($data, "payer_id") || $data->payer_id === null) { throw new SdkValidationError("payer_id", 'required', "Required property 'payer_id' is missing or null"); }
-        if (!property_exists($data, "is_free_trial") || $data->is_free_trial === null) { throw new SdkValidationError("is_free_trial", 'required', "Required property 'is_free_trial' is missing or null"); }
-        if (!property_exists($data, "proration_date") || $data->proration_date === null) { throw new SdkValidationError("proration_date", 'required', "Required property 'proration_date' is missing or null"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "instance_id") || $data->instance_id === null) {
+            throw new SdkValidationError("instance_id", 'required', "Required property 'instance_id' is missing or null");
+        }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "plan_id") || $data->plan_id === null) {
+            throw new SdkValidationError("plan_id", 'required', "Required property 'plan_id' is missing or null");
+        }
+        if (!property_exists($data, "plan")) {
+            throw new SdkValidationError("plan", 'required', "Missing required property 'plan'");
+        }
+        if (!property_exists($data, "plan_period") || $data->plan_period === null) {
+            throw new SdkValidationError("plan_period", 'required', "Required property 'plan_period' is missing or null");
+        }
+        if (!property_exists($data, "payment_source_id") || $data->payment_source_id === null) {
+            throw new SdkValidationError("payment_source_id", 'required', "Required property 'payment_source_id' is missing or null");
+        }
+        if (!property_exists($data, "payer_id") || $data->payer_id === null) {
+            throw new SdkValidationError("payer_id", 'required', "Required property 'payer_id' is missing or null");
+        }
+        if (!property_exists($data, "is_free_trial") || $data->is_free_trial === null) {
+            throw new SdkValidationError("is_free_trial", 'required', "Required property 'is_free_trial' is missing or null");
+        }
+        if (!property_exists($data, "proration_date") || $data->proration_date === null) {
+            throw new SdkValidationError("proration_date", 'required', "Required property 'proration_date' is missing or null");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
+            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, CommerceSubscriptionItem2ObjectEnum::class),
             id: SdkClient::stringValue($data->id),

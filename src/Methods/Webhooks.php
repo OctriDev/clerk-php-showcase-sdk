@@ -17,7 +17,7 @@ class Webhooks
     public static function createSvixApp(ClientConfig $clientConfig, ?RequestOptions $requestOptions = null): SvixURL
     {
 
-        $sdkResponse = SdkClient::request('POST', "/webhooks/svix", $clientConfig, returnType: SvixURL::class, decoder: 'json', operationId: 'createSvixApp', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/webhooks/svix", $clientConfig, returnType: SvixURL::class, decoder: 'json', operationId: 'createSvixApp', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SvixURL::class));
     }
 
@@ -28,7 +28,7 @@ class Webhooks
     public static function deleteSvixApp(ClientConfig $clientConfig, ?RequestOptions $requestOptions = null): mixed
     {
 
-        return SdkClient::request('DELETE', "/webhooks/svix", $clientConfig, decoder: 'empty', operationId: 'deleteSvixApp', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)])->data;
+        return SdkClient::request('DELETE', "/webhooks/svix", $clientConfig, decoder: 'empty', operationId: 'deleteSvixApp', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)])->data;
     }
 
 
@@ -40,7 +40,7 @@ class Webhooks
     public static function generateSvixAuthUrl(ClientConfig $clientConfig, ?RequestOptions $requestOptions = null): SvixURL
     {
 
-        $sdkResponse = SdkClient::request('POST', "/webhooks/svix_url", $clientConfig, returnType: SvixURL::class, decoder: 'json', operationId: 'generateSvixAuthUrl', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/webhooks/svix_url", $clientConfig, returnType: SvixURL::class, decoder: 'json', operationId: 'generateSvixAuthUrl', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SvixURL::class));
     }
 }

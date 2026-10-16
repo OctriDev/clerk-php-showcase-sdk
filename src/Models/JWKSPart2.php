@@ -153,13 +153,27 @@ class JWKSEcdsaPublicKey implements JWKSKeysItem, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "kid") || $data->kid === null) { throw new SdkValidationError("kid", 'required', "Required property 'kid' is missing or null"); }
-        if (!property_exists($data, "alg") || $data->alg === null) { throw new SdkValidationError("alg", 'required', "Required property 'alg' is missing or null"); }
-        if (!property_exists($data, "use") || $data->use === null) { throw new SdkValidationError("use", 'required', "Required property 'use' is missing or null"); }
-        if (!property_exists($data, "kty") || $data->kty === null) { throw new SdkValidationError("kty", 'required', "Required property 'kty' is missing or null"); }
-        if (!property_exists($data, "crv") || $data->crv === null) { throw new SdkValidationError("crv", 'required', "Required property 'crv' is missing or null"); }
-        if (!property_exists($data, "x") || $data->x === null) { throw new SdkValidationError("x", 'required', "Required property 'x' is missing or null"); }
-        if (!property_exists($data, "y") || $data->y === null) { throw new SdkValidationError("y", 'required', "Required property 'y' is missing or null"); }
+        if (!property_exists($data, "kid") || $data->kid === null) {
+            throw new SdkValidationError("kid", 'required', "Required property 'kid' is missing or null");
+        }
+        if (!property_exists($data, "alg") || $data->alg === null) {
+            throw new SdkValidationError("alg", 'required', "Required property 'alg' is missing or null");
+        }
+        if (!property_exists($data, "use") || $data->use === null) {
+            throw new SdkValidationError("use", 'required', "Required property 'use' is missing or null");
+        }
+        if (!property_exists($data, "kty") || $data->kty === null) {
+            throw new SdkValidationError("kty", 'required', "Required property 'kty' is missing or null");
+        }
+        if (!property_exists($data, "crv") || $data->crv === null) {
+            throw new SdkValidationError("crv", 'required', "Required property 'crv' is missing or null");
+        }
+        if (!property_exists($data, "x") || $data->x === null) {
+            throw new SdkValidationError("x", 'required', "Required property 'x' is missing or null");
+        }
+        if (!property_exists($data, "y") || $data->y === null) {
+            throw new SdkValidationError("y", 'required', "Required property 'y' is missing or null");
+        }
         return new self(
             kid: SdkClient::stringValue($data->kid),
             alg: SdkClient::stringValue($data->alg),
@@ -183,11 +197,26 @@ final readonly class JWKSEd25519PrivateKeyKtyEnum implements SdkOpenEnum
 {
     public const OKP = "OKP";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -197,9 +226,24 @@ final readonly class JWKSEd25519PrivateKeyCrvEnum implements SdkOpenEnum
 {
     public const ED25519 = "Ed25519";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

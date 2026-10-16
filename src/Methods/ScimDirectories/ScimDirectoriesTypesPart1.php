@@ -48,8 +48,12 @@ class ListSCIMDirectoriesResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "total_count") || $data->total_count === null) {
+            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
+        }
         return new self(
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, SCIMDirectory::class), SdkClient::arrayValue($data->data))),
             totalCount: SdkClient::intValue($data->total_count),
@@ -126,8 +130,12 @@ class CreateSCIMDirectoryGroupRoleMappingsItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "scim_group_id") || $data->scim_group_id === null) { throw new SdkValidationError("scim_group_id", 'required', "Required property 'scim_group_id' is missing or null"); }
-        if (!property_exists($data, "role_id") || $data->role_id === null) { throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null"); }
+        if (!property_exists($data, "scim_group_id") || $data->scim_group_id === null) {
+            throw new SdkValidationError("scim_group_id", 'required', "Required property 'scim_group_id' is missing or null");
+        }
+        if (!property_exists($data, "role_id") || $data->role_id === null) {
+            throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null");
+        }
         return new self(
             scimGroupId: SdkClient::stringValue($data->scim_group_id),
             roleId: SdkClient::stringValue($data->role_id),
@@ -178,8 +186,12 @@ class ListSCIMGroupRoleMappingsResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "total_count") || $data->total_count === null) {
+            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
+        }
         return new self(
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, SCIMGroupRoleMapping::class), SdkClient::arrayValue($data->data))),
             totalCount: SdkClient::intValue($data->total_count),
@@ -232,8 +244,12 @@ class ReplaceSCIMGroupRoleMappingsMappingsItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "scim_group_id") || $data->scim_group_id === null) { throw new SdkValidationError("scim_group_id", 'required', "Required property 'scim_group_id' is missing or null"); }
-        if (!property_exists($data, "role_id") || $data->role_id === null) { throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null"); }
+        if (!property_exists($data, "scim_group_id") || $data->scim_group_id === null) {
+            throw new SdkValidationError("scim_group_id", 'required', "Required property 'scim_group_id' is missing or null");
+        }
+        if (!property_exists($data, "role_id") || $data->role_id === null) {
+            throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null");
+        }
         return new self(
             scimGroupId: SdkClient::stringValue($data->scim_group_id),
             roleId: SdkClient::stringValue($data->role_id),
@@ -282,8 +298,12 @@ class ReplaceSCIMGroupRoleMappingsResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "total_count") || $data->total_count === null) {
+            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
+        }
         return new self(
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, SCIMGroupRoleMapping::class), SdkClient::arrayValue($data->data))),
             totalCount: SdkClient::intValue($data->total_count),
@@ -298,9 +318,24 @@ final readonly class DeleteSCIMGroupRoleMappingResponseObjectEnum implements Sdk
 {
     public const SCIM_GROUP_ROLE_MAPPING = "scim_group_role_mapping";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

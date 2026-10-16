@@ -164,8 +164,12 @@ class EnterpriseConnectionTestRunLogsItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "level") || $data->level === null) { throw new SdkValidationError("level", 'required', "Required property 'level' is missing or null"); }
-        if (!property_exists($data, "message") || $data->message === null) { throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null"); }
+        if (!property_exists($data, "level") || $data->level === null) {
+            throw new SdkValidationError("level", 'required', "Required property 'level' is missing or null");
+        }
+        if (!property_exists($data, "message") || $data->message === null) {
+            throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null");
+        }
         return new self(
             level: SdkClient::stringValue($data->level),
             message: SdkClient::stringValue($data->message),

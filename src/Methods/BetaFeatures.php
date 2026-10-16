@@ -14,11 +14,26 @@ final readonly class UpdateInstanceAuthConfigResponseObjectEnum implements SdkOp
 {
     public const INSTANCE_SETTINGS = "instance_settings";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 class UpdateInstanceAuthConfigResponse implements \JsonSerializable
@@ -129,7 +144,7 @@ class BetaFeatures
     public static function updateInstanceAuthConfig(ClientConfig $clientConfig, bool|null|SdkNotGiven $restrictedToAllowlist = SdkNotGiven::Value, string|null|SdkNotGiven $fromEmailAddress = SdkNotGiven::Value, bool|null|SdkNotGiven $progressiveSignUp = SdkNotGiven::Value, bool|null|SdkNotGiven $testMode = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): UpdateInstanceAuthConfigResponse
     {
 
-        $sdkResponse = SdkClient::request('PATCH', "/beta_features/instance_settings", $clientConfig, body: ['restricted_to_allowlist' => $restrictedToAllowlist, 'from_email_address' => $fromEmailAddress, 'progressive_sign_up' => $progressiveSignUp, 'test_mode' => $testMode], returnType: UpdateInstanceAuthConfigResponse::class, decoder: 'json', operationId: 'updateInstanceAuthConfig', requestOptions: $requestOptions, errors: [402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/beta_features/instance_settings", $clientConfig, body: ['restricted_to_allowlist' => $restrictedToAllowlist, 'from_email_address' => $fromEmailAddress, 'progressive_sign_up' => $progressiveSignUp, 'test_mode' => $testMode], returnType: UpdateInstanceAuthConfigResponse::class, decoder: 'json', operationId: 'updateInstanceAuthConfig', requestOptions: $requestOptions, errors: [402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, UpdateInstanceAuthConfigResponse::class));
     }
 
@@ -147,7 +162,7 @@ class BetaFeatures
     public static function updateProductionInstanceDomain(ClientConfig $clientConfig, string|SdkNotGiven $homeUrl = SdkNotGiven::Value, bool|SdkNotGiven $isSecondary = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): mixed
     {
 
-        return SdkClient::request('PUT', "/beta_features/domain", $clientConfig, body: ['home_url' => $homeUrl, 'is_secondary' => $isSecondary], decoder: 'empty', operationId: 'updateProductionInstanceDomain', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)])->data;
+        return SdkClient::request('PUT', "/beta_features/domain", $clientConfig, body: ['home_url' => $homeUrl, 'is_secondary' => $isSecondary], decoder: 'empty', operationId: 'updateProductionInstanceDomain', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)])->data;
     }
 
 
@@ -162,6 +177,6 @@ class BetaFeatures
     public static function changeProductionInstanceDomain(ClientConfig $clientConfig, string|SdkNotGiven $homeUrl = SdkNotGiven::Value, bool|SdkNotGiven $isSecondary = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): mixed
     {
 
-        return SdkClient::request('POST', "/instance/change_domain", $clientConfig, body: ['home_url' => $homeUrl, 'is_secondary' => $isSecondary], decoder: 'empty', operationId: 'changeProductionInstanceDomain', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)])->data;
+        return SdkClient::request('POST', "/instance/change_domain", $clientConfig, body: ['home_url' => $homeUrl, 'is_secondary' => $isSecondary], decoder: 'empty', operationId: 'changeProductionInstanceDomain', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)])->data;
     }
 }

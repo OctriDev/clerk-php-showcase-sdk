@@ -20,7 +20,7 @@ class SsoBypass
     public static function listSsoBypassAllowlistUsers(ClientConfig $clientConfig, string|SdkNotGiven $enterpriseConnectionId = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): array
     {
 
-        $sdkResponse = SdkClient::request('GET', "/sso_bypass_allowlist_users", $clientConfig, query: ['enterprise_connection_id' => new SdkQueryValue($enterpriseConnectionId, "form", true)], decoder: 'json', operationId: 'listSsoBypassAllowlistUsers', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/sso_bypass_allowlist_users", $clientConfig, query: ['enterprise_connection_id' => new SdkQueryValue($enterpriseConnectionId, "form", true)], decoder: 'json', operationId: 'listSsoBypassAllowlistUsers', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, SSOBypassAllowlistUser::class), SdkClient::arrayValue($sdkResponse->data))));
     }
 
@@ -36,7 +36,7 @@ class SsoBypass
     public static function createSsoBypassAllowlistUser(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): SSOBypassAllowlistUser
     {
 
-        $sdkResponse = SdkClient::request('POST', "/sso_bypass_allowlist_users", $clientConfig, body: ['user_id' => $userId], returnType: SSOBypassAllowlistUser::class, decoder: 'json', operationId: 'createSsoBypassAllowlistUser', requestOptions: $requestOptions, errors: [402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/sso_bypass_allowlist_users", $clientConfig, body: ['user_id' => $userId], returnType: SSOBypassAllowlistUser::class, decoder: 'json', operationId: 'createSsoBypassAllowlistUser', requestOptions: $requestOptions, errors: [402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SSOBypassAllowlistUser::class));
     }
 
@@ -52,7 +52,7 @@ class SsoBypass
     public static function deleteSsoBypassAllowlistUser(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/sso_bypass_allowlist_users/" . SdkClient::encodePathSegment($userId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteSsoBypassAllowlistUser', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/sso_bypass_allowlist_users/" . SdkClient::encodePathSegment($userId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteSsoBypassAllowlistUser', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 }

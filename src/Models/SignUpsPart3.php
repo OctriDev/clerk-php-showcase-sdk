@@ -16,11 +16,26 @@ final readonly class SignUpVerificationNextActionEnum implements SdkOpenEnum
     public const NEEDS_ATTEMPT = "needs_attempt";
     public const UNKNOWN = "";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -157,10 +172,18 @@ class SignUpVerifications implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "email_address")) { throw new SdkValidationError("email_address", 'required', "Missing required property 'email_address'"); }
-        if (!property_exists($data, "phone_number")) { throw new SdkValidationError("phone_number", 'required', "Missing required property 'phone_number'"); }
-        if (!property_exists($data, "web3_wallet")) { throw new SdkValidationError("web3_wallet", 'required', "Missing required property 'web3_wallet'"); }
-        if (!property_exists($data, "external_account")) { throw new SdkValidationError("external_account", 'required', "Missing required property 'external_account'"); }
+        if (!property_exists($data, "email_address")) {
+            throw new SdkValidationError("email_address", 'required', "Missing required property 'email_address'");
+        }
+        if (!property_exists($data, "phone_number")) {
+            throw new SdkValidationError("phone_number", 'required', "Missing required property 'phone_number'");
+        }
+        if (!property_exists($data, "web3_wallet")) {
+            throw new SdkValidationError("web3_wallet", 'required', "Missing required property 'web3_wallet'");
+        }
+        if (!property_exists($data, "external_account")) {
+            throw new SdkValidationError("external_account", 'required', "Missing required property 'external_account'");
+        }
         return new self(
             emailAddress: ($data->email_address === null ? null : SdkClient::hydrateClass($data->email_address, SignUpVerification::class)),
             phoneNumber: ($data->phone_number === null ? null : SdkClient::hydrateClass($data->phone_number, SignUpVerification::class)),

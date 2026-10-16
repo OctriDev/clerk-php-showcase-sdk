@@ -215,18 +215,42 @@ class CommercePaymentSourceResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "payer_id") || $data->payer_id === null) { throw new SdkValidationError("payer_id", 'required', "Required property 'payer_id' is missing or null"); }
-        if (!property_exists($data, "payment_method") || $data->payment_method === null) { throw new SdkValidationError("payment_method", 'required', "Required property 'payment_method' is missing or null"); }
-        if (!property_exists($data, "gateway") || $data->gateway === null) { throw new SdkValidationError("gateway", 'required', "Required property 'gateway' is missing or null"); }
-        if (!property_exists($data, "gateway_external_id") || $data->gateway_external_id === null) { throw new SdkValidationError("gateway_external_id", 'required', "Required property 'gateway_external_id' is missing or null"); }
-        if (!property_exists($data, "last4") || $data->last4 === null) { throw new SdkValidationError("last4", 'required', "Required property 'last4' is missing or null"); }
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "wallet_type") || $data->wallet_type === null) { throw new SdkValidationError("wallet_type", 'required', "Required property 'wallet_type' is missing or null"); }
-        if (!property_exists($data, "card_type") || $data->card_type === null) { throw new SdkValidationError("card_type", 'required', "Required property 'card_type' is missing or null"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "payer_id") || $data->payer_id === null) {
+            throw new SdkValidationError("payer_id", 'required', "Required property 'payer_id' is missing or null");
+        }
+        if (!property_exists($data, "payment_method") || $data->payment_method === null) {
+            throw new SdkValidationError("payment_method", 'required', "Required property 'payment_method' is missing or null");
+        }
+        if (!property_exists($data, "gateway") || $data->gateway === null) {
+            throw new SdkValidationError("gateway", 'required', "Required property 'gateway' is missing or null");
+        }
+        if (!property_exists($data, "gateway_external_id") || $data->gateway_external_id === null) {
+            throw new SdkValidationError("gateway_external_id", 'required', "Required property 'gateway_external_id' is missing or null");
+        }
+        if (!property_exists($data, "last4") || $data->last4 === null) {
+            throw new SdkValidationError("last4", 'required', "Required property 'last4' is missing or null");
+        }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "wallet_type") || $data->wallet_type === null) {
+            throw new SdkValidationError("wallet_type", 'required', "Required property 'wallet_type' is missing or null");
+        }
+        if (!property_exists($data, "card_type") || $data->card_type === null) {
+            throw new SdkValidationError("card_type", 'required', "Required property 'card_type' is missing or null");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
+            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, CommercePaymentSourceResponseObjectEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -256,9 +280,24 @@ final readonly class CommercePlan2ObjectEnum implements SdkOpenEnum
 {
     public const COMMERCE_PLAN = "commerce_plan";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

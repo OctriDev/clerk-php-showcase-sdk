@@ -21,7 +21,7 @@ trait UsersMethodsPart2
     public static function setUserProfileImage(ClientConfig $clientConfig, string $userId, SdkUploadFile|SdkNotGiven $file = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): User
     {
 
-        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/profile_image", $clientConfig, body: ['file' => $file], contentType: 'multipart/form-data', returnType: User::class, decoder: 'json', operationId: 'setUserProfileImage', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/profile_image", $clientConfig, body: ['file' => $file], contentType: 'multipart/form-data', returnType: User::class, decoder: 'json', operationId: 'setUserProfileImage', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, User::class));
     }
 
@@ -37,7 +37,7 @@ trait UsersMethodsPart2
     public static function deleteUserProfileImage(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): User
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/profile_image", $clientConfig, returnType: User::class, decoder: 'json', operationId: 'deleteUserProfileImage', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/profile_image", $clientConfig, returnType: User::class, decoder: 'json', operationId: 'deleteUserProfileImage', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, User::class));
     }
 
@@ -56,7 +56,7 @@ trait UsersMethodsPart2
     public static function updateUserMetadata(ClientConfig $clientConfig, string $userId, array|SdkNotGiven $publicMetadata = SdkNotGiven::Value, array|SdkNotGiven $privateMetadata = SdkNotGiven::Value, array|SdkNotGiven $unsafeMetadata = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): User
     {
 
-        $sdkResponse = SdkClient::request('PATCH', "/users/" . SdkClient::encodePathSegment($userId) . "/metadata", $clientConfig, body: ['public_metadata' => $publicMetadata, 'private_metadata' => $privateMetadata, 'unsafe_metadata' => $unsafeMetadata], returnType: User::class, decoder: 'json', operationId: 'updateUserMetadata', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/users/" . SdkClient::encodePathSegment($userId) . "/metadata", $clientConfig, body: ['public_metadata' => $publicMetadata, 'private_metadata' => $privateMetadata, 'unsafe_metadata' => $unsafeMetadata], returnType: User::class, decoder: 'json', operationId: 'updateUserMetadata', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, User::class));
     }
 
@@ -75,7 +75,7 @@ trait UsersMethodsPart2
     public static function replaceUserMetadata(ClientConfig $clientConfig, string $userId, array|SdkNotGiven $publicMetadata = SdkNotGiven::Value, array|SdkNotGiven $privateMetadata = SdkNotGiven::Value, array|SdkNotGiven $unsafeMetadata = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): User
     {
 
-        $sdkResponse = SdkClient::request('PUT', "/users/" . SdkClient::encodePathSegment($userId) . "/metadata", $clientConfig, body: ['public_metadata' => $publicMetadata, 'private_metadata' => $privateMetadata, 'unsafe_metadata' => $unsafeMetadata], returnType: User::class, decoder: 'json', operationId: 'replaceUserMetadata', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PUT', "/users/" . SdkClient::encodePathSegment($userId) . "/metadata", $clientConfig, body: ['public_metadata' => $publicMetadata, 'private_metadata' => $privateMetadata, 'unsafe_metadata' => $unsafeMetadata], returnType: User::class, decoder: 'json', operationId: 'replaceUserMetadata', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, User::class));
     }
 
@@ -91,7 +91,7 @@ trait UsersMethodsPart2
     public static function getUserBillingSubscription(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): CommerceSubscription
     {
 
-        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/billing/subscription", $clientConfig, returnType: CommerceSubscription::class, decoder: 'json', operationId: 'getUserBillingSubscription', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/billing/subscription", $clientConfig, returnType: CommerceSubscription::class, decoder: 'json', operationId: 'getUserBillingSubscription', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, CommerceSubscription::class));
     }
 
@@ -107,7 +107,7 @@ trait UsersMethodsPart2
     public static function getUserBillingCreditBalance(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): CommerceCreditBalanceResponse
     {
 
-        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/billing/credits", $clientConfig, returnType: CommerceCreditBalanceResponse::class, decoder: 'json', operationId: 'getUserBillingCreditBalance', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/billing/credits", $clientConfig, returnType: CommerceCreditBalanceResponse::class, decoder: 'json', operationId: 'getUserBillingCreditBalance', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, CommerceCreditBalanceResponse::class));
     }
 
@@ -128,7 +128,7 @@ trait UsersMethodsPart2
     public static function adjustUserBillingCreditBalance(ClientConfig $clientConfig, string $userId, int $amount, AdjustUserBillingCreditBalanceAction $action, string $idempotencyKey, string|SdkNotGiven $currency = SdkNotGiven::Value, string|SdkNotGiven $note = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): CommerceCreditLedgerResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/billing/credits", $clientConfig, body: ['amount' => $amount, 'action' => $action, 'idempotency_key' => $idempotencyKey, 'currency' => $currency, 'note' => $note], returnType: CommerceCreditLedgerResponse::class, decoder: 'json', operationId: 'adjustUserBillingCreditBalance', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/billing/credits", $clientConfig, body: ['amount' => $amount, 'action' => $action, 'idempotency_key' => $idempotencyKey, 'currency' => $currency, 'note' => $note], returnType: CommerceCreditLedgerResponse::class, decoder: 'json', operationId: 'adjustUserBillingCreditBalance', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, CommerceCreditLedgerResponse::class));
     }
 
@@ -156,7 +156,7 @@ trait UsersMethodsPart2
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/oauth_access_tokens/" . SdkClient::encodePathSegment($provider) . "", $clientConfig, query: ['paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], decoder: 'json', operationId: 'getOAuthAccessToken', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/oauth_access_tokens/" . SdkClient::encodePathSegment($provider) . "", $clientConfig, query: ['paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], decoder: 'json', operationId: 'getOAuthAccessToken', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, OAuthAccessTokenItem::class), SdkClient::arrayValue($sdkResponse->data))));
     }
 
@@ -182,7 +182,7 @@ trait UsersMethodsPart2
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/organization_memberships", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: OrganizationMemberships::class, decoder: 'json', operationId: 'usersGetOrganizationMemberships', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/organization_memberships", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: OrganizationMemberships::class, decoder: 'json', operationId: 'usersGetOrganizationMemberships', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationMemberships::class));
     }
 
@@ -209,7 +209,7 @@ trait UsersMethodsPart2
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/organization_invitations", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true), 'status' => new SdkQueryValue($status, "form", true)], returnType: OrganizationInvitationsWithPublicOrganizationData::class, decoder: 'json', operationId: 'usersGetOrganizationInvitations', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/organization_invitations", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true), 'status' => new SdkQueryValue($status, "form", true)], returnType: OrganizationInvitationsWithPublicOrganizationData::class, decoder: 'json', operationId: 'usersGetOrganizationInvitations', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationInvitationsWithPublicOrganizationData::class));
     }
 
@@ -226,7 +226,7 @@ trait UsersMethodsPart2
     public static function removeUserPassword(ClientConfig $clientConfig, string $userId, bool|SdkNotGiven $signOutOfOtherSessions = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): User
     {
 
-        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/remove_password", $clientConfig, body: ['sign_out_of_other_sessions' => $signOutOfOtherSessions], returnType: User::class, decoder: 'json', operationId: 'removeUserPassword', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/remove_password", $clientConfig, body: ['sign_out_of_other_sessions' => $signOutOfOtherSessions], returnType: User::class, decoder: 'json', operationId: 'removeUserPassword', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, User::class));
     }
 
@@ -243,7 +243,7 @@ trait UsersMethodsPart2
     public static function verifyPassword(ClientConfig $clientConfig, string $userId, string $password, ?RequestOptions $requestOptions = null): VerifyPasswordResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/verify_password", $clientConfig, body: ['password' => $password], returnType: VerifyPasswordResponse::class, decoder: 'json', operationId: 'verifyPassword', requestOptions: $requestOptions, errors: [500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/verify_password", $clientConfig, body: ['password' => $password], returnType: VerifyPasswordResponse::class, decoder: 'json', operationId: 'verifyPassword', requestOptions: $requestOptions, errors: [500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VerifyPasswordResponse::class));
     }
 
@@ -260,7 +260,7 @@ trait UsersMethodsPart2
     public static function verifyTotp(ClientConfig $clientConfig, string $userId, string $code, ?RequestOptions $requestOptions = null): VerifyTOTPResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/verify_totp", $clientConfig, body: ['code' => $code], returnType: VerifyTOTPResponse::class, decoder: 'json', operationId: 'verifyTotp', requestOptions: $requestOptions, errors: [500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/verify_totp", $clientConfig, body: ['code' => $code], returnType: VerifyTOTPResponse::class, decoder: 'json', operationId: 'verifyTotp', requestOptions: $requestOptions, errors: [500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VerifyTOTPResponse::class));
     }
 
@@ -276,7 +276,7 @@ trait UsersMethodsPart2
     public static function disableMfa(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): DisableMFAResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/mfa", $clientConfig, returnType: DisableMFAResponse::class, decoder: 'json', operationId: 'disableMfa', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/mfa", $clientConfig, returnType: DisableMFAResponse::class, decoder: 'json', operationId: 'disableMfa', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DisableMFAResponse::class));
     }
 
@@ -292,7 +292,7 @@ trait UsersMethodsPart2
     public static function deleteBackupCode(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): DeleteBackupCodeResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/backup_code", $clientConfig, returnType: DeleteBackupCodeResponse::class, decoder: 'json', operationId: 'deleteBackupCode', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/backup_code", $clientConfig, returnType: DeleteBackupCodeResponse::class, decoder: 'json', operationId: 'deleteBackupCode', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeleteBackupCodeResponse::class));
     }
 }

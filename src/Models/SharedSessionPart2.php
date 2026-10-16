@@ -137,9 +137,15 @@ class SessionActivityResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "is_mobile") || $data->is_mobile === null) { throw new SdkValidationError("is_mobile", 'required', "Required property 'is_mobile' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "is_mobile") || $data->is_mobile === null) {
+            throw new SdkValidationError("is_mobile", 'required', "Required property 'is_mobile' is missing or null");
+        }
         return new self(
             object_: SdkClient::stringValue($data->object),
             id: SdkClient::stringValue($data->id),
@@ -192,7 +198,9 @@ class SessionTask implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "key") || $data->key === null) { throw new SdkValidationError("key", 'required', "Required property 'key' is missing or null"); }
+        if (!property_exists($data, "key") || $data->key === null) {
+            throw new SdkValidationError("key", 'required', "Required property 'key' is missing or null");
+        }
         return new self(
             key: SdkClient::stringValue($data->key),
         );

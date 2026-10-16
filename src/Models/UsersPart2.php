@@ -191,12 +191,24 @@ class EnterpriseAccount implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "provider") || $data->provider === null) { throw new SdkValidationError("provider", 'required', "Required property 'provider' is missing or null"); }
-        if (!property_exists($data, "active") || $data->active === null) { throw new SdkValidationError("active", 'required', "Required property 'active' is missing or null"); }
-        if (!property_exists($data, "email_address") || $data->email_address === null) { throw new SdkValidationError("email_address", 'required', "Required property 'email_address' is missing or null"); }
-        if (!property_exists($data, "verification")) { throw new SdkValidationError("verification", 'required', "Missing required property 'verification'"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "provider") || $data->provider === null) {
+            throw new SdkValidationError("provider", 'required', "Required property 'provider' is missing or null");
+        }
+        if (!property_exists($data, "active") || $data->active === null) {
+            throw new SdkValidationError("active", 'required', "Required property 'active' is missing or null");
+        }
+        if (!property_exists($data, "email_address") || $data->email_address === null) {
+            throw new SdkValidationError("email_address", 'required', "Required property 'email_address' is missing or null");
+        }
+        if (!property_exists($data, "verification")) {
+            throw new SdkValidationError("verification", 'required', "Missing required property 'verification'");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, EnterpriseAccountObjectEnum::class),

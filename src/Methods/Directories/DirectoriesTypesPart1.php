@@ -48,8 +48,12 @@ class ListDirectoriesResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "total_count") || $data->total_count === null) {
+            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
+        }
         return new self(
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, Directory::class), SdkClient::arrayValue($data->data))),
             totalCount: SdkClient::intValue($data->total_count),
@@ -152,7 +156,9 @@ class CreateDirectoryGroupRoleMappingsItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "role_id") || $data->role_id === null) { throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null"); }
+        if (!property_exists($data, "role_id") || $data->role_id === null) {
+            throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null");
+        }
         return new self(
             roleId: SdkClient::stringValue($data->role_id),
             directoryGroupId: (property_exists($data, "directory_group_id") ? SdkClient::stringValue($data->directory_group_id) : SdkNotGiven::Value),
@@ -205,8 +211,12 @@ class ListDirectoryGroupRoleMappingsResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "total_count") || $data->total_count === null) {
+            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
+        }
         return new self(
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, DirectoryGroupRoleMapping::class), SdkClient::arrayValue($data->data))),
             totalCount: SdkClient::intValue($data->total_count),
@@ -273,7 +283,9 @@ class ReplaceDirectoryGroupRoleMappingsMappingsItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "role_id") || $data->role_id === null) { throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null"); }
+        if (!property_exists($data, "role_id") || $data->role_id === null) {
+            throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null");
+        }
         return new self(
             roleId: SdkClient::stringValue($data->role_id),
             directoryGroupId: (property_exists($data, "directory_group_id") ? SdkClient::stringValue($data->directory_group_id) : SdkNotGiven::Value),
@@ -323,8 +335,12 @@ class ReplaceDirectoryGroupRoleMappingsResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "total_count") || $data->total_count === null) {
+            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
+        }
         return new self(
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, DirectoryGroupRoleMapping::class), SdkClient::arrayValue($data->data))),
             totalCount: SdkClient::intValue($data->total_count),
@@ -339,9 +355,24 @@ final readonly class DeleteDirectoryGroupRoleMappingResponseObjectEnum implement
 {
     public const DIRECTORY_GROUP_ROLE_MAPPING = "directory_group_role_mapping";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
