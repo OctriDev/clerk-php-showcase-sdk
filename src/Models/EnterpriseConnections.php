@@ -122,10 +122,10 @@ class EnterpriseConnectionCustomAttributesItem implements \JsonSerializable
         return new self(
             name: SdkClient::stringValue($data->name),
             key: SdkClient::stringValue($data->key),
-            ssoPath: (property_exists($data, "sso_path") ? SdkClient::stringValue($data->sso_path) : SdkNotGiven::Value),
-            scimPath: (property_exists($data, "scim_path") ? SdkClient::stringValue($data->scim_path) : SdkNotGiven::Value),
-            directoryPath: (property_exists($data, "directory_path") ? SdkClient::stringValue($data->directory_path) : SdkNotGiven::Value),
-            multiValued: (property_exists($data, "multi_valued") ? SdkClient::boolValue($data->multi_valued) : SdkNotGiven::Value),
+            ssoPath: (property_exists($data, "sso_path") && $data->sso_path !== null ? SdkClient::stringValue($data->sso_path) : SdkNotGiven::Value),
+            scimPath: (property_exists($data, "scim_path") && $data->scim_path !== null ? SdkClient::stringValue($data->scim_path) : SdkNotGiven::Value),
+            directoryPath: (property_exists($data, "directory_path") && $data->directory_path !== null ? SdkClient::stringValue($data->directory_path) : SdkNotGiven::Value),
+            multiValued: (property_exists($data, "multi_valued") && $data->multi_valued !== null ? SdkClient::boolValue($data->multi_valued) : SdkNotGiven::Value),
         );
     }
 }
@@ -268,7 +268,7 @@ class EnterpriseConnectionSamlConnectionLoginHint implements \JsonSerializable
         if (!property_exists($data, "mode") || $data->mode === null) { throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null"); }
         return new self(
             mode: SdkClient::hydrateStringEnumOrString($data->mode, EnterpriseConnectionSamlConnectionLoginHintModeEnum::class),
-            source: (property_exists($data, "source") ? SdkClient::stringValue($data->source) : SdkNotGiven::Value),
+            source: (property_exists($data, "source") && $data->source !== null ? SdkClient::stringValue($data->source) : SdkNotGiven::Value),
         );
     }
 }

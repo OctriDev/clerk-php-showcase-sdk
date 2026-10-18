@@ -84,7 +84,7 @@ class ClerkError implements \JsonSerializable
             message: SdkClient::stringValue($data->message),
             longMessage: SdkClient::stringValue($data->long_message),
             code: SdkClient::stringValue($data->code),
-            meta: (property_exists($data, "meta") ? SdkClient::stringMapValue($data->meta) : SdkNotGiven::Value),
+            meta: (property_exists($data, "meta") && $data->meta !== null ? SdkClient::stringMapValue($data->meta) : SdkNotGiven::Value),
         );
     }
 }
@@ -154,8 +154,8 @@ class ClerkErrors implements \JsonSerializable
         if (!property_exists($data, "errors") || $data->errors === null) { throw new SdkValidationError("errors", 'required', "Required property 'errors' is missing or null"); }
         return new self(
             errors: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ClerkError::class), SdkClient::arrayValue($data->errors))),
-            meta: (property_exists($data, "meta") ? SdkClient::stringMapValue($data->meta) : SdkNotGiven::Value),
-            clerkTraceId: (property_exists($data, "clerk_trace_id") ? SdkClient::stringValue($data->clerk_trace_id) : SdkNotGiven::Value),
+            meta: (property_exists($data, "meta") && $data->meta !== null ? SdkClient::stringMapValue($data->meta) : SdkNotGiven::Value),
+            clerkTraceId: (property_exists($data, "clerk_trace_id") && $data->clerk_trace_id !== null ? SdkClient::stringValue($data->clerk_trace_id) : SdkNotGiven::Value),
         );
     }
 }

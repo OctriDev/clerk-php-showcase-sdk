@@ -120,7 +120,7 @@ class VerificationFromOauth implements EmailAddressVerification, \JsonSerializab
             strategy: SdkClient::stringValue($data->strategy),
             expireAt: ($data->expire_at === null ? null : SdkClient::intValue($data->expire_at)),
             attempts: ($data->attempts === null ? null : SdkClient::intValue($data->attempts)),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateEnum($data->object, VerificationFromOauthObjectEnum::class) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateEnum($data->object, VerificationFromOauthObjectEnum::class) : SdkNotGiven::Value),
             error: (property_exists($data, "error") ? ($data->error === null ? null : SdkClient::hydrateClass($data->error, ClerkError::class)) : SdkNotGiven::Value),
             verifiedAtClient: (property_exists($data, "verified_at_client") ? ($data->verified_at_client === null ? null : SdkClient::stringValue($data->verified_at_client)) : SdkNotGiven::Value),
         );
@@ -281,49 +281,9 @@ class VerificationOtp implements EmailAddressVerification, PhoneNumberVerificati
             strategy: SdkClient::hydrateStringEnumOrString($data->strategy, VerificationOtpStrategyEnum::class),
             attempts: ($data->attempts === null ? null : SdkClient::intValue($data->attempts)),
             expireAt: ($data->expire_at === null ? null : SdkClient::intValue($data->expire_at)),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateEnum($data->object, VerificationOtpObjectEnum::class) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateEnum($data->object, VerificationOtpObjectEnum::class) : SdkNotGiven::Value),
             channel: (property_exists($data, "channel") ? ($data->channel === null ? null : SdkClient::stringValue($data->channel)) : SdkNotGiven::Value),
             verifiedAtClient: (property_exists($data, "verified_at_client") ? ($data->verified_at_client === null ? null : SdkClient::stringValue($data->verified_at_client)) : SdkNotGiven::Value),
         );
     }
-}
-
-/**
- * Optional enumerated value serialized in the `object` wire field.
- */
-enum VerificationSamlObjectEnum: string implements SdkWireEnum
-{
-    case VERIFICATION_SAML = "verification_saml";
-}
-
-/**
- * Required enumerated value serialized in the `status` wire field.
- */
-final readonly class VerificationSamlStatusEnum implements SdkOpenEnum
-{
-    public const UNVERIFIED = "unverified";
-    public const VERIFIED = "verified";
-    public const FAILED = "failed";
-    public const EXPIRED = "expired";
-    public const TRANSFERABLE = "transferable";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
-}
-
-/**
- * Required enumerated value serialized in the `strategy` wire field.
- */
-final readonly class VerificationSamlStrategyEnum implements SdkOpenEnum
-{
-    public const SAML = "saml";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
 }

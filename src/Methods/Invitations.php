@@ -7,7 +7,272 @@ declare(strict_types=1);
 
 namespace octridev_clerk;
 
+final readonly class CreateInvitationTemplateSlug implements SdkOpenEnum
+{
+    public const INVITATION = "invitation";
+    public const WAITLIST_INVITATION = "waitlist_invitation";
+    private function __construct(public string $value) {}
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
+}
+
+final readonly class ListInvitationsStatus implements SdkOpenEnum
+{
+    public const PENDING = "pending";
+    public const ACCEPTED = "accepted";
+    public const REVOKED = "revoked";
+    public const EXPIRED = "expired";
+    private function __construct(public string $value) {}
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
+}
+
+/**
+ * The slug of the email template to use for the invitation email.
+ */
+final readonly class CreateBulkInvitationsBodyItemTemplateSlugEnum implements SdkOpenEnum
+{
+    public const INVITATION = "invitation";
+    public const WAITLIST_INVITATION = "waitlist_invitation";
+    private function __construct(public string $value) {}
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
+}
+
+class CreateBulkInvitationsBodyItem implements \JsonSerializable
+{
+    /**
+     * The email address the invitation will be sent to
+     *
+     * @var string
+     */
+    public readonly string $emailAddress;
+    /**
+     * Metadata that will be attached to the newly created invitation. The value of this property should be a well-formed JSON object. Once the user accepts the invitation and signs up, these metadata will end up in the user's public metadata.
+     *
+     * @var array<string,mixed>|null|SdkNotGiven
+     */
+    public readonly array|null|SdkNotGiven $publicMetadata;
+    /**
+     * The URL where the user is redirected upon visiting the invitation link, where they can accept the invitation. Required if you have implemented a custom flow for handling application invitations.
+     *
+     * @var string|null|SdkNotGiven
+     */
+    public readonly string|null|SdkNotGiven $redirectUrl;
+    /**
+     * Optional flag which denotes whether an email invitation should be sent to the given email address. Defaults to true.
+     *
+     * @var bool|null|SdkNotGiven
+     */
+    public readonly bool|null|SdkNotGiven $notify;
+    /**
+     * Whether an invitation should be created if there is already an existing invitation for this email address, or it's claimed by another user.
+     *
+     * @var bool|null|SdkNotGiven
+     */
+    public readonly bool|null|SdkNotGiven $ignoreExisting;
+    /**
+     * The number of days the invitation will be valid for. By default, the invitation expires after 30 days.
+     *
+     * @var int|null|SdkNotGiven
+     */
+    public readonly int|null|SdkNotGiven $expiresInDays;
+    /**
+     * The slug of the email template to use for the invitation email.
+     *
+     * @var CreateBulkInvitationsBodyItemTemplateSlugEnum|string|SdkNotGiven
+     */
+    public readonly CreateBulkInvitationsBodyItemTemplateSlugEnum|string|SdkNotGiven $templateSlug;
+
+    /**
+     * @param string $emailAddress
+     * @param array<string,mixed>|null|SdkNotGiven $publicMetadata
+     * @param string|null|SdkNotGiven $redirectUrl
+     * @param bool|null|SdkNotGiven $notify
+     * @param bool|null|SdkNotGiven $ignoreExisting
+     * @param int|null|SdkNotGiven $expiresInDays
+     * @param CreateBulkInvitationsBodyItemTemplateSlugEnum|string|SdkNotGiven $templateSlug
+     */
+    public function __construct(
+        string $emailAddress,
+        array|null|SdkNotGiven $publicMetadata = SdkNotGiven::Value,
+        string|null|SdkNotGiven $redirectUrl = SdkNotGiven::Value,
+        bool|null|SdkNotGiven $notify = SdkNotGiven::Value,
+        bool|null|SdkNotGiven $ignoreExisting = SdkNotGiven::Value,
+        int|null|SdkNotGiven $expiresInDays = SdkNotGiven::Value,
+        CreateBulkInvitationsBodyItemTemplateSlugEnum|string|SdkNotGiven $templateSlug = SdkNotGiven::Value,
+    ) {
+        $this->emailAddress = $emailAddress;
+        $this->publicMetadata = $publicMetadata;
+        $this->redirectUrl = $redirectUrl;
+        $this->notify = $notify;
+        $this->ignoreExisting = $ignoreExisting;
+        $this->expiresInDays = $expiresInDays;
+        $this->templateSlug = $templateSlug;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+            "email_address" => $this->emailAddress,
+        ];
+        if ($this->publicMetadata !== SdkNotGiven::Value) {
+            $values["public_metadata"] = $this->publicMetadata;
+        }
+        if ($this->redirectUrl !== SdkNotGiven::Value) {
+            $values["redirect_url"] = $this->redirectUrl;
+        }
+        if ($this->notify !== SdkNotGiven::Value) {
+            $values["notify"] = $this->notify;
+        }
+        if ($this->ignoreExisting !== SdkNotGiven::Value) {
+            $values["ignore_existing"] = $this->ignoreExisting;
+        }
+        if ($this->expiresInDays !== SdkNotGiven::Value) {
+            $values["expires_in_days"] = $this->expiresInDays;
+        }
+        if ($this->templateSlug !== SdkNotGiven::Value) {
+            $values["template_slug"] = $this->templateSlug;
+        }
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        if (!property_exists($data, "email_address") || $data->email_address === null) { throw new SdkValidationError("email_address", 'required', "Required property 'email_address' is missing or null"); }
+        return new self(
+            emailAddress: SdkClient::stringValue($data->email_address),
+            publicMetadata: (property_exists($data, "public_metadata") ? ($data->public_metadata === null ? null : SdkClient::stringMapValue($data->public_metadata)) : SdkNotGiven::Value),
+            redirectUrl: (property_exists($data, "redirect_url") ? ($data->redirect_url === null ? null : SdkClient::stringValue($data->redirect_url)) : SdkNotGiven::Value),
+            notify: (property_exists($data, "notify") ? ($data->notify === null ? null : SdkClient::boolValue($data->notify)) : SdkNotGiven::Value),
+            ignoreExisting: (property_exists($data, "ignore_existing") ? ($data->ignore_existing === null ? null : SdkClient::boolValue($data->ignore_existing)) : SdkNotGiven::Value),
+            expiresInDays: (property_exists($data, "expires_in_days") ? ($data->expires_in_days === null ? null : SdkClient::intValue($data->expires_in_days)) : SdkNotGiven::Value),
+            templateSlug: (property_exists($data, "template_slug") && $data->template_slug !== null ? SdkClient::hydrateStringEnumOrString($data->template_slug, CreateBulkInvitationsBodyItemTemplateSlugEnum::class) : SdkNotGiven::Value),
+        );
+    }
+}
+
 class Invitations
 {
-    use InvitationsMethodsPart1;
+    /**
+     * Creates a new invitation for the given email address and sends the invitation email. Keep in mind that you cannot create an invitation if there is already one for the given email address. Also, trying to create an invitation for an email address that already exists in your application will result to an error.
+     *
+     * Creates a new invitation for the given email address and sends the invitation email. Keep in mind that you cannot create an invitation if there is already one for the given email address. Also, trying to create an invitation for an email address that already exists in your application will result to an error. emailAddress: The email address the invitation will be sent to · publicMetadata: Metadata that will be attached to the newly created invitation. The value of this property should be a well-formed JSON object. Once the user accepts the invitation and signs up, these metadata will end up in the user's public metadata. · redirectUrl: Optional URL which specifies where to redirect the user once they click the invitation link. This is only required if you have implemented a [custom flow](https://clerk.com/docs/authentication/invitations#custom-flow) and you're not using Clerk Hosted Pages or Clerk Components. · notify: Optional flag which denotes whether an email invitation should be sent to the given email address. Defaults to `true`. · ignoreExisting: Whether an invitation should be created if there is already an existing invitation for this email address, or it's claimed by another user. · expiresInDays: The number of days the invitation will be valid for. By default, the invitation expires after 30 days. · templateSlug: The slug of the email template to use for the invitation email.
+     *
+     * @param string $emailAddress
+     * @param array<string,mixed>|SdkNotGiven $publicMetadata
+     * @param string|SdkNotGiven $redirectUrl
+     * @param bool|null|SdkNotGiven $notify
+     * @param bool|null|SdkNotGiven $ignoreExisting
+     * @param int|null|SdkNotGiven $expiresInDays
+     * @param CreateInvitationTemplateSlug|SdkNotGiven $templateSlug
+     * @return Invitation
+     */
+    public static function createInvitation(ClientConfig $clientConfig, string $emailAddress, array|SdkNotGiven $publicMetadata = SdkNotGiven::Value, string|SdkNotGiven $redirectUrl = SdkNotGiven::Value, bool|null|SdkNotGiven $notify = SdkNotGiven::Value, bool|null|SdkNotGiven $ignoreExisting = SdkNotGiven::Value, int|null|SdkNotGiven $expiresInDays = SdkNotGiven::Value, CreateInvitationTemplateSlug|SdkNotGiven $templateSlug = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Invitation
+    {
+
+        if ($expiresInDays !== SdkNotGiven::Value && $expiresInDays !== null) {
+            Validation::validateRange('expires_in_days', $expiresInDays, min: 1, max: 365);
+        }
+
+        $sdkResponse = SdkClient::request('POST', "/invitations", $clientConfig, body: ['email_address' => $emailAddress, 'public_metadata' => $publicMetadata, 'redirect_url' => $redirectUrl, 'notify' => $notify, 'ignore_existing' => $ignoreExisting, 'expires_in_days' => $expiresInDays, 'template_slug' => $templateSlug], returnType: Invitation::class, decoder: 'json', operationId: 'createInvitation', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Invitation::class));
+    }
+
+
+    /**
+     * Returns all non-revoked invitations for your application, sorted by creation date
+     *
+     * Returns all non-revoked invitations for your application, sorted by creation date status: Filter invitations based on their status · query: Filter invitations based on their `email_address` or `id` · orderBy: Allows to return invitations in a particular order. At the moment, you can order the returned invitations either by their `created_at`, `email_address` or `expires_at`. In order to specify the direction, you can use the `+/-` symbols prepended in the property to order by. For example, if you want invitations to be returned in descending order according to their `created_at` property, you can use `-created_at`. If you don't use `+` or `-`, then `+` is implied. Defaults to `-created_at`. · paginated: Whether to paginate the results. If true, the results will be paginated. If false, the results will not be paginated. · limit: Applies a limit to the number of results returned. Can be used for paginating the results together with `offset`. · offset: Skip the first `offset` results when paginating. Needs to be an integer greater or equal to zero. To be used in conjunction with `limit`.
+     *
+     * @param ListInvitationsStatus|SdkNotGiven $status
+     * @param string|SdkNotGiven $query
+     * @param string|SdkNotGiven $orderBy
+     * @param bool|SdkNotGiven $paginated
+     * @param int|SdkNotGiven $limit
+     * @param int|SdkNotGiven $offset
+     * @return list<Invitation>
+     */
+    public static function listInvitations(ClientConfig $clientConfig, ListInvitationsStatus|SdkNotGiven $status = SdkNotGiven::Value, string|SdkNotGiven $query = SdkNotGiven::Value, string|SdkNotGiven $orderBy = SdkNotGiven::Value, bool|SdkNotGiven $paginated = SdkNotGiven::Value, int|SdkNotGiven $limit = SdkNotGiven::Value, int|SdkNotGiven $offset = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): array
+    {
+
+        if ($limit !== SdkNotGiven::Value) {
+            Validation::validateRange('limit', $limit, min: 1, max: 500);
+        }
+
+        if ($offset !== SdkNotGiven::Value) {
+            Validation::validateRange('offset', $offset, min: 0);
+        }
+
+        $sdkResponse = SdkClient::request('GET', "/invitations", $clientConfig, query: ['status' => new SdkQueryValue($status, "form", true), 'query' => new SdkQueryValue($query, "form", true), 'order_by' => new SdkQueryValue($orderBy, "form", true), 'paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], decoder: 'json', operationId: 'listInvitations', requestOptions: $requestOptions);
+        return SdkClient::decoded($sdkResponse, static fn() => array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, Invitation::class), SdkClient::arrayValue($sdkResponse->data))));
+    }
+
+
+    /**
+     * Creates multiple invitations for the supplied email addresses. Include an `email_address` in each item; set `ignore_existing` to allow an existing invitation, but you cannot invite an address associated with an existing user. Send at most 10 invitations per request, and use `notify` to control whether invitation emails are sent.
+     *
+     * Use this API operation to create multiple invitations for the provided email addresses. You can choose to send the invitations as emails by setting the `notify` parameter to `true`. There cannot be an existing invitation for any of the email addresses you provide unless you set `ignore_existing` to `true` for specific email addresses. Please note that there must be no existing user for any of the email addresses you provide, and this rule cannot be bypassed. This endpoint is limited to a maximum of 10 invitations per API call. If you need to send more invitations, please make multiple requests.
+     *
+     * @param list<CreateBulkInvitationsBodyItem>|SdkNotGiven $body
+     * @return list<Invitation>
+     */
+    public static function createBulkInvitations(ClientConfig $clientConfig, array|SdkNotGiven $body = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): array
+    {
+
+        if ($body !== SdkNotGiven::Value) {
+            Validation::validateItems('body', $body, min: 1, max: 10);
+        }
+
+        $sdkResponse = SdkClient::request('POST', "/invitations/bulk", $clientConfig, body: $body, decoder: 'json', operationId: 'createBulkInvitations', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, Invitation::class), SdkClient::arrayValue($sdkResponse->data))));
+    }
+
+
+    /**
+     * Permanently deletes the given invitation and the copies of the invitation email Clerk stored for its recipient. Unlike revoking, deleting removes the invitation record itself, which helps honor a data erasure request from someone who was invited but never signed up. Other records that contain the same email address, such as users or organization invitations, are not affected. Invitations of any status can be deleted.
+     *
+     * Permanently deletes the given invitation and the copies of the invitation email Clerk stored for its recipient. Unlike revoking, deleting removes the invitation record itself, which helps honor a data erasure request from someone who was invited but never signed up. Other records that contain the same email address, such as users or organization invitations, are not affected. Invitations of any status can be deleted. invitationId: The ID of the invitation to delete
+     *
+     * @param string $invitationId
+     * @return DeletedObject
+     */
+    public static function deleteInvitation(ClientConfig $clientConfig, string $invitationId, ?RequestOptions $requestOptions = null): DeletedObject
+    {
+
+        $sdkResponse = SdkClient::request('DELETE', "/invitations/" . SdkClient::encodePathSegment($invitationId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteInvitation', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
+    }
+
+
+    /**
+     * Revokes the given invitation. Revoking an invitation will prevent the user from using the invitation link that was sent to them. However, it doesn't prevent the user from signing up if they follow the sign up flow. Only active (i.e. non-revoked) invitations can be revoked.
+     *
+     * Revokes the given invitation. Revoking an invitation will prevent the user from using the invitation link that was sent to them. However, it doesn't prevent the user from signing up if they follow the sign up flow. Only active (i.e. non-revoked) invitations can be revoked. invitationId: The ID of the invitation to be revoked
+     *
+     * @param string $invitationId
+     * @return InvitationRevoked
+     */
+    public static function revokeInvitation(ClientConfig $clientConfig, string $invitationId, ?RequestOptions $requestOptions = null): InvitationRevoked
+    {
+
+        $sdkResponse = SdkClient::request('POST', "/invitations/" . SdkClient::encodePathSegment($invitationId) . "/revoke", $clientConfig, returnType: InvitationRevoked::class, decoder: 'json', operationId: 'revokeInvitation', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, InvitationRevoked::class));
+    }
 }

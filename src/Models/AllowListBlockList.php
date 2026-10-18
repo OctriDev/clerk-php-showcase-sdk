@@ -162,14 +162,14 @@ class AllowlistIdentifier implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, AllowlistIdentifierObjectEnum::class) : SdkNotGiven::Value),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            invitationId: (property_exists($data, "invitation_id") ? SdkClient::stringValue($data->invitation_id) : SdkNotGiven::Value),
-            identifier: (property_exists($data, "identifier") ? SdkClient::stringValue($data->identifier) : SdkNotGiven::Value),
-            identifierType: (property_exists($data, "identifier_type") ? SdkClient::hydrateStringEnumOrString($data->identifier_type, AllowlistIdentifierIdentifierTypeEnum::class) : SdkNotGiven::Value),
-            instanceId: (property_exists($data, "instance_id") ? SdkClient::stringValue($data->instance_id) : SdkNotGiven::Value),
-            createdAt: (property_exists($data, "created_at") ? SdkClient::intValue($data->created_at) : SdkNotGiven::Value),
-            updatedAt: (property_exists($data, "updated_at") ? SdkClient::intValue($data->updated_at) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, AllowlistIdentifierObjectEnum::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            invitationId: (property_exists($data, "invitation_id") && $data->invitation_id !== null ? SdkClient::stringValue($data->invitation_id) : SdkNotGiven::Value),
+            identifier: (property_exists($data, "identifier") && $data->identifier !== null ? SdkClient::stringValue($data->identifier) : SdkNotGiven::Value),
+            identifierType: (property_exists($data, "identifier_type") && $data->identifier_type !== null ? SdkClient::hydrateStringEnumOrString($data->identifier_type, AllowlistIdentifierIdentifierTypeEnum::class) : SdkNotGiven::Value),
+            instanceId: (property_exists($data, "instance_id") && $data->instance_id !== null ? SdkClient::stringValue($data->instance_id) : SdkNotGiven::Value),
+            createdAt: (property_exists($data, "created_at") && $data->created_at !== null ? SdkClient::intValue($data->created_at) : SdkNotGiven::Value),
+            updatedAt: (property_exists($data, "updated_at") && $data->updated_at !== null ? SdkClient::intValue($data->updated_at) : SdkNotGiven::Value),
         );
     }
 }
@@ -317,13 +317,13 @@ class BlocklistIdentifier implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, BlocklistIdentifierObjectEnum::class) : SdkNotGiven::Value),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            identifier: (property_exists($data, "identifier") ? SdkClient::stringValue($data->identifier) : SdkNotGiven::Value),
-            identifierType: (property_exists($data, "identifier_type") ? SdkClient::hydrateStringEnumOrString($data->identifier_type, BlocklistIdentifierIdentifierTypeEnum::class) : SdkNotGiven::Value),
-            instanceId: (property_exists($data, "instance_id") ? SdkClient::stringValue($data->instance_id) : SdkNotGiven::Value),
-            createdAt: (property_exists($data, "created_at") ? SdkClient::intValue($data->created_at) : SdkNotGiven::Value),
-            updatedAt: (property_exists($data, "updated_at") ? SdkClient::intValue($data->updated_at) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, BlocklistIdentifierObjectEnum::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            identifier: (property_exists($data, "identifier") && $data->identifier !== null ? SdkClient::stringValue($data->identifier) : SdkNotGiven::Value),
+            identifierType: (property_exists($data, "identifier_type") && $data->identifier_type !== null ? SdkClient::hydrateStringEnumOrString($data->identifier_type, BlocklistIdentifierIdentifierTypeEnum::class) : SdkNotGiven::Value),
+            instanceId: (property_exists($data, "instance_id") && $data->instance_id !== null ? SdkClient::stringValue($data->instance_id) : SdkNotGiven::Value),
+            createdAt: (property_exists($data, "created_at") && $data->created_at !== null ? SdkClient::intValue($data->created_at) : SdkNotGiven::Value),
+            updatedAt: (property_exists($data, "updated_at") && $data->updated_at !== null ? SdkClient::intValue($data->updated_at) : SdkNotGiven::Value),
         );
     }
 }

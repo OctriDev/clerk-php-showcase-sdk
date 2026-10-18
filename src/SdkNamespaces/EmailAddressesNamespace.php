@@ -75,9 +75,9 @@ class EmailAddressesNamespace
      * Sends a one-time code to the given email address so that a backend can verify the user controls it (for example, in a custom, backend-driven sign-in flow). The code is tracked on its own verification; confirm it with attempt_verification. emailAddressId: The ID of the email address to send the verification code to
      *
      * @param string $emailAddressId
-     * @return PrepareEmailAddressVerificationResponse
+     * @return VerificationResponse
      */
-    public function prepareEmailAddressVerification(string $emailAddressId, ?RequestOptions $requestOptions = null): PrepareEmailAddressVerificationResponse
+    public function prepareEmailAddressVerification(string $emailAddressId, ?RequestOptions $requestOptions = null): VerificationResponse
     {
         return EmailAddresses::prepareEmailAddressVerification($this->clientConfig, $emailAddressId, $requestOptions);
     }
@@ -89,9 +89,9 @@ class EmailAddressesNamespace
      * @param string $emailAddressId
      * @param string $verificationId
      * @param string $code
-     * @return AttemptEmailAddressVerificationResponse
+     * @return VerificationResponse
      */
-    public function attemptEmailAddressVerification(string $emailAddressId, string $verificationId, string $code, ?RequestOptions $requestOptions = null): AttemptEmailAddressVerificationResponse
+    public function attemptEmailAddressVerification(string $emailAddressId, string $verificationId, string $code, ?RequestOptions $requestOptions = null): VerificationResponse
     {
         return EmailAddresses::attemptEmailAddressVerification($this->clientConfig, $emailAddressId, $verificationId, $code, $requestOptions);
     }

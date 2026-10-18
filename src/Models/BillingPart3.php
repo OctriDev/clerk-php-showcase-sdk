@@ -61,13 +61,13 @@ class BillingPriceResponse implements \JsonSerializable
      */
     public readonly int $annualMonthlyAmount;
     /**
-     * Required API value serialized in the `fee` wire field.
+     * Required object value serialized in the `fee` wire field.
      *
      * @var CommerceMoneyResponse|null
      */
     public readonly CommerceMoneyResponse|null $fee;
     /**
-     * Required API value serialized in the `annual_monthly_fee` wire field.
+     * Required object value serialized in the `annual_monthly_fee` wire field.
      *
      * @var CommerceMoneyResponse|null
      */

@@ -240,23 +240,23 @@ class EnterpriseConnectionSamlConnection implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
             idpEntityId: (property_exists($data, "idp_entity_id") ? ($data->idp_entity_id === null ? null : SdkClient::stringValue($data->idp_entity_id)) : SdkNotGiven::Value),
             idpSsoUrl: (property_exists($data, "idp_sso_url") ? ($data->idp_sso_url === null ? null : SdkClient::stringValue($data->idp_sso_url)) : SdkNotGiven::Value),
             idpCertificate: (property_exists($data, "idp_certificate") ? ($data->idp_certificate === null ? null : SdkClient::stringValue($data->idp_certificate)) : SdkNotGiven::Value),
             idpCertificateIssuedAt: (property_exists($data, "idp_certificate_issued_at") ? ($data->idp_certificate_issued_at === null ? null : SdkClient::intValue($data->idp_certificate_issued_at)) : SdkNotGiven::Value),
             idpCertificateExpiresAt: (property_exists($data, "idp_certificate_expires_at") ? ($data->idp_certificate_expires_at === null ? null : SdkClient::intValue($data->idp_certificate_expires_at)) : SdkNotGiven::Value),
-            idpCertificates: (property_exists($data, "idp_certificates") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, EnterpriseConnectionSamlConnectionIdpCertificatesItem::class), SdkClient::arrayValue($data->idp_certificates))) : SdkNotGiven::Value),
+            idpCertificates: (property_exists($data, "idp_certificates") && $data->idp_certificates !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, EnterpriseConnectionSamlConnectionIdpCertificatesItem::class), SdkClient::arrayValue($data->idp_certificates))) : SdkNotGiven::Value),
             idpMetadataUrl: (property_exists($data, "idp_metadata_url") ? ($data->idp_metadata_url === null ? null : SdkClient::stringValue($data->idp_metadata_url)) : SdkNotGiven::Value),
             acsUrl: (property_exists($data, "acs_url") ? ($data->acs_url === null ? null : SdkClient::stringValue($data->acs_url)) : SdkNotGiven::Value),
             spEntityId: (property_exists($data, "sp_entity_id") ? ($data->sp_entity_id === null ? null : SdkClient::stringValue($data->sp_entity_id)) : SdkNotGiven::Value),
             spMetadataUrl: (property_exists($data, "sp_metadata_url") ? ($data->sp_metadata_url === null ? null : SdkClient::stringValue($data->sp_metadata_url)) : SdkNotGiven::Value),
-            active: (property_exists($data, "active") ? SdkClient::boolValue($data->active) : SdkNotGiven::Value),
-            allowIdpInitiated: (property_exists($data, "allow_idp_initiated") ? SdkClient::boolValue($data->allow_idp_initiated) : SdkNotGiven::Value),
-            allowSubdomains: (property_exists($data, "allow_subdomains") ? SdkClient::boolValue($data->allow_subdomains) : SdkNotGiven::Value),
-            forceAuthn: (property_exists($data, "force_authn") ? SdkClient::boolValue($data->force_authn) : SdkNotGiven::Value),
-            loginHint: (property_exists($data, "login_hint") ? SdkClient::hydrateClass($data->login_hint, EnterpriseConnectionSamlConnectionLoginHint::class) : SdkNotGiven::Value),
+            active: (property_exists($data, "active") && $data->active !== null ? SdkClient::boolValue($data->active) : SdkNotGiven::Value),
+            allowIdpInitiated: (property_exists($data, "allow_idp_initiated") && $data->allow_idp_initiated !== null ? SdkClient::boolValue($data->allow_idp_initiated) : SdkNotGiven::Value),
+            allowSubdomains: (property_exists($data, "allow_subdomains") && $data->allow_subdomains !== null ? SdkClient::boolValue($data->allow_subdomains) : SdkNotGiven::Value),
+            forceAuthn: (property_exists($data, "force_authn") && $data->force_authn !== null ? SdkClient::boolValue($data->force_authn) : SdkNotGiven::Value),
+            loginHint: (property_exists($data, "login_hint") && $data->login_hint !== null ? SdkClient::hydrateClass($data->login_hint, EnterpriseConnectionSamlConnectionLoginHint::class) : SdkNotGiven::Value),
         );
     }
 }

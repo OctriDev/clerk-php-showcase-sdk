@@ -75,9 +75,9 @@ class PhoneNumbersNamespace
      * Sends a one-time code to the given phone number so that a backend can verify the user controls it (for example, in a custom, backend-driven sign-in flow). The code is tracked on its own verification; confirm it with attempt_verification. phoneNumberId: The ID of the phone number to send the verification code to
      *
      * @param string $phoneNumberId
-     * @return PreparePhoneNumberVerificationResponse
+     * @return VerificationResponse
      */
-    public function prepareVerification(string $phoneNumberId, ?RequestOptions $requestOptions = null): PreparePhoneNumberVerificationResponse
+    public function prepareVerification(string $phoneNumberId, ?RequestOptions $requestOptions = null): VerificationResponse
     {
         return PhoneNumbers::preparePhoneNumberVerification($this->clientConfig, $phoneNumberId, $requestOptions);
     }
@@ -89,9 +89,9 @@ class PhoneNumbersNamespace
      * @param string $phoneNumberId
      * @param string $verificationId
      * @param string $code
-     * @return AttemptPhoneNumberVerificationResponse
+     * @return VerificationResponse
      */
-    public function attemptVerification(string $phoneNumberId, string $verificationId, string $code, ?RequestOptions $requestOptions = null): AttemptPhoneNumberVerificationResponse
+    public function attemptVerification(string $phoneNumberId, string $verificationId, string $code, ?RequestOptions $requestOptions = null): VerificationResponse
     {
         return PhoneNumbers::attemptPhoneNumberVerification($this->clientConfig, $phoneNumberId, $verificationId, $code, $requestOptions);
     }

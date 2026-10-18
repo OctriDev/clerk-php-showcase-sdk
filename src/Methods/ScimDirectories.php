@@ -7,7 +7,324 @@ declare(strict_types=1);
 
 namespace octridev_clerk;
 
+class CreateSCIMDirectoryGroupRoleMappingsItem implements \JsonSerializable
+{
+    /**
+     * The SCIM group ID from the identity provider.
+     *
+     * @var string
+     */
+    public readonly string $scimGroupId;
+    /**
+     * Optional display name for the SCIM group.
+     *
+     * @var string|SdkNotGiven
+     */
+    public readonly string|SdkNotGiven $scimGroupDisplayName;
+    /**
+     * The organization role ID to assign to members of the SCIM group.
+     *
+     * @var string
+     */
+    public readonly string $roleId;
+    /**
+     * The precedence for this mapping. If omitted, precedence is assigned by array order.
+     *
+     * @var int|SdkNotGiven
+     */
+    public readonly int|SdkNotGiven $precedence;
+
+    /**
+     * @param string $scimGroupId
+     * @param string $roleId
+     * @param string|SdkNotGiven $scimGroupDisplayName
+     * @param int|SdkNotGiven $precedence
+     */
+    public function __construct(
+        string $scimGroupId,
+        string $roleId,
+        string|SdkNotGiven $scimGroupDisplayName = SdkNotGiven::Value,
+        int|SdkNotGiven $precedence = SdkNotGiven::Value,
+    ) {
+        $this->scimGroupId = $scimGroupId;
+        $this->roleId = $roleId;
+        $this->scimGroupDisplayName = $scimGroupDisplayName;
+        $this->precedence = $precedence;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+            "scim_group_id" => $this->scimGroupId,
+            "role_id" => $this->roleId,
+        ];
+        if ($this->scimGroupDisplayName !== SdkNotGiven::Value) {
+            $values["scim_group_display_name"] = $this->scimGroupDisplayName;
+        }
+        if ($this->precedence !== SdkNotGiven::Value) {
+            $values["precedence"] = $this->precedence;
+        }
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        if (!property_exists($data, "scim_group_id") || $data->scim_group_id === null) { throw new SdkValidationError("scim_group_id", 'required', "Required property 'scim_group_id' is missing or null"); }
+        if (!property_exists($data, "role_id") || $data->role_id === null) { throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null"); }
+        return new self(
+            scimGroupId: SdkClient::stringValue($data->scim_group_id),
+            roleId: SdkClient::stringValue($data->role_id),
+            scimGroupDisplayName: (property_exists($data, "scim_group_display_name") && $data->scim_group_display_name !== null ? SdkClient::stringValue($data->scim_group_display_name) : SdkNotGiven::Value),
+            precedence: (property_exists($data, "precedence") && $data->precedence !== null ? SdkClient::intValue($data->precedence) : SdkNotGiven::Value),
+        );
+    }
+}
+
+class ReplaceSCIMGroupRoleMappingsMappingsItem implements \JsonSerializable
+{
+    /**
+     * The SCIM group ID from the identity provider.
+     *
+     * @var string
+     */
+    public readonly string $scimGroupId;
+    /**
+     * The ID of the organization role to assign to members of the SCIM group.
+     *
+     * @var string
+     */
+    public readonly string $roleId;
+
+    /**
+     * @param string $scimGroupId
+     * @param string $roleId
+     */
+    public function __construct(
+        string $scimGroupId,
+        string $roleId,
+    ) {
+        $this->scimGroupId = $scimGroupId;
+        $this->roleId = $roleId;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+            "scim_group_id" => $this->scimGroupId,
+            "role_id" => $this->roleId,
+        ];
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        if (!property_exists($data, "scim_group_id") || $data->scim_group_id === null) { throw new SdkValidationError("scim_group_id", 'required', "Required property 'scim_group_id' is missing or null"); }
+        if (!property_exists($data, "role_id") || $data->role_id === null) { throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null"); }
+        return new self(
+            scimGroupId: SdkClient::stringValue($data->scim_group_id),
+            roleId: SdkClient::stringValue($data->role_id),
+        );
+    }
+}
+
 class ScimDirectories
 {
-    use ScimDirectoriesMethodsPart1;
+    /**
+     * Returns a list of all directories for the instance.
+     *
+     * Returns a list of all directories for the instance. limit: Applies a limit to the number of results returned. Can be used for paginating the results together with `offset`. · offset: Skip the first `offset` results when paginating. Needs to be an integer greater or equal to zero. To be used in conjunction with `limit`.
+     *
+     * @param int|SdkNotGiven $limit
+     * @param int|SdkNotGiven $offset
+     * @return SCIMDirectoryList
+     */
+    public static function listScimDirectories(ClientConfig $clientConfig, int|SdkNotGiven $limit = SdkNotGiven::Value, int|SdkNotGiven $offset = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): SCIMDirectoryList
+    {
+
+        if ($limit !== SdkNotGiven::Value) {
+            Validation::validateRange('limit', $limit, min: 1, max: 500);
+        }
+
+        if ($offset !== SdkNotGiven::Value) {
+            Validation::validateRange('offset', $offset, min: 0);
+        }
+
+        $sdkResponse = SdkClient::request('GET', "/scim_directories", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: SCIMDirectoryList::class, decoder: 'json', operationId: 'listScimDirectories', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMDirectoryList::class));
+    }
+
+
+    /**
+     * Creates a SCIM directory for the instance and associates it with an enterprise connection. Supply `enterprise_connection_id` and `provider`; you can also include group-to-role mappings to create with the directory. The created directory response includes its SCIM endpoint URL and API key.
+     *
+     * Create a new directory for the instance. enterpriseConnectionId: The ID of the enterprise connection to associate with this directory. · provider: The identity provider for this directory. · name: A human-friendly name for the directory. · groupRoleMappings: Optional SCIM group to organization role mappings to create with the directory.
+     *
+     * @param string $enterpriseConnectionId
+     * @param string $provider
+     * @param string|SdkNotGiven $name
+     * @param list<CreateSCIMDirectoryGroupRoleMappingsItem>|SdkNotGiven $groupRoleMappings
+     * @return SCIMDirectory
+     */
+    public static function createScimDirectory(ClientConfig $clientConfig, string $enterpriseConnectionId, string $provider, string|SdkNotGiven $name = SdkNotGiven::Value, array|SdkNotGiven $groupRoleMappings = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): SCIMDirectory
+    {
+
+        $sdkResponse = SdkClient::request('POST', "/scim_directories", $clientConfig, body: ['enterprise_connection_id' => $enterpriseConnectionId, 'provider' => $provider, 'name' => $name, 'group_role_mappings' => $groupRoleMappings], returnType: SCIMDirectory::class, decoder: 'json', operationId: 'createScimDirectory', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMDirectory::class));
+    }
+
+
+    /**
+     * Retrieves the configuration for a SCIM directory. Use its identifier to look up details such as its provider, endpoint URL, enabled state, and attribute mappings.
+     *
+     * Returns the details of a directory. scimDirectoryId: The ID of the directory to retrieve
+     *
+     * @param string $scimDirectoryId
+     * @return SCIMDirectory
+     */
+    public static function getScimDirectory(ClientConfig $clientConfig, string $scimDirectoryId, ?RequestOptions $requestOptions = null): SCIMDirectory
+    {
+
+        $sdkResponse = SdkClient::request('GET', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "", $clientConfig, returnType: SCIMDirectory::class, decoder: 'json', operationId: 'getScimDirectory', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMDirectory::class));
+    }
+
+
+    /**
+     * Updates the configuration of a SCIM directory. Supply only the settings you want to change; `attribute_mapping` entries are merged, and setting a key to `null` removes it from the mapping.
+     *
+     * Updates a directory. scimDirectoryId: The ID of the directory to update · name: A human-friendly name for the directory. · enabled: Whether the directory is enabled. · provider: The identity provider for this directory. · attributeMapping: Attribute-to-SCIM-path entries to merge into the directory's attribute mapping. Set a key to `null` to remove it from the mapping. · groupRoleMappingEnabled: Whether group-to-role mapping is enabled for this directory.
+     *
+     * @param string $scimDirectoryId
+     * @param string|SdkNotGiven $name
+     * @param bool|SdkNotGiven $enabled
+     * @param string|SdkNotGiven $provider
+     * @param array<string,string|null>|SdkNotGiven $attributeMapping
+     * @param bool|SdkNotGiven $groupRoleMappingEnabled
+     * @return SCIMDirectory
+     */
+    public static function updateScimDirectory(ClientConfig $clientConfig, string $scimDirectoryId, string|SdkNotGiven $name = SdkNotGiven::Value, bool|SdkNotGiven $enabled = SdkNotGiven::Value, string|SdkNotGiven $provider = SdkNotGiven::Value, array|SdkNotGiven $attributeMapping = SdkNotGiven::Value, bool|SdkNotGiven $groupRoleMappingEnabled = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): SCIMDirectory
+    {
+
+        $sdkResponse = SdkClient::request('PATCH', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "", $clientConfig, body: ['name' => $name, 'enabled' => $enabled, 'provider' => $provider, 'attribute_mapping' => $attributeMapping, 'group_role_mapping_enabled' => $groupRoleMappingEnabled], returnType: SCIMDirectory::class, decoder: 'json', operationId: 'updateScimDirectory', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMDirectory::class));
+    }
+
+
+    /**
+     * Deletes a directory and stops provisioning for it. SCIM requests authenticated with the directory's API key are rejected afterwards.
+     *
+     * Deletes a directory and stops provisioning for it. SCIM requests authenticated with the directory's API key are rejected afterwards. scimDirectoryId: The ID of the directory to delete
+     *
+     * @param string $scimDirectoryId
+     * @return DeletedObject
+     */
+    public static function deleteScimDirectory(ClientConfig $clientConfig, string $scimDirectoryId, ?RequestOptions $requestOptions = null): DeletedObject
+    {
+
+        $sdkResponse = SdkClient::request('DELETE', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteScimDirectory', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
+    }
+
+
+    /**
+     * Generates a new API key for the directory and returns it in the `api_key` field. This is the only way to obtain the key after creation, so make sure to update it in your identity provider. The previous key remains valid for a short grace period before it expires.
+     *
+     * Generates a new API key for the directory and returns it in the `api_key` field. This is the only way to obtain the key after creation, so make sure to update it in your identity provider. The previous key remains valid for a short grace period before it expires. scimDirectoryId: The ID of the directory whose API key to rotate
+     *
+     * @param string $scimDirectoryId
+     * @return SCIMDirectory
+     */
+    public static function rotateScimDirectoryApiKey(ClientConfig $clientConfig, string $scimDirectoryId, ?RequestOptions $requestOptions = null): SCIMDirectory
+    {
+
+        $sdkResponse = SdkClient::request('POST', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "/rotate_api_key", $clientConfig, returnType: SCIMDirectory::class, decoder: 'json', operationId: 'rotateScimDirectoryApiKey', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMDirectory::class));
+    }
+
+
+    /**
+     * Returns the list of SCIM group to organization role mappings for a directory, ordered by precedence.
+     *
+     * Returns the list of SCIM group to organization role mappings for a directory, ordered by precedence. scimDirectoryId: The ID of the directory.
+     *
+     * @param string $scimDirectoryId
+     * @return SCIMGroupRoleMappingList
+     */
+    public static function listScimGroupRoleMappings(ClientConfig $clientConfig, string $scimDirectoryId, ?RequestOptions $requestOptions = null): SCIMGroupRoleMappingList
+    {
+
+        $sdkResponse = SdkClient::request('GET', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "/group_role_mappings", $clientConfig, returnType: SCIMGroupRoleMappingList::class, decoder: 'json', operationId: 'listScimGroupRoleMappings', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMGroupRoleMappingList::class));
+    }
+
+
+    /**
+     * Creates a new SCIM group to organization role mapping for a directory. Mappings can be created while group role mapping is disabled on the directory, but they only take effect once it is enabled.
+     *
+     * Creates a new SCIM group to organization role mapping for a directory. Mappings can be created while group role mapping is disabled on the directory, but they only take effect once it is enabled. scimDirectoryId: The ID of the directory. · scimGroupId: The SCIM group ID from the identity provider. · roleId: The ID of the organization role to assign to members of the SCIM group. · precedence: The precedence for this mapping. Lower values take priority when a user belongs to multiple mapped groups. If omitted, the mapping is appended with the next-highest precedence.
+     *
+     * @param string $scimDirectoryId
+     * @param string $scimGroupId
+     * @param string $roleId
+     * @param int|SdkNotGiven $precedence
+     * @return SCIMGroupRoleMapping
+     */
+    public static function createScimGroupRoleMapping(ClientConfig $clientConfig, string $scimDirectoryId, string $scimGroupId, string $roleId, int|SdkNotGiven $precedence = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): SCIMGroupRoleMapping
+    {
+
+        if ($precedence !== SdkNotGiven::Value) {
+            Validation::validateRange('precedence', $precedence, min: 1);
+        }
+
+        $sdkResponse = SdkClient::request('POST', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "/group_role_mappings", $clientConfig, body: ['scim_group_id' => $scimGroupId, 'role_id' => $roleId, 'precedence' => $precedence], returnType: SCIMGroupRoleMapping::class, decoder: 'json', operationId: 'createScimGroupRoleMapping', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMGroupRoleMapping::class));
+    }
+
+
+    /**
+     * Replaces the entire set of SCIM group role mappings for a directory. The position of each item in the `mappings` array determines its precedence (the first item gets precedence 1). Passing an empty array removes all mappings. Mappings can be replaced while group role mapping is disabled on the directory, but they only take effect once it is enabled.
+     *
+     * Replaces the entire set of SCIM group role mappings for a directory. The position of each item in the `mappings` array determines its precedence (the first item gets precedence 1). Passing an empty array removes all mappings. Mappings can be replaced while group role mapping is disabled on the directory, but they only take effect once it is enabled. scimDirectoryId: The ID of the directory. · mappings: The desired set of mappings. Array order sets precedence (1-indexed). An empty array clears all mappings.
+     *
+     * @param string $scimDirectoryId
+     * @param list<ReplaceSCIMGroupRoleMappingsMappingsItem> $mappings
+     * @return SCIMGroupRoleMappingList
+     */
+    public static function replaceScimGroupRoleMappings(ClientConfig $clientConfig, string $scimDirectoryId, array $mappings, ?RequestOptions $requestOptions = null): SCIMGroupRoleMappingList
+    {
+
+        $sdkResponse = SdkClient::request('PUT', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "/group_role_mappings", $clientConfig, body: ['mappings' => $mappings], returnType: SCIMGroupRoleMappingList::class, decoder: 'json', operationId: 'replaceScimGroupRoleMappings', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMGroupRoleMappingList::class));
+    }
+
+
+    /**
+     * Deletes a single SCIM group role mapping. Mappings can be deleted while group role mapping is disabled on the directory, but the change only takes effect once it is enabled.
+     *
+     * Deletes a single SCIM group role mapping. Mappings can be deleted while group role mapping is disabled on the directory, but the change only takes effect once it is enabled. scimDirectoryId: The ID of the directory. · mappingId: The ID of the SCIM group role mapping to delete.
+     *
+     * @param string $scimDirectoryId
+     * @param string $mappingId
+     * @return SCIMGroupRoleMappingDeleted
+     */
+    public static function deleteScimGroupRoleMapping(ClientConfig $clientConfig, string $scimDirectoryId, string $mappingId, ?RequestOptions $requestOptions = null): SCIMGroupRoleMappingDeleted
+    {
+
+        $sdkResponse = SdkClient::request('DELETE', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "/group_role_mappings/" . SdkClient::encodePathSegment($mappingId) . "", $clientConfig, returnType: SCIMGroupRoleMappingDeleted::class, decoder: 'json', operationId: 'deleteScimGroupRoleMapping', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMGroupRoleMappingDeleted::class));
+    }
 }

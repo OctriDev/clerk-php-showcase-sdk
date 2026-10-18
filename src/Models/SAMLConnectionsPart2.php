@@ -408,12 +408,12 @@ class SAMLConnection implements \JsonSerializable
             loginHint: SdkClient::hydrateClass($data->login_hint, SAMLConnectionLoginHint::class),
             createdAt: SdkClient::intValue($data->created_at),
             updatedAt: SdkClient::intValue($data->updated_at),
-            domain: (property_exists($data, "domain") ? SdkClient::stringValue($data->domain) : SdkNotGiven::Value),
-            domains: (property_exists($data, "domains") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->domains))) : SdkNotGiven::Value),
+            domain: (property_exists($data, "domain") && $data->domain !== null ? SdkClient::stringValue($data->domain) : SdkNotGiven::Value),
+            domains: (property_exists($data, "domains") && $data->domains !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->domains))) : SdkNotGiven::Value),
             idpMetadataUrl: (property_exists($data, "idp_metadata_url") ? ($data->idp_metadata_url === null ? null : SdkClient::stringValue($data->idp_metadata_url)) : SdkNotGiven::Value),
             idpMetadata: (property_exists($data, "idp_metadata") ? ($data->idp_metadata === null ? null : SdkClient::stringValue($data->idp_metadata)) : SdkNotGiven::Value),
             organizationId: (property_exists($data, "organization_id") ? ($data->organization_id === null ? null : SdkClient::stringValue($data->organization_id)) : SdkNotGiven::Value),
-            attributeMapping: (property_exists($data, "attribute_mapping") ? SdkClient::hydrateClass($data->attribute_mapping, SAMLConnectionAttributeMapping::class) : SdkNotGiven::Value),
+            attributeMapping: (property_exists($data, "attribute_mapping") && $data->attribute_mapping !== null ? SdkClient::hydrateClass($data->attribute_mapping, SAMLConnectionAttributeMapping::class) : SdkNotGiven::Value),
             enterpriseConnectionId: (property_exists($data, "enterprise_connection_id") ? ($data->enterprise_connection_id === null ? null : SdkClient::stringValue($data->enterprise_connection_id)) : SdkNotGiven::Value),
         );
     }

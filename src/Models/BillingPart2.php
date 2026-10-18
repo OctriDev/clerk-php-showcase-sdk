@@ -312,8 +312,8 @@ class BillingPaymentAttempt implements \JsonSerializable
             failedAt: ($data->failed_at === null ? null : SdkClient::intValue($data->failed_at)),
             createdAt: SdkClient::intValue($data->created_at),
             updatedAt: SdkClient::intValue($data->updated_at),
-            subscriptionItemId: (property_exists($data, "subscription_item_id") ? SdkClient::stringValue($data->subscription_item_id) : SdkNotGiven::Value),
-            subscriptionItem: (property_exists($data, "subscription_item") ? SdkClient::stringMapValue($data->subscription_item) : SdkNotGiven::Value),
+            subscriptionItemId: (property_exists($data, "subscription_item_id") && $data->subscription_item_id !== null ? SdkClient::stringValue($data->subscription_item_id) : SdkNotGiven::Value),
+            subscriptionItem: (property_exists($data, "subscription_item") && $data->subscription_item !== null ? SdkClient::stringMapValue($data->subscription_item) : SdkNotGiven::Value),
             totals: (property_exists($data, "totals") ? ($data->totals === null ? null : SdkClient::hydrateClass($data->totals, CommerceTotalsResponse2::class)) : SdkNotGiven::Value),
         );
     }

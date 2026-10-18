@@ -153,9 +153,9 @@ class OAuthAccessTokenItem implements \JsonSerializable
             provider: SdkClient::stringValue($data->provider),
             publicMetadata: SdkClient::stringMapValue($data->public_metadata),
             label: ($data->label === null ? null : SdkClient::stringValue($data->label)),
-            scopes: (property_exists($data, "scopes") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->scopes))) : SdkNotGiven::Value),
-            idToken: (property_exists($data, "id_token") ? SdkClient::stringValue($data->id_token) : SdkNotGiven::Value),
-            tokenSecret: (property_exists($data, "token_secret") ? SdkClient::stringValue($data->token_secret) : SdkNotGiven::Value),
+            scopes: (property_exists($data, "scopes") && $data->scopes !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->scopes))) : SdkNotGiven::Value),
+            idToken: (property_exists($data, "id_token") && $data->id_token !== null ? SdkClient::stringValue($data->id_token) : SdkNotGiven::Value),
+            tokenSecret: (property_exists($data, "token_secret") && $data->token_secret !== null ? SdkClient::stringValue($data->token_secret) : SdkNotGiven::Value),
         );
     }
 }
@@ -263,7 +263,7 @@ class Passkey implements \JsonSerializable
             name: SdkClient::stringValue($data->name),
             lastUsedAt: SdkClient::intValue($data->last_used_at),
             verification: ($data->verification === null ? null : SdkClient::hydrateClass($data->verification, VerificationPasskey::class)),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }

@@ -242,8 +242,8 @@ class CommercePaymentSourceResponse implements \JsonSerializable
             updatedAt: SdkClient::intValue($data->updated_at),
             isDefault: (property_exists($data, "is_default") ? ($data->is_default === null ? null : SdkClient::boolValue($data->is_default)) : SdkNotGiven::Value),
             gatewayExternalAccountId: (property_exists($data, "gateway_external_account_id") ? ($data->gateway_external_account_id === null ? null : SdkClient::stringValue($data->gateway_external_account_id)) : SdkNotGiven::Value),
-            expiryYear: (property_exists($data, "expiry_year") ? SdkClient::intValue($data->expiry_year) : SdkNotGiven::Value),
-            expiryMonth: (property_exists($data, "expiry_month") ? SdkClient::intValue($data->expiry_month) : SdkNotGiven::Value),
+            expiryYear: (property_exists($data, "expiry_year") && $data->expiry_year !== null ? SdkClient::intValue($data->expiry_year) : SdkNotGiven::Value),
+            expiryMonth: (property_exists($data, "expiry_month") && $data->expiry_month !== null ? SdkClient::intValue($data->expiry_month) : SdkNotGiven::Value),
             isRemovable: (property_exists($data, "is_removable") ? ($data->is_removable === null ? null : SdkClient::boolValue($data->is_removable)) : SdkNotGiven::Value),
         );
     }

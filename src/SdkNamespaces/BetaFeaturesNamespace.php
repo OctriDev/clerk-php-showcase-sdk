@@ -23,9 +23,9 @@ class BetaFeaturesNamespace
      * @param string|null|SdkNotGiven $fromEmailAddress
      * @param bool|null|SdkNotGiven $progressiveSignUp
      * @param bool|null|SdkNotGiven $testMode
-     * @return UpdateInstanceAuthConfigResponse
+     * @return InstanceSettings
      */
-    public function updateInstanceAuthConfig(bool|null|SdkNotGiven $restrictedToAllowlist = SdkNotGiven::Value, string|null|SdkNotGiven $fromEmailAddress = SdkNotGiven::Value, bool|null|SdkNotGiven $progressiveSignUp = SdkNotGiven::Value, bool|null|SdkNotGiven $testMode = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): UpdateInstanceAuthConfigResponse
+    public function updateInstanceAuthConfig(bool|null|SdkNotGiven $restrictedToAllowlist = SdkNotGiven::Value, string|null|SdkNotGiven $fromEmailAddress = SdkNotGiven::Value, bool|null|SdkNotGiven $progressiveSignUp = SdkNotGiven::Value, bool|null|SdkNotGiven $testMode = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): InstanceSettings
     {
         return BetaFeatures::updateInstanceAuthConfig($this->clientConfig, $restrictedToAllowlist, $fromEmailAddress, $progressiveSignUp, $testMode, $requestOptions);
     }

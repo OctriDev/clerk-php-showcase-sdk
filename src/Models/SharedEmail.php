@@ -158,8 +158,8 @@ class EmailAddress implements \JsonSerializable
             linkedTo: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, IdentificationLink::class), SdkClient::arrayValue($data->linked_to))),
             createdAt: SdkClient::intValue($data->created_at),
             updatedAt: SdkClient::intValue($data->updated_at),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            matchesSsoConnection: (property_exists($data, "matches_sso_connection") ? SdkClient::boolValue($data->matches_sso_connection) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            matchesSsoConnection: (property_exists($data, "matches_sso_connection") && $data->matches_sso_connection !== null ? SdkClient::boolValue($data->matches_sso_connection) : SdkNotGiven::Value),
         );
     }
 }

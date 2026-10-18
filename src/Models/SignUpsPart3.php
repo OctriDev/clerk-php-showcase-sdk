@@ -82,8 +82,8 @@ class SignUpVerification implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            nextAction: (property_exists($data, "next_action") ? SdkClient::hydrateStringEnumOrString($data->next_action, SignUpVerificationNextActionEnum::class) : SdkNotGiven::Value),
-            supportedStrategies: (property_exists($data, "supported_strategies") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->supported_strategies))) : SdkNotGiven::Value),
+            nextAction: (property_exists($data, "next_action") && $data->next_action !== null ? SdkClient::hydrateStringEnumOrString($data->next_action, SignUpVerificationNextActionEnum::class) : SdkNotGiven::Value),
+            supportedStrategies: (property_exists($data, "supported_strategies") && $data->supported_strategies !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->supported_strategies))) : SdkNotGiven::Value),
             additionalProperties: array_diff_key(SdkClient::stringMapValue($data), array_flip(["next_action", "supported_strategies"])),
         );
     }

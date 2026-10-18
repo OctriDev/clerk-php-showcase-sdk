@@ -157,7 +157,7 @@ class SAMLConnectionLoginHint implements \JsonSerializable
         if (!property_exists($data, "mode") || $data->mode === null) { throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null"); }
         return new self(
             mode: SdkClient::hydrateStringEnumOrString($data->mode, SAMLConnectionLoginHintModeEnum::class),
-            source: (property_exists($data, "source") ? SdkClient::stringValue($data->source) : SdkNotGiven::Value),
+            source: (property_exists($data, "source") && $data->source !== null ? SdkClient::stringValue($data->source) : SdkNotGiven::Value),
         );
     }
 }

@@ -24,11 +24,11 @@ class WaitlistEntriesNamespace
      * @param string|SdkNotGiven $query
      * @param ListWaitlistEntriesStatus|SdkNotGiven $status
      * @param string|SdkNotGiven $orderBy
-     * @return ListWaitlistEntriesResponse
+     * @return WaitlistEntries
      */
-    public function list_(int|SdkNotGiven $limit = SdkNotGiven::Value, int|SdkNotGiven $offset = SdkNotGiven::Value, string|SdkNotGiven $query = SdkNotGiven::Value, ListWaitlistEntriesStatus|SdkNotGiven $status = SdkNotGiven::Value, string|SdkNotGiven $orderBy = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ListWaitlistEntriesResponse
+    public function list_(int|SdkNotGiven $limit = SdkNotGiven::Value, int|SdkNotGiven $offset = SdkNotGiven::Value, string|SdkNotGiven $query = SdkNotGiven::Value, ListWaitlistEntriesStatus|SdkNotGiven $status = SdkNotGiven::Value, string|SdkNotGiven $orderBy = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): WaitlistEntries
     {
-        return WaitlistEntries::listWaitlistEntries($this->clientConfig, $limit, $offset, $query, $status, $orderBy, $requestOptions);
+        return WaitlistEntriesApi::listWaitlistEntries($this->clientConfig, $limit, $offset, $query, $status, $orderBy, $requestOptions);
     }
     /**
      * Creates a new waitlist entry for the given email address. If the email address is already on the waitlist, no new entry will be created and the existing waitlist entry will be returned.
@@ -41,7 +41,7 @@ class WaitlistEntriesNamespace
      */
     public function create(string $emailAddress, bool|null|SdkNotGiven $notify = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): WaitlistEntry
     {
-        return WaitlistEntries::createWaitlistEntry($this->clientConfig, $emailAddress, $notify, $requestOptions);
+        return WaitlistEntriesApi::createWaitlistEntry($this->clientConfig, $emailAddress, $notify, $requestOptions);
     }
     /**
      * Creates multiple waitlist entries from email addresses in a single request. Each entry requires `email_address`; `notify` defaults to true when omitted. You can submit 1 to 50 entries per request, but duplicate email addresses within the request are not allowed, and existing waitlist entries are returned without creating new entries.
@@ -53,7 +53,7 @@ class WaitlistEntriesNamespace
      */
     public function createBulk(array|SdkNotGiven $body = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): array
     {
-        return WaitlistEntries::createBulkWaitlistEntries($this->clientConfig, $body, $requestOptions);
+        return WaitlistEntriesApi::createBulkWaitlistEntries($this->clientConfig, $body, $requestOptions);
     }
     /**
      * Deletes a pending waitlist entry. Use the `waitlist_entry_id` path parameter to identify the entry to delete. Entries locked while a batch action is processing are unavailable for other actions.
@@ -65,7 +65,7 @@ class WaitlistEntriesNamespace
      */
     public function delete(string $waitlistEntryId, ?RequestOptions $requestOptions = null): DeletedObject
     {
-        return WaitlistEntries::deleteWaitlistEntry($this->clientConfig, $waitlistEntryId, $requestOptions);
+        return WaitlistEntriesApi::deleteWaitlistEntry($this->clientConfig, $waitlistEntryId, $requestOptions);
     }
     /**
      * Send an invite to the email address in a waitlist entry.
@@ -78,7 +78,7 @@ class WaitlistEntriesNamespace
      */
     public function invite(string $waitlistEntryId, bool|null|SdkNotGiven $ignoreExisting = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): WaitlistEntry
     {
-        return WaitlistEntries::inviteWaitlistEntry($this->clientConfig, $waitlistEntryId, $ignoreExisting, $requestOptions);
+        return WaitlistEntriesApi::inviteWaitlistEntry($this->clientConfig, $waitlistEntryId, $ignoreExisting, $requestOptions);
     }
     /**
      * Rejects a waitlist entry and returns the resulting entry. Use the `waitlist_entry_id` path parameter to identify the entry to reject. Entries locked while a batch action is processing are unavailable for other actions.
@@ -90,6 +90,6 @@ class WaitlistEntriesNamespace
      */
     public function reject(string $waitlistEntryId, ?RequestOptions $requestOptions = null): WaitlistEntry
     {
-        return WaitlistEntries::rejectWaitlistEntry($this->clientConfig, $waitlistEntryId, $requestOptions);
+        return WaitlistEntriesApi::rejectWaitlistEntry($this->clientConfig, $waitlistEntryId, $requestOptions);
     }
 }

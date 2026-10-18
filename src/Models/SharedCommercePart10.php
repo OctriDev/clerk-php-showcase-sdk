@@ -86,7 +86,7 @@ class CommerceSubscriptionItemNextPaymentResponse implements \JsonSerializable
         return new self(
             amount: (property_exists($data, "amount") ? ($data->amount === null ? null : SdkClient::hydrateClass($data->amount, CommerceMoneyResponse::class)) : SdkNotGiven::Value),
             date: (property_exists($data, "date") ? ($data->date === null ? null : SdkClient::intValue($data->date)) : SdkNotGiven::Value),
-            perUnitTotals: (property_exists($data, "per_unit_totals") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CommercePerUnitTotal::class), SdkClient::arrayValue($data->per_unit_totals))) : SdkNotGiven::Value),
+            perUnitTotals: (property_exists($data, "per_unit_totals") && $data->per_unit_totals !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CommercePerUnitTotal::class), SdkClient::arrayValue($data->per_unit_totals))) : SdkNotGiven::Value),
             totals: (property_exists($data, "totals") ? ($data->totals === null ? null : SdkClient::hydrateClass($data->totals, CommerceTotalsResponse::class)) : SdkNotGiven::Value),
         );
     }
@@ -145,7 +145,7 @@ class CommerceSubscriptionItemSeatsResponse implements \JsonSerializable
         if (!property_exists($data, "quantity")) { throw new SdkValidationError("quantity", 'required', "Missing required property 'quantity'"); }
         return new self(
             quantity: ($data->quantity === null ? null : SdkClient::intValue($data->quantity)),
-            tiers: (property_exists($data, "tiers") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CommercePerUnitTotalTier2::class), SdkClient::arrayValue($data->tiers))) : SdkNotGiven::Value),
+            tiers: (property_exists($data, "tiers") && $data->tiers !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CommercePerUnitTotalTier2::class), SdkClient::arrayValue($data->tiers))) : SdkNotGiven::Value),
         );
     }
 }
@@ -227,7 +227,7 @@ class CommerceSubscriptionNextPayment implements \JsonSerializable
         return new self(
             date: SdkClient::intValue($data->date),
             amount: SdkClient::hydrateClass($data->amount, CommerceMoneyResponse::class),
-            perUnitTotals: (property_exists($data, "per_unit_totals") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CommercePerUnitTotal2::class), SdkClient::arrayValue($data->per_unit_totals))) : SdkNotGiven::Value),
+            perUnitTotals: (property_exists($data, "per_unit_totals") && $data->per_unit_totals !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CommercePerUnitTotal2::class), SdkClient::arrayValue($data->per_unit_totals))) : SdkNotGiven::Value),
             totals: (property_exists($data, "totals") ? ($data->totals === null ? null : SdkClient::hydrateClass($data->totals, CommerceTotalsResponse2::class)) : SdkNotGiven::Value),
         );
     }
@@ -269,13 +269,13 @@ class CommerceTotalsResponse implements \JsonSerializable
      */
     public readonly array|SdkNotGiven $perUnitTotals;
     /**
-     * Optional API value serialized in the `credits` wire field.
+     * Optional object value serialized in the `credits` wire field.
      *
      * @var CommerceCreditsResponse|null|SdkNotGiven
      */
     public readonly CommerceCreditsResponse|null|SdkNotGiven $credits;
     /**
-     * Optional API value serialized in the `discounts` wire field.
+     * Optional object value serialized in the `discounts` wire field.
      *
      * @var CommerceDiscountsResponse|null|SdkNotGiven
      */
@@ -346,7 +346,7 @@ class CommerceTotalsResponse implements \JsonSerializable
             baseFee: SdkClient::hydrateClass($data->base_fee, CommerceMoneyResponse::class),
             taxTotal: SdkClient::hydrateClass($data->tax_total, CommerceMoneyResponse::class),
             grandTotal: SdkClient::hydrateClass($data->grand_total, CommerceMoneyResponse::class),
-            perUnitTotals: (property_exists($data, "per_unit_totals") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CommercePerUnitTotal::class), SdkClient::arrayValue($data->per_unit_totals))) : SdkNotGiven::Value),
+            perUnitTotals: (property_exists($data, "per_unit_totals") && $data->per_unit_totals !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CommercePerUnitTotal::class), SdkClient::arrayValue($data->per_unit_totals))) : SdkNotGiven::Value),
             credits: (property_exists($data, "credits") ? ($data->credits === null ? null : SdkClient::hydrateClass($data->credits, CommerceCreditsResponse::class)) : SdkNotGiven::Value),
             discounts: (property_exists($data, "discounts") ? ($data->discounts === null ? null : SdkClient::hydrateClass($data->discounts, CommerceDiscountsResponse::class)) : SdkNotGiven::Value),
         );

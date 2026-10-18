@@ -122,7 +122,7 @@ class Web3Wallet implements \JsonSerializable
             verification: ($data->verification === null ? null : SdkClient::hydrateUnionAs($data->verification, Web3WalletVerification::class, [VerificationWeb3::class, VerificationAdmin::class], "object", ["verification_web3" => VerificationWeb3::class, "verification_admin" => VerificationAdmin::class], UnknownWeb3WalletVerification::class)),
             createdAt: SdkClient::intValue($data->created_at),
             updatedAt: SdkClient::intValue($data->updated_at),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }

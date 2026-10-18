@@ -67,7 +67,7 @@ class VerifyPasswordResponse implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            verified: (property_exists($data, "verified") ? SdkClient::boolValue($data->verified) : SdkNotGiven::Value),
+            verified: (property_exists($data, "verified") && $data->verified !== null ? SdkClient::boolValue($data->verified) : SdkNotGiven::Value),
         );
     }
 }
@@ -126,8 +126,8 @@ class VerifyTOTPResponse implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            verified: (property_exists($data, "verified") ? SdkClient::boolValue($data->verified) : SdkNotGiven::Value),
-            codeType: (property_exists($data, "code_type") ? SdkClient::hydrateStringEnumOrString($data->code_type, VerifyTOTPResponseCodeTypeEnum::class) : SdkNotGiven::Value),
+            verified: (property_exists($data, "verified") && $data->verified !== null ? SdkClient::boolValue($data->verified) : SdkNotGiven::Value),
+            codeType: (property_exists($data, "code_type") && $data->code_type !== null ? SdkClient::hydrateStringEnumOrString($data->code_type, VerifyTOTPResponseCodeTypeEnum::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -166,7 +166,7 @@ class DisableMFAResponse implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            userId: (property_exists($data, "user_id") ? SdkClient::stringValue($data->user_id) : SdkNotGiven::Value),
+            userId: (property_exists($data, "user_id") && $data->user_id !== null ? SdkClient::stringValue($data->user_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -205,107 +205,7 @@ class DeleteBackupCodeResponse implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            userId: (property_exists($data, "user_id") ? SdkClient::stringValue($data->user_id) : SdkNotGiven::Value),
-        );
-    }
-}
-
-class ListUserTrustedDevicesResponse implements \JsonSerializable
-{
-    /** @var list<TrustedDevice> */
-    public readonly array $data;
-    /**
-     * Total number of trusted devices
-     *
-     * @var int
-     */
-    public readonly int $totalCount;
-
-    /**
-     * @param list<TrustedDevice> $data
-     * @param int $totalCount
-     */
-    public function __construct(
-        array $data,
-        int $totalCount,
-    ) {
-        $this->data = $data;
-        $this->totalCount = $totalCount;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
-            "data" => $this->data,
-            "total_count" => $this->totalCount,
-        ];
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
-        return new self(
-            data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TrustedDevice::class), SdkClient::arrayValue($data->data))),
-            totalCount: SdkClient::intValue($data->total_count),
-        );
-    }
-}
-
-class ListUserBiometricCredentialsResponse implements \JsonSerializable
-{
-    /** @var list<BiometricCredential> */
-    public readonly array $data;
-    /**
-     * Total number of biometric credentials
-     *
-     * @var int
-     */
-    public readonly int $totalCount;
-
-    /**
-     * @param list<BiometricCredential> $data
-     * @param int $totalCount
-     */
-    public function __construct(
-        array $data,
-        int $totalCount,
-    ) {
-        $this->data = $data;
-        $this->totalCount = $totalCount;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
-            "data" => $this->data,
-            "total_count" => $this->totalCount,
-        ];
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
-        return new self(
-            data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BiometricCredential::class), SdkClient::arrayValue($data->data))),
-            totalCount: SdkClient::intValue($data->total_count),
+            userId: (property_exists($data, "user_id") && $data->user_id !== null ? SdkClient::stringValue($data->user_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -344,7 +244,7 @@ class DeleteTOTPResponse implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            userId: (property_exists($data, "user_id") ? SdkClient::stringValue($data->user_id) : SdkNotGiven::Value),
+            userId: (property_exists($data, "user_id") && $data->user_id !== null ? SdkClient::stringValue($data->user_id) : SdkNotGiven::Value),
         );
     }
 }

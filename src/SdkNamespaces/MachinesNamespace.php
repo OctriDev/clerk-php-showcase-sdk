@@ -23,9 +23,9 @@ class MachinesNamespace
      * @param int|SdkNotGiven $offset
      * @param string|SdkNotGiven $query
      * @param string|SdkNotGiven $orderBy
-     * @return ListMachinesResponse
+     * @return MachineList
      */
-    public function list_(int|SdkNotGiven $limit = SdkNotGiven::Value, int|SdkNotGiven $offset = SdkNotGiven::Value, string|SdkNotGiven $query = SdkNotGiven::Value, string|SdkNotGiven $orderBy = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ListMachinesResponse
+    public function list_(int|SdkNotGiven $limit = SdkNotGiven::Value, int|SdkNotGiven $offset = SdkNotGiven::Value, string|SdkNotGiven $query = SdkNotGiven::Value, string|SdkNotGiven $orderBy = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): MachineList
     {
         return Machines::listMachines($this->clientConfig, $limit, $offset, $query, $orderBy, $requestOptions);
     }
@@ -37,9 +37,9 @@ class MachinesNamespace
      * @param string $name
      * @param list<string>|SdkNotGiven $scopedMachines
      * @param int|SdkNotGiven $defaultTokenTtl
-     * @return CreateMachineResponse
+     * @return MachineCreated
      */
-    public function create(string $name, array|SdkNotGiven $scopedMachines = SdkNotGiven::Value, int|SdkNotGiven $defaultTokenTtl = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): CreateMachineResponse
+    public function create(string $name, array|SdkNotGiven $scopedMachines = SdkNotGiven::Value, int|SdkNotGiven $defaultTokenTtl = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): MachineCreated
     {
         return Machines::createMachine($this->clientConfig, $name, $scopedMachines, $defaultTokenTtl, $requestOptions);
     }
@@ -75,9 +75,9 @@ class MachinesNamespace
      * Deletes a machine. machineId: The ID of the machine to delete
      *
      * @param string $machineId
-     * @return DeleteMachineResponse
+     * @return MachineDeleted
      */
-    public function delete(string $machineId, ?RequestOptions $requestOptions = null): DeleteMachineResponse
+    public function delete(string $machineId, ?RequestOptions $requestOptions = null): MachineDeleted
     {
         return Machines::deleteMachine($this->clientConfig, $machineId, $requestOptions);
     }
@@ -87,9 +87,9 @@ class MachinesNamespace
      * Returns the secret key for a machine. machineId: The ID of the machine to retrieve the secret key for
      *
      * @param string $machineId
-     * @return GetMachineSecretKeyResponse
+     * @return MachineSecretKey
      */
-    public function getSecretKey(string $machineId, ?RequestOptions $requestOptions = null): GetMachineSecretKeyResponse
+    public function getSecretKey(string $machineId, ?RequestOptions $requestOptions = null): MachineSecretKey
     {
         return Machines::getMachineSecretKey($this->clientConfig, $machineId, $requestOptions);
     }
@@ -100,9 +100,9 @@ class MachinesNamespace
      *
      * @param string $machineId
      * @param int $previousTokenTtl
-     * @return RotateMachineSecretKeyResponse
+     * @return MachineSecretKey
      */
-    public function rotateSecretKey(string $machineId, int $previousTokenTtl, ?RequestOptions $requestOptions = null): RotateMachineSecretKeyResponse
+    public function rotateSecretKey(string $machineId, int $previousTokenTtl, ?RequestOptions $requestOptions = null): MachineSecretKey
     {
         return Machines::rotateMachineSecretKey($this->clientConfig, $machineId, $previousTokenTtl, $requestOptions);
     }
@@ -126,9 +126,9 @@ class MachinesNamespace
      *
      * @param string $machineId
      * @param string $otherMachineId
-     * @return DeleteMachineScopeResponse
+     * @return MachineScopeDeleted
      */
-    public function deleteScope(string $machineId, string $otherMachineId, ?RequestOptions $requestOptions = null): DeleteMachineScopeResponse
+    public function deleteScope(string $machineId, string $otherMachineId, ?RequestOptions $requestOptions = null): MachineScopeDeleted
     {
         return Machines::deleteMachineScope($this->clientConfig, $machineId, $otherMachineId, $requestOptions);
     }

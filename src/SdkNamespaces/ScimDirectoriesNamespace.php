@@ -21,9 +21,9 @@ class ScimDirectoriesNamespace
      *
      * @param int|SdkNotGiven $limit
      * @param int|SdkNotGiven $offset
-     * @return ListSCIMDirectoriesResponse
+     * @return SCIMDirectoryList
      */
-    public function list_(int|SdkNotGiven $limit = SdkNotGiven::Value, int|SdkNotGiven $offset = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ListSCIMDirectoriesResponse
+    public function list_(int|SdkNotGiven $limit = SdkNotGiven::Value, int|SdkNotGiven $offset = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): SCIMDirectoryList
     {
         return ScimDirectories::listScimDirectories($this->clientConfig, $limit, $offset, $requestOptions);
     }
@@ -101,9 +101,9 @@ class ScimDirectoriesNamespace
      * Returns the list of SCIM group to organization role mappings for a directory, ordered by precedence. scimDirectoryId: The ID of the directory.
      *
      * @param string $scimDirectoryId
-     * @return ListSCIMGroupRoleMappingsResponse
+     * @return SCIMGroupRoleMappingList
      */
-    public function listScimGroupRoleMappings(string $scimDirectoryId, ?RequestOptions $requestOptions = null): ListSCIMGroupRoleMappingsResponse
+    public function listScimGroupRoleMappings(string $scimDirectoryId, ?RequestOptions $requestOptions = null): SCIMGroupRoleMappingList
     {
         return ScimDirectories::listScimGroupRoleMappings($this->clientConfig, $scimDirectoryId, $requestOptions);
     }
@@ -129,9 +129,9 @@ class ScimDirectoriesNamespace
      *
      * @param string $scimDirectoryId
      * @param list<ReplaceSCIMGroupRoleMappingsMappingsItem> $mappings
-     * @return ReplaceSCIMGroupRoleMappingsResponse
+     * @return SCIMGroupRoleMappingList
      */
-    public function replaceScimGroupRoleMappings(string $scimDirectoryId, array $mappings, ?RequestOptions $requestOptions = null): ReplaceSCIMGroupRoleMappingsResponse
+    public function replaceScimGroupRoleMappings(string $scimDirectoryId, array $mappings, ?RequestOptions $requestOptions = null): SCIMGroupRoleMappingList
     {
         return ScimDirectories::replaceScimGroupRoleMappings($this->clientConfig, $scimDirectoryId, $mappings, $requestOptions);
     }
@@ -142,9 +142,9 @@ class ScimDirectoriesNamespace
      *
      * @param string $scimDirectoryId
      * @param string $mappingId
-     * @return DeleteSCIMGroupRoleMappingResponse
+     * @return SCIMGroupRoleMappingDeleted
      */
-    public function deleteScimGroupRoleMapping(string $scimDirectoryId, string $mappingId, ?RequestOptions $requestOptions = null): DeleteSCIMGroupRoleMappingResponse
+    public function deleteScimGroupRoleMapping(string $scimDirectoryId, string $mappingId, ?RequestOptions $requestOptions = null): SCIMGroupRoleMappingDeleted
     {
         return ScimDirectories::deleteScimGroupRoleMapping($this->clientConfig, $scimDirectoryId, $mappingId, $requestOptions);
     }

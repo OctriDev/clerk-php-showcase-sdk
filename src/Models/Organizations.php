@@ -114,7 +114,7 @@ class OrganizationWithLogoVariant1 implements \JsonSerializable
         return new self(
             imageUrl: SdkClient::stringValue($data->image_url),
             hasImage: SdkClient::boolValue($data->has_image),
-            logoUrl: (property_exists($data, "logo_url") ? SdkClient::stringValue($data->logo_url) : SdkNotGiven::Value),
+            logoUrl: (property_exists($data, "logo_url") && $data->logo_url !== null ? SdkClient::stringValue($data->logo_url) : SdkNotGiven::Value),
         );
     }
 }

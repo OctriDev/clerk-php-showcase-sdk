@@ -230,9 +230,9 @@ class OrganizationInvitation implements \JsonSerializable
             expiresAt: ($data->expires_at === null ? null : SdkClient::intValue($data->expires_at)),
             createdAt: SdkClient::intValue($data->created_at),
             updatedAt: SdkClient::intValue($data->updated_at),
-            organizationId: (property_exists($data, "organization_id") ? SdkClient::stringValue($data->organization_id) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::stringValue($data->status) : SdkNotGiven::Value),
-            privateMetadata: (property_exists($data, "private_metadata") ? SdkClient::stringMapValue($data->private_metadata) : SdkNotGiven::Value),
+            organizationId: (property_exists($data, "organization_id") && $data->organization_id !== null ? SdkClient::stringValue($data->organization_id) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::stringValue($data->status) : SdkNotGiven::Value),
+            privateMetadata: (property_exists($data, "private_metadata") && $data->private_metadata !== null ? SdkClient::stringMapValue($data->private_metadata) : SdkNotGiven::Value),
         );
     }
 }

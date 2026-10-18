@@ -84,10 +84,10 @@ class EnterpriseConnectionTestRunParsedUserInfo implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            emailAddress: (property_exists($data, "email_address") ? SdkClient::stringValue($data->email_address) : SdkNotGiven::Value),
-            firstName: (property_exists($data, "first_name") ? SdkClient::stringValue($data->first_name) : SdkNotGiven::Value),
-            lastName: (property_exists($data, "last_name") ? SdkClient::stringValue($data->last_name) : SdkNotGiven::Value),
-            userId: (property_exists($data, "user_id") ? SdkClient::stringValue($data->user_id) : SdkNotGiven::Value),
+            emailAddress: (property_exists($data, "email_address") && $data->email_address !== null ? SdkClient::stringValue($data->email_address) : SdkNotGiven::Value),
+            firstName: (property_exists($data, "first_name") && $data->first_name !== null ? SdkClient::stringValue($data->first_name) : SdkNotGiven::Value),
+            lastName: (property_exists($data, "last_name") && $data->last_name !== null ? SdkClient::stringValue($data->last_name) : SdkNotGiven::Value),
+            userId: (property_exists($data, "user_id") && $data->user_id !== null ? SdkClient::stringValue($data->user_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -169,8 +169,8 @@ class EnterpriseConnectionTestRunLogsItem implements \JsonSerializable
         return new self(
             level: SdkClient::stringValue($data->level),
             message: SdkClient::stringValue($data->message),
-            code: (property_exists($data, "code") ? SdkClient::stringValue($data->code) : SdkNotGiven::Value),
-            shortMessage: (property_exists($data, "short_message") ? SdkClient::stringValue($data->short_message) : SdkNotGiven::Value),
+            code: (property_exists($data, "code") && $data->code !== null ? SdkClient::stringValue($data->code) : SdkNotGiven::Value),
+            shortMessage: (property_exists($data, "short_message") && $data->short_message !== null ? SdkClient::stringValue($data->short_message) : SdkNotGiven::Value),
         );
     }
 }
@@ -240,9 +240,9 @@ class EnterpriseConnectionTestRunSaml implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            samlRequest: (property_exists($data, "saml_request") ? SdkClient::stringValue($data->saml_request) : SdkNotGiven::Value),
-            samlResponse: (property_exists($data, "saml_response") ? SdkClient::stringValue($data->saml_response) : SdkNotGiven::Value),
-            relayState: (property_exists($data, "relay_state") ? SdkClient::stringValue($data->relay_state) : SdkNotGiven::Value),
+            samlRequest: (property_exists($data, "saml_request") && $data->saml_request !== null ? SdkClient::stringValue($data->saml_request) : SdkNotGiven::Value),
+            samlResponse: (property_exists($data, "saml_response") && $data->saml_response !== null ? SdkClient::stringValue($data->saml_response) : SdkNotGiven::Value),
+            relayState: (property_exists($data, "relay_state") && $data->relay_state !== null ? SdkClient::stringValue($data->relay_state) : SdkNotGiven::Value),
         );
     }
 }
@@ -312,9 +312,9 @@ class EnterpriseConnectionTestRunOauth implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            idToken: (property_exists($data, "id_token") ? SdkClient::stringValue($data->id_token) : SdkNotGiven::Value),
-            accessToken: (property_exists($data, "access_token") ? SdkClient::stringValue($data->access_token) : SdkNotGiven::Value),
-            userInfo: (property_exists($data, "user_info") ? SdkClient::stringValue($data->user_info) : SdkNotGiven::Value),
+            idToken: (property_exists($data, "id_token") && $data->id_token !== null ? SdkClient::stringValue($data->id_token) : SdkNotGiven::Value),
+            accessToken: (property_exists($data, "access_token") && $data->access_token !== null ? SdkClient::stringValue($data->access_token) : SdkNotGiven::Value),
+            userInfo: (property_exists($data, "user_info") && $data->user_info !== null ? SdkClient::stringValue($data->user_info) : SdkNotGiven::Value),
         );
     }
 }

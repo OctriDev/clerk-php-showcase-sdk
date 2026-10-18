@@ -144,7 +144,7 @@ class VerificationAdmin implements EmailAddressVerification, PhoneNumberVerifica
             strategy: SdkClient::hydrateStringEnumOrString($data->strategy, VerificationAdminStrategyEnum::class),
             attempts: ($data->attempts === null ? null : SdkClient::intValue($data->attempts)),
             expireAt: ($data->expire_at === null ? null : SdkClient::intValue($data->expire_at)),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateEnum($data->object, VerificationAdminObjectEnum::class) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateEnum($data->object, VerificationAdminObjectEnum::class) : SdkNotGiven::Value),
             verifiedAtClient: (property_exists($data, "verified_at_client") ? ($data->verified_at_client === null ? null : SdkClient::stringValue($data->verified_at_client)) : SdkNotGiven::Value),
         );
     }
@@ -290,7 +290,7 @@ class VerificationEmailLink implements EmailAddressVerification, \JsonSerializab
             strategy: SdkClient::hydrateStringEnumOrString($data->strategy, VerificationEmailLinkStrategyEnum::class),
             attempts: ($data->attempts === null ? null : SdkClient::intValue($data->attempts)),
             expireAt: ($data->expire_at === null ? null : SdkClient::intValue($data->expire_at)),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateEnum($data->object, VerificationEmailLinkObjectEnum::class) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateEnum($data->object, VerificationEmailLinkObjectEnum::class) : SdkNotGiven::Value),
             verifiedAtClient: (property_exists($data, "verified_at_client") ? ($data->verified_at_client === null ? null : SdkClient::stringValue($data->verified_at_client)) : SdkNotGiven::Value),
         );
     }

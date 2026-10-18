@@ -204,8 +204,8 @@ class EnterpriseAccountConnection implements \JsonSerializable
             disableAdditionalIdentifications: SdkClient::boolValue($data->disable_additional_identifications),
             createdAt: SdkClient::intValue($data->created_at),
             updatedAt: SdkClient::intValue($data->updated_at),
-            domain: (property_exists($data, "domain") ? SdkClient::stringValue($data->domain) : SdkNotGiven::Value),
-            domains: (property_exists($data, "domains") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->domains))) : SdkNotGiven::Value),
+            domain: (property_exists($data, "domain") && $data->domain !== null ? SdkClient::stringValue($data->domain) : SdkNotGiven::Value),
+            domains: (property_exists($data, "domains") && $data->domains !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->domains))) : SdkNotGiven::Value),
         );
     }
 }

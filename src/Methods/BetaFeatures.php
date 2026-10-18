@@ -7,112 +7,6 @@ declare(strict_types=1);
 
 namespace octridev_clerk;
 
-/**
- * String representing the object's type. Objects of the same type share the same value.
- */
-final readonly class UpdateInstanceAuthConfigResponseObjectEnum implements SdkOpenEnum
-{
-    public const INSTANCE_SETTINGS = "instance_settings";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
-}
-
-class UpdateInstanceAuthConfigResponse implements \JsonSerializable
-{
-    /**
-     * String representing the object's type. Objects of the same type share the same value.
-     *
-     * @var UpdateInstanceAuthConfigResponseObjectEnum|string|SdkNotGiven
-     */
-    public readonly UpdateInstanceAuthConfigResponseObjectEnum|string|SdkNotGiven $object_;
-    /** @var string|SdkNotGiven */
-    public readonly string|SdkNotGiven $id;
-    /** @var bool|SdkNotGiven */
-    public readonly bool|SdkNotGiven $restrictedToAllowlist;
-    /** @var string|SdkNotGiven */
-    public readonly string|SdkNotGiven $fromEmailAddress;
-    /** @var bool|SdkNotGiven */
-    public readonly bool|SdkNotGiven $progressiveSignUp;
-    /**
-     * Deprecated. This setting is retired and no longer affects email delivery; all email is sent through the instance's configured email sending domain. The field is preserved for API compatibility only and will be removed in a future version.
-     *
-     * @var bool|SdkNotGiven
-     */
-    public readonly bool|SdkNotGiven $enhancedEmailDeliverability;
-
-    /**
-     * @param UpdateInstanceAuthConfigResponseObjectEnum|string|SdkNotGiven $object_
-     * @param string|SdkNotGiven $id
-     * @param bool|SdkNotGiven $restrictedToAllowlist
-     * @param string|SdkNotGiven $fromEmailAddress
-     * @param bool|SdkNotGiven $progressiveSignUp
-     * @param bool|SdkNotGiven $enhancedEmailDeliverability
-     */
-    public function __construct(
-        UpdateInstanceAuthConfigResponseObjectEnum|string|SdkNotGiven $object_ = SdkNotGiven::Value,
-        string|SdkNotGiven $id = SdkNotGiven::Value,
-        bool|SdkNotGiven $restrictedToAllowlist = SdkNotGiven::Value,
-        string|SdkNotGiven $fromEmailAddress = SdkNotGiven::Value,
-        bool|SdkNotGiven $progressiveSignUp = SdkNotGiven::Value,
-        bool|SdkNotGiven $enhancedEmailDeliverability = SdkNotGiven::Value,
-    ) {
-        $this->object_ = $object_;
-        $this->id = $id;
-        $this->restrictedToAllowlist = $restrictedToAllowlist;
-        $this->fromEmailAddress = $fromEmailAddress;
-        $this->progressiveSignUp = $progressiveSignUp;
-        $this->enhancedEmailDeliverability = $enhancedEmailDeliverability;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
-        ];
-        if ($this->object_ !== SdkNotGiven::Value) {
-            $values["object"] = $this->object_;
-        }
-        if ($this->id !== SdkNotGiven::Value) {
-            $values["id"] = $this->id;
-        }
-        if ($this->restrictedToAllowlist !== SdkNotGiven::Value) {
-            $values["restricted_to_allowlist"] = $this->restrictedToAllowlist;
-        }
-        if ($this->fromEmailAddress !== SdkNotGiven::Value) {
-            $values["from_email_address"] = $this->fromEmailAddress;
-        }
-        if ($this->progressiveSignUp !== SdkNotGiven::Value) {
-            $values["progressive_sign_up"] = $this->progressiveSignUp;
-        }
-        if ($this->enhancedEmailDeliverability !== SdkNotGiven::Value) {
-            $values["enhanced_email_deliverability"] = $this->enhancedEmailDeliverability;
-        }
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        return new self(
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, UpdateInstanceAuthConfigResponseObjectEnum::class) : SdkNotGiven::Value),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            restrictedToAllowlist: (property_exists($data, "restricted_to_allowlist") ? SdkClient::boolValue($data->restricted_to_allowlist) : SdkNotGiven::Value),
-            fromEmailAddress: (property_exists($data, "from_email_address") ? SdkClient::stringValue($data->from_email_address) : SdkNotGiven::Value),
-            progressiveSignUp: (property_exists($data, "progressive_sign_up") ? SdkClient::boolValue($data->progressive_sign_up) : SdkNotGiven::Value),
-            enhancedEmailDeliverability: (property_exists($data, "enhanced_email_deliverability") ? SdkClient::boolValue($data->enhanced_email_deliverability) : SdkNotGiven::Value),
-        );
-    }
-}
-
 class BetaFeatures
 {
     /**
@@ -124,13 +18,13 @@ class BetaFeatures
      * @param string|null|SdkNotGiven $fromEmailAddress
      * @param bool|null|SdkNotGiven $progressiveSignUp
      * @param bool|null|SdkNotGiven $testMode
-     * @return UpdateInstanceAuthConfigResponse
+     * @return InstanceSettings
      */
-    public static function updateInstanceAuthConfig(ClientConfig $clientConfig, bool|null|SdkNotGiven $restrictedToAllowlist = SdkNotGiven::Value, string|null|SdkNotGiven $fromEmailAddress = SdkNotGiven::Value, bool|null|SdkNotGiven $progressiveSignUp = SdkNotGiven::Value, bool|null|SdkNotGiven $testMode = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): UpdateInstanceAuthConfigResponse
+    public static function updateInstanceAuthConfig(ClientConfig $clientConfig, bool|null|SdkNotGiven $restrictedToAllowlist = SdkNotGiven::Value, string|null|SdkNotGiven $fromEmailAddress = SdkNotGiven::Value, bool|null|SdkNotGiven $progressiveSignUp = SdkNotGiven::Value, bool|null|SdkNotGiven $testMode = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): InstanceSettings
     {
 
-        $sdkResponse = SdkClient::request('PATCH', "/beta_features/instance_settings", $clientConfig, body: ['restricted_to_allowlist' => $restrictedToAllowlist, 'from_email_address' => $fromEmailAddress, 'progressive_sign_up' => $progressiveSignUp, 'test_mode' => $testMode], returnType: UpdateInstanceAuthConfigResponse::class, decoder: 'json', operationId: 'updateInstanceAuthConfig', requestOptions: $requestOptions, errors: [402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
-        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, UpdateInstanceAuthConfigResponse::class));
+        $sdkResponse = SdkClient::request('PATCH', "/beta_features/instance_settings", $clientConfig, body: ['restricted_to_allowlist' => $restrictedToAllowlist, 'from_email_address' => $fromEmailAddress, 'progressive_sign_up' => $progressiveSignUp, 'test_mode' => $testMode], returnType: InstanceSettings::class, decoder: 'json', operationId: 'updateInstanceAuthConfig', requestOptions: $requestOptions, errors: [402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, InstanceSettings::class));
     }
 
 

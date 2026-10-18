@@ -110,7 +110,7 @@ class AgentTask implements \JsonSerializable
             agentId: SdkClient::stringValue($data->agent_id),
             agentTaskId: SdkClient::stringValue($data->agent_task_id),
             taskId: SdkClient::stringValue($data->task_id),
-            url: (property_exists($data, "url") ? SdkClient::stringValue($data->url) : SdkNotGiven::Value),
+            url: (property_exists($data, "url") && $data->url !== null ? SdkClient::stringValue($data->url) : SdkNotGiven::Value),
         );
     }
 }

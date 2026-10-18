@@ -180,11 +180,11 @@ class SAMLAccountConnection implements \JsonSerializable
             syncUserAttributes: SdkClient::boolValue($data->sync_user_attributes),
             createdAt: SdkClient::intValue($data->created_at),
             updatedAt: SdkClient::intValue($data->updated_at),
-            domain: (property_exists($data, "domain") ? SdkClient::stringValue($data->domain) : SdkNotGiven::Value),
-            domains: (property_exists($data, "domains") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->domains))) : SdkNotGiven::Value),
-            allowSubdomains: (property_exists($data, "allow_subdomains") ? SdkClient::boolValue($data->allow_subdomains) : SdkNotGiven::Value),
-            allowIdpInitiated: (property_exists($data, "allow_idp_initiated") ? SdkClient::boolValue($data->allow_idp_initiated) : SdkNotGiven::Value),
-            disableAdditionalIdentifications: (property_exists($data, "disable_additional_identifications") ? SdkClient::boolValue($data->disable_additional_identifications) : SdkNotGiven::Value),
+            domain: (property_exists($data, "domain") && $data->domain !== null ? SdkClient::stringValue($data->domain) : SdkNotGiven::Value),
+            domains: (property_exists($data, "domains") && $data->domains !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->domains))) : SdkNotGiven::Value),
+            allowSubdomains: (property_exists($data, "allow_subdomains") && $data->allow_subdomains !== null ? SdkClient::boolValue($data->allow_subdomains) : SdkNotGiven::Value),
+            allowIdpInitiated: (property_exists($data, "allow_idp_initiated") && $data->allow_idp_initiated !== null ? SdkClient::boolValue($data->allow_idp_initiated) : SdkNotGiven::Value),
+            disableAdditionalIdentifications: (property_exists($data, "disable_additional_identifications") && $data->disable_additional_identifications !== null ? SdkClient::boolValue($data->disable_additional_identifications) : SdkNotGiven::Value),
         );
     }
 }

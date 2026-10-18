@@ -14,6 +14,7 @@ interface JWKSKeysItem {}
 interface PhoneNumberVerification {}
 interface SAMLAccountVerification {}
 interface SessionRefresh {}
+interface VerifyOAuthAccessTokenResponse {}
 interface Web3WalletVerification {}
 
 /** A tagged union member whose tag names no branch this SDK knows, kept as received. */

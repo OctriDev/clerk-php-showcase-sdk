@@ -348,11 +348,11 @@ class SignUp implements \JsonSerializable
             createdUserId: ($data->created_user_id === null ? null : SdkClient::stringValue($data->created_user_id)),
             abandonAt: SdkClient::intValue($data->abandon_at),
             legalAcceptedAt: ($data->legal_accepted_at === null ? null : SdkClient::intValue($data->legal_accepted_at)),
-            unsafeMetadata: (property_exists($data, "unsafe_metadata") ? SdkClient::stringMapValue($data->unsafe_metadata) : SdkNotGiven::Value),
-            publicMetadata: (property_exists($data, "public_metadata") ? SdkClient::stringMapValue($data->public_metadata) : SdkNotGiven::Value),
+            unsafeMetadata: (property_exists($data, "unsafe_metadata") && $data->unsafe_metadata !== null ? SdkClient::stringMapValue($data->unsafe_metadata) : SdkNotGiven::Value),
+            publicMetadata: (property_exists($data, "public_metadata") && $data->public_metadata !== null ? SdkClient::stringMapValue($data->public_metadata) : SdkNotGiven::Value),
             timezone: (property_exists($data, "timezone") ? ($data->timezone === null ? null : SdkClient::stringValue($data->timezone)) : SdkNotGiven::Value),
             locale: (property_exists($data, "locale") ? ($data->locale === null ? null : SdkClient::stringValue($data->locale)) : SdkNotGiven::Value),
-            externalAccount: (property_exists($data, "external_account") ? SdkClient::stringMapValue($data->external_account) : SdkNotGiven::Value),
+            externalAccount: (property_exists($data, "external_account") && $data->external_account !== null ? SdkClient::stringMapValue($data->external_account) : SdkNotGiven::Value),
         );
     }
 }

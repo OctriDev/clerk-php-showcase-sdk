@@ -31,19 +31,19 @@ class CommercePlan implements \JsonSerializable
      */
     public readonly string $name;
     /**
-     * Required API value serialized in the `fee` wire field.
+     * Required object value serialized in the `fee` wire field.
      *
      * @var CommerceMoneyResponse|null
      */
     public readonly CommerceMoneyResponse|null $fee;
     /**
-     * Required API value serialized in the `annual_monthly_fee` wire field.
+     * Required object value serialized in the `annual_monthly_fee` wire field.
      *
      * @var CommerceMoneyResponse|null
      */
     public readonly CommerceMoneyResponse|null $annualMonthlyFee;
     /**
-     * Required API value serialized in the `annual_fee` wire field.
+     * Required object value serialized in the `annual_fee` wire field.
      *
      * @var CommerceMoneyResponse|null
      */
@@ -264,8 +264,8 @@ class CommercePlan implements \JsonSerializable
             avatarUrl: ($data->avatar_url === null ? null : SdkClient::stringValue($data->avatar_url)),
             freeTrialEnabled: SdkClient::boolValue($data->free_trial_enabled),
             freeTrialDays: ($data->free_trial_days === null ? null : SdkClient::intValue($data->free_trial_days)),
-            features: (property_exists($data, "features") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, FeatureResponse::class), SdkClient::arrayValue($data->features))) : SdkNotGiven::Value),
-            unitPrices: (property_exists($data, "unit_prices") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CommercePlanUnitPrice::class), SdkClient::arrayValue($data->unit_prices))) : SdkNotGiven::Value),
+            features: (property_exists($data, "features") && $data->features !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, FeatureResponse::class), SdkClient::arrayValue($data->features))) : SdkNotGiven::Value),
+            unitPrices: (property_exists($data, "unit_prices") && $data->unit_prices !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CommercePlanUnitPrice::class), SdkClient::arrayValue($data->unit_prices))) : SdkNotGiven::Value),
         );
     }
 }

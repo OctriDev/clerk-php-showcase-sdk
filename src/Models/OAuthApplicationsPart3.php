@@ -336,7 +336,7 @@ class OAuthApplicationWithSecret implements \JsonSerializable
             tokenIntrospectionUrl: SdkClient::stringValue($data->token_introspection_url),
             createdAt: SdkClient::intValue($data->created_at),
             updatedAt: SdkClient::intValue($data->updated_at),
-            clientSecret: (property_exists($data, "client_secret") ? SdkClient::stringValue($data->client_secret) : SdkNotGiven::Value),
+            clientSecret: (property_exists($data, "client_secret") && $data->client_secret !== null ? SdkClient::stringValue($data->client_secret) : SdkNotGiven::Value),
         );
     }
 }
