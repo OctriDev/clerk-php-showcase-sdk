@@ -143,12 +143,24 @@ class JWKSRsaPublicKey implements JWKSKeysItem, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "kid") || $data->kid === null) { throw new SdkValidationError("kid", 'required', "Required property 'kid' is missing or null"); }
-        if (!property_exists($data, "alg") || $data->alg === null) { throw new SdkValidationError("alg", 'required', "Required property 'alg' is missing or null"); }
-        if (!property_exists($data, "use") || $data->use === null) { throw new SdkValidationError("use", 'required', "Required property 'use' is missing or null"); }
-        if (!property_exists($data, "kty") || $data->kty === null) { throw new SdkValidationError("kty", 'required', "Required property 'kty' is missing or null"); }
-        if (!property_exists($data, "n") || $data->n === null) { throw new SdkValidationError("n", 'required', "Required property 'n' is missing or null"); }
-        if (!property_exists($data, "e") || $data->e === null) { throw new SdkValidationError("e", 'required', "Required property 'e' is missing or null"); }
+        if (!property_exists($data, "kid") || $data->kid === null) {
+            throw new SdkValidationError("kid", 'required', "Required property 'kid' is missing or null");
+        }
+        if (!property_exists($data, "alg") || $data->alg === null) {
+            throw new SdkValidationError("alg", 'required', "Required property 'alg' is missing or null");
+        }
+        if (!property_exists($data, "use") || $data->use === null) {
+            throw new SdkValidationError("use", 'required', "Required property 'use' is missing or null");
+        }
+        if (!property_exists($data, "kty") || $data->kty === null) {
+            throw new SdkValidationError("kty", 'required', "Required property 'kty' is missing or null");
+        }
+        if (!property_exists($data, "n") || $data->n === null) {
+            throw new SdkValidationError("n", 'required', "Required property 'n' is missing or null");
+        }
+        if (!property_exists($data, "e") || $data->e === null) {
+            throw new SdkValidationError("e", 'required', "Required property 'e' is missing or null");
+        }
         return new self(
             kid: SdkClient::stringValue($data->kid),
             alg: SdkClient::stringValue($data->alg),
@@ -171,11 +183,26 @@ final readonly class JWKSSymmetricKeyKtyEnum implements SdkOpenEnum
 {
     public const OCT = "oct";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -304,11 +331,21 @@ class JWKSSymmetricKey implements JWKSKeysItem, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "kid") || $data->kid === null) { throw new SdkValidationError("kid", 'required', "Required property 'kid' is missing or null"); }
-        if (!property_exists($data, "alg") || $data->alg === null) { throw new SdkValidationError("alg", 'required', "Required property 'alg' is missing or null"); }
-        if (!property_exists($data, "use") || $data->use === null) { throw new SdkValidationError("use", 'required', "Required property 'use' is missing or null"); }
-        if (!property_exists($data, "kty") || $data->kty === null) { throw new SdkValidationError("kty", 'required', "Required property 'kty' is missing or null"); }
-        if (!property_exists($data, "k") || $data->k === null) { throw new SdkValidationError("k", 'required', "Required property 'k' is missing or null"); }
+        if (!property_exists($data, "kid") || $data->kid === null) {
+            throw new SdkValidationError("kid", 'required', "Required property 'kid' is missing or null");
+        }
+        if (!property_exists($data, "alg") || $data->alg === null) {
+            throw new SdkValidationError("alg", 'required', "Required property 'alg' is missing or null");
+        }
+        if (!property_exists($data, "use") || $data->use === null) {
+            throw new SdkValidationError("use", 'required', "Required property 'use' is missing or null");
+        }
+        if (!property_exists($data, "kty") || $data->kty === null) {
+            throw new SdkValidationError("kty", 'required', "Required property 'kty' is missing or null");
+        }
+        if (!property_exists($data, "k") || $data->k === null) {
+            throw new SdkValidationError("k", 'required', "Required property 'k' is missing or null");
+        }
         return new self(
             kid: SdkClient::stringValue($data->kid),
             alg: SdkClient::stringValue($data->alg),

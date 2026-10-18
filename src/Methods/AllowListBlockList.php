@@ -30,7 +30,7 @@ class AllowListBlockList
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/allowlist_identifiers", $clientConfig, query: ['paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], decoder: 'json', operationId: 'listAllowlistIdentifiers', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/allowlist_identifiers", $clientConfig, query: ['paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], decoder: 'json', operationId: 'listAllowlistIdentifiers', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, AllowlistIdentifier::class), SdkClient::arrayValue($sdkResponse->data))));
     }
 
@@ -47,7 +47,7 @@ class AllowListBlockList
     public static function createAllowlistIdentifier(ClientConfig $clientConfig, string $identifier, bool|SdkNotGiven $notify = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): AllowlistIdentifier
     {
 
-        $sdkResponse = SdkClient::request('POST', "/allowlist_identifiers", $clientConfig, body: ['identifier' => $identifier, 'notify' => $notify], returnType: AllowlistIdentifier::class, decoder: 'json', operationId: 'createAllowlistIdentifier', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/allowlist_identifiers", $clientConfig, body: ['identifier' => $identifier, 'notify' => $notify], returnType: AllowlistIdentifier::class, decoder: 'json', operationId: 'createAllowlistIdentifier', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, AllowlistIdentifier::class));
     }
 
@@ -63,7 +63,7 @@ class AllowListBlockList
     public static function deleteAllowlistIdentifier(ClientConfig $clientConfig, string $identifierId, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/allowlist_identifiers/" . SdkClient::encodePathSegment($identifierId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteAllowlistIdentifier', requestOptions: $requestOptions, errors: [402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/allowlist_identifiers/" . SdkClient::encodePathSegment($identifierId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteAllowlistIdentifier', requestOptions: $requestOptions, errors: [402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 
@@ -76,7 +76,7 @@ class AllowListBlockList
     public static function listBlocklistIdentifiers(ClientConfig $clientConfig, ?RequestOptions $requestOptions = null): BlocklistIdentifiers
     {
 
-        $sdkResponse = SdkClient::request('GET', "/blocklist_identifiers", $clientConfig, returnType: BlocklistIdentifiers::class, decoder: 'json', operationId: 'listBlocklistIdentifiers', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/blocklist_identifiers", $clientConfig, returnType: BlocklistIdentifiers::class, decoder: 'json', operationId: 'listBlocklistIdentifiers', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, BlocklistIdentifiers::class));
     }
 
@@ -92,7 +92,7 @@ class AllowListBlockList
     public static function createBlocklistIdentifier(ClientConfig $clientConfig, string $identifier, ?RequestOptions $requestOptions = null): BlocklistIdentifier
     {
 
-        $sdkResponse = SdkClient::request('POST', "/blocklist_identifiers", $clientConfig, body: ['identifier' => $identifier], returnType: BlocklistIdentifier::class, decoder: 'json', operationId: 'createBlocklistIdentifier', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/blocklist_identifiers", $clientConfig, body: ['identifier' => $identifier], returnType: BlocklistIdentifier::class, decoder: 'json', operationId: 'createBlocklistIdentifier', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, BlocklistIdentifier::class));
     }
 
@@ -108,7 +108,7 @@ class AllowListBlockList
     public static function deleteBlocklistIdentifier(ClientConfig $clientConfig, string $identifierId, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/blocklist_identifiers/" . SdkClient::encodePathSegment($identifierId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteBlocklistIdentifier', requestOptions: $requestOptions, errors: [402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/blocklist_identifiers/" . SdkClient::encodePathSegment($identifierId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteBlocklistIdentifier', requestOptions: $requestOptions, errors: [402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 }
