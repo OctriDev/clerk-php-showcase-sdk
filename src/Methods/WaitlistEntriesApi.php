@@ -14,26 +14,11 @@ final readonly class ListWaitlistEntriesStatus implements SdkOpenEnum
     public const COMPLETED = "completed";
     public const REJECTED = "rejected";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class CreateBulkWaitlistEntriesBodyItem implements \JsonSerializable
@@ -83,9 +68,7 @@ class CreateBulkWaitlistEntriesBodyItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "email_address") || $data->email_address === null) {
-            throw new SdkValidationError("email_address", 'required', "Required property 'email_address' is missing or null");
-        }
+        if (!property_exists($data, "email_address") || $data->email_address === null) { throw new SdkValidationError("email_address", 'required', "Required property 'email_address' is missing or null"); }
         return new self(
             emailAddress: SdkClient::stringValue($data->email_address),
             notify: (property_exists($data, "notify") ? ($data->notify === null ? null : SdkClient::boolValue($data->notify)) : SdkNotGiven::Value),
@@ -135,7 +118,7 @@ class WaitlistEntriesApi
     public static function createWaitlistEntry(ClientConfig $clientConfig, string $emailAddress, bool|null|SdkNotGiven $notify = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): WaitlistEntry
     {
 
-        $sdkResponse = SdkClient::request('POST', "/waitlist_entries", $clientConfig, body: ['email_address' => $emailAddress, 'notify' => $notify], returnType: WaitlistEntry::class, decoder: 'json', operationId: 'createWaitlistEntry', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/waitlist_entries", $clientConfig, body: ['email_address' => $emailAddress, 'notify' => $notify], returnType: WaitlistEntry::class, decoder: 'json', operationId: 'createWaitlistEntry', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, WaitlistEntry::class));
     }
 
@@ -155,7 +138,7 @@ class WaitlistEntriesApi
             Validation::validateItems('body', $body, min: 1, max: 50);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/waitlist_entries/bulk", $clientConfig, body: $body, decoder: 'json', operationId: 'createBulkWaitlistEntries', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/waitlist_entries/bulk", $clientConfig, body: $body, decoder: 'json', operationId: 'createBulkWaitlistEntries', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, WaitlistEntry::class), SdkClient::arrayValue($sdkResponse->data))));
     }
 
@@ -171,7 +154,7 @@ class WaitlistEntriesApi
     public static function deleteWaitlistEntry(ClientConfig $clientConfig, string $waitlistEntryId, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/waitlist_entries/" . SdkClient::encodePathSegment($waitlistEntryId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteWaitlistEntry', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/waitlist_entries/" . SdkClient::encodePathSegment($waitlistEntryId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteWaitlistEntry', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 
@@ -188,7 +171,7 @@ class WaitlistEntriesApi
     public static function inviteWaitlistEntry(ClientConfig $clientConfig, string $waitlistEntryId, bool|null|SdkNotGiven $ignoreExisting = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): WaitlistEntry
     {
 
-        $sdkResponse = SdkClient::request('POST', "/waitlist_entries/" . SdkClient::encodePathSegment($waitlistEntryId) . "/invite", $clientConfig, body: ['ignore_existing' => $ignoreExisting], returnType: WaitlistEntry::class, decoder: 'json', operationId: 'inviteWaitlistEntry', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/waitlist_entries/" . SdkClient::encodePathSegment($waitlistEntryId) . "/invite", $clientConfig, body: ['ignore_existing' => $ignoreExisting], returnType: WaitlistEntry::class, decoder: 'json', operationId: 'inviteWaitlistEntry', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, WaitlistEntry::class));
     }
 
@@ -204,7 +187,7 @@ class WaitlistEntriesApi
     public static function rejectWaitlistEntry(ClientConfig $clientConfig, string $waitlistEntryId, ?RequestOptions $requestOptions = null): WaitlistEntry
     {
 
-        $sdkResponse = SdkClient::request('POST', "/waitlist_entries/" . SdkClient::encodePathSegment($waitlistEntryId) . "/reject", $clientConfig, returnType: WaitlistEntry::class, decoder: 'json', operationId: 'rejectWaitlistEntry', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/waitlist_entries/" . SdkClient::encodePathSegment($waitlistEntryId) . "/reject", $clientConfig, returnType: WaitlistEntry::class, decoder: 'json', operationId: 'rejectWaitlistEntry', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, WaitlistEntry::class));
     }
 }

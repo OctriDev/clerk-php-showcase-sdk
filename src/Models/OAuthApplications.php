@@ -14,26 +14,11 @@ final readonly class OAuthApplicationObjectEnum implements SdkOpenEnum
 {
     public const OAUTH_APPLICATION = "oauth_application";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -304,78 +289,30 @@ class OAuthApplication implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "instance_id") || $data->instance_id === null) {
-            throw new SdkValidationError("instance_id", 'required', "Required property 'instance_id' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "client_id") || $data->client_id === null) {
-            throw new SdkValidationError("client_id", 'required', "Required property 'client_id' is missing or null");
-        }
-        if (!property_exists($data, "client_uri")) {
-            throw new SdkValidationError("client_uri", 'required', "Missing required property 'client_uri'");
-        }
-        if (!property_exists($data, "client_image_url")) {
-            throw new SdkValidationError("client_image_url", 'required', "Missing required property 'client_image_url'");
-        }
-        if (!property_exists($data, "dynamically_registered") || $data->dynamically_registered === null) {
-            throw new SdkValidationError("dynamically_registered", 'required', "Required property 'dynamically_registered' is missing or null");
-        }
-        if (!property_exists($data, "consent_screen_enabled") || $data->consent_screen_enabled === null) {
-            throw new SdkValidationError("consent_screen_enabled", 'required', "Required property 'consent_screen_enabled' is missing or null");
-        }
-        if (!property_exists($data, "pkce_required") || $data->pkce_required === null) {
-            throw new SdkValidationError("pkce_required", 'required', "Required property 'pkce_required' is missing or null");
-        }
-        if (!property_exists($data, "audience_uri")) {
-            throw new SdkValidationError("audience_uri", 'required', "Missing required property 'audience_uri'");
-        }
-        if (!property_exists($data, "token_exchange_enabled") || $data->token_exchange_enabled === null) {
-            throw new SdkValidationError("token_exchange_enabled", 'required', "Required property 'token_exchange_enabled' is missing or null");
-        }
-        if (!property_exists($data, "device_authorization_grant_enabled") || $data->device_authorization_grant_enabled === null) {
-            throw new SdkValidationError("device_authorization_grant_enabled", 'required', "Required property 'device_authorization_grant_enabled' is missing or null");
-        }
-        if (!property_exists($data, "public") || $data->public === null) {
-            throw new SdkValidationError("public", 'required', "Required property 'public' is missing or null");
-        }
-        if (!property_exists($data, "scopes") || $data->scopes === null) {
-            throw new SdkValidationError("scopes", 'required', "Required property 'scopes' is missing or null");
-        }
-        if (!property_exists($data, "redirect_uris") || $data->redirect_uris === null) {
-            throw new SdkValidationError("redirect_uris", 'required', "Required property 'redirect_uris' is missing or null");
-        }
-        if (!property_exists($data, "callback_url") || $data->callback_url === null) {
-            throw new SdkValidationError("callback_url", 'required', "Required property 'callback_url' is missing or null");
-        }
-        if (!property_exists($data, "authorize_url") || $data->authorize_url === null) {
-            throw new SdkValidationError("authorize_url", 'required', "Required property 'authorize_url' is missing or null");
-        }
-        if (!property_exists($data, "token_fetch_url") || $data->token_fetch_url === null) {
-            throw new SdkValidationError("token_fetch_url", 'required', "Required property 'token_fetch_url' is missing or null");
-        }
-        if (!property_exists($data, "user_info_url") || $data->user_info_url === null) {
-            throw new SdkValidationError("user_info_url", 'required', "Required property 'user_info_url' is missing or null");
-        }
-        if (!property_exists($data, "discovery_url") || $data->discovery_url === null) {
-            throw new SdkValidationError("discovery_url", 'required', "Required property 'discovery_url' is missing or null");
-        }
-        if (!property_exists($data, "token_introspection_url") || $data->token_introspection_url === null) {
-            throw new SdkValidationError("token_introspection_url", 'required', "Required property 'token_introspection_url' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
-            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "instance_id") || $data->instance_id === null) { throw new SdkValidationError("instance_id", 'required', "Required property 'instance_id' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "client_id") || $data->client_id === null) { throw new SdkValidationError("client_id", 'required', "Required property 'client_id' is missing or null"); }
+        if (!property_exists($data, "client_uri")) { throw new SdkValidationError("client_uri", 'required', "Missing required property 'client_uri'"); }
+        if (!property_exists($data, "client_image_url")) { throw new SdkValidationError("client_image_url", 'required', "Missing required property 'client_image_url'"); }
+        if (!property_exists($data, "dynamically_registered") || $data->dynamically_registered === null) { throw new SdkValidationError("dynamically_registered", 'required', "Required property 'dynamically_registered' is missing or null"); }
+        if (!property_exists($data, "consent_screen_enabled") || $data->consent_screen_enabled === null) { throw new SdkValidationError("consent_screen_enabled", 'required', "Required property 'consent_screen_enabled' is missing or null"); }
+        if (!property_exists($data, "pkce_required") || $data->pkce_required === null) { throw new SdkValidationError("pkce_required", 'required', "Required property 'pkce_required' is missing or null"); }
+        if (!property_exists($data, "audience_uri")) { throw new SdkValidationError("audience_uri", 'required', "Missing required property 'audience_uri'"); }
+        if (!property_exists($data, "token_exchange_enabled") || $data->token_exchange_enabled === null) { throw new SdkValidationError("token_exchange_enabled", 'required', "Required property 'token_exchange_enabled' is missing or null"); }
+        if (!property_exists($data, "device_authorization_grant_enabled") || $data->device_authorization_grant_enabled === null) { throw new SdkValidationError("device_authorization_grant_enabled", 'required', "Required property 'device_authorization_grant_enabled' is missing or null"); }
+        if (!property_exists($data, "public") || $data->public === null) { throw new SdkValidationError("public", 'required', "Required property 'public' is missing or null"); }
+        if (!property_exists($data, "scopes") || $data->scopes === null) { throw new SdkValidationError("scopes", 'required', "Required property 'scopes' is missing or null"); }
+        if (!property_exists($data, "redirect_uris") || $data->redirect_uris === null) { throw new SdkValidationError("redirect_uris", 'required', "Required property 'redirect_uris' is missing or null"); }
+        if (!property_exists($data, "callback_url") || $data->callback_url === null) { throw new SdkValidationError("callback_url", 'required', "Required property 'callback_url' is missing or null"); }
+        if (!property_exists($data, "authorize_url") || $data->authorize_url === null) { throw new SdkValidationError("authorize_url", 'required', "Required property 'authorize_url' is missing or null"); }
+        if (!property_exists($data, "token_fetch_url") || $data->token_fetch_url === null) { throw new SdkValidationError("token_fetch_url", 'required', "Required property 'token_fetch_url' is missing or null"); }
+        if (!property_exists($data, "user_info_url") || $data->user_info_url === null) { throw new SdkValidationError("user_info_url", 'required', "Required property 'user_info_url' is missing or null"); }
+        if (!property_exists($data, "discovery_url") || $data->discovery_url === null) { throw new SdkValidationError("discovery_url", 'required', "Required property 'discovery_url' is missing or null"); }
+        if (!property_exists($data, "token_introspection_url") || $data->token_introspection_url === null) { throw new SdkValidationError("token_introspection_url", 'required', "Required property 'token_introspection_url' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, OAuthApplicationObjectEnum::class),
             id: SdkClient::stringValue($data->id),

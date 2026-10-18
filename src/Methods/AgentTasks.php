@@ -11,26 +11,11 @@ final readonly class CreateAgentTaskPermissions implements SdkOpenEnum
 {
     public const UNKNOWN = "*";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -112,7 +97,7 @@ class AgentTasks
 
         Validation::validateUri('redirect_url', $redirectUrl);
 
-        $sdkResponse = SdkClient::request('POST', "/agents/tasks", $clientConfig, body: ['on_behalf_of' => $onBehalfOf, 'permissions' => $permissions, 'agent_name' => $agentName, 'task_description' => $taskDescription, 'redirect_url' => $redirectUrl, 'session_max_duration_in_seconds' => $sessionMaxDurationInSeconds], returnType: AgentTask::class, decoder: 'json', operationId: 'createAgentTask', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/agents/tasks", $clientConfig, body: ['on_behalf_of' => $onBehalfOf, 'permissions' => $permissions, 'agent_name' => $agentName, 'task_description' => $taskDescription, 'redirect_url' => $redirectUrl, 'session_max_duration_in_seconds' => $sessionMaxDurationInSeconds], returnType: AgentTask::class, decoder: 'json', operationId: 'createAgentTask', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, AgentTask::class));
     }
 
@@ -128,7 +113,7 @@ class AgentTasks
     public static function revokeAgentTask(ClientConfig $clientConfig, string $agentTaskId, ?RequestOptions $requestOptions = null): AgentTask
     {
 
-        $sdkResponse = SdkClient::request('POST', "/agents/tasks/" . SdkClient::encodePathSegment($agentTaskId) . "/revoke", $clientConfig, returnType: AgentTask::class, decoder: 'json', operationId: 'revokeAgentTask', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/agents/tasks/" . SdkClient::encodePathSegment($agentTaskId) . "/revoke", $clientConfig, returnType: AgentTask::class, decoder: 'json', operationId: 'revokeAgentTask', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, AgentTask::class));
     }
 }

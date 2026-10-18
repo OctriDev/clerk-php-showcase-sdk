@@ -185,33 +185,15 @@ class RoleSetMigration implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "instance_id") || $data->instance_id === null) {
-            throw new SdkValidationError("instance_id", 'required', "Required property 'instance_id' is missing or null");
-        }
-        if (!property_exists($data, "source_role_set_id") || $data->source_role_set_id === null) {
-            throw new SdkValidationError("source_role_set_id", 'required', "Required property 'source_role_set_id' is missing or null");
-        }
-        if (!property_exists($data, "trigger_type") || $data->trigger_type === null) {
-            throw new SdkValidationError("trigger_type", 'required', "Required property 'trigger_type' is missing or null");
-        }
-        if (!property_exists($data, "status") || $data->status === null) {
-            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
-        }
-        if (!property_exists($data, "migrated_members") || $data->migrated_members === null) {
-            throw new SdkValidationError("migrated_members", 'required', "Required property 'migrated_members' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
-            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "instance_id") || $data->instance_id === null) { throw new SdkValidationError("instance_id", 'required', "Required property 'instance_id' is missing or null"); }
+        if (!property_exists($data, "source_role_set_id") || $data->source_role_set_id === null) { throw new SdkValidationError("source_role_set_id", 'required', "Required property 'source_role_set_id' is missing or null"); }
+        if (!property_exists($data, "trigger_type") || $data->trigger_type === null) { throw new SdkValidationError("trigger_type", 'required', "Required property 'trigger_type' is missing or null"); }
+        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
+        if (!property_exists($data, "migrated_members") || $data->migrated_members === null) { throw new SdkValidationError("migrated_members", 'required', "Required property 'migrated_members' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, RoleSetMigrationObjectEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -279,12 +261,8 @@ class RoleSets implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data") || $data->data === null) {
-            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
-        }
-        if (!property_exists($data, "total_count") || $data->total_count === null) {
-            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
-        }
+        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
         return new self(
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, RoleSet::class), SdkClient::arrayValue($data->data))),
             totalCount: SdkClient::intValue($data->total_count),

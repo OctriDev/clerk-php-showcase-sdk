@@ -12,26 +12,11 @@ final readonly class CreateSignInTokenSecondFactorVerification implements SdkOpe
     public const FRESH = "fresh";
     public const STALE = "stale";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class SignInTokens
@@ -54,7 +39,7 @@ class SignInTokens
             Validation::validateRange('expires_in_seconds', $expiresInSeconds, min: 1);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/sign_in_tokens", $clientConfig, body: ['user_id' => $userId, 'org_id' => $orgId, 'expires_in_seconds' => $expiresInSeconds, 'second_factor_verification' => $secondFactorVerification], returnType: SignInToken::class, decoder: 'json', operationId: 'createSignInToken', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/sign_in_tokens", $clientConfig, body: ['user_id' => $userId, 'org_id' => $orgId, 'expires_in_seconds' => $expiresInSeconds, 'second_factor_verification' => $secondFactorVerification], returnType: SignInToken::class, decoder: 'json', operationId: 'createSignInToken', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SignInToken::class));
     }
 
@@ -70,7 +55,7 @@ class SignInTokens
     public static function revokeSignInToken(ClientConfig $clientConfig, string $signInTokenId, ?RequestOptions $requestOptions = null): SignInToken
     {
 
-        $sdkResponse = SdkClient::request('POST', "/sign_in_tokens/" . SdkClient::encodePathSegment($signInTokenId) . "/revoke", $clientConfig, returnType: SignInToken::class, decoder: 'json', operationId: 'revokeSignInToken', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/sign_in_tokens/" . SdkClient::encodePathSegment($signInTokenId) . "/revoke", $clientConfig, returnType: SignInToken::class, decoder: 'json', operationId: 'revokeSignInToken', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SignInToken::class));
     }
 }

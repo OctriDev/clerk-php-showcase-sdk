@@ -75,18 +75,10 @@ class SAMLConnectionAttributeMapping implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "user_id") || $data->user_id === null) {
-            throw new SdkValidationError("user_id", 'required', "Required property 'user_id' is missing or null");
-        }
-        if (!property_exists($data, "email_address") || $data->email_address === null) {
-            throw new SdkValidationError("email_address", 'required', "Required property 'email_address' is missing or null");
-        }
-        if (!property_exists($data, "first_name") || $data->first_name === null) {
-            throw new SdkValidationError("first_name", 'required', "Required property 'first_name' is missing or null");
-        }
-        if (!property_exists($data, "last_name") || $data->last_name === null) {
-            throw new SdkValidationError("last_name", 'required', "Required property 'last_name' is missing or null");
-        }
+        if (!property_exists($data, "user_id") || $data->user_id === null) { throw new SdkValidationError("user_id", 'required', "Required property 'user_id' is missing or null"); }
+        if (!property_exists($data, "email_address") || $data->email_address === null) { throw new SdkValidationError("email_address", 'required', "Required property 'email_address' is missing or null"); }
+        if (!property_exists($data, "first_name") || $data->first_name === null) { throw new SdkValidationError("first_name", 'required', "Required property 'first_name' is missing or null"); }
+        if (!property_exists($data, "last_name") || $data->last_name === null) { throw new SdkValidationError("last_name", 'required', "Required property 'last_name' is missing or null"); }
         return new self(
             userId: SdkClient::stringValue($data->user_id),
             emailAddress: SdkClient::stringValue($data->email_address),
@@ -105,26 +97,11 @@ final readonly class SAMLConnectionLoginHintModeEnum implements SdkOpenEnum
     public const CUSTOM_ATTRIBUTE = "custom_attribute";
     public const OFF = "off";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -177,9 +154,7 @@ class SAMLConnectionLoginHint implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "mode") || $data->mode === null) {
-            throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null");
-        }
+        if (!property_exists($data, "mode") || $data->mode === null) { throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null"); }
         return new self(
             mode: SdkClient::hydrateStringEnumOrString($data->mode, SAMLConnectionLoginHintModeEnum::class),
             source: (property_exists($data, "source") && $data->source !== null ? SdkClient::stringValue($data->source) : SdkNotGiven::Value),
@@ -235,12 +210,8 @@ class SAMLConnections implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data") || $data->data === null) {
-            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
-        }
-        if (!property_exists($data, "total_count") || $data->total_count === null) {
-            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
-        }
+        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
         return new self(
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, SAMLConnection::class), SdkClient::arrayValue($data->data))),
             totalCount: SdkClient::intValue($data->total_count),

@@ -359,78 +359,30 @@ class SAMLConnection implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "idp_entity_id")) {
-            throw new SdkValidationError("idp_entity_id", 'required', "Missing required property 'idp_entity_id'");
-        }
-        if (!property_exists($data, "idp_sso_url")) {
-            throw new SdkValidationError("idp_sso_url", 'required', "Missing required property 'idp_sso_url'");
-        }
-        if (!property_exists($data, "idp_certificate")) {
-            throw new SdkValidationError("idp_certificate", 'required', "Missing required property 'idp_certificate'");
-        }
-        if (!property_exists($data, "idp_certificate_issued_at")) {
-            throw new SdkValidationError("idp_certificate_issued_at", 'required', "Missing required property 'idp_certificate_issued_at'");
-        }
-        if (!property_exists($data, "idp_certificate_expires_at")) {
-            throw new SdkValidationError("idp_certificate_expires_at", 'required', "Missing required property 'idp_certificate_expires_at'");
-        }
-        if (!property_exists($data, "idp_certificates") || $data->idp_certificates === null) {
-            throw new SdkValidationError("idp_certificates", 'required', "Required property 'idp_certificates' is missing or null");
-        }
-        if (!property_exists($data, "acs_url") || $data->acs_url === null) {
-            throw new SdkValidationError("acs_url", 'required', "Required property 'acs_url' is missing or null");
-        }
-        if (!property_exists($data, "sp_entity_id") || $data->sp_entity_id === null) {
-            throw new SdkValidationError("sp_entity_id", 'required', "Required property 'sp_entity_id' is missing or null");
-        }
-        if (!property_exists($data, "sp_metadata_url") || $data->sp_metadata_url === null) {
-            throw new SdkValidationError("sp_metadata_url", 'required', "Required property 'sp_metadata_url' is missing or null");
-        }
-        if (!property_exists($data, "active") || $data->active === null) {
-            throw new SdkValidationError("active", 'required', "Required property 'active' is missing or null");
-        }
-        if (!property_exists($data, "provider") || $data->provider === null) {
-            throw new SdkValidationError("provider", 'required', "Required property 'provider' is missing or null");
-        }
-        if (!property_exists($data, "user_count") || $data->user_count === null) {
-            throw new SdkValidationError("user_count", 'required', "Required property 'user_count' is missing or null");
-        }
-        if (!property_exists($data, "sync_user_attributes") || $data->sync_user_attributes === null) {
-            throw new SdkValidationError("sync_user_attributes", 'required', "Required property 'sync_user_attributes' is missing or null");
-        }
-        if (!property_exists($data, "allow_subdomains") || $data->allow_subdomains === null) {
-            throw new SdkValidationError("allow_subdomains", 'required', "Required property 'allow_subdomains' is missing or null");
-        }
-        if (!property_exists($data, "allow_idp_initiated") || $data->allow_idp_initiated === null) {
-            throw new SdkValidationError("allow_idp_initiated", 'required', "Required property 'allow_idp_initiated' is missing or null");
-        }
-        if (!property_exists($data, "disable_additional_identifications") || $data->disable_additional_identifications === null) {
-            throw new SdkValidationError("disable_additional_identifications", 'required', "Required property 'disable_additional_identifications' is missing or null");
-        }
-        if (!property_exists($data, "allow_organization_account_linking") || $data->allow_organization_account_linking === null) {
-            throw new SdkValidationError("allow_organization_account_linking", 'required', "Required property 'allow_organization_account_linking' is missing or null");
-        }
-        if (!property_exists($data, "force_authn") || $data->force_authn === null) {
-            throw new SdkValidationError("force_authn", 'required', "Required property 'force_authn' is missing or null");
-        }
-        if (!property_exists($data, "login_hint") || $data->login_hint === null) {
-            throw new SdkValidationError("login_hint", 'required', "Required property 'login_hint' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
-            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "idp_entity_id")) { throw new SdkValidationError("idp_entity_id", 'required', "Missing required property 'idp_entity_id'"); }
+        if (!property_exists($data, "idp_sso_url")) { throw new SdkValidationError("idp_sso_url", 'required', "Missing required property 'idp_sso_url'"); }
+        if (!property_exists($data, "idp_certificate")) { throw new SdkValidationError("idp_certificate", 'required', "Missing required property 'idp_certificate'"); }
+        if (!property_exists($data, "idp_certificate_issued_at")) { throw new SdkValidationError("idp_certificate_issued_at", 'required', "Missing required property 'idp_certificate_issued_at'"); }
+        if (!property_exists($data, "idp_certificate_expires_at")) { throw new SdkValidationError("idp_certificate_expires_at", 'required', "Missing required property 'idp_certificate_expires_at'"); }
+        if (!property_exists($data, "idp_certificates") || $data->idp_certificates === null) { throw new SdkValidationError("idp_certificates", 'required', "Required property 'idp_certificates' is missing or null"); }
+        if (!property_exists($data, "acs_url") || $data->acs_url === null) { throw new SdkValidationError("acs_url", 'required', "Required property 'acs_url' is missing or null"); }
+        if (!property_exists($data, "sp_entity_id") || $data->sp_entity_id === null) { throw new SdkValidationError("sp_entity_id", 'required', "Required property 'sp_entity_id' is missing or null"); }
+        if (!property_exists($data, "sp_metadata_url") || $data->sp_metadata_url === null) { throw new SdkValidationError("sp_metadata_url", 'required', "Required property 'sp_metadata_url' is missing or null"); }
+        if (!property_exists($data, "active") || $data->active === null) { throw new SdkValidationError("active", 'required', "Required property 'active' is missing or null"); }
+        if (!property_exists($data, "provider") || $data->provider === null) { throw new SdkValidationError("provider", 'required', "Required property 'provider' is missing or null"); }
+        if (!property_exists($data, "user_count") || $data->user_count === null) { throw new SdkValidationError("user_count", 'required', "Required property 'user_count' is missing or null"); }
+        if (!property_exists($data, "sync_user_attributes") || $data->sync_user_attributes === null) { throw new SdkValidationError("sync_user_attributes", 'required', "Required property 'sync_user_attributes' is missing or null"); }
+        if (!property_exists($data, "allow_subdomains") || $data->allow_subdomains === null) { throw new SdkValidationError("allow_subdomains", 'required', "Required property 'allow_subdomains' is missing or null"); }
+        if (!property_exists($data, "allow_idp_initiated") || $data->allow_idp_initiated === null) { throw new SdkValidationError("allow_idp_initiated", 'required', "Required property 'allow_idp_initiated' is missing or null"); }
+        if (!property_exists($data, "disable_additional_identifications") || $data->disable_additional_identifications === null) { throw new SdkValidationError("disable_additional_identifications", 'required', "Required property 'disable_additional_identifications' is missing or null"); }
+        if (!property_exists($data, "allow_organization_account_linking") || $data->allow_organization_account_linking === null) { throw new SdkValidationError("allow_organization_account_linking", 'required', "Required property 'allow_organization_account_linking' is missing or null"); }
+        if (!property_exists($data, "force_authn") || $data->force_authn === null) { throw new SdkValidationError("force_authn", 'required', "Required property 'force_authn' is missing or null"); }
+        if (!property_exists($data, "login_hint") || $data->login_hint === null) { throw new SdkValidationError("login_hint", 'required', "Required property 'login_hint' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, SAMLConnectionObjectEnum::class),
             id: SdkClient::stringValue($data->id),

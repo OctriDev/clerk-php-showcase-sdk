@@ -271,66 +271,26 @@ class BillingPaymentAttempt implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "payment_id") || $data->payment_id === null) {
-            throw new SdkValidationError("payment_id", 'required', "Required property 'payment_id' is missing or null");
-        }
-        if (!property_exists($data, "instance_id") || $data->instance_id === null) {
-            throw new SdkValidationError("instance_id", 'required', "Required property 'instance_id' is missing or null");
-        }
-        if (!property_exists($data, "charge_type") || $data->charge_type === null) {
-            throw new SdkValidationError("charge_type", 'required', "Required property 'charge_type' is missing or null");
-        }
-        if (!property_exists($data, "payee_id") || $data->payee_id === null) {
-            throw new SdkValidationError("payee_id", 'required', "Required property 'payee_id' is missing or null");
-        }
-        if (!property_exists($data, "payee") || $data->payee === null) {
-            throw new SdkValidationError("payee", 'required', "Required property 'payee' is missing or null");
-        }
-        if (!property_exists($data, "payer_id") || $data->payer_id === null) {
-            throw new SdkValidationError("payer_id", 'required', "Required property 'payer_id' is missing or null");
-        }
-        if (!property_exists($data, "payer") || $data->payer === null) {
-            throw new SdkValidationError("payer", 'required', "Required property 'payer' is missing or null");
-        }
-        if (!property_exists($data, "amount") || $data->amount === null) {
-            throw new SdkValidationError("amount", 'required', "Required property 'amount' is missing or null");
-        }
-        if (!property_exists($data, "payment_method_id") || $data->payment_method_id === null) {
-            throw new SdkValidationError("payment_method_id", 'required', "Required property 'payment_method_id' is missing or null");
-        }
-        if (!property_exists($data, "payment_method") || $data->payment_method === null) {
-            throw new SdkValidationError("payment_method", 'required', "Required property 'payment_method' is missing or null");
-        }
-        if (!property_exists($data, "statement_id") || $data->statement_id === null) {
-            throw new SdkValidationError("statement_id", 'required', "Required property 'statement_id' is missing or null");
-        }
-        if (!property_exists($data, "gateway_external_id")) {
-            throw new SdkValidationError("gateway_external_id", 'required', "Missing required property 'gateway_external_id'");
-        }
-        if (!property_exists($data, "gateway_external_url")) {
-            throw new SdkValidationError("gateway_external_url", 'required', "Missing required property 'gateway_external_url'");
-        }
-        if (!property_exists($data, "status") || $data->status === null) {
-            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
-        }
-        if (!property_exists($data, "paid_at")) {
-            throw new SdkValidationError("paid_at", 'required', "Missing required property 'paid_at'");
-        }
-        if (!property_exists($data, "failed_at")) {
-            throw new SdkValidationError("failed_at", 'required', "Missing required property 'failed_at'");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
-            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "payment_id") || $data->payment_id === null) { throw new SdkValidationError("payment_id", 'required', "Required property 'payment_id' is missing or null"); }
+        if (!property_exists($data, "instance_id") || $data->instance_id === null) { throw new SdkValidationError("instance_id", 'required', "Required property 'instance_id' is missing or null"); }
+        if (!property_exists($data, "charge_type") || $data->charge_type === null) { throw new SdkValidationError("charge_type", 'required', "Required property 'charge_type' is missing or null"); }
+        if (!property_exists($data, "payee_id") || $data->payee_id === null) { throw new SdkValidationError("payee_id", 'required', "Required property 'payee_id' is missing or null"); }
+        if (!property_exists($data, "payee") || $data->payee === null) { throw new SdkValidationError("payee", 'required', "Required property 'payee' is missing or null"); }
+        if (!property_exists($data, "payer_id") || $data->payer_id === null) { throw new SdkValidationError("payer_id", 'required', "Required property 'payer_id' is missing or null"); }
+        if (!property_exists($data, "payer") || $data->payer === null) { throw new SdkValidationError("payer", 'required', "Required property 'payer' is missing or null"); }
+        if (!property_exists($data, "amount") || $data->amount === null) { throw new SdkValidationError("amount", 'required', "Required property 'amount' is missing or null"); }
+        if (!property_exists($data, "payment_method_id") || $data->payment_method_id === null) { throw new SdkValidationError("payment_method_id", 'required', "Required property 'payment_method_id' is missing or null"); }
+        if (!property_exists($data, "payment_method") || $data->payment_method === null) { throw new SdkValidationError("payment_method", 'required', "Required property 'payment_method' is missing or null"); }
+        if (!property_exists($data, "statement_id") || $data->statement_id === null) { throw new SdkValidationError("statement_id", 'required', "Required property 'statement_id' is missing or null"); }
+        if (!property_exists($data, "gateway_external_id")) { throw new SdkValidationError("gateway_external_id", 'required', "Missing required property 'gateway_external_id'"); }
+        if (!property_exists($data, "gateway_external_url")) { throw new SdkValidationError("gateway_external_url", 'required', "Missing required property 'gateway_external_url'"); }
+        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
+        if (!property_exists($data, "paid_at")) { throw new SdkValidationError("paid_at", 'required', "Missing required property 'paid_at'"); }
+        if (!property_exists($data, "failed_at")) { throw new SdkValidationError("failed_at", 'required', "Missing required property 'failed_at'"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, BillingPaymentAttemptObjectEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -366,26 +326,11 @@ final readonly class BillingPriceResponseObjectEnum implements SdkOpenEnum
 {
     public const COMMERCE_PRICE = "commerce_price";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -397,24 +342,9 @@ final readonly class BillingPriceResponseSupportedBillingPeriodsEnum implements 
     public const ANNUAL = "annual";
     public const BOTH = "both";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

@@ -75,18 +75,10 @@ class MachineScope implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "from_machine_id") || $data->from_machine_id === null) {
-            throw new SdkValidationError("from_machine_id", 'required', "Required property 'from_machine_id' is missing or null");
-        }
-        if (!property_exists($data, "to_machine_id") || $data->to_machine_id === null) {
-            throw new SdkValidationError("to_machine_id", 'required', "Required property 'to_machine_id' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "from_machine_id") || $data->from_machine_id === null) { throw new SdkValidationError("from_machine_id", 'required', "Required property 'from_machine_id' is missing or null"); }
+        if (!property_exists($data, "to_machine_id") || $data->to_machine_id === null) { throw new SdkValidationError("to_machine_id", 'required', "Required property 'to_machine_id' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, MachineScopeObjectEnum::class),
             fromMachineId: SdkClient::stringValue($data->from_machine_id),
@@ -103,26 +95,11 @@ final readonly class MachineScopeDeletedObjectEnum implements SdkOpenEnum
 {
     public const MACHINE_SCOPE = "machine_scope";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -193,18 +170,10 @@ class MachineScopeDeleted implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "from_machine_id") || $data->from_machine_id === null) {
-            throw new SdkValidationError("from_machine_id", 'required', "Required property 'from_machine_id' is missing or null");
-        }
-        if (!property_exists($data, "to_machine_id") || $data->to_machine_id === null) {
-            throw new SdkValidationError("to_machine_id", 'required', "Required property 'to_machine_id' is missing or null");
-        }
-        if (!property_exists($data, "deleted") || $data->deleted === null) {
-            throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "from_machine_id") || $data->from_machine_id === null) { throw new SdkValidationError("from_machine_id", 'required', "Required property 'from_machine_id' is missing or null"); }
+        if (!property_exists($data, "to_machine_id") || $data->to_machine_id === null) { throw new SdkValidationError("to_machine_id", 'required', "Required property 'to_machine_id' is missing or null"); }
+        if (!property_exists($data, "deleted") || $data->deleted === null) { throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, MachineScopeDeletedObjectEnum::class),
             fromMachineId: SdkClient::stringValue($data->from_machine_id),
@@ -221,26 +190,11 @@ final readonly class MachineSecretKeyObjectEnum implements SdkOpenEnum
 {
     public const MACHINE_SECRET_KEY = "machine_secret_key";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -291,12 +245,8 @@ class MachineSecretKey implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "secret") || $data->secret === null) {
-            throw new SdkValidationError("secret", 'required', "Required property 'secret' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "secret") || $data->secret === null) { throw new SdkValidationError("secret", 'required', "Required property 'secret' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, MachineSecretKeyObjectEnum::class),
             secret: SdkClient::stringValue($data->secret),
@@ -311,24 +261,9 @@ final readonly class MachineWithoutScopedMachinesObjectEnum implements SdkOpenEn
 {
     public const MACHINE = "machine";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

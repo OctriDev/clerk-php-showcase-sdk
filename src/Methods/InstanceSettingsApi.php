@@ -13,26 +13,11 @@ final readonly class UpdateInstancePreferredSignInStrategyWhenPasswordRequired i
     public const OTP = "otp";
     public const UNKNOWN = "";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class InstanceSettingsApi
@@ -72,7 +57,7 @@ class InstanceSettingsApi
     public static function updateInstance(ClientConfig $clientConfig, bool|null|SdkNotGiven $testMode = SdkNotGiven::Value, bool|null|SdkNotGiven $hibp = SdkNotGiven::Value, string|null|SdkNotGiven $supportEmail = SdkNotGiven::Value, string|null|SdkNotGiven $clerkJsVersion = SdkNotGiven::Value, string|null|SdkNotGiven $developmentOrigin = SdkNotGiven::Value, array|null|SdkNotGiven $allowedOrigins = SdkNotGiven::Value, array|null|SdkNotGiven $allowedSubdomains = SdkNotGiven::Value, bool|null|SdkNotGiven $subdomainAllowlistEnabled = SdkNotGiven::Value, bool|null|SdkNotGiven $cookielessDev = SdkNotGiven::Value, bool|null|SdkNotGiven $urlBasedSessionSyncing = SdkNotGiven::Value, UpdateInstancePreferredSignInStrategyWhenPasswordRequired|null|SdkNotGiven $preferredSignInStrategyWhenPasswordRequired = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): mixed
     {
 
-        return SdkClient::request('PATCH', "/instance", $clientConfig, body: ['test_mode' => $testMode, 'hibp' => $hibp, 'support_email' => $supportEmail, 'clerk_js_version' => $clerkJsVersion, 'development_origin' => $developmentOrigin, 'allowed_origins' => $allowedOrigins, 'allowed_subdomains' => $allowedSubdomains, 'subdomain_allowlist_enabled' => $subdomainAllowlistEnabled, 'cookieless_dev' => $cookielessDev, 'url_based_session_syncing' => $urlBasedSessionSyncing, 'preferred_sign_in_strategy_when_password_required' => $preferredSignInStrategyWhenPasswordRequired], decoder: 'empty', operationId: 'updateInstance', requestOptions: $requestOptions, errors: [422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)])->data;
+        return SdkClient::request('PATCH', "/instance", $clientConfig, body: ['test_mode' => $testMode, 'hibp' => $hibp, 'support_email' => $supportEmail, 'clerk_js_version' => $clerkJsVersion, 'development_origin' => $developmentOrigin, 'allowed_origins' => $allowedOrigins, 'allowed_subdomains' => $allowedSubdomains, 'subdomain_allowlist_enabled' => $subdomainAllowlistEnabled, 'cookieless_dev' => $cookielessDev, 'url_based_session_syncing' => $urlBasedSessionSyncing, 'preferred_sign_in_strategy_when_password_required' => $preferredSignInStrategyWhenPasswordRequired], decoder: 'empty', operationId: 'updateInstance', requestOptions: $requestOptions, errors: [422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)])->data;
     }
 
 
@@ -91,7 +76,7 @@ class InstanceSettingsApi
     public static function updateInstanceRestrictions(ClientConfig $clientConfig, bool|null|SdkNotGiven $allowlist = SdkNotGiven::Value, bool|null|SdkNotGiven $blocklist = SdkNotGiven::Value, bool|null|SdkNotGiven $allowlistBlocklistDisabledOnSignIn = SdkNotGiven::Value, bool|null|SdkNotGiven $blockEmailSubaddresses = SdkNotGiven::Value, bool|null|SdkNotGiven $blockDisposableEmailDomains = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): InstanceRestrictions
     {
 
-        $sdkResponse = SdkClient::request('PATCH', "/instance/restrictions", $clientConfig, body: ['allowlist' => $allowlist, 'blocklist' => $blocklist, 'allowlist_blocklist_disabled_on_sign_in' => $allowlistBlocklistDisabledOnSignIn, 'block_email_subaddresses' => $blockEmailSubaddresses, 'block_disposable_email_domains' => $blockDisposableEmailDomains], returnType: InstanceRestrictions::class, decoder: 'json', operationId: 'updateInstanceRestrictions', requestOptions: $requestOptions, errors: [402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/instance/restrictions", $clientConfig, body: ['allowlist' => $allowlist, 'blocklist' => $blocklist, 'allowlist_blocklist_disabled_on_sign_in' => $allowlistBlocklistDisabledOnSignIn, 'block_email_subaddresses' => $blockEmailSubaddresses, 'block_disposable_email_domains' => $blockDisposableEmailDomains], returnType: InstanceRestrictions::class, decoder: 'json', operationId: 'updateInstanceRestrictions', requestOptions: $requestOptions, errors: [402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, InstanceRestrictions::class));
     }
 
@@ -120,7 +105,7 @@ class InstanceSettingsApi
     public static function updateInstanceProtect(ClientConfig $clientConfig, bool|null|SdkNotGiven $rulesEnabled = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): InstanceProtect
     {
 
-        $sdkResponse = SdkClient::request('PATCH', "/instance/protect", $clientConfig, body: ['rules_enabled' => $rulesEnabled], returnType: InstanceProtect::class, decoder: 'json', operationId: 'updateInstanceProtect', requestOptions: $requestOptions, errors: [422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/instance/protect", $clientConfig, body: ['rules_enabled' => $rulesEnabled], returnType: InstanceProtect::class, decoder: 'json', operationId: 'updateInstanceProtect', requestOptions: $requestOptions, errors: [422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, InstanceProtect::class));
     }
 
@@ -153,7 +138,7 @@ class InstanceSettingsApi
             Validation::validateItems('blocked_country_codes', $blockedCountryCodes, max: 250);
         }
 
-        $sdkResponse = SdkClient::request('PATCH', "/instance/communication", $clientConfig, body: ['blocked_country_codes' => $blockedCountryCodes], returnType: InstanceCommunication::class, decoder: 'json', operationId: 'updateInstanceCommunication', requestOptions: $requestOptions, errors: [422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/instance/communication", $clientConfig, body: ['blocked_country_codes' => $blockedCountryCodes], returnType: InstanceCommunication::class, decoder: 'json', operationId: 'updateInstanceCommunication', requestOptions: $requestOptions, errors: [422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, InstanceCommunication::class));
     }
 
@@ -191,7 +176,7 @@ class InstanceSettingsApi
     public static function updateInstanceOAuthApplicationSettings(ClientConfig $clientConfig, bool|null|SdkNotGiven $dynamicOauthClientRegistration = SdkNotGiven::Value, array|null|SdkNotGiven $dynamicClientAllowedScopes = SdkNotGiven::Value, array|null|SdkNotGiven $defaultScopes = SdkNotGiven::Value, bool|null|SdkNotGiven $oauthJwtAccessTokens = SdkNotGiven::Value, bool|null|SdkNotGiven $audClaimEnabled = SdkNotGiven::Value, bool|null|SdkNotGiven $audClaimRefreshBackfillEnabled = SdkNotGiven::Value, bool|null|SdkNotGiven $pkceRequired = SdkNotGiven::Value, bool|null|SdkNotGiven $clientIdMetadataDocumentsAdvertised = SdkNotGiven::Value, bool|null|SdkNotGiven $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients = SdkNotGiven::Value, bool|null|SdkNotGiven $clientIdMetadataDocumentsBlockImplicitlyAllowedClients = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): OAuthApplicationSettings
     {
 
-        $sdkResponse = SdkClient::request('PATCH', "/instance/oauth_application_settings", $clientConfig, body: ['dynamic_oauth_client_registration' => $dynamicOauthClientRegistration, 'dynamic_client_allowed_scopes' => $dynamicClientAllowedScopes, 'default_scopes' => $defaultScopes, 'oauth_jwt_access_tokens' => $oauthJwtAccessTokens, 'aud_claim_enabled' => $audClaimEnabled, 'aud_claim_refresh_backfill_enabled' => $audClaimRefreshBackfillEnabled, 'pkce_required' => $pkceRequired, 'client_id_metadata_documents_advertised' => $clientIdMetadataDocumentsAdvertised, 'client_id_metadata_documents_only_allow_pre_registered_clients' => $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients, 'client_id_metadata_documents_block_implicitly_allowed_clients' => $clientIdMetadataDocumentsBlockImplicitlyAllowedClients], returnType: OAuthApplicationSettings::class, decoder: 'json', operationId: 'updateInstanceOAuthApplicationSettings', requestOptions: $requestOptions, errors: [422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/instance/oauth_application_settings", $clientConfig, body: ['dynamic_oauth_client_registration' => $dynamicOauthClientRegistration, 'dynamic_client_allowed_scopes' => $dynamicClientAllowedScopes, 'default_scopes' => $defaultScopes, 'oauth_jwt_access_tokens' => $oauthJwtAccessTokens, 'aud_claim_enabled' => $audClaimEnabled, 'aud_claim_refresh_backfill_enabled' => $audClaimRefreshBackfillEnabled, 'pkce_required' => $pkceRequired, 'client_id_metadata_documents_advertised' => $clientIdMetadataDocumentsAdvertised, 'client_id_metadata_documents_only_allow_pre_registered_clients' => $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients, 'client_id_metadata_documents_block_implicitly_allowed_clients' => $clientIdMetadataDocumentsBlockImplicitlyAllowedClients], returnType: OAuthApplicationSettings::class, decoder: 'json', operationId: 'updateInstanceOAuthApplicationSettings', requestOptions: $requestOptions, errors: [422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OAuthApplicationSettings::class));
     }
 
@@ -204,7 +189,7 @@ class InstanceSettingsApi
     public static function getInstanceOrganizationSettings(ClientConfig $clientConfig, ?RequestOptions $requestOptions = null): OrganizationSettings
     {
 
-        $sdkResponse = SdkClient::request('GET', "/instance/organization_settings", $clientConfig, returnType: OrganizationSettings::class, decoder: 'json', operationId: 'getInstanceOrganizationSettings', requestOptions: $requestOptions, errors: [402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/instance/organization_settings", $clientConfig, returnType: OrganizationSettings::class, decoder: 'json', operationId: 'getInstanceOrganizationSettings', requestOptions: $requestOptions, errors: [402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationSettings::class));
     }
 
@@ -227,7 +212,7 @@ class InstanceSettingsApi
     public static function updateInstanceOrganizationSettings(ClientConfig $clientConfig, bool|null|SdkNotGiven $enabled = SdkNotGiven::Value, int|null|SdkNotGiven $maxAllowedMemberships = SdkNotGiven::Value, bool|null|SdkNotGiven $adminDeleteEnabled = SdkNotGiven::Value, bool|null|SdkNotGiven $domainsEnabled = SdkNotGiven::Value, bool|null|SdkNotGiven $slugDisabled = SdkNotGiven::Value, array|SdkNotGiven $domainsEnrollmentModes = SdkNotGiven::Value, string|null|SdkNotGiven $creatorRoleId = SdkNotGiven::Value, string|null|SdkNotGiven $domainsDefaultRoleId = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): OrganizationSettings
     {
 
-        $sdkResponse = SdkClient::request('PATCH', "/instance/organization_settings", $clientConfig, body: ['enabled' => $enabled, 'max_allowed_memberships' => $maxAllowedMemberships, 'admin_delete_enabled' => $adminDeleteEnabled, 'domains_enabled' => $domainsEnabled, 'slug_disabled' => $slugDisabled, 'domains_enrollment_modes' => $domainsEnrollmentModes, 'creator_role_id' => $creatorRoleId, 'domains_default_role_id' => $domainsDefaultRoleId], returnType: OrganizationSettings::class, decoder: 'json', operationId: 'updateInstanceOrganizationSettings', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/instance/organization_settings", $clientConfig, body: ['enabled' => $enabled, 'max_allowed_memberships' => $maxAllowedMemberships, 'admin_delete_enabled' => $adminDeleteEnabled, 'domains_enabled' => $domainsEnabled, 'slug_disabled' => $slugDisabled, 'domains_enrollment_modes' => $domainsEnrollmentModes, 'creator_role_id' => $creatorRoleId, 'domains_default_role_id' => $domainsDefaultRoleId], returnType: OrganizationSettings::class, decoder: 'json', operationId: 'updateInstanceOrganizationSettings', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationSettings::class));
     }
 }

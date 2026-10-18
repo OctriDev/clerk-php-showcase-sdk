@@ -46,7 +46,7 @@ class RedirectUrls
     public static function createRedirectUrl(ClientConfig $clientConfig, string $url, ?RequestOptions $requestOptions = null): RedirectURL
     {
 
-        $sdkResponse = SdkClient::request('POST', "/redirect_urls", $clientConfig, body: ['url' => $url], returnType: RedirectURL::class, decoder: 'json', operationId: 'createRedirectUrl', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/redirect_urls", $clientConfig, body: ['url' => $url], returnType: RedirectURL::class, decoder: 'json', operationId: 'createRedirectUrl', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RedirectURL::class));
     }
 
@@ -62,7 +62,7 @@ class RedirectUrls
     public static function getRedirectUrl(ClientConfig $clientConfig, string $id, ?RequestOptions $requestOptions = null): RedirectURL
     {
 
-        $sdkResponse = SdkClient::request('GET', "/redirect_urls/" . SdkClient::encodePathSegment($id) . "", $clientConfig, returnType: RedirectURL::class, decoder: 'json', operationId: 'getRedirectUrl', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/redirect_urls/" . SdkClient::encodePathSegment($id) . "", $clientConfig, returnType: RedirectURL::class, decoder: 'json', operationId: 'getRedirectUrl', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RedirectURL::class));
     }
 
@@ -78,7 +78,7 @@ class RedirectUrls
     public static function deleteRedirectUrl(ClientConfig $clientConfig, string $id, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/redirect_urls/" . SdkClient::encodePathSegment($id) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteRedirectUrl', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/redirect_urls/" . SdkClient::encodePathSegment($id) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteRedirectUrl', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 }

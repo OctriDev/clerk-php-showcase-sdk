@@ -77,15 +77,9 @@ class ClerkError implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "message") || $data->message === null) {
-            throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null");
-        }
-        if (!property_exists($data, "long_message") || $data->long_message === null) {
-            throw new SdkValidationError("long_message", 'required', "Required property 'long_message' is missing or null");
-        }
-        if (!property_exists($data, "code") || $data->code === null) {
-            throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null");
-        }
+        if (!property_exists($data, "message") || $data->message === null) { throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null"); }
+        if (!property_exists($data, "long_message") || $data->long_message === null) { throw new SdkValidationError("long_message", 'required', "Required property 'long_message' is missing or null"); }
+        if (!property_exists($data, "code") || $data->code === null) { throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null"); }
         return new self(
             message: SdkClient::stringValue($data->message),
             longMessage: SdkClient::stringValue($data->long_message),
@@ -157,9 +151,7 @@ class ClerkErrors implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "errors") || $data->errors === null) {
-            throw new SdkValidationError("errors", 'required', "Required property 'errors' is missing or null");
-        }
+        if (!property_exists($data, "errors") || $data->errors === null) { throw new SdkValidationError("errors", 'required', "Required property 'errors' is missing or null"); }
         return new self(
             errors: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ClerkError::class), SdkClient::arrayValue($data->errors))),
             meta: (property_exists($data, "meta") && $data->meta !== null ? SdkClient::stringMapValue($data->meta) : SdkNotGiven::Value),

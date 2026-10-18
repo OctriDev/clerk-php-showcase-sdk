@@ -55,12 +55,8 @@ class SCIMDirectoryList implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data") || $data->data === null) {
-            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
-        }
-        if (!property_exists($data, "total_count") || $data->total_count === null) {
-            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
-        }
+        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
         return new self(
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, SCIMDirectory::class), SdkClient::arrayValue($data->data))),
             totalCount: SdkClient::intValue($data->total_count),
@@ -75,26 +71,11 @@ final readonly class SCIMGroupRoleMappingObjectEnum implements SdkOpenEnum
 {
     public const SCIM_GROUP_ROLE_MAPPING = "scim_group_role_mapping";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -247,39 +228,17 @@ class SCIMGroupRoleMapping implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "scim_directory_id") || $data->scim_directory_id === null) {
-            throw new SdkValidationError("scim_directory_id", 'required', "Required property 'scim_directory_id' is missing or null");
-        }
-        if (!property_exists($data, "directory_id") || $data->directory_id === null) {
-            throw new SdkValidationError("directory_id", 'required', "Required property 'directory_id' is missing or null");
-        }
-        if (!property_exists($data, "scim_group_id") || $data->scim_group_id === null) {
-            throw new SdkValidationError("scim_group_id", 'required', "Required property 'scim_group_id' is missing or null");
-        }
-        if (!property_exists($data, "directory_group_id") || $data->directory_group_id === null) {
-            throw new SdkValidationError("directory_group_id", 'required', "Required property 'directory_group_id' is missing or null");
-        }
-        if (!property_exists($data, "scim_group_display_name") || $data->scim_group_display_name === null) {
-            throw new SdkValidationError("scim_group_display_name", 'required', "Required property 'scim_group_display_name' is missing or null");
-        }
-        if (!property_exists($data, "directory_group_display_name") || $data->directory_group_display_name === null) {
-            throw new SdkValidationError("directory_group_display_name", 'required', "Required property 'directory_group_display_name' is missing or null");
-        }
-        if (!property_exists($data, "precedence") || $data->precedence === null) {
-            throw new SdkValidationError("precedence", 'required', "Required property 'precedence' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
-            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "scim_directory_id") || $data->scim_directory_id === null) { throw new SdkValidationError("scim_directory_id", 'required', "Required property 'scim_directory_id' is missing or null"); }
+        if (!property_exists($data, "directory_id") || $data->directory_id === null) { throw new SdkValidationError("directory_id", 'required', "Required property 'directory_id' is missing or null"); }
+        if (!property_exists($data, "scim_group_id") || $data->scim_group_id === null) { throw new SdkValidationError("scim_group_id", 'required', "Required property 'scim_group_id' is missing or null"); }
+        if (!property_exists($data, "directory_group_id") || $data->directory_group_id === null) { throw new SdkValidationError("directory_group_id", 'required', "Required property 'directory_group_id' is missing or null"); }
+        if (!property_exists($data, "scim_group_display_name") || $data->scim_group_display_name === null) { throw new SdkValidationError("scim_group_display_name", 'required', "Required property 'scim_group_display_name' is missing or null"); }
+        if (!property_exists($data, "directory_group_display_name") || $data->directory_group_display_name === null) { throw new SdkValidationError("directory_group_display_name", 'required', "Required property 'directory_group_display_name' is missing or null"); }
+        if (!property_exists($data, "precedence") || $data->precedence === null) { throw new SdkValidationError("precedence", 'required', "Required property 'precedence' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, SCIMGroupRoleMappingObjectEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -304,26 +263,11 @@ final readonly class SCIMGroupRoleMappingDeletedObjectEnum implements SdkOpenEnu
 {
     public const SCIM_GROUP_ROLE_MAPPING = "scim_group_role_mapping";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -384,15 +328,9 @@ class SCIMGroupRoleMappingDeleted implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "deleted") || $data->deleted === null) {
-            throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "deleted") || $data->deleted === null) { throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, SCIMGroupRoleMappingDeletedObjectEnum::class),
             id: SdkClient::stringValue($data->id),
