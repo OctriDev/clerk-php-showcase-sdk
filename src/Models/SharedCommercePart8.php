@@ -200,8 +200,8 @@ class CommerceSubscription implements \JsonSerializable
             activeAt: ($data->active_at === null ? null : SdkClient::intValue($data->active_at)),
             pastDueAt: ($data->past_due_at === null ? null : SdkClient::intValue($data->past_due_at)),
             subscriptionItems: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CommerceSubscriptionItem::class), SdkClient::arrayValue($data->subscription_items))),
-            nextPayment: (property_exists($data, "next_payment") ? SdkClient::hydrateClass($data->next_payment, CommerceSubscriptionNextPayment::class) : SdkNotGiven::Value),
-            eligibleForFreeTrial: (property_exists($data, "eligible_for_free_trial") ? SdkClient::boolValue($data->eligible_for_free_trial) : SdkNotGiven::Value),
+            nextPayment: (property_exists($data, "next_payment") && $data->next_payment !== null ? SdkClient::hydrateClass($data->next_payment, CommerceSubscriptionNextPayment::class) : SdkNotGiven::Value),
+            eligibleForFreeTrial: (property_exists($data, "eligible_for_free_trial") && $data->eligible_for_free_trial !== null ? SdkClient::boolValue($data->eligible_for_free_trial) : SdkNotGiven::Value),
         );
     }
 }
@@ -260,7 +260,7 @@ class CommerceSubscriptionCreditResponse implements \JsonSerializable
     {
         return new self(
             amount: (property_exists($data, "amount") ? ($data->amount === null ? null : SdkClient::hydrateClass($data->amount, CommerceMoneyResponse::class)) : SdkNotGiven::Value),
-            cycleRemainingPercent: (property_exists($data, "cycle_remaining_percent") ? SdkClient::floatValue($data->cycle_remaining_percent) : SdkNotGiven::Value),
+            cycleRemainingPercent: (property_exists($data, "cycle_remaining_percent") && $data->cycle_remaining_percent !== null ? SdkClient::floatValue($data->cycle_remaining_percent) : SdkNotGiven::Value),
         );
     }
 }

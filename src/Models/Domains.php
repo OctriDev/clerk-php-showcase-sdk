@@ -240,7 +240,7 @@ class DNSTarget implements \JsonSerializable
             value: SdkClient::stringValue($data->value),
             recordType: SdkClient::hydrateStringEnumOrString($data->record_type, DNSTargetRecordTypeEnum::class),
             required: SdkClient::boolValue($data->required),
-            automationDisposition: (property_exists($data, "automation_disposition") ? SdkClient::hydrateStringEnumOrString($data->automation_disposition, DNSTargetAutomationDispositionEnum::class) : SdkNotGiven::Value),
+            automationDisposition: (property_exists($data, "automation_disposition") && $data->automation_disposition !== null ? SdkClient::hydrateStringEnumOrString($data->automation_disposition, DNSTargetAutomationDispositionEnum::class) : SdkNotGiven::Value),
         );
     }
 }

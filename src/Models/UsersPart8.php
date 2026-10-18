@@ -146,7 +146,7 @@ class SCIMUserMetadata implements \JsonSerializable
             directoryId: SdkClient::stringValue($data->directory_id),
             directoryEnabled: SdkClient::boolValue($data->directory_enabled),
             externalId: ($data->external_id === null ? null : SdkClient::stringValue($data->external_id)),
-            groups: (property_exists($data, "groups") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, SCIMUserMetadataGroupsItem::class), SdkClient::arrayValue($data->groups))) : SdkNotGiven::Value),
+            groups: (property_exists($data, "groups") && $data->groups !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, SCIMUserMetadataGroupsItem::class), SdkClient::arrayValue($data->groups))) : SdkNotGiven::Value),
         );
     }
 }

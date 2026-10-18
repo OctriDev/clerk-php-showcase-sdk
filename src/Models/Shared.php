@@ -132,8 +132,8 @@ class AdjustCreditBalanceRequest implements \JsonSerializable
             amount: SdkClient::intValue($data->amount),
             action: SdkClient::hydrateStringEnumOrString($data->action, AdjustCreditBalanceRequestActionEnum::class),
             idempotencyKey: SdkClient::stringValue($data->idempotency_key),
-            currency: (property_exists($data, "currency") ? SdkClient::stringValue($data->currency) : SdkNotGiven::Value),
-            note: (property_exists($data, "note") ? SdkClient::stringValue($data->note) : SdkNotGiven::Value),
+            currency: (property_exists($data, "currency") && $data->currency !== null ? SdkClient::stringValue($data->currency) : SdkNotGiven::Value),
+            note: (property_exists($data, "note") && $data->note !== null ? SdkClient::stringValue($data->note) : SdkNotGiven::Value),
         );
     }
 }
@@ -231,9 +231,9 @@ class DeletedObject implements \JsonSerializable
         return new self(
             object_: SdkClient::stringValue($data->object),
             deleted: SdkClient::boolValue($data->deleted),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            slug: (property_exists($data, "slug") ? SdkClient::stringValue($data->slug) : SdkNotGiven::Value),
-            externalId: (property_exists($data, "external_id") ? SdkClient::stringValue($data->external_id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            slug: (property_exists($data, "slug") && $data->slug !== null ? SdkClient::stringValue($data->slug) : SdkNotGiven::Value),
+            externalId: (property_exists($data, "external_id") && $data->external_id !== null ? SdkClient::stringValue($data->external_id) : SdkNotGiven::Value),
         );
     }
 }

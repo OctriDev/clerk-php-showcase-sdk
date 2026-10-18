@@ -86,8 +86,8 @@ class CreateAgentTaskOnBehalfOf implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            userId: (property_exists($data, "user_id") ? SdkClient::stringValue($data->user_id) : SdkNotGiven::Value),
-            identifier: (property_exists($data, "identifier") ? SdkClient::stringValue($data->identifier) : SdkNotGiven::Value),
+            userId: (property_exists($data, "user_id") && $data->user_id !== null ? SdkClient::stringValue($data->user_id) : SdkNotGiven::Value),
+            identifier: (property_exists($data, "identifier") && $data->identifier !== null ? SdkClient::stringValue($data->identifier) : SdkNotGiven::Value),
         );
     }
 }

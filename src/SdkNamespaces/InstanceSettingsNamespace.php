@@ -23,7 +23,7 @@ class InstanceSettingsNamespace
      */
     public function getInstance(?RequestOptions $requestOptions = null): Instance
     {
-        return InstanceSettings::getInstance($this->clientConfig, $requestOptions);
+        return InstanceSettingsApi::getInstance($this->clientConfig, $requestOptions);
     }
     /**
      * Updates configurable settings for an instance, including browser origins, password breach checks, and sign-in preferences. Supply only the settings you want to change; `preferred_sign_in_strategy_when_password_required` accepts `password`, `otp`, or an empty string.
@@ -44,7 +44,7 @@ class InstanceSettingsNamespace
      */
     public function updateInstance(bool|null|SdkNotGiven $testMode = SdkNotGiven::Value, bool|null|SdkNotGiven $hibp = SdkNotGiven::Value, string|null|SdkNotGiven $supportEmail = SdkNotGiven::Value, string|null|SdkNotGiven $clerkJsVersion = SdkNotGiven::Value, string|null|SdkNotGiven $developmentOrigin = SdkNotGiven::Value, array|null|SdkNotGiven $allowedOrigins = SdkNotGiven::Value, array|null|SdkNotGiven $allowedSubdomains = SdkNotGiven::Value, bool|null|SdkNotGiven $subdomainAllowlistEnabled = SdkNotGiven::Value, bool|null|SdkNotGiven $cookielessDev = SdkNotGiven::Value, bool|null|SdkNotGiven $urlBasedSessionSyncing = SdkNotGiven::Value, UpdateInstancePreferredSignInStrategyWhenPasswordRequired|null|SdkNotGiven $preferredSignInStrategyWhenPasswordRequired = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): mixed
     {
-        return InstanceSettings::updateInstance($this->clientConfig, $testMode, $hibp, $supportEmail, $clerkJsVersion, $developmentOrigin, $allowedOrigins, $allowedSubdomains, $subdomainAllowlistEnabled, $cookielessDev, $urlBasedSessionSyncing, $preferredSignInStrategyWhenPasswordRequired, $requestOptions);
+        return InstanceSettingsApi::updateInstance($this->clientConfig, $testMode, $hibp, $supportEmail, $clerkJsVersion, $developmentOrigin, $allowedOrigins, $allowedSubdomains, $subdomainAllowlistEnabled, $cookielessDev, $urlBasedSessionSyncing, $preferredSignInStrategyWhenPasswordRequired, $requestOptions);
     }
     /**
      * Updates the restriction settings that control allowlisting, blocklisting, and email address checks for an instance. Supply the boolean settings you want to change; the response contains the resulting restriction configuration.
@@ -60,7 +60,7 @@ class InstanceSettingsNamespace
      */
     public function updateInstanceRestrictions(bool|null|SdkNotGiven $allowlist = SdkNotGiven::Value, bool|null|SdkNotGiven $blocklist = SdkNotGiven::Value, bool|null|SdkNotGiven $allowlistBlocklistDisabledOnSignIn = SdkNotGiven::Value, bool|null|SdkNotGiven $blockEmailSubaddresses = SdkNotGiven::Value, bool|null|SdkNotGiven $blockDisposableEmailDomains = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): InstanceRestrictions
     {
-        return InstanceSettings::updateInstanceRestrictions($this->clientConfig, $allowlist, $blocklist, $allowlistBlocklistDisabledOnSignIn, $blockEmailSubaddresses, $blockDisposableEmailDomains, $requestOptions);
+        return InstanceSettingsApi::updateInstanceRestrictions($this->clientConfig, $allowlist, $blocklist, $allowlistBlocklistDisabledOnSignIn, $blockEmailSubaddresses, $blockDisposableEmailDomains, $requestOptions);
     }
     /**
      * Retrieves the Protect settings for the instance, including rule enforcement and prerequisite check status. Use `rules_enabled` to distinguish active enforcement from shadow evaluation, where rules are scored and recorded without blocking traffic.
@@ -69,7 +69,7 @@ class InstanceSettingsNamespace
      */
     public function getInstanceProtect(?RequestOptions $requestOptions = null): InstanceProtect
     {
-        return InstanceSettings::getInstanceProtect($this->clientConfig, $requestOptions);
+        return InstanceSettingsApi::getInstanceProtect($this->clientConfig, $requestOptions);
     }
     /**
      * Updates whether Protect rules are enforced for the instance. Set `rules_enabled` to true to enforce rules or false to return to shadow evaluation, which continues scoring and recording rules without blocking traffic.
@@ -81,7 +81,7 @@ class InstanceSettingsNamespace
      */
     public function updateInstanceProtect(bool|null|SdkNotGiven $rulesEnabled = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): InstanceProtect
     {
-        return InstanceSettings::updateInstanceProtect($this->clientConfig, $rulesEnabled, $requestOptions);
+        return InstanceSettingsApi::updateInstanceProtect($this->clientConfig, $rulesEnabled, $requestOptions);
     }
     /**
      * Retrieves the per-instance SMS communication settings, including the SMS country blocklist.
@@ -90,7 +90,7 @@ class InstanceSettingsNamespace
      */
     public function getInstanceCommunication(?RequestOptions $requestOptions = null): InstanceCommunication
     {
-        return InstanceSettings::getInstanceCommunication($this->clientConfig, $requestOptions);
+        return InstanceSettingsApi::getInstanceCommunication($this->clientConfig, $requestOptions);
     }
     /**
      * Replaces the SMS country blocklist for this instance. Pass the full set of ISO 3166-1 alpha-2 country codes that should be blocked; codes that aren't recognized as SMS-tier countries are silently dropped from the persisted list. Omitting `blocked_country_codes` is a no-op.
@@ -102,7 +102,7 @@ class InstanceSettingsNamespace
      */
     public function updateInstanceCommunication(array|null|SdkNotGiven $blockedCountryCodes = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): InstanceCommunication
     {
-        return InstanceSettings::updateInstanceCommunication($this->clientConfig, $blockedCountryCodes, $requestOptions);
+        return InstanceSettingsApi::updateInstanceCommunication($this->clientConfig, $blockedCountryCodes, $requestOptions);
     }
     /**
      * Retrieves the settings for OAuth applications for the instance (dynamic client registration, JWT access tokens, etc.).
@@ -111,7 +111,7 @@ class InstanceSettingsNamespace
      */
     public function getInstanceOAuthApplicationSettings(?RequestOptions $requestOptions = null): OAuthApplicationSettings
     {
-        return InstanceSettings::getInstanceOAuthApplicationSettings($this->clientConfig, $requestOptions);
+        return InstanceSettingsApi::getInstanceOAuthApplicationSettings($this->clientConfig, $requestOptions);
     }
     /**
      * Updates the OAuth application settings for the instance.
@@ -132,7 +132,7 @@ class InstanceSettingsNamespace
      */
     public function updateInstanceOAuthApplicationSettings(bool|null|SdkNotGiven $dynamicOauthClientRegistration = SdkNotGiven::Value, array|null|SdkNotGiven $dynamicClientAllowedScopes = SdkNotGiven::Value, array|null|SdkNotGiven $defaultScopes = SdkNotGiven::Value, bool|null|SdkNotGiven $oauthJwtAccessTokens = SdkNotGiven::Value, bool|null|SdkNotGiven $audClaimEnabled = SdkNotGiven::Value, bool|null|SdkNotGiven $audClaimRefreshBackfillEnabled = SdkNotGiven::Value, bool|null|SdkNotGiven $pkceRequired = SdkNotGiven::Value, bool|null|SdkNotGiven $clientIdMetadataDocumentsAdvertised = SdkNotGiven::Value, bool|null|SdkNotGiven $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients = SdkNotGiven::Value, bool|null|SdkNotGiven $clientIdMetadataDocumentsBlockImplicitlyAllowedClients = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): OAuthApplicationSettings
     {
-        return InstanceSettings::updateInstanceOAuthApplicationSettings($this->clientConfig, $dynamicOauthClientRegistration, $dynamicClientAllowedScopes, $defaultScopes, $oauthJwtAccessTokens, $audClaimEnabled, $audClaimRefreshBackfillEnabled, $pkceRequired, $clientIdMetadataDocumentsAdvertised, $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients, $clientIdMetadataDocumentsBlockImplicitlyAllowedClients, $requestOptions);
+        return InstanceSettingsApi::updateInstanceOAuthApplicationSettings($this->clientConfig, $dynamicOauthClientRegistration, $dynamicClientAllowedScopes, $defaultScopes, $oauthJwtAccessTokens, $audClaimEnabled, $audClaimRefreshBackfillEnabled, $pkceRequired, $clientIdMetadataDocumentsAdvertised, $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients, $clientIdMetadataDocumentsBlockImplicitlyAllowedClients, $requestOptions);
     }
     /**
      * Retrieves the organization settings of the instance
@@ -141,7 +141,7 @@ class InstanceSettingsNamespace
      */
     public function getInstanceOrganizationSettings(?RequestOptions $requestOptions = null): OrganizationSettings
     {
-        return InstanceSettings::getInstanceOrganizationSettings($this->clientConfig, $requestOptions);
+        return InstanceSettingsApi::getInstanceOrganizationSettings($this->clientConfig, $requestOptions);
     }
     /**
      * Updates the organization settings for the instance. Use the available fields to configure organization creation, membership limits, deletion, and domain enrollment; `domains_enrollment_modes` supports automatic invitations and suggestions. The response returns the updated organization settings.
@@ -160,6 +160,6 @@ class InstanceSettingsNamespace
      */
     public function updateInstanceOrganizationSettings(bool|null|SdkNotGiven $enabled = SdkNotGiven::Value, int|null|SdkNotGiven $maxAllowedMemberships = SdkNotGiven::Value, bool|null|SdkNotGiven $adminDeleteEnabled = SdkNotGiven::Value, bool|null|SdkNotGiven $domainsEnabled = SdkNotGiven::Value, bool|null|SdkNotGiven $slugDisabled = SdkNotGiven::Value, array|SdkNotGiven $domainsEnrollmentModes = SdkNotGiven::Value, string|null|SdkNotGiven $creatorRoleId = SdkNotGiven::Value, string|null|SdkNotGiven $domainsDefaultRoleId = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): OrganizationSettings
     {
-        return InstanceSettings::updateInstanceOrganizationSettings($this->clientConfig, $enabled, $maxAllowedMemberships, $adminDeleteEnabled, $domainsEnabled, $slugDisabled, $domainsEnrollmentModes, $creatorRoleId, $domainsDefaultRoleId, $requestOptions);
+        return InstanceSettingsApi::updateInstanceOrganizationSettings($this->clientConfig, $enabled, $maxAllowedMemberships, $adminDeleteEnabled, $domainsEnabled, $slugDisabled, $domainsEnrollmentModes, $creatorRoleId, $domainsDefaultRoleId, $requestOptions);
     }
 }

@@ -483,11 +483,11 @@ class UsersNamespace
      * Returns the active trusted devices enrolled by the user. userId: The ID of the user whose trusted devices are returned
      *
      * @param string $userId
-     * @return ListUserTrustedDevicesResponse
+     * @return TrustedDeviceList
      * @deprecated This operation is deprecated and may be removed in a future
      *   release.
      */
-    public function listTrustedDevices(string $userId, ?RequestOptions $requestOptions = null): ListUserTrustedDevicesResponse
+    public function listTrustedDevices(string $userId, ?RequestOptions $requestOptions = null): TrustedDeviceList
     {
         return Users::listUserTrustedDevices($this->clientConfig, $userId, $requestOptions);
     }
@@ -512,9 +512,9 @@ class UsersNamespace
      * Returns the active biometric credentials enrolled by the user. userId: The ID of the user whose biometric credentials are returned
      *
      * @param string $userId
-     * @return ListUserBiometricCredentialsResponse
+     * @return BiometricCredentialList
      */
-    public function listBiometricCredentials(string $userId, ?RequestOptions $requestOptions = null): ListUserBiometricCredentialsResponse
+    public function listBiometricCredentials(string $userId, ?RequestOptions $requestOptions = null): BiometricCredentialList
     {
         return Users::listUserBiometricCredentials($this->clientConfig, $userId, $requestOptions);
     }

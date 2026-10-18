@@ -97,10 +97,10 @@ class CreateSAMLConnectionAttributeMapping implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            userId: (property_exists($data, "user_id") ? SdkClient::stringValue($data->user_id) : SdkNotGiven::Value),
-            emailAddress: (property_exists($data, "email_address") ? SdkClient::stringValue($data->email_address) : SdkNotGiven::Value),
-            firstName: (property_exists($data, "first_name") ? SdkClient::stringValue($data->first_name) : SdkNotGiven::Value),
-            lastName: (property_exists($data, "last_name") ? SdkClient::stringValue($data->last_name) : SdkNotGiven::Value),
+            userId: (property_exists($data, "user_id") && $data->user_id !== null ? SdkClient::stringValue($data->user_id) : SdkNotGiven::Value),
+            emailAddress: (property_exists($data, "email_address") && $data->email_address !== null ? SdkClient::stringValue($data->email_address) : SdkNotGiven::Value),
+            firstName: (property_exists($data, "first_name") && $data->first_name !== null ? SdkClient::stringValue($data->first_name) : SdkNotGiven::Value),
+            lastName: (property_exists($data, "last_name") && $data->last_name !== null ? SdkClient::stringValue($data->last_name) : SdkNotGiven::Value),
         );
     }
 }
@@ -191,7 +191,7 @@ class CreateSAMLConnectionLoginHint implements \JsonSerializable
         }
         return new self(
             mode: SdkClient::hydrateStringEnumOrString($data->mode, CreateSAMLConnectionLoginHintModeEnum::class),
-            source: (property_exists($data, "source") ? SdkClient::stringValue($data->source) : SdkNotGiven::Value),
+            source: (property_exists($data, "source") && $data->source !== null ? SdkClient::stringValue($data->source) : SdkNotGiven::Value),
         );
     }
 }
@@ -257,10 +257,10 @@ class UpdateSAMLConnectionAttributeMapping implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            userId: (property_exists($data, "user_id") ? SdkClient::stringValue($data->user_id) : SdkNotGiven::Value),
-            emailAddress: (property_exists($data, "email_address") ? SdkClient::stringValue($data->email_address) : SdkNotGiven::Value),
-            firstName: (property_exists($data, "first_name") ? SdkClient::stringValue($data->first_name) : SdkNotGiven::Value),
-            lastName: (property_exists($data, "last_name") ? SdkClient::stringValue($data->last_name) : SdkNotGiven::Value),
+            userId: (property_exists($data, "user_id") && $data->user_id !== null ? SdkClient::stringValue($data->user_id) : SdkNotGiven::Value),
+            emailAddress: (property_exists($data, "email_address") && $data->email_address !== null ? SdkClient::stringValue($data->email_address) : SdkNotGiven::Value),
+            firstName: (property_exists($data, "first_name") && $data->first_name !== null ? SdkClient::stringValue($data->first_name) : SdkNotGiven::Value),
+            lastName: (property_exists($data, "last_name") && $data->last_name !== null ? SdkClient::stringValue($data->last_name) : SdkNotGiven::Value),
         );
     }
 }
@@ -351,7 +351,7 @@ class UpdateSAMLConnectionLoginHint implements \JsonSerializable
         }
         return new self(
             mode: SdkClient::hydrateStringEnumOrString($data->mode, UpdateSAMLConnectionLoginHintModeEnum::class),
-            source: (property_exists($data, "source") ? SdkClient::stringValue($data->source) : SdkNotGiven::Value),
+            source: (property_exists($data, "source") && $data->source !== null ? SdkClient::stringValue($data->source) : SdkNotGiven::Value),
         );
     }
 }

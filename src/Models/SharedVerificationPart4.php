@@ -8,6 +8,176 @@ declare(strict_types=1);
 namespace octridev_clerk;
 
 /**
+ * Typed representation of the `VerificationScim` API schema.
+ */
+class VerificationScim implements EmailAddressVerification, \JsonSerializable
+{
+    /**
+     * Optional enumerated value serialized in the `object` wire field.
+     *
+     * @var VerificationScimObjectEnum|SdkNotGiven
+     */
+    public readonly VerificationScimObjectEnum|SdkNotGiven $object_;
+    /**
+     * Required enumerated value serialized in the `status` wire field.
+     *
+     * @var VerificationScimStatusEnum|string
+     */
+    public readonly VerificationScimStatusEnum|string $status;
+    /**
+     * Required enumerated value serialized in the `strategy` wire field.
+     *
+     * @var VerificationScimStrategyEnum|string
+     */
+    public readonly VerificationScimStrategyEnum|string $strategy;
+    /**
+     * Required `integer` value serialized in the `attempts` wire field.
+     *
+     * @var int|null
+     */
+    public readonly int|null $attempts;
+    /**
+     * Required `integer` value serialized in the `expire_at` wire field.
+     *
+     * @var int|null
+     */
+    public readonly int|null $expireAt;
+
+    /**
+     * @param VerificationScimStatusEnum|string $status
+     * @param VerificationScimStrategyEnum|string $strategy
+     * @param int|null $attempts
+     * @param int|null $expireAt
+     * @param VerificationScimObjectEnum|SdkNotGiven $object_
+     */
+    public function __construct(
+        VerificationScimStatusEnum|string $status,
+        VerificationScimStrategyEnum|string $strategy,
+        int|null $attempts,
+        int|null $expireAt,
+        VerificationScimObjectEnum|SdkNotGiven $object_ = SdkNotGiven::Value,
+    ) {
+        $this->status = $status;
+        $this->strategy = $strategy;
+        $this->attempts = $attempts;
+        $this->expireAt = $expireAt;
+        $this->object_ = $object_;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+            "status" => $this->status,
+            "strategy" => $this->strategy,
+            "attempts" => $this->attempts,
+            "expire_at" => $this->expireAt,
+        ];
+        if ($this->object_ !== SdkNotGiven::Value) {
+            $values["object"] = $this->object_;
+        }
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "strategy") || $data->strategy === null) {
+            throw new SdkValidationError("strategy", 'required', "Required property 'strategy' is missing or null");
+        }
+        if (!property_exists($data, "attempts")) {
+            throw new SdkValidationError("attempts", 'required', "Missing required property 'attempts'");
+        }
+        if (!property_exists($data, "expire_at")) {
+            throw new SdkValidationError("expire_at", 'required', "Missing required property 'expire_at'");
+        }
+        return new self(
+            status: SdkClient::hydrateStringEnumOrString($data->status, VerificationScimStatusEnum::class),
+            strategy: SdkClient::hydrateStringEnumOrString($data->strategy, VerificationScimStrategyEnum::class),
+            attempts: ($data->attempts === null ? null : SdkClient::intValue($data->attempts)),
+            expireAt: ($data->expire_at === null ? null : SdkClient::intValue($data->expire_at)),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateEnum($data->object, VerificationScimObjectEnum::class) : SdkNotGiven::Value),
+        );
+    }
+}
+
+/**
+ * Optional enumerated value serialized in the `object` wire field.
+ */
+enum VerificationTicketObjectEnum: string implements SdkWireEnum
+{
+    case VERIFICATION_TICKET = "verification_ticket";
+}
+
+/**
+ * Required enumerated value serialized in the `status` wire field.
+ */
+final readonly class VerificationTicketStatusEnum implements SdkOpenEnum
+{
+    public const UNVERIFIED = "unverified";
+    public const VERIFIED = "verified";
+    public const EXPIRED = "expired";
+    private function __construct(public string $value) {}
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
+}
+
+/**
+ * Required enumerated value serialized in the `strategy` wire field.
+ */
+final readonly class VerificationTicketStrategyEnum implements SdkOpenEnum
+{
+    public const TICKET = "ticket";
+    private function __construct(public string $value) {}
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
+}
+
+/**
  * Typed representation of the `VerificationTicket` API schema.
  */
 class VerificationTicket implements EmailAddressVerification, SAMLAccountVerification, EnterpriseAccountVerification, \JsonSerializable
@@ -116,7 +286,7 @@ class VerificationTicket implements EmailAddressVerification, SAMLAccountVerific
             strategy: SdkClient::hydrateStringEnumOrString($data->strategy, VerificationTicketStrategyEnum::class),
             attempts: ($data->attempts === null ? null : SdkClient::intValue($data->attempts)),
             expireAt: ($data->expire_at === null ? null : SdkClient::intValue($data->expire_at)),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateEnum($data->object, VerificationTicketObjectEnum::class) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateEnum($data->object, VerificationTicketObjectEnum::class) : SdkNotGiven::Value),
             verifiedAtClient: (property_exists($data, "verified_at_client") ? ($data->verified_at_client === null ? null : SdkClient::stringValue($data->verified_at_client)) : SdkNotGiven::Value),
         );
     }

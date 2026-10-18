@@ -7,7 +7,155 @@ declare(strict_types=1);
 
 namespace octridev_clerk;
 
+final readonly class ReplaceUserPhoneNumberIdentificationStatus implements SdkOpenEnum
+{
+    public const VERIFIED = "verified";
+    public const RESERVED = "reserved";
+    public const UNVERIFIED = "unverified";
+    private function __construct(public string $value) {}
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
+}
+
 class PhoneNumbers
 {
-    use PhoneNumbersMethodsPart1;
+    /**
+     * Creates a phone number for a user. Provide `user_id` and an E.164-formatted `phone_number`; set `verified` to true before reserving the number for multi-factor authentication. A 200 response returns the created phone number and its verification, linkage, and reservation details.
+     *
+     * Create a new phone number userId: The ID representing the user · phoneNumber: The new phone number. Must adhere to the E.164 standard for phone number format. · verified: When created, the phone number will be marked as verified. · primary: Create this phone number as the primary phone number for the user. Default: false, unless it is the first phone number. · reservedForSecondFactor: Create this phone number as reserved for multi-factor authentication. The phone number must also be verified. If there are no other reserved second factors, the phone number will be set as the default second factor.
+     *
+     * @param string $userId
+     * @param string $phoneNumber
+     * @param bool|null|SdkNotGiven $verified
+     * @param bool|null|SdkNotGiven $primary
+     * @param bool|null|SdkNotGiven $reservedForSecondFactor
+     * @return PhoneNumber
+     */
+    public static function createPhoneNumber(ClientConfig $clientConfig, string $userId, string $phoneNumber, bool|null|SdkNotGiven $verified = SdkNotGiven::Value, bool|null|SdkNotGiven $primary = SdkNotGiven::Value, bool|null|SdkNotGiven $reservedForSecondFactor = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): PhoneNumber
+    {
+
+        $sdkResponse = SdkClient::request('POST', "/phone_numbers", $clientConfig, body: ['user_id' => $userId, 'phone_number' => $phoneNumber, 'verified' => $verified, 'primary' => $primary, 'reserved_for_second_factor' => $reservedForSecondFactor], returnType: PhoneNumber::class, decoder: 'json', operationId: 'createPhoneNumber', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, PhoneNumber::class));
+    }
+
+
+    /**
+     * Retrieves the details of a phone number. Use its identifier to get the phone number, verification details, linked resources, and reservation status.
+     *
+     * Returns the details of a phone number phoneNumberId: The ID of the phone number to retrieve
+     *
+     * @param string $phoneNumberId
+     * @return PhoneNumber
+     */
+    public static function getPhoneNumber(ClientConfig $clientConfig, string $phoneNumberId, ?RequestOptions $requestOptions = null): PhoneNumber
+    {
+
+        $sdkResponse = SdkClient::request('GET', "/phone_numbers/" . SdkClient::encodePathSegment($phoneNumberId) . "", $clientConfig, returnType: PhoneNumber::class, decoder: 'json', operationId: 'getPhoneNumber', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, PhoneNumber::class));
+    }
+
+
+    /**
+     * Deletes a phone number by its identifier. Use this operation to remove a phone number you no longer need; the response confirms whether it was deleted.
+     *
+     * Delete the phone number with the given ID phoneNumberId: The ID of the phone number to delete
+     *
+     * @param string $phoneNumberId
+     * @return DeletedObject
+     */
+    public static function deletePhoneNumber(ClientConfig $clientConfig, string $phoneNumberId, ?RequestOptions $requestOptions = null): DeletedObject
+    {
+
+        $sdkResponse = SdkClient::request('DELETE', "/phone_numbers/" . SdkClient::encodePathSegment($phoneNumberId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deletePhoneNumber', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
+    }
+
+
+    /**
+     * Updates verification, primary-phone, or multi-factor authentication reservation settings for a phone number. Supply only the fields you want to change; reserving the number for multi-factor authentication requires it to be verified.
+     *
+     * Updates a phone number phoneNumberId: The ID of the phone number to update · verified: The phone number will be marked as verified. · primary: Set this phone number as the primary phone number for the user. · reservedForSecondFactor: Set this phone number as reserved for multi-factor authentication. The phone number must also be verified. If there are no other reserved second factors, the phone number will be set as the default second factor.
+     *
+     * @param string $phoneNumberId
+     * @param bool|null|SdkNotGiven $verified
+     * @param bool|null|SdkNotGiven $primary
+     * @param bool|null|SdkNotGiven $reservedForSecondFactor
+     * @return PhoneNumber
+     */
+    public static function updatePhoneNumber(ClientConfig $clientConfig, string $phoneNumberId, bool|null|SdkNotGiven $verified = SdkNotGiven::Value, bool|null|SdkNotGiven $primary = SdkNotGiven::Value, bool|null|SdkNotGiven $reservedForSecondFactor = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): PhoneNumber
+    {
+
+        $sdkResponse = SdkClient::request('PATCH', "/phone_numbers/" . SdkClient::encodePathSegment($phoneNumberId) . "", $clientConfig, body: ['verified' => $verified, 'primary' => $primary, 'reserved_for_second_factor' => $reservedForSecondFactor], returnType: PhoneNumber::class, decoder: 'json', operationId: 'updatePhoneNumber', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, PhoneNumber::class));
+    }
+
+
+    /**
+     * Sends a one-time code to the given phone number so that a backend can verify the user controls it (for example, in a custom, backend-driven sign-in flow). The code is tracked on its own verification; confirm it with attempt_verification.
+     *
+     * Sends a one-time code to the given phone number so that a backend can verify the user controls it (for example, in a custom, backend-driven sign-in flow). The code is tracked on its own verification; confirm it with attempt_verification. phoneNumberId: The ID of the phone number to send the verification code to
+     *
+     * @param string $phoneNumberId
+     * @return VerificationResponse
+     */
+    public static function preparePhoneNumberVerification(ClientConfig $clientConfig, string $phoneNumberId, ?RequestOptions $requestOptions = null): VerificationResponse
+    {
+
+        $sdkResponse = SdkClient::request('POST', "/phone_numbers/" . SdkClient::encodePathSegment($phoneNumberId) . "/prepare_verification", $clientConfig, returnType: VerificationResponse::class, decoder: 'json', operationId: 'preparePhoneNumberVerification', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VerificationResponse::class));
+    }
+
+
+    /**
+     * Checks a one-time code against the verification identified by verification_id, and returns the verification with its updated status (`verified`, `unverified`, `expired`, or `failed`) and attempt count, so a backend driving its own frontend can react on every attempt — an incorrect or expired code is reported through the status, not as an error. Resubmitting a verification whose code was already accepted is rejected with a `verification_already_verified` error. If the code for this verification could not be sent (the SMS provider refused or failed the send after prepare_verification had returned), the attempt is rejected with a `verification_code_not_sent` error and no attempt is counted; call prepare_verification again to send a new code. If too many codes have been checked for this phone number recently, the attempt is rejected with a `verification_code_too_many_attempts` error and no attempt is counted; the limit is per phone number, so wait for the `Retry-After` period rather than sending a new code. If the code is correct and the phone number is not already verified, it is also marked as verified as a side effect (just as it would be in a frontend verification flow); an already verified phone number is left unchanged. It never creates a session; to sign the user in afterwards, mint a sign-in token.
+     *
+     * Checks a one-time code against the verification identified by verification_id, and returns the verification with its updated status (`verified`, `unverified`, `expired`, or `failed`) and attempt count, so a backend driving its own frontend can react on every attempt — an incorrect or expired code is reported through the status, not as an error. Resubmitting a verification whose code was already accepted is rejected with a `verification_already_verified` error. If the code for this verification could not be sent (the SMS provider refused or failed the send after prepare_verification had returned), the attempt is rejected with a `verification_code_not_sent` error and no attempt is counted; call prepare_verification again to send a new code. If too many codes have been checked for this phone number recently, the attempt is rejected with a `verification_code_too_many_attempts` error and no attempt is counted; the limit is per phone number, so wait for the `Retry-After` period rather than sending a new code. If the code is correct and the phone number is not already verified, it is also marked as verified as a side effect (just as it would be in a frontend verification flow); an already verified phone number is left unchanged. It never creates a session; to sign the user in afterwards, mint a sign-in token. phoneNumberId: The ID of the phone number whose code is being verified · verificationId: The ID of the verification to check, such as one returned by prepare_verification · code: The verification code that was sent to the phone number
+     *
+     * @param string $phoneNumberId
+     * @param string $verificationId
+     * @param string $code
+     * @return VerificationResponse
+     */
+    public static function attemptPhoneNumberVerification(ClientConfig $clientConfig, string $phoneNumberId, string $verificationId, string $code, ?RequestOptions $requestOptions = null): VerificationResponse
+    {
+
+        $sdkResponse = SdkClient::request('POST', "/phone_numbers/" . SdkClient::encodePathSegment($phoneNumberId) . "/attempt_verification", $clientConfig, body: ['verification_id' => $verificationId, 'code' => $code], returnType: VerificationResponse::class, decoder: 'json', operationId: 'attemptPhoneNumberVerification', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VerificationResponse::class));
+    }
+
+
+    /**
+     * Replaces all of the user's phone numbers with a single primary phone number. By default the new phone number is created verified, with the admin verification strategy. When `identification_status` is `reserved` it is created reserved instead: unverified but usable for sign-in and locked so no other user can claim it. When it is `unverified` the phone number is neither usable for sign-in nor locked. The new phone number is never reserved for second factor. Any existing phone numbers are deleted; replacing a phone number that is reserved for second factor disables the user's MFA. **Warning:** `identification_status: unverified` can lock the user out of their account. An unverified phone number cannot be used to sign in, so if the user has no other verified or reserved identifier, deleting their existing phone numbers leaves them unable to authenticate — and unable to verify the new number, since that requires signing in. Recovery then requires another admin API call.
+     *
+     * Replaces all of the user's phone numbers with a single primary phone number. By default the new phone number is created verified, with the admin verification strategy. When `identification_status` is `reserved` it is created reserved instead: unverified but usable for sign-in and locked so no other user can claim it. When it is `unverified` the phone number is neither usable for sign-in nor locked. The new phone number is never reserved for second factor. Any existing phone numbers are deleted; replacing a phone number that is reserved for second factor disables the user's MFA. **Warning:** `identification_status: unverified` can lock the user out of their account. An unverified phone number cannot be used to sign in, so if the user has no other verified or reserved identifier, deleting their existing phone numbers leaves them unable to authenticate — and unable to verify the new number, since that requires signing in. Recovery then requires another admin API call. userId: The ID of the user whose phone number to replace · phoneNumber: The new phone number. Must adhere to the E.164 standard for phone number format. · identificationStatus: Controls the status of the replacement phone number. Defaults to `verified`. Set to `reserved` to create it reserved (unverified but usable for sign-in and locked so no other user can claim it), or to `unverified` to create it neither usable for sign-in nor locked. **Warning:** `unverified` can lock the user out of their account. An unverified phone number cannot be used to sign in, so if the user has no other verified or reserved identifier, they will be unable to authenticate and unable to verify this number. Prefer `reserved` unless you specifically need the number left unclaimed — for example so that another user can also hold it until one of them verifies it.
+     *
+     * @param string $userId
+     * @param string $phoneNumber
+     * @param ReplaceUserPhoneNumberIdentificationStatus|SdkNotGiven $identificationStatus
+     * @return PhoneNumber
+     */
+    public static function replaceUserPhoneNumber(ClientConfig $clientConfig, string $userId, string $phoneNumber, ReplaceUserPhoneNumberIdentificationStatus|SdkNotGiven $identificationStatus = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): PhoneNumber
+    {
+
+        $sdkResponse = SdkClient::request('PUT', "/users/" . SdkClient::encodePathSegment($userId) . "/phone_number", $clientConfig, body: ['phone_number' => $phoneNumber, 'identification_status' => $identificationStatus], returnType: PhoneNumber::class, decoder: 'json', operationId: 'replaceUserPhoneNumber', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, PhoneNumber::class));
+    }
 }

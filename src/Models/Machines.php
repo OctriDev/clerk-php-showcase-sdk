@@ -219,96 +219,34 @@ class Machine implements \JsonSerializable
             createdAt: SdkClient::intValue($data->created_at),
             updatedAt: SdkClient::intValue($data->updated_at),
             scopedMachines: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, MachineWithoutScopedMachines::class), SdkClient::arrayValue($data->scoped_machines))),
-            defaultTokenTtl: (property_exists($data, "default_token_ttl") ? SdkClient::intValue($data->default_token_ttl) : SdkNotGiven::Value),
+            defaultTokenTtl: (property_exists($data, "default_token_ttl") && $data->default_token_ttl !== null ? SdkClient::intValue($data->default_token_ttl) : SdkNotGiven::Value),
         );
     }
 }
 
-/**
- * Required enumerated value serialized in the `object` wire field.
- */
-final readonly class MachineScopeObjectEnum implements SdkOpenEnum
-{
-    public const MACHINE_SCOPE = "machine_scope";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-/**
- * Typed representation of the `MachineScope` API schema.
- */
-class MachineScope implements \JsonSerializable
+class MachineCreatedVariant1 implements \JsonSerializable
 {
     /**
-     * Required enumerated value serialized in the `object` wire field.
-     *
-     * @var MachineScopeObjectEnum|string
-     */
-    public readonly MachineScopeObjectEnum|string $object_;
-    /**
-     * The ID of the machine that has access to the target machine.
+     * The secret key for the machine, only returned upon creation.
      *
      * @var string
      */
-    public readonly string $fromMachineId;
-    /**
-     * The ID of the machine that is being accessed.
-     *
-     * @var string
-     */
-    public readonly string $toMachineId;
-    /**
-     * Unix timestamp of creation.
-     *
-     * @var int
-     */
-    public readonly int $createdAt;
+    public readonly string $secretKey;
 
     /**
-     * @param MachineScopeObjectEnum|string $object_
-     * @param string $fromMachineId
-     * @param string $toMachineId
-     * @param int $createdAt
+     * @param string $secretKey
      */
     public function __construct(
-        MachineScopeObjectEnum|string $object_,
-        string $fromMachineId,
-        string $toMachineId,
-        int $createdAt,
+        string $secretKey,
     ) {
-        $this->object_ = $object_;
-        $this->fromMachineId = $fromMachineId;
-        $this->toMachineId = $toMachineId;
-        $this->createdAt = $createdAt;
+        $this->secretKey = $secretKey;
     }
 
     /** @return array<array-key, mixed> */
     public function toArray(): array
     {
         $values = [
-            "object" => $this->object_,
-            "from_machine_id" => $this->fromMachineId,
-            "to_machine_id" => $this->toMachineId,
-            "created_at" => $this->createdAt,
+            "secret_key" => $this->secretKey,
         ];
         return $values;
     }
@@ -321,23 +259,11 @@ class MachineScope implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "from_machine_id") || $data->from_machine_id === null) {
-            throw new SdkValidationError("from_machine_id", 'required', "Required property 'from_machine_id' is missing or null");
-        }
-        if (!property_exists($data, "to_machine_id") || $data->to_machine_id === null) {
-            throw new SdkValidationError("to_machine_id", 'required', "Required property 'to_machine_id' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        if (!property_exists($data, "secret_key") || $data->secret_key === null) {
+            throw new SdkValidationError("secret_key", 'required', "Required property 'secret_key' is missing or null");
         }
         return new self(
-            object_: SdkClient::hydrateStringEnumOrString($data->object, MachineScopeObjectEnum::class),
-            fromMachineId: SdkClient::stringValue($data->from_machine_id),
-            toMachineId: SdkClient::stringValue($data->to_machine_id),
-            createdAt: SdkClient::intValue($data->created_at),
+            secretKey: SdkClient::stringValue($data->secret_key),
         );
     }
 }
@@ -345,7 +271,7 @@ class MachineScope implements \JsonSerializable
 /**
  * Required enumerated value serialized in the `object` wire field.
  */
-final readonly class MachineWithoutScopedMachinesObjectEnum implements SdkOpenEnum
+final readonly class MachineCreatedObjectEnum implements SdkOpenEnum
 {
     public const MACHINE = "machine";
     private function __construct(public string $value) {}

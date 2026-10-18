@@ -184,9 +184,9 @@ class OrganizationMembership implements \JsonSerializable
             organization: SdkClient::hydrateClass($data->organization, Organization::class),
             createdAt: SdkClient::intValue($data->created_at),
             updatedAt: SdkClient::intValue($data->updated_at),
-            roleName: (property_exists($data, "role_name") ? SdkClient::stringValue($data->role_name) : SdkNotGiven::Value),
-            privateMetadata: (property_exists($data, "private_metadata") ? SdkClient::stringMapValue($data->private_metadata) : SdkNotGiven::Value),
-            publicUserData: (property_exists($data, "public_user_data") ? SdkClient::hydrateClass($data->public_user_data, OrganizationMembershipPublicUserData::class) : SdkNotGiven::Value),
+            roleName: (property_exists($data, "role_name") && $data->role_name !== null ? SdkClient::stringValue($data->role_name) : SdkNotGiven::Value),
+            privateMetadata: (property_exists($data, "private_metadata") && $data->private_metadata !== null ? SdkClient::stringMapValue($data->private_metadata) : SdkNotGiven::Value),
+            publicUserData: (property_exists($data, "public_user_data") && $data->public_user_data !== null ? SdkClient::hydrateClass($data->public_user_data, OrganizationMembershipPublicUserData::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -354,8 +354,8 @@ class OrganizationMembershipPublicUserData implements \JsonSerializable
             hasImage: SdkClient::boolValue($data->has_image),
             identifier: (property_exists($data, "identifier") ? ($data->identifier === null ? null : SdkClient::stringValue($data->identifier)) : SdkNotGiven::Value),
             username: (property_exists($data, "username") ? ($data->username === null ? null : SdkClient::stringValue($data->username)) : SdkNotGiven::Value),
-            banned: (property_exists($data, "banned") ? SdkClient::boolValue($data->banned) : SdkNotGiven::Value),
-            deprovisioned: (property_exists($data, "deprovisioned") ? SdkClient::boolValue($data->deprovisioned) : SdkNotGiven::Value),
+            banned: (property_exists($data, "banned") && $data->banned !== null ? SdkClient::boolValue($data->banned) : SdkNotGiven::Value),
+            deprovisioned: (property_exists($data, "deprovisioned") && $data->deprovisioned !== null ? SdkClient::boolValue($data->deprovisioned) : SdkNotGiven::Value),
         );
     }
 }

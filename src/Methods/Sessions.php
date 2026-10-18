@@ -134,8 +134,8 @@ class CreateSessionTokenResponse implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, CreateSessionTokenResponseObjectEnum::class) : SdkNotGiven::Value),
-            jwt: (property_exists($data, "jwt") ? SdkClient::stringValue($data->jwt) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, CreateSessionTokenResponseObjectEnum::class) : SdkNotGiven::Value),
+            jwt: (property_exists($data, "jwt") && $data->jwt !== null ? SdkClient::stringValue($data->jwt) : SdkNotGiven::Value),
         );
     }
 }
@@ -208,8 +208,8 @@ class CreateSessionTokenFromTemplateResponse implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, CreateSessionTokenFromTemplateResponseObjectEnum::class) : SdkNotGiven::Value),
-            jwt: (property_exists($data, "jwt") ? SdkClient::stringValue($data->jwt) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, CreateSessionTokenFromTemplateResponseObjectEnum::class) : SdkNotGiven::Value),
+            jwt: (property_exists($data, "jwt") && $data->jwt !== null ? SdkClient::stringValue($data->jwt) : SdkNotGiven::Value),
         );
     }
 }

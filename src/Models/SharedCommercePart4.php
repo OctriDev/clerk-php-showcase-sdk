@@ -260,13 +260,13 @@ class CommercePaymentMethodResponse implements \JsonSerializable
             last4: ($data->last4 === null ? null : SdkClient::stringValue($data->last4)),
             status: SdkClient::hydrateStringEnumOrString($data->status, CommercePaymentMethodResponseStatusEnum::class),
             cardType: ($data->card_type === null ? null : SdkClient::stringValue($data->card_type)),
-            isDefault: (property_exists($data, "is_default") ? SdkClient::boolValue($data->is_default) : SdkNotGiven::Value),
+            isDefault: (property_exists($data, "is_default") && $data->is_default !== null ? SdkClient::boolValue($data->is_default) : SdkNotGiven::Value),
             walletType: (property_exists($data, "wallet_type") ? ($data->wallet_type === null ? null : SdkClient::stringValue($data->wallet_type)) : SdkNotGiven::Value),
             expiryYear: (property_exists($data, "expiry_year") ? ($data->expiry_year === null ? null : SdkClient::intValue($data->expiry_year)) : SdkNotGiven::Value),
             expiryMonth: (property_exists($data, "expiry_month") ? ($data->expiry_month === null ? null : SdkClient::intValue($data->expiry_month)) : SdkNotGiven::Value),
-            createdAt: (property_exists($data, "created_at") ? SdkClient::intValue($data->created_at) : SdkNotGiven::Value),
-            updatedAt: (property_exists($data, "updated_at") ? SdkClient::intValue($data->updated_at) : SdkNotGiven::Value),
-            isRemovable: (property_exists($data, "is_removable") ? SdkClient::boolValue($data->is_removable) : SdkNotGiven::Value),
+            createdAt: (property_exists($data, "created_at") && $data->created_at !== null ? SdkClient::intValue($data->created_at) : SdkNotGiven::Value),
+            updatedAt: (property_exists($data, "updated_at") && $data->updated_at !== null ? SdkClient::intValue($data->updated_at) : SdkNotGiven::Value),
+            isRemovable: (property_exists($data, "is_removable") && $data->is_removable !== null ? SdkClient::boolValue($data->is_removable) : SdkNotGiven::Value),
         );
     }
 }

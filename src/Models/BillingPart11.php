@@ -143,10 +143,10 @@ class CreateBillingPriceRequest implements \JsonSerializable
         return new self(
             planId: SdkClient::stringValue($data->plan_id),
             amount: ($data->amount === null ? null : SdkClient::intValue($data->amount)),
-            currency: (property_exists($data, "currency") ? SdkClient::stringValue($data->currency) : SdkNotGiven::Value),
+            currency: (property_exists($data, "currency") && $data->currency !== null ? SdkClient::stringValue($data->currency) : SdkNotGiven::Value),
             annualMonthlyAmount: (property_exists($data, "annual_monthly_amount") ? ($data->annual_monthly_amount === null ? null : SdkClient::intValue($data->annual_monthly_amount)) : SdkNotGiven::Value),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
-            supportedBillingPeriods: (property_exists($data, "supported_billing_periods") ? SdkClient::hydrateStringEnumOrString($data->supported_billing_periods, CreateBillingPriceRequestSupportedBillingPeriodsEnum::class) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            supportedBillingPeriods: (property_exists($data, "supported_billing_periods") && $data->supported_billing_periods !== null ? SdkClient::hydrateStringEnumOrString($data->supported_billing_periods, CreateBillingPriceRequestSupportedBillingPeriodsEnum::class) : SdkNotGiven::Value),
         );
     }
 }

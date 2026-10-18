@@ -218,8 +218,8 @@ class ActorToken implements \JsonSerializable
             actor: SdkClient::stringMapValue($data->actor),
             createdAt: SdkClient::intValue($data->created_at),
             updatedAt: SdkClient::intValue($data->updated_at),
-            token: (property_exists($data, "token") ? SdkClient::stringValue($data->token) : SdkNotGiven::Value),
-            url: (property_exists($data, "url") ? SdkClient::stringValue($data->url) : SdkNotGiven::Value),
+            token: (property_exists($data, "token") && $data->token !== null ? SdkClient::stringValue($data->token) : SdkNotGiven::Value),
+            url: (property_exists($data, "url") && $data->url !== null ? SdkClient::stringValue($data->url) : SdkNotGiven::Value),
         );
     }
 }

@@ -43,7 +43,7 @@ class CommerceTotalsResponse2 implements \JsonSerializable
      */
     public readonly array|SdkNotGiven $perUnitTotals;
     /**
-     * Optional API value serialized in the `credits` wire field.
+     * Optional object value serialized in the `credits` wire field.
      *
      * @var CommerceCreditsResponse|null|SdkNotGiven
      */
@@ -128,7 +128,7 @@ class CommerceTotalsResponse2 implements \JsonSerializable
             baseFee: SdkClient::hydrateClass($data->base_fee, CommerceMoneyResponse::class),
             taxTotal: SdkClient::hydrateClass($data->tax_total, CommerceMoneyResponse::class),
             grandTotal: SdkClient::hydrateClass($data->grand_total, CommerceMoneyResponse::class),
-            perUnitTotals: (property_exists($data, "per_unit_totals") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CommercePerUnitTotal2::class), SdkClient::arrayValue($data->per_unit_totals))) : SdkNotGiven::Value),
+            perUnitTotals: (property_exists($data, "per_unit_totals") && $data->per_unit_totals !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CommercePerUnitTotal2::class), SdkClient::arrayValue($data->per_unit_totals))) : SdkNotGiven::Value),
             credits: (property_exists($data, "credits") ? ($data->credits === null ? null : SdkClient::hydrateClass($data->credits, CommerceCreditsResponse::class)) : SdkNotGiven::Value),
             discounts: (property_exists($data, "discounts") ? ($data->discounts === null ? null : SdkClient::hydrateClass($data->discounts, BillingDiscountsResponse::class)) : SdkNotGiven::Value),
         );

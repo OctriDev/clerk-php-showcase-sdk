@@ -182,7 +182,7 @@ class SAMLConnectionLoginHint implements \JsonSerializable
         }
         return new self(
             mode: SdkClient::hydrateStringEnumOrString($data->mode, SAMLConnectionLoginHintModeEnum::class),
-            source: (property_exists($data, "source") ? SdkClient::stringValue($data->source) : SdkNotGiven::Value),
+            source: (property_exists($data, "source") && $data->source !== null ? SdkClient::stringValue($data->source) : SdkNotGiven::Value),
         );
     }
 }

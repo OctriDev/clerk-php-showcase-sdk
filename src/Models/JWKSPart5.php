@@ -246,13 +246,13 @@ class JWKSRsaPrivateKey implements JWKSKeysItem, \JsonSerializable
             d: SdkClient::stringValue($data->d),
             p: SdkClient::stringValue($data->p),
             q: SdkClient::stringValue($data->q),
-            dp: (property_exists($data, "dp") ? SdkClient::stringValue($data->dp) : SdkNotGiven::Value),
-            dq: (property_exists($data, "dq") ? SdkClient::stringValue($data->dq) : SdkNotGiven::Value),
-            qi: (property_exists($data, "qi") ? SdkClient::stringValue($data->qi) : SdkNotGiven::Value),
-            x5c: (property_exists($data, "x5c") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->x5c))) : SdkNotGiven::Value),
-            x5t: (property_exists($data, "x5t") ? SdkClient::stringValue($data->x5t) : SdkNotGiven::Value),
-            x5tS256: (property_exists($data, "x5t#S256") ? SdkClient::stringValue(get_object_vars($data)["x5t#S256"]) : SdkNotGiven::Value),
-            x5u: (property_exists($data, "x5u") ? SdkClient::stringValue($data->x5u) : SdkNotGiven::Value),
+            dp: (property_exists($data, "dp") && $data->dp !== null ? SdkClient::stringValue($data->dp) : SdkNotGiven::Value),
+            dq: (property_exists($data, "dq") && $data->dq !== null ? SdkClient::stringValue($data->dq) : SdkNotGiven::Value),
+            qi: (property_exists($data, "qi") && $data->qi !== null ? SdkClient::stringValue($data->qi) : SdkNotGiven::Value),
+            x5c: (property_exists($data, "x5c") && $data->x5c !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->x5c))) : SdkNotGiven::Value),
+            x5t: (property_exists($data, "x5t") && $data->x5t !== null ? SdkClient::stringValue($data->x5t) : SdkNotGiven::Value),
+            x5tS256: (property_exists($data, "x5t#S256") && get_object_vars($data)["x5t#S256"] !== null ? SdkClient::stringValue(get_object_vars($data)["x5t#S256"]) : SdkNotGiven::Value),
+            x5u: (property_exists($data, "x5u") && $data->x5u !== null ? SdkClient::stringValue($data->x5u) : SdkNotGiven::Value),
         );
     }
 }

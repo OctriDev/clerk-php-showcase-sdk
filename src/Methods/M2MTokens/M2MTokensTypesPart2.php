@@ -242,7 +242,7 @@ class RevokeM2MTokenResponse implements \JsonSerializable
             createdAt: SdkClient::floatValue($data->created_at),
             updatedAt: SdkClient::floatValue($data->updated_at),
             claims: (property_exists($data, "claims") ? ($data->claims === null ? null : $data->claims) : SdkNotGiven::Value),
-            scopes: (property_exists($data, "scopes") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->scopes))) : SdkNotGiven::Value),
+            scopes: (property_exists($data, "scopes") && $data->scopes !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->scopes))) : SdkNotGiven::Value),
         );
     }
 }

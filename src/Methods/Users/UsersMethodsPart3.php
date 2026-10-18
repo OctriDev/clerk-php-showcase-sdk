@@ -32,15 +32,15 @@ trait UsersMethodsPart3
      * Returns the active trusted devices enrolled by the user. userId: The ID of the user whose trusted devices are returned
      *
      * @param string $userId
-     * @return ListUserTrustedDevicesResponse
+     * @return TrustedDeviceList
      * @deprecated This operation is deprecated and may be removed in a future
      *   release.
      */
-    public static function listUserTrustedDevices(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): ListUserTrustedDevicesResponse
+    public static function listUserTrustedDevices(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): TrustedDeviceList
     {
 
-        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/trusted_devices", $clientConfig, returnType: ListUserTrustedDevicesResponse::class, decoder: 'json', operationId: 'listUserTrustedDevices', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
-        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ListUserTrustedDevicesResponse::class));
+        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/trusted_devices", $clientConfig, returnType: TrustedDeviceList::class, decoder: 'json', operationId: 'listUserTrustedDevices', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, TrustedDeviceList::class));
     }
 
 
@@ -69,13 +69,13 @@ trait UsersMethodsPart3
      * Returns the active biometric credentials enrolled by the user. userId: The ID of the user whose biometric credentials are returned
      *
      * @param string $userId
-     * @return ListUserBiometricCredentialsResponse
+     * @return BiometricCredentialList
      */
-    public static function listUserBiometricCredentials(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): ListUserBiometricCredentialsResponse
+    public static function listUserBiometricCredentials(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): BiometricCredentialList
     {
 
-        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/biometric_credentials", $clientConfig, returnType: ListUserBiometricCredentialsResponse::class, decoder: 'json', operationId: 'listUserBiometricCredentials', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
-        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ListUserBiometricCredentialsResponse::class));
+        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/biometric_credentials", $clientConfig, returnType: BiometricCredentialList::class, decoder: 'json', operationId: 'listUserBiometricCredentials', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, BiometricCredentialList::class));
     }
 
 

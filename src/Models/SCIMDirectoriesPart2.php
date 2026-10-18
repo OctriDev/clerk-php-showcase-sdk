@@ -8,6 +8,96 @@ declare(strict_types=1);
 namespace octridev_clerk;
 
 /**
+ * Typed representation of the `SCIMDirectoryList` API schema.
+ */
+class SCIMDirectoryList implements \JsonSerializable
+{
+    /**
+     * Required array value serialized in the `data` wire field.
+     *
+     * @var list<SCIMDirectory>
+     */
+    public readonly array $data;
+    /**
+     * Total number of directories.
+     *
+     * @var int
+     */
+    public readonly int $totalCount;
+
+    /**
+     * @param list<SCIMDirectory> $data
+     * @param int $totalCount
+     */
+    public function __construct(
+        array $data,
+        int $totalCount,
+    ) {
+        $this->data = $data;
+        $this->totalCount = $totalCount;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+            "data" => $this->data,
+            "total_count" => $this->totalCount,
+        ];
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "total_count") || $data->total_count === null) {
+            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
+        }
+        return new self(
+            data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, SCIMDirectory::class), SdkClient::arrayValue($data->data))),
+            totalCount: SdkClient::intValue($data->total_count),
+        );
+    }
+}
+
+/**
+ * String representing the object's type. Always "scim_group_role_mapping".
+ */
+final readonly class SCIMGroupRoleMappingObjectEnum implements SdkOpenEnum
+{
+    public const SCIM_GROUP_ROLE_MAPPING = "scim_group_role_mapping";
+    private function __construct(public string $value) {}
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
+}
+
+/**
  * A mapping from a SCIM group to an organization role. Members of the group are assigned the role; the lowest-precedence match wins when a user belongs to multiple mapped groups.
  */
 class SCIMGroupRoleMapping implements \JsonSerializable
@@ -202,7 +292,111 @@ class SCIMGroupRoleMapping implements \JsonSerializable
             precedence: SdkClient::intValue($data->precedence),
             createdAt: SdkClient::intValue($data->created_at),
             updatedAt: SdkClient::intValue($data->updated_at),
-            role: (property_exists($data, "role") ? SdkClient::hydrateClass($data->role, Role::class) : SdkNotGiven::Value),
+            role: (property_exists($data, "role") && $data->role !== null ? SdkClient::hydrateClass($data->role, Role::class) : SdkNotGiven::Value),
+        );
+    }
+}
+
+/**
+ * String representing the object's type.
+ */
+final readonly class SCIMGroupRoleMappingDeletedObjectEnum implements SdkOpenEnum
+{
+    public const SCIM_GROUP_ROLE_MAPPING = "scim_group_role_mapping";
+    private function __construct(public string $value) {}
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
+}
+
+/**
+ * Typed representation of the `SCIMGroupRoleMappingDeleted` API schema.
+ */
+class SCIMGroupRoleMappingDeleted implements \JsonSerializable
+{
+    /**
+     * String representing the object's type.
+     *
+     * @var SCIMGroupRoleMappingDeletedObjectEnum|string
+     */
+    public readonly SCIMGroupRoleMappingDeletedObjectEnum|string $object_;
+    /**
+     * The ID of the deleted SCIM group role mapping.
+     *
+     * @var string
+     */
+    public readonly string $id;
+    /**
+     * Whether the SCIM group role mapping was successfully deleted.
+     *
+     * @var bool
+     */
+    public readonly bool $deleted;
+
+    /**
+     * @param SCIMGroupRoleMappingDeletedObjectEnum|string $object_
+     * @param string $id
+     * @param bool $deleted
+     */
+    public function __construct(
+        SCIMGroupRoleMappingDeletedObjectEnum|string $object_,
+        string $id,
+        bool $deleted,
+    ) {
+        $this->object_ = $object_;
+        $this->id = $id;
+        $this->deleted = $deleted;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+            "object" => $this->object_,
+            "id" => $this->id,
+            "deleted" => $this->deleted,
+        ];
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "deleted") || $data->deleted === null) {
+            throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null");
+        }
+        return new self(
+            object_: SdkClient::hydrateStringEnumOrString($data->object, SCIMGroupRoleMappingDeletedObjectEnum::class),
+            id: SdkClient::stringValue($data->id),
+            deleted: SdkClient::boolValue($data->deleted),
         );
     }
 }

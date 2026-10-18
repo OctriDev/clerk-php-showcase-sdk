@@ -106,7 +106,7 @@ class OAuthApplicationWithSecretVariant1 implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            clientSecret: (property_exists($data, "client_secret") ? SdkClient::stringValue($data->client_secret) : SdkNotGiven::Value),
+            clientSecret: (property_exists($data, "client_secret") && $data->client_secret !== null ? SdkClient::stringValue($data->client_secret) : SdkNotGiven::Value),
         );
     }
 }

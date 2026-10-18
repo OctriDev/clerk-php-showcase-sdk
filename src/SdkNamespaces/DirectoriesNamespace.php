@@ -21,9 +21,9 @@ class DirectoriesNamespace
      *
      * @param int|SdkNotGiven $limit
      * @param int|SdkNotGiven $offset
-     * @return ListDirectoriesResponse
+     * @return DirectoryList
      */
-    public function list_(int|SdkNotGiven $limit = SdkNotGiven::Value, int|SdkNotGiven $offset = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ListDirectoriesResponse
+    public function list_(int|SdkNotGiven $limit = SdkNotGiven::Value, int|SdkNotGiven $offset = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): DirectoryList
     {
         return Directories::listDirectories($this->clientConfig, $limit, $offset, $requestOptions);
     }
@@ -101,9 +101,9 @@ class DirectoriesNamespace
      * Returns the list of directory group to organization role mappings for a directory, ordered by precedence. directoryId: The ID of the directory.
      *
      * @param string $directoryId
-     * @return ListDirectoryGroupRoleMappingsResponse
+     * @return DirectoryGroupRoleMappingList
      */
-    public function listGroupRoleMappings(string $directoryId, ?RequestOptions $requestOptions = null): ListDirectoryGroupRoleMappingsResponse
+    public function listGroupRoleMappings(string $directoryId, ?RequestOptions $requestOptions = null): DirectoryGroupRoleMappingList
     {
         return Directories::listDirectoryGroupRoleMappings($this->clientConfig, $directoryId, $requestOptions);
     }
@@ -130,9 +130,9 @@ class DirectoriesNamespace
      *
      * @param string $directoryId
      * @param list<ReplaceDirectoryGroupRoleMappingsMappingsItem> $mappings
-     * @return ReplaceDirectoryGroupRoleMappingsResponse
+     * @return DirectoryGroupRoleMappingList
      */
-    public function replaceGroupRoleMappings(string $directoryId, array $mappings, ?RequestOptions $requestOptions = null): ReplaceDirectoryGroupRoleMappingsResponse
+    public function replaceGroupRoleMappings(string $directoryId, array $mappings, ?RequestOptions $requestOptions = null): DirectoryGroupRoleMappingList
     {
         return Directories::replaceDirectoryGroupRoleMappings($this->clientConfig, $directoryId, $mappings, $requestOptions);
     }
@@ -143,9 +143,9 @@ class DirectoriesNamespace
      *
      * @param string $directoryId
      * @param string $mappingId
-     * @return DeleteDirectoryGroupRoleMappingResponse
+     * @return DirectoryGroupRoleMappingDeleted
      */
-    public function deleteGroupRoleMapping(string $directoryId, string $mappingId, ?RequestOptions $requestOptions = null): DeleteDirectoryGroupRoleMappingResponse
+    public function deleteGroupRoleMapping(string $directoryId, string $mappingId, ?RequestOptions $requestOptions = null): DirectoryGroupRoleMappingDeleted
     {
         return Directories::deleteDirectoryGroupRoleMapping($this->clientConfig, $directoryId, $mappingId, $requestOptions);
     }

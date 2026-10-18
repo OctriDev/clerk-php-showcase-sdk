@@ -104,7 +104,7 @@ class OrganizationInvitationPublicOrganizationData implements \JsonSerializable
             name: SdkClient::stringValue($data->name),
             slug: SdkClient::stringValue($data->slug),
             hasImage: SdkClient::boolValue($data->has_image),
-            imageUrl: (property_exists($data, "image_url") ? SdkClient::stringValue($data->image_url) : SdkNotGiven::Value),
+            imageUrl: (property_exists($data, "image_url") && $data->image_url !== null ? SdkClient::stringValue($data->image_url) : SdkNotGiven::Value),
         );
     }
 }

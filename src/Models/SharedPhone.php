@@ -211,9 +211,9 @@ class PhoneNumber implements \JsonSerializable
             linkedTo: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, IdentificationLink::class), SdkClient::arrayValue($data->linked_to))),
             createdAt: SdkClient::intValue($data->created_at),
             updatedAt: SdkClient::intValue($data->updated_at),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            reservedForSecondFactor: (property_exists($data, "reserved_for_second_factor") ? SdkClient::boolValue($data->reserved_for_second_factor) : SdkNotGiven::Value),
-            defaultSecondFactor: (property_exists($data, "default_second_factor") ? SdkClient::boolValue($data->default_second_factor) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            reservedForSecondFactor: (property_exists($data, "reserved_for_second_factor") && $data->reserved_for_second_factor !== null ? SdkClient::boolValue($data->reserved_for_second_factor) : SdkNotGiven::Value),
+            defaultSecondFactor: (property_exists($data, "default_second_factor") && $data->default_second_factor !== null ? SdkClient::boolValue($data->default_second_factor) : SdkNotGiven::Value),
             backupCodes: (property_exists($data, "backup_codes") ? ($data->backup_codes === null ? null : array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->backup_codes)))) : SdkNotGiven::Value),
         );
     }

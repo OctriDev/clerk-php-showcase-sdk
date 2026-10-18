@@ -224,9 +224,9 @@ class OrganizationSettings implements \JsonSerializable
             domainsEnabled: SdkClient::boolValue($data->domains_enabled),
             domainsEnrollmentModes: array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, OrganizationSettingsDomainsEnrollmentModesItemEnum::class), SdkClient::arrayValue($data->domains_enrollment_modes))),
             domainsDefaultRole: SdkClient::stringValue($data->domains_default_role),
-            maxRoleSetsAllowed: (property_exists($data, "max_role_sets_allowed") ? SdkClient::intValue($data->max_role_sets_allowed) : SdkNotGiven::Value),
-            maxAllowedPermissions: (property_exists($data, "max_allowed_permissions") ? SdkClient::intValue($data->max_allowed_permissions) : SdkNotGiven::Value),
-            slugDisabled: (property_exists($data, "slug_disabled") ? SdkClient::boolValue($data->slug_disabled) : SdkNotGiven::Value),
+            maxRoleSetsAllowed: (property_exists($data, "max_role_sets_allowed") && $data->max_role_sets_allowed !== null ? SdkClient::intValue($data->max_role_sets_allowed) : SdkNotGiven::Value),
+            maxAllowedPermissions: (property_exists($data, "max_allowed_permissions") && $data->max_allowed_permissions !== null ? SdkClient::intValue($data->max_allowed_permissions) : SdkNotGiven::Value),
+            slugDisabled: (property_exists($data, "slug_disabled") && $data->slug_disabled !== null ? SdkClient::boolValue($data->slug_disabled) : SdkNotGiven::Value),
             initialRoleSetKey: (property_exists($data, "initial_role_set_key") ? ($data->initial_role_set_key === null ? null : SdkClient::stringValue($data->initial_role_set_key)) : SdkNotGiven::Value),
         );
     }

@@ -246,13 +246,13 @@ class CommerceDiscountRedemptionResponse implements \JsonSerializable
             cyclesApplied: SdkClient::intValue($data->cycles_applied),
             redeemedAt: SdkClient::intValue($data->redeemed_at),
             redeemedBy: ($data->redeemed_by === null ? null : SdkClient::stringValue($data->redeemed_by)),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
-            promoCode: (property_exists($data, "promo_code") ? SdkClient::stringValue($data->promo_code) : SdkNotGiven::Value),
-            effect: (property_exists($data, "effect") ? SdkClient::hydrateStringEnumOrString($data->effect, CommerceDiscountRedemptionResponseEffectEnum::class) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            promoCode: (property_exists($data, "promo_code") && $data->promo_code !== null ? SdkClient::stringValue($data->promo_code) : SdkNotGiven::Value),
+            effect: (property_exists($data, "effect") && $data->effect !== null ? SdkClient::hydrateStringEnumOrString($data->effect, CommerceDiscountRedemptionResponseEffectEnum::class) : SdkNotGiven::Value),
             percentOff: (property_exists($data, "percent_off") ? ($data->percent_off === null ? null : SdkClient::floatValue($data->percent_off)) : SdkNotGiven::Value),
             amountOff: (property_exists($data, "amount_off") ? ($data->amount_off === null ? null : SdkClient::hydrateClass($data->amount_off, CommerceMoneyResponse::class)) : SdkNotGiven::Value),
             amount: (property_exists($data, "amount") ? ($data->amount === null ? null : SdkClient::hydrateClass($data->amount, CommerceMoneyResponse::class)) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, CommerceDiscountRedemptionResponseStatusEnum::class) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, CommerceDiscountRedemptionResponseStatusEnum::class) : SdkNotGiven::Value),
         );
     }
 }

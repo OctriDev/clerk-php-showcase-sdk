@@ -31,19 +31,19 @@ class CommercePlan2 implements \JsonSerializable
      */
     public readonly string $name;
     /**
-     * Required API value serialized in the `fee` wire field.
+     * Required object value serialized in the `fee` wire field.
      *
      * @var CommerceMoneyResponse|null
      */
     public readonly CommerceMoneyResponse|null $fee;
     /**
-     * Required API value serialized in the `annual_monthly_fee` wire field.
+     * Required object value serialized in the `annual_monthly_fee` wire field.
      *
      * @var CommerceMoneyResponse|null
      */
     public readonly CommerceMoneyResponse|null $annualMonthlyFee;
     /**
-     * Required API value serialized in the `annual_fee` wire field.
+     * Required object value serialized in the `annual_fee` wire field.
      *
      * @var CommerceMoneyResponse|null
      */
@@ -434,9 +434,9 @@ class CommercePlan2 implements \JsonSerializable
             slug: SdkClient::stringValue($data->slug),
             avatarUrl: SdkClient::stringValue($data->avatar_url),
             features: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, FeatureResponse2::class), SdkClient::arrayValue($data->features))),
-            period: (property_exists($data, "period") ? SdkClient::stringValue($data->period) : SdkNotGiven::Value),
-            interval: (property_exists($data, "interval") ? SdkClient::intValue($data->interval) : SdkNotGiven::Value),
-            freeTrialEnabled: (property_exists($data, "free_trial_enabled") ? SdkClient::boolValue($data->free_trial_enabled) : SdkNotGiven::Value),
+            period: (property_exists($data, "period") && $data->period !== null ? SdkClient::stringValue($data->period) : SdkNotGiven::Value),
+            interval: (property_exists($data, "interval") && $data->interval !== null ? SdkClient::intValue($data->interval) : SdkNotGiven::Value),
+            freeTrialEnabled: (property_exists($data, "free_trial_enabled") && $data->free_trial_enabled !== null ? SdkClient::boolValue($data->free_trial_enabled) : SdkNotGiven::Value),
             freeTrialDays: (property_exists($data, "free_trial_days") ? ($data->free_trial_days === null ? null : SdkClient::intValue($data->free_trial_days)) : SdkNotGiven::Value),
         );
     }

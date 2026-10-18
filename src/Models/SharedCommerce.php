@@ -218,13 +218,13 @@ class CommerceCreditLedgerResponse implements \JsonSerializable
 class CommerceCreditsResponse implements \JsonSerializable
 {
     /**
-     * Required API value serialized in the `proration` wire field.
+     * Required object value serialized in the `proration` wire field.
      *
      * @var CommerceProrationCreditDetailResponse|null
      */
     public readonly CommerceProrationCreditDetailResponse|null $proration;
     /**
-     * Required API value serialized in the `payer` wire field.
+     * Required object value serialized in the `payer` wire field.
      *
      * @var CommercePayerCreditResponse|null
      */
@@ -293,7 +293,7 @@ class CommerceCreditsResponse implements \JsonSerializable
 class CommerceDiscountsResponse implements \JsonSerializable
 {
     /**
-     * Required API value serialized in the `proration` wire field.
+     * Required object value serialized in the `proration` wire field.
      *
      * @var CommerceProrationDiscountResponse|null
      */

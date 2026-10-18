@@ -204,10 +204,10 @@ class CommercePayerResponse implements \JsonSerializable
             email: (property_exists($data, "email") ? ($data->email === null ? null : SdkClient::stringValue($data->email)) : SdkNotGiven::Value),
             organizationId: (property_exists($data, "organization_id") ? ($data->organization_id === null ? null : SdkClient::stringValue($data->organization_id)) : SdkNotGiven::Value),
             organizationName: (property_exists($data, "organization_name") ? ($data->organization_name === null ? null : SdkClient::stringValue($data->organization_name)) : SdkNotGiven::Value),
-            imageUrl: (property_exists($data, "image_url") ? SdkClient::stringValue($data->image_url) : SdkNotGiven::Value),
-            creditsBalance: (property_exists($data, "credits_balance") ? SdkClient::hydrateClass($data->credits_balance, CommerceMoneyResponse::class) : SdkNotGiven::Value),
-            createdAt: (property_exists($data, "created_at") ? SdkClient::intValue($data->created_at) : SdkNotGiven::Value),
-            updatedAt: (property_exists($data, "updated_at") ? SdkClient::intValue($data->updated_at) : SdkNotGiven::Value),
+            imageUrl: (property_exists($data, "image_url") && $data->image_url !== null ? SdkClient::stringValue($data->image_url) : SdkNotGiven::Value),
+            creditsBalance: (property_exists($data, "credits_balance") && $data->credits_balance !== null ? SdkClient::hydrateClass($data->credits_balance, CommerceMoneyResponse::class) : SdkNotGiven::Value),
+            createdAt: (property_exists($data, "created_at") && $data->created_at !== null ? SdkClient::intValue($data->created_at) : SdkNotGiven::Value),
+            updatedAt: (property_exists($data, "updated_at") && $data->updated_at !== null ? SdkClient::intValue($data->updated_at) : SdkNotGiven::Value),
         );
     }
 }

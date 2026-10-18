@@ -137,12 +137,12 @@ class DirectoryCustomAttributesItem implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
-            key: (property_exists($data, "key") ? SdkClient::stringValue($data->key) : SdkNotGiven::Value),
-            ssoPath: (property_exists($data, "sso_path") ? SdkClient::stringValue($data->sso_path) : SdkNotGiven::Value),
-            scimPath: (property_exists($data, "scim_path") ? SdkClient::stringValue($data->scim_path) : SdkNotGiven::Value),
-            directoryPath: (property_exists($data, "directory_path") ? SdkClient::stringValue($data->directory_path) : SdkNotGiven::Value),
-            multiValued: (property_exists($data, "multi_valued") ? SdkClient::boolValue($data->multi_valued) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            key: (property_exists($data, "key") && $data->key !== null ? SdkClient::stringValue($data->key) : SdkNotGiven::Value),
+            ssoPath: (property_exists($data, "sso_path") && $data->sso_path !== null ? SdkClient::stringValue($data->sso_path) : SdkNotGiven::Value),
+            scimPath: (property_exists($data, "scim_path") && $data->scim_path !== null ? SdkClient::stringValue($data->scim_path) : SdkNotGiven::Value),
+            directoryPath: (property_exists($data, "directory_path") && $data->directory_path !== null ? SdkClient::stringValue($data->directory_path) : SdkNotGiven::Value),
+            multiValued: (property_exists($data, "multi_valued") && $data->multi_valued !== null ? SdkClient::boolValue($data->multi_valued) : SdkNotGiven::Value),
         );
     }
 }
@@ -353,7 +353,7 @@ class Directory implements \JsonSerializable
             createdAt: SdkClient::intValue($data->created_at),
             updatedAt: SdkClient::intValue($data->updated_at),
             enterpriseConnectionId: (property_exists($data, "enterprise_connection_id") ? ($data->enterprise_connection_id === null ? null : SdkClient::stringValue($data->enterprise_connection_id)) : SdkNotGiven::Value),
-            customAttributes: (property_exists($data, "custom_attributes") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, DirectoryCustomAttributesItem::class), SdkClient::arrayValue($data->custom_attributes))) : SdkNotGiven::Value),
+            customAttributes: (property_exists($data, "custom_attributes") && $data->custom_attributes !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, DirectoryCustomAttributesItem::class), SdkClient::arrayValue($data->custom_attributes))) : SdkNotGiven::Value),
             apiKey: (property_exists($data, "api_key") ? ($data->api_key === null ? null : SdkClient::stringValue($data->api_key)) : SdkNotGiven::Value),
         );
     }

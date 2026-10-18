@@ -48,7 +48,7 @@ class JWKS implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            keys: (property_exists($data, "keys") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, JWKSKeysItem::class, [JWKSEd25519PublicKey::class, JWKSEcdsaPublicKey::class, JWKSRsaPublicKey::class, JWKSEd25519PrivateKey::class, JWKSEcdsaPrivateKey::class, JWKSRsaPrivateKey::class, JWKSSymmetricKey::class], null, []), SdkClient::arrayValue($data->keys))) : SdkNotGiven::Value),
+            keys: (property_exists($data, "keys") && $data->keys !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, JWKSKeysItem::class, [JWKSEd25519PublicKey::class, JWKSEcdsaPublicKey::class, JWKSRsaPublicKey::class, JWKSEd25519PrivateKey::class, JWKSEcdsaPrivateKey::class, JWKSRsaPrivateKey::class, JWKSSymmetricKey::class], null, []), SdkClient::arrayValue($data->keys))) : SdkNotGiven::Value),
         );
     }
 }
@@ -271,10 +271,10 @@ class JWKSEcdsaPrivateKey implements JWKSKeysItem, \JsonSerializable
             x: SdkClient::stringValue($data->x),
             y: SdkClient::stringValue($data->y),
             d: SdkClient::stringValue($data->d),
-            x5c: (property_exists($data, "x5c") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->x5c))) : SdkNotGiven::Value),
-            x5t: (property_exists($data, "x5t") ? SdkClient::stringValue($data->x5t) : SdkNotGiven::Value),
-            x5tS256: (property_exists($data, "x5t#S256") ? SdkClient::stringValue(get_object_vars($data)["x5t#S256"]) : SdkNotGiven::Value),
-            x5u: (property_exists($data, "x5u") ? SdkClient::stringValue($data->x5u) : SdkNotGiven::Value),
+            x5c: (property_exists($data, "x5c") && $data->x5c !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->x5c))) : SdkNotGiven::Value),
+            x5t: (property_exists($data, "x5t") && $data->x5t !== null ? SdkClient::stringValue($data->x5t) : SdkNotGiven::Value),
+            x5tS256: (property_exists($data, "x5t#S256") && get_object_vars($data)["x5t#S256"] !== null ? SdkClient::stringValue(get_object_vars($data)["x5t#S256"]) : SdkNotGiven::Value),
+            x5u: (property_exists($data, "x5u") && $data->x5u !== null ? SdkClient::stringValue($data->x5u) : SdkNotGiven::Value),
         );
     }
 }

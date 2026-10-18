@@ -132,7 +132,7 @@ class SSOBypassAllowlistPublicUserData implements \JsonSerializable
             identifier: SdkClient::stringValue($data->identifier),
             username: ($data->username === null ? null : SdkClient::stringValue($data->username)),
             profileImageUrl: ($data->profile_image_url === null ? null : SdkClient::stringValue($data->profile_image_url)),
-            imageUrl: (property_exists($data, "image_url") ? SdkClient::stringValue($data->image_url) : SdkNotGiven::Value),
+            imageUrl: (property_exists($data, "image_url") && $data->image_url !== null ? SdkClient::stringValue($data->image_url) : SdkNotGiven::Value),
         );
     }
 }

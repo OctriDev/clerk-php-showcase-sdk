@@ -297,7 +297,7 @@ class ExternalAccountWithVerification implements \JsonSerializable
             updatedAt: SdkClient::intValue($data->updated_at),
             verification: ($data->verification === null ? null : SdkClient::hydrateUnionAs($data->verification, ExternalAccountWithVerificationVerification::class, [VerificationOauth::class, VerificationGoogleOneTap::class], "object", ["verification_oauth" => VerificationOauth::class, "verification_google_one_tap" => VerificationGoogleOneTap::class], UnknownExternalAccountWithVerificationVerification::class)),
             emailAddressVerified: (property_exists($data, "email_address_verified") ? ($data->email_address_verified === null ? null : SdkClient::boolValue($data->email_address_verified)) : SdkNotGiven::Value),
-            avatarUrl: (property_exists($data, "avatar_url") ? SdkClient::stringValue($data->avatar_url) : SdkNotGiven::Value),
+            avatarUrl: (property_exists($data, "avatar_url") && $data->avatar_url !== null ? SdkClient::stringValue($data->avatar_url) : SdkNotGiven::Value),
             imageUrl: (property_exists($data, "image_url") ? ($data->image_url === null ? null : SdkClient::stringValue($data->image_url)) : SdkNotGiven::Value),
             username: (property_exists($data, "username") ? ($data->username === null ? null : SdkClient::stringValue($data->username)) : SdkNotGiven::Value),
             phoneNumber: (property_exists($data, "phone_number") ? ($data->phone_number === null ? null : SdkClient::stringValue($data->phone_number)) : SdkNotGiven::Value),

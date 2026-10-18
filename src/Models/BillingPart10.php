@@ -375,7 +375,7 @@ class CommerceSubscriptionItem2 implements \JsonSerializable
             createdAt: SdkClient::intValue($data->created_at),
             updatedAt: SdkClient::intValue($data->updated_at),
             credit: (property_exists($data, "credit") ? ($data->credit === null ? null : SdkClient::hydrateClass($data->credit, CommerceSubscriptionCreditResponse::class)) : SdkNotGiven::Value),
-            priceId: (property_exists($data, "price_id") ? SdkClient::stringValue($data->price_id) : SdkNotGiven::Value),
+            priceId: (property_exists($data, "price_id") && $data->price_id !== null ? SdkClient::stringValue($data->price_id) : SdkNotGiven::Value),
             paymentSource: (property_exists($data, "payment_source") ? ($data->payment_source === null ? null : SdkClient::hydrateClass($data->payment_source, CommercePaymentSourceResponse::class)) : SdkNotGiven::Value),
             lifetimePaid: (property_exists($data, "lifetime_paid") ? ($data->lifetime_paid === null ? null : SdkClient::hydrateClass($data->lifetime_paid, CommerceMoneyResponse::class)) : SdkNotGiven::Value),
             amount: (property_exists($data, "amount") ? ($data->amount === null ? null : SdkClient::hydrateClass($data->amount, CommerceMoneyResponse::class)) : SdkNotGiven::Value),

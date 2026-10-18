@@ -62,7 +62,7 @@ class UpdateEnterpriseConnectionSamlLoginHint implements \JsonSerializable
         }
         return new self(
             mode: SdkClient::hydrateStringEnumOrString($data->mode, UpdateEnterpriseConnectionSamlLoginHintModeEnum::class),
-            source: (property_exists($data, "source") ? SdkClient::stringValue($data->source) : SdkNotGiven::Value),
+            source: (property_exists($data, "source") && $data->source !== null ? SdkClient::stringValue($data->source) : SdkNotGiven::Value),
         );
     }
 }
@@ -232,7 +232,7 @@ class UpdateEnterpriseConnectionSaml implements \JsonSerializable
             idpEntityId: (property_exists($data, "idp_entity_id") ? ($data->idp_entity_id === null ? null : SdkClient::stringValue($data->idp_entity_id)) : SdkNotGiven::Value),
             idpSsoUrl: (property_exists($data, "idp_sso_url") ? ($data->idp_sso_url === null ? null : SdkClient::stringValue($data->idp_sso_url)) : SdkNotGiven::Value),
             idpCertificate: (property_exists($data, "idp_certificate") ? ($data->idp_certificate === null ? null : SdkClient::stringValue($data->idp_certificate)) : SdkNotGiven::Value),
-            idpCertificates: (property_exists($data, "idp_certificates") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->idp_certificates))) : SdkNotGiven::Value),
+            idpCertificates: (property_exists($data, "idp_certificates") && $data->idp_certificates !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->idp_certificates))) : SdkNotGiven::Value),
             idpMetadataUrl: (property_exists($data, "idp_metadata_url") ? ($data->idp_metadata_url === null ? null : SdkClient::stringValue($data->idp_metadata_url)) : SdkNotGiven::Value),
             idpMetadata: (property_exists($data, "idp_metadata") ? ($data->idp_metadata === null ? null : SdkClient::stringValue($data->idp_metadata)) : SdkNotGiven::Value),
             attributeMapping: (property_exists($data, "attribute_mapping") ? ($data->attribute_mapping === null ? null : SdkClient::hydrateClass($data->attribute_mapping, UpdateEnterpriseConnectionSamlAttributeMapping::class)) : SdkNotGiven::Value),

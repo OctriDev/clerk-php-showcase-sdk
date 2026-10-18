@@ -79,9 +79,9 @@ class InvitationsNamespace
      * Revokes the given invitation. Revoking an invitation will prevent the user from using the invitation link that was sent to them. However, it doesn't prevent the user from signing up if they follow the sign up flow. Only active (i.e. non-revoked) invitations can be revoked. invitationId: The ID of the invitation to be revoked
      *
      * @param string $invitationId
-     * @return RevokeInvitationResponse
+     * @return InvitationRevoked
      */
-    public function revoke(string $invitationId, ?RequestOptions $requestOptions = null): RevokeInvitationResponse
+    public function revoke(string $invitationId, ?RequestOptions $requestOptions = null): InvitationRevoked
     {
         return Invitations::revokeInvitation($this->clientConfig, $invitationId, $requestOptions);
     }

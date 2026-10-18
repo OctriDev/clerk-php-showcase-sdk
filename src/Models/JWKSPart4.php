@@ -168,10 +168,10 @@ class JWKSEd25519PublicKey implements JWKSKeysItem, \JsonSerializable
             kty: SdkClient::hydrateStringEnumOrString($data->kty, JWKSEd25519PublicKeyKtyEnum::class),
             crv: SdkClient::hydrateStringEnumOrString($data->crv, JWKSEd25519PublicKeyCrvEnum::class),
             x: SdkClient::stringValue($data->x),
-            x5c: (property_exists($data, "x5c") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->x5c))) : SdkNotGiven::Value),
-            x5t: (property_exists($data, "x5t") ? SdkClient::stringValue($data->x5t) : SdkNotGiven::Value),
-            x5tS256: (property_exists($data, "x5t#S256") ? SdkClient::stringValue(get_object_vars($data)["x5t#S256"]) : SdkNotGiven::Value),
-            x5u: (property_exists($data, "x5u") ? SdkClient::stringValue($data->x5u) : SdkNotGiven::Value),
+            x5c: (property_exists($data, "x5c") && $data->x5c !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->x5c))) : SdkNotGiven::Value),
+            x5t: (property_exists($data, "x5t") && $data->x5t !== null ? SdkClient::stringValue($data->x5t) : SdkNotGiven::Value),
+            x5tS256: (property_exists($data, "x5t#S256") && get_object_vars($data)["x5t#S256"] !== null ? SdkClient::stringValue(get_object_vars($data)["x5t#S256"]) : SdkNotGiven::Value),
+            x5u: (property_exists($data, "x5u") && $data->x5u !== null ? SdkClient::stringValue($data->x5u) : SdkNotGiven::Value),
         );
     }
 }

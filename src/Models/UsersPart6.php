@@ -196,7 +196,7 @@ class SAMLAccount implements \JsonSerializable
             lastName: (property_exists($data, "last_name") ? ($data->last_name === null ? null : SdkClient::stringValue($data->last_name)) : SdkNotGiven::Value),
             providerUserId: (property_exists($data, "provider_user_id") ? ($data->provider_user_id === null ? null : SdkClient::stringValue($data->provider_user_id)) : SdkNotGiven::Value),
             lastAuthenticatedAt: (property_exists($data, "last_authenticated_at") ? ($data->last_authenticated_at === null ? null : SdkClient::intValue($data->last_authenticated_at)) : SdkNotGiven::Value),
-            publicMetadata: (property_exists($data, "public_metadata") ? SdkClient::stringMapValue($data->public_metadata) : SdkNotGiven::Value),
+            publicMetadata: (property_exists($data, "public_metadata") && $data->public_metadata !== null ? SdkClient::stringMapValue($data->public_metadata) : SdkNotGiven::Value),
             samlConnection: (property_exists($data, "saml_connection") ? ($data->saml_connection === null ? null : SdkClient::hydrateClass($data->saml_connection, SAMLAccountConnection::class)) : SdkNotGiven::Value),
         );
     }

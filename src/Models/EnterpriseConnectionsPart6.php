@@ -141,7 +141,7 @@ class EnterpriseConnectionTestRun implements \JsonSerializable
             connectionType: SdkClient::hydrateStringEnumOrString($data->connection_type, EnterpriseConnectionTestRunConnectionTypeEnum::class),
             createdAt: SdkClient::intValue($data->created_at),
             parsedUserInfo: (property_exists($data, "parsed_user_info") ? ($data->parsed_user_info === null ? null : SdkClient::hydrateClass($data->parsed_user_info, EnterpriseConnectionTestRunParsedUserInfo::class)) : SdkNotGiven::Value),
-            logs: (property_exists($data, "logs") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, EnterpriseConnectionTestRunLogsItem::class), SdkClient::arrayValue($data->logs))) : SdkNotGiven::Value),
+            logs: (property_exists($data, "logs") && $data->logs !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, EnterpriseConnectionTestRunLogsItem::class), SdkClient::arrayValue($data->logs))) : SdkNotGiven::Value),
             saml: (property_exists($data, "saml") ? ($data->saml === null ? null : SdkClient::hydrateClass($data->saml, EnterpriseConnectionTestRunSaml::class)) : SdkNotGiven::Value),
             oauth: (property_exists($data, "oauth") ? ($data->oauth === null ? null : SdkClient::hydrateClass($data->oauth, EnterpriseConnectionTestRunOauth::class)) : SdkNotGiven::Value),
         );

@@ -292,8 +292,8 @@ class Invitation implements \JsonSerializable
             status: SdkClient::hydrateStringEnumOrString($data->status, InvitationStatusEnum::class),
             createdAt: SdkClient::intValue($data->created_at),
             updatedAt: SdkClient::intValue($data->updated_at),
-            revoked: (property_exists($data, "revoked") ? SdkClient::boolValue($data->revoked) : SdkNotGiven::Value),
-            url: (property_exists($data, "url") ? SdkClient::stringValue($data->url) : SdkNotGiven::Value),
+            revoked: (property_exists($data, "revoked") && $data->revoked !== null ? SdkClient::boolValue($data->revoked) : SdkNotGiven::Value),
+            url: (property_exists($data, "url") && $data->url !== null ? SdkClient::stringValue($data->url) : SdkNotGiven::Value),
             expiresAt: (property_exists($data, "expires_at") ? ($data->expires_at === null ? null : SdkClient::intValue($data->expires_at)) : SdkNotGiven::Value),
         );
     }

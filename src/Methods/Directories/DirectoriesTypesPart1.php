@@ -7,60 +7,6 @@ declare(strict_types=1);
 
 namespace octridev_clerk;
 
-class ListDirectoriesResponse implements \JsonSerializable
-{
-    /** @var list<Directory> */
-    public readonly array $data;
-    /**
-     * Total number of directories.
-     *
-     * @var int
-     */
-    public readonly int $totalCount;
-
-    /**
-     * @param list<Directory> $data
-     * @param int $totalCount
-     */
-    public function __construct(
-        array $data,
-        int $totalCount,
-    ) {
-        $this->data = $data;
-        $this->totalCount = $totalCount;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
-            "data" => $this->data,
-            "total_count" => $this->totalCount,
-        ];
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        if (!property_exists($data, "data") || $data->data === null) {
-            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
-        }
-        if (!property_exists($data, "total_count") || $data->total_count === null) {
-            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
-        }
-        return new self(
-            data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, Directory::class), SdkClient::arrayValue($data->data))),
-            totalCount: SdkClient::intValue($data->total_count),
-        );
-    }
-}
-
 class CreateDirectoryGroupRoleMappingsItem implements \JsonSerializable
 {
     /**
@@ -161,65 +107,11 @@ class CreateDirectoryGroupRoleMappingsItem implements \JsonSerializable
         }
         return new self(
             roleId: SdkClient::stringValue($data->role_id),
-            directoryGroupId: (property_exists($data, "directory_group_id") ? SdkClient::stringValue($data->directory_group_id) : SdkNotGiven::Value),
-            scimGroupId: (property_exists($data, "scim_group_id") ? SdkClient::stringValue($data->scim_group_id) : SdkNotGiven::Value),
-            directoryGroupDisplayName: (property_exists($data, "directory_group_display_name") ? SdkClient::stringValue($data->directory_group_display_name) : SdkNotGiven::Value),
-            scimGroupDisplayName: (property_exists($data, "scim_group_display_name") ? SdkClient::stringValue($data->scim_group_display_name) : SdkNotGiven::Value),
-            precedence: (property_exists($data, "precedence") ? SdkClient::intValue($data->precedence) : SdkNotGiven::Value),
-        );
-    }
-}
-
-class ListDirectoryGroupRoleMappingsResponse implements \JsonSerializable
-{
-    /** @var list<DirectoryGroupRoleMapping> */
-    public readonly array $data;
-    /**
-     * Total number of directory group role mappings in the directory.
-     *
-     * @var int
-     */
-    public readonly int $totalCount;
-
-    /**
-     * @param list<DirectoryGroupRoleMapping> $data
-     * @param int $totalCount
-     */
-    public function __construct(
-        array $data,
-        int $totalCount,
-    ) {
-        $this->data = $data;
-        $this->totalCount = $totalCount;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
-            "data" => $this->data,
-            "total_count" => $this->totalCount,
-        ];
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        if (!property_exists($data, "data") || $data->data === null) {
-            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
-        }
-        if (!property_exists($data, "total_count") || $data->total_count === null) {
-            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
-        }
-        return new self(
-            data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, DirectoryGroupRoleMapping::class), SdkClient::arrayValue($data->data))),
-            totalCount: SdkClient::intValue($data->total_count),
+            directoryGroupId: (property_exists($data, "directory_group_id") && $data->directory_group_id !== null ? SdkClient::stringValue($data->directory_group_id) : SdkNotGiven::Value),
+            scimGroupId: (property_exists($data, "scim_group_id") && $data->scim_group_id !== null ? SdkClient::stringValue($data->scim_group_id) : SdkNotGiven::Value),
+            directoryGroupDisplayName: (property_exists($data, "directory_group_display_name") && $data->directory_group_display_name !== null ? SdkClient::stringValue($data->directory_group_display_name) : SdkNotGiven::Value),
+            scimGroupDisplayName: (property_exists($data, "scim_group_display_name") && $data->scim_group_display_name !== null ? SdkClient::stringValue($data->scim_group_display_name) : SdkNotGiven::Value),
+            precedence: (property_exists($data, "precedence") && $data->precedence !== null ? SdkClient::intValue($data->precedence) : SdkNotGiven::Value),
         );
     }
 }
@@ -288,91 +180,8 @@ class ReplaceDirectoryGroupRoleMappingsMappingsItem implements \JsonSerializable
         }
         return new self(
             roleId: SdkClient::stringValue($data->role_id),
-            directoryGroupId: (property_exists($data, "directory_group_id") ? SdkClient::stringValue($data->directory_group_id) : SdkNotGiven::Value),
-            scimGroupId: (property_exists($data, "scim_group_id") ? SdkClient::stringValue($data->scim_group_id) : SdkNotGiven::Value),
+            directoryGroupId: (property_exists($data, "directory_group_id") && $data->directory_group_id !== null ? SdkClient::stringValue($data->directory_group_id) : SdkNotGiven::Value),
+            scimGroupId: (property_exists($data, "scim_group_id") && $data->scim_group_id !== null ? SdkClient::stringValue($data->scim_group_id) : SdkNotGiven::Value),
         );
-    }
-}
-
-class ReplaceDirectoryGroupRoleMappingsResponse implements \JsonSerializable
-{
-    /** @var list<DirectoryGroupRoleMapping> */
-    public readonly array $data;
-    /**
-     * Total number of directory group role mappings in the directory.
-     *
-     * @var int
-     */
-    public readonly int $totalCount;
-
-    /**
-     * @param list<DirectoryGroupRoleMapping> $data
-     * @param int $totalCount
-     */
-    public function __construct(
-        array $data,
-        int $totalCount,
-    ) {
-        $this->data = $data;
-        $this->totalCount = $totalCount;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
-            "data" => $this->data,
-            "total_count" => $this->totalCount,
-        ];
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        if (!property_exists($data, "data") || $data->data === null) {
-            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
-        }
-        if (!property_exists($data, "total_count") || $data->total_count === null) {
-            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
-        }
-        return new self(
-            data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, DirectoryGroupRoleMapping::class), SdkClient::arrayValue($data->data))),
-            totalCount: SdkClient::intValue($data->total_count),
-        );
-    }
-}
-
-/**
- * String representing the object's type.
- */
-final readonly class DeleteDirectoryGroupRoleMappingResponseObjectEnum implements SdkOpenEnum
-{
-    public const DIRECTORY_GROUP_ROLE_MAPPING = "directory_group_role_mapping";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
     }
 }

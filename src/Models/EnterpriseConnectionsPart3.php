@@ -180,18 +180,18 @@ class EnterpriseConnectionOauthConfig implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
-            providerKey: (property_exists($data, "provider_key") ? SdkClient::stringValue($data->provider_key) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            providerKey: (property_exists($data, "provider_key") && $data->provider_key !== null ? SdkClient::stringValue($data->provider_key) : SdkNotGiven::Value),
             clientId: (property_exists($data, "client_id") ? ($data->client_id === null ? null : SdkClient::stringValue($data->client_id)) : SdkNotGiven::Value),
             discoveryUrl: (property_exists($data, "discovery_url") ? ($data->discovery_url === null ? null : SdkClient::stringValue($data->discovery_url)) : SdkNotGiven::Value),
             authUrl: (property_exists($data, "auth_url") ? ($data->auth_url === null ? null : SdkClient::stringValue($data->auth_url)) : SdkNotGiven::Value),
             tokenUrl: (property_exists($data, "token_url") ? ($data->token_url === null ? null : SdkClient::stringValue($data->token_url)) : SdkNotGiven::Value),
             userInfoUrl: (property_exists($data, "user_info_url") ? ($data->user_info_url === null ? null : SdkClient::stringValue($data->user_info_url)) : SdkNotGiven::Value),
-            requiresPkce: (property_exists($data, "requires_pkce") ? SdkClient::boolValue($data->requires_pkce) : SdkNotGiven::Value),
+            requiresPkce: (property_exists($data, "requires_pkce") && $data->requires_pkce !== null ? SdkClient::boolValue($data->requires_pkce) : SdkNotGiven::Value),
             logoPublicUrl: (property_exists($data, "logo_public_url") ? ($data->logo_public_url === null ? null : SdkClient::stringValue($data->logo_public_url)) : SdkNotGiven::Value),
-            createdAt: (property_exists($data, "created_at") ? SdkClient::intValue($data->created_at) : SdkNotGiven::Value),
-            updatedAt: (property_exists($data, "updated_at") ? SdkClient::intValue($data->updated_at) : SdkNotGiven::Value),
+            createdAt: (property_exists($data, "created_at") && $data->created_at !== null ? SdkClient::intValue($data->created_at) : SdkNotGiven::Value),
+            updatedAt: (property_exists($data, "updated_at") && $data->updated_at !== null ? SdkClient::intValue($data->updated_at) : SdkNotGiven::Value),
         );
     }
 }

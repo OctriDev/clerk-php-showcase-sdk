@@ -8,6 +8,67 @@ declare(strict_types=1);
 namespace octridev_clerk;
 
 /**
+ * Typed representation of the `WaitlistEntries` API schema.
+ */
+class WaitlistEntries implements \JsonSerializable
+{
+    /**
+     * Required array value serialized in the `data` wire field.
+     *
+     * @var list<WaitlistEntry>
+     */
+    public readonly array $data;
+    /**
+     * Total number of waitlist entries
+     *
+     * @var int
+     */
+    public readonly int $totalCount;
+
+    /**
+     * @param list<WaitlistEntry> $data
+     * @param int $totalCount
+     */
+    public function __construct(
+        array $data,
+        int $totalCount,
+    ) {
+        $this->data = $data;
+        $this->totalCount = $totalCount;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+            "data" => $this->data,
+            "total_count" => $this->totalCount,
+        ];
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "total_count") || $data->total_count === null) {
+            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
+        }
+        return new self(
+            data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, WaitlistEntry::class), SdkClient::arrayValue($data->data))),
+            totalCount: SdkClient::intValue($data->total_count),
+        );
+    }
+}
+
+/**
  * Required enumerated value serialized in the `object` wire field.
  */
 final readonly class WaitlistEntryObjectEnum implements SdkOpenEnum
@@ -205,7 +266,7 @@ class WaitlistEntry implements \JsonSerializable
             status: SdkClient::hydrateStringEnumOrString($data->status, WaitlistEntryStatusEnum::class),
             createdAt: SdkClient::intValue($data->created_at),
             updatedAt: SdkClient::intValue($data->updated_at),
-            isLocked: (property_exists($data, "is_locked") ? SdkClient::boolValue($data->is_locked) : SdkNotGiven::Value),
+            isLocked: (property_exists($data, "is_locked") && $data->is_locked !== null ? SdkClient::boolValue($data->is_locked) : SdkNotGiven::Value),
             invitation: (property_exists($data, "invitation") ? ($data->invitation === null ? null : SdkClient::hydrateClass($data->invitation, Invitation::class)) : SdkNotGiven::Value),
         );
     }

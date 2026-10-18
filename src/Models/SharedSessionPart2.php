@@ -150,12 +150,12 @@ class SessionActivityResponse implements \JsonSerializable
             object_: SdkClient::stringValue($data->object),
             id: SdkClient::stringValue($data->id),
             isMobile: SdkClient::boolValue($data->is_mobile),
-            deviceType: (property_exists($data, "device_type") ? SdkClient::stringValue($data->device_type) : SdkNotGiven::Value),
-            browserName: (property_exists($data, "browser_name") ? SdkClient::stringValue($data->browser_name) : SdkNotGiven::Value),
-            browserVersion: (property_exists($data, "browser_version") ? SdkClient::stringValue($data->browser_version) : SdkNotGiven::Value),
-            ipAddress: (property_exists($data, "ip_address") ? SdkClient::stringValue($data->ip_address) : SdkNotGiven::Value),
-            city: (property_exists($data, "city") ? SdkClient::stringValue($data->city) : SdkNotGiven::Value),
-            country: (property_exists($data, "country") ? SdkClient::stringValue($data->country) : SdkNotGiven::Value),
+            deviceType: (property_exists($data, "device_type") && $data->device_type !== null ? SdkClient::stringValue($data->device_type) : SdkNotGiven::Value),
+            browserName: (property_exists($data, "browser_name") && $data->browser_name !== null ? SdkClient::stringValue($data->browser_name) : SdkNotGiven::Value),
+            browserVersion: (property_exists($data, "browser_version") && $data->browser_version !== null ? SdkClient::stringValue($data->browser_version) : SdkNotGiven::Value),
+            ipAddress: (property_exists($data, "ip_address") && $data->ip_address !== null ? SdkClient::stringValue($data->ip_address) : SdkNotGiven::Value),
+            city: (property_exists($data, "city") && $data->city !== null ? SdkClient::stringValue($data->city) : SdkNotGiven::Value),
+            country: (property_exists($data, "country") && $data->country !== null ? SdkClient::stringValue($data->country) : SdkNotGiven::Value),
         );
     }
 }

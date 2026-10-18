@@ -213,21 +213,21 @@ class OrganizationInvitationWithPublicOrganizationDataVariant0 implements \JsonS
     public static function fromObject(object $data): self
     {
         return new self(
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, OrganizationInvitationWithPublicOrganizationDataVariant0ObjectEnum::class) : SdkNotGiven::Value),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            emailAddress: (property_exists($data, "email_address") ? SdkClient::stringValue($data->email_address) : SdkNotGiven::Value),
-            role: (property_exists($data, "role") ? SdkClient::stringValue($data->role) : SdkNotGiven::Value),
-            roleName: (property_exists($data, "role_name") ? SdkClient::stringValue($data->role_name) : SdkNotGiven::Value),
-            organizationId: (property_exists($data, "organization_id") ? SdkClient::stringValue($data->organization_id) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, OrganizationInvitationWithPublicOrganizationDataVariant0ObjectEnum::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            emailAddress: (property_exists($data, "email_address") && $data->email_address !== null ? SdkClient::stringValue($data->email_address) : SdkNotGiven::Value),
+            role: (property_exists($data, "role") && $data->role !== null ? SdkClient::stringValue($data->role) : SdkNotGiven::Value),
+            roleName: (property_exists($data, "role_name") && $data->role_name !== null ? SdkClient::stringValue($data->role_name) : SdkNotGiven::Value),
+            organizationId: (property_exists($data, "organization_id") && $data->organization_id !== null ? SdkClient::stringValue($data->organization_id) : SdkNotGiven::Value),
             inviterId: (property_exists($data, "inviter_id") ? ($data->inviter_id === null ? null : SdkClient::stringValue($data->inviter_id)) : SdkNotGiven::Value),
             publicInviterData: (property_exists($data, "public_inviter_data") ? ($data->public_inviter_data === null ? null : SdkClient::hydrateClass($data->public_inviter_data, OrganizationInvitationPublicUserData::class)) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::stringValue($data->status) : SdkNotGiven::Value),
-            publicMetadata: (property_exists($data, "public_metadata") ? SdkClient::stringMapValue($data->public_metadata) : SdkNotGiven::Value),
-            privateMetadata: (property_exists($data, "private_metadata") ? SdkClient::stringMapValue($data->private_metadata) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::stringValue($data->status) : SdkNotGiven::Value),
+            publicMetadata: (property_exists($data, "public_metadata") && $data->public_metadata !== null ? SdkClient::stringMapValue($data->public_metadata) : SdkNotGiven::Value),
+            privateMetadata: (property_exists($data, "private_metadata") && $data->private_metadata !== null ? SdkClient::stringMapValue($data->private_metadata) : SdkNotGiven::Value),
             url: (property_exists($data, "url") ? ($data->url === null ? null : SdkClient::stringValue($data->url)) : SdkNotGiven::Value),
             expiresAt: (property_exists($data, "expires_at") ? ($data->expires_at === null ? null : SdkClient::intValue($data->expires_at)) : SdkNotGiven::Value),
-            createdAt: (property_exists($data, "created_at") ? SdkClient::intValue($data->created_at) : SdkNotGiven::Value),
-            updatedAt: (property_exists($data, "updated_at") ? SdkClient::intValue($data->updated_at) : SdkNotGiven::Value),
+            createdAt: (property_exists($data, "created_at") && $data->created_at !== null ? SdkClient::intValue($data->created_at) : SdkNotGiven::Value),
+            updatedAt: (property_exists($data, "updated_at") && $data->updated_at !== null ? SdkClient::intValue($data->updated_at) : SdkNotGiven::Value),
         );
     }
 }
@@ -270,7 +270,7 @@ class OrganizationInvitationWithPublicOrganizationDataVariant1 implements \JsonS
     public static function fromObject(object $data): self
     {
         return new self(
-            publicOrganizationData: (property_exists($data, "public_organization_data") ? SdkClient::hydrateClass($data->public_organization_data, OrganizationInvitationPublicOrganizationData::class) : SdkNotGiven::Value),
+            publicOrganizationData: (property_exists($data, "public_organization_data") && $data->public_organization_data !== null ? SdkClient::hydrateClass($data->public_organization_data, OrganizationInvitationPublicOrganizationData::class) : SdkNotGiven::Value),
         );
     }
 }

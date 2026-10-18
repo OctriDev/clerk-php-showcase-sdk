@@ -21,9 +21,9 @@ class OAuthAccessTokensNamespace
      *
      * @param string|SdkNotGiven $accessToken
      * @param string|SdkNotGiven $secret
-     * @return VerifyOAuthAccessTokenResponseClerkIdpOauthAccessToken|VerifyOAuthAccessTokenResponseVariant1
+     * @return VerifyOAuthAccessTokenResponse
      */
-    public function verify(string|SdkNotGiven $accessToken = SdkNotGiven::Value, string|SdkNotGiven $secret = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): VerifyOAuthAccessTokenResponseClerkIdpOauthAccessToken|VerifyOAuthAccessTokenResponseVariant1
+    public function verify(string|SdkNotGiven $accessToken = SdkNotGiven::Value, string|SdkNotGiven $secret = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): VerifyOAuthAccessTokenResponse
     {
         return OAuthAccessTokens::verifyOAuthAccessToken($this->clientConfig, $accessToken, $secret, $requestOptions);
     }
