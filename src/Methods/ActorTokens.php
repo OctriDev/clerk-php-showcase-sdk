@@ -51,7 +51,9 @@ class CreateActorTokenActor implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "sub") || $data->sub === null) { throw new SdkValidationError("sub", 'required', "Required property 'sub' is missing or null"); }
+        if (!property_exists($data, "sub") || $data->sub === null) {
+            throw new SdkValidationError("sub", 'required', "Required property 'sub' is missing or null");
+        }
         return new self(
             sub: SdkClient::stringValue($data->sub),
             additionalProperties: array_diff_key(SdkClient::stringMapValue($data), array_flip(["sub"])),
@@ -75,7 +77,7 @@ class ActorTokens
     public static function createActorToken(ClientConfig $clientConfig, string $userId, CreateActorTokenActor $actor, int|SdkNotGiven $expiresInSeconds = SdkNotGiven::Value, int|SdkNotGiven $sessionMaxDurationInSeconds = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ActorToken
     {
 
-        $sdkResponse = SdkClient::request('POST', "/actor_tokens", $clientConfig, body: ['user_id' => $userId, 'actor' => $actor, 'expires_in_seconds' => $expiresInSeconds, 'session_max_duration_in_seconds' => $sessionMaxDurationInSeconds], returnType: ActorToken::class, decoder: 'json', operationId: 'createActorToken', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/actor_tokens", $clientConfig, body: ['user_id' => $userId, 'actor' => $actor, 'expires_in_seconds' => $expiresInSeconds, 'session_max_duration_in_seconds' => $sessionMaxDurationInSeconds], returnType: ActorToken::class, decoder: 'json', operationId: 'createActorToken', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ActorToken::class));
     }
 
@@ -91,7 +93,7 @@ class ActorTokens
     public static function revokeActorToken(ClientConfig $clientConfig, string $actorTokenId, ?RequestOptions $requestOptions = null): ActorToken
     {
 
-        $sdkResponse = SdkClient::request('POST', "/actor_tokens/" . SdkClient::encodePathSegment($actorTokenId) . "/revoke", $clientConfig, returnType: ActorToken::class, decoder: 'json', operationId: 'revokeActorToken', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/actor_tokens/" . SdkClient::encodePathSegment($actorTokenId) . "/revoke", $clientConfig, returnType: ActorToken::class, decoder: 'json', operationId: 'revokeActorToken', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ActorToken::class));
     }
 }

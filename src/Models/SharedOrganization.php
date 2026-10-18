@@ -14,11 +14,26 @@ final readonly class OrganizationObjectEnum implements SdkOpenEnum
 {
     public const ORGANIZATION = "organization";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -269,16 +284,36 @@ class Organization implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "slug") || $data->slug === null) { throw new SdkValidationError("slug", 'required', "Required property 'slug' is missing or null"); }
-        if (!property_exists($data, "has_image") || $data->has_image === null) { throw new SdkValidationError("has_image", 'required', "Required property 'has_image' is missing or null"); }
-        if (!property_exists($data, "max_allowed_memberships") || $data->max_allowed_memberships === null) { throw new SdkValidationError("max_allowed_memberships", 'required', "Required property 'max_allowed_memberships' is missing or null"); }
-        if (!property_exists($data, "admin_delete_enabled") || $data->admin_delete_enabled === null) { throw new SdkValidationError("admin_delete_enabled", 'required', "Required property 'admin_delete_enabled' is missing or null"); }
-        if (!property_exists($data, "public_metadata") || $data->public_metadata === null) { throw new SdkValidationError("public_metadata", 'required', "Required property 'public_metadata' is missing or null"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "slug") || $data->slug === null) {
+            throw new SdkValidationError("slug", 'required', "Required property 'slug' is missing or null");
+        }
+        if (!property_exists($data, "has_image") || $data->has_image === null) {
+            throw new SdkValidationError("has_image", 'required', "Required property 'has_image' is missing or null");
+        }
+        if (!property_exists($data, "max_allowed_memberships") || $data->max_allowed_memberships === null) {
+            throw new SdkValidationError("max_allowed_memberships", 'required', "Required property 'max_allowed_memberships' is missing or null");
+        }
+        if (!property_exists($data, "admin_delete_enabled") || $data->admin_delete_enabled === null) {
+            throw new SdkValidationError("admin_delete_enabled", 'required', "Required property 'admin_delete_enabled' is missing or null");
+        }
+        if (!property_exists($data, "public_metadata") || $data->public_metadata === null) {
+            throw new SdkValidationError("public_metadata", 'required', "Required property 'public_metadata' is missing or null");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
+            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, OrganizationObjectEnum::class),
             id: SdkClient::stringValue($data->id),

@@ -117,13 +117,27 @@ class SCIMUserMetadata implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "directory_name") || $data->directory_name === null) { throw new SdkValidationError("directory_name", 'required', "Required property 'directory_name' is missing or null"); }
-        if (!property_exists($data, "provider") || $data->provider === null) { throw new SdkValidationError("provider", 'required', "Required property 'provider' is missing or null"); }
-        if (!property_exists($data, "enterprise_connection_id")) { throw new SdkValidationError("enterprise_connection_id", 'required', "Missing required property 'enterprise_connection_id'"); }
-        if (!property_exists($data, "directory_id") || $data->directory_id === null) { throw new SdkValidationError("directory_id", 'required', "Required property 'directory_id' is missing or null"); }
-        if (!property_exists($data, "directory_enabled") || $data->directory_enabled === null) { throw new SdkValidationError("directory_enabled", 'required', "Required property 'directory_enabled' is missing or null"); }
-        if (!property_exists($data, "external_id")) { throw new SdkValidationError("external_id", 'required', "Missing required property 'external_id'"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "directory_name") || $data->directory_name === null) {
+            throw new SdkValidationError("directory_name", 'required', "Required property 'directory_name' is missing or null");
+        }
+        if (!property_exists($data, "provider") || $data->provider === null) {
+            throw new SdkValidationError("provider", 'required', "Required property 'provider' is missing or null");
+        }
+        if (!property_exists($data, "enterprise_connection_id")) {
+            throw new SdkValidationError("enterprise_connection_id", 'required', "Missing required property 'enterprise_connection_id'");
+        }
+        if (!property_exists($data, "directory_id") || $data->directory_id === null) {
+            throw new SdkValidationError("directory_id", 'required', "Required property 'directory_id' is missing or null");
+        }
+        if (!property_exists($data, "directory_enabled") || $data->directory_enabled === null) {
+            throw new SdkValidationError("directory_enabled", 'required', "Required property 'directory_enabled' is missing or null");
+        }
+        if (!property_exists($data, "external_id")) {
+            throw new SdkValidationError("external_id", 'required', "Missing required property 'external_id'");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             directoryName: SdkClient::stringValue($data->directory_name),
@@ -144,11 +158,26 @@ final readonly class TotalCountObjectEnum implements SdkOpenEnum
 {
     public const TOTAL_COUNT = "total_count";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -199,8 +228,12 @@ class TotalCount implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "total_count") || $data->total_count === null) {
+            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, TotalCountObjectEnum::class),
             totalCount: SdkClient::intValue($data->total_count),
@@ -215,11 +248,26 @@ final readonly class TrustedDeviceObjectEnum implements SdkOpenEnum
 {
     public const TRUSTED_DEVICE = "trusted_device";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -230,11 +278,26 @@ final readonly class TrustedDevicePlatformEnum implements SdkOpenEnum
     public const IOS = "ios";
     public const ANDROID = "android";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -244,11 +307,26 @@ final readonly class TrustedDeviceAlgorithmEnum implements SdkOpenEnum
 {
     public const ES256 = "ES256";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -259,9 +337,24 @@ final readonly class TrustedDeviceStatusEnum implements SdkOpenEnum
     public const ACTIVE = "active";
     public const REVOKED = "revoked";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

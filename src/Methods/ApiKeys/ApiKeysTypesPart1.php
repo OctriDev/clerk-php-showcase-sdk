@@ -12,22 +12,52 @@ final readonly class ListApiKeysIncludeInvalid implements SdkOpenEnum
     public const TRUE = "true";
     public const FALSE = "false";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 final readonly class CreateApiKeyResponseObjectEnum implements SdkOpenEnum
 {
     public const API_KEY = "api_key";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 class CreateApiKeyResponse implements \JsonSerializable
@@ -175,22 +205,54 @@ class CreateApiKeyResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "subject") || $data->subject === null) { throw new SdkValidationError("subject", 'required', "Required property 'subject' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "claims")) { throw new SdkValidationError("claims", 'required', "Missing required property 'claims'"); }
-        if (!property_exists($data, "scopes") || $data->scopes === null) { throw new SdkValidationError("scopes", 'required', "Required property 'scopes' is missing or null"); }
-        if (!property_exists($data, "secret") || $data->secret === null) { throw new SdkValidationError("secret", 'required', "Required property 'secret' is missing or null"); }
-        if (!property_exists($data, "revoked") || $data->revoked === null) { throw new SdkValidationError("revoked", 'required', "Required property 'revoked' is missing or null"); }
-        if (!property_exists($data, "revocation_reason")) { throw new SdkValidationError("revocation_reason", 'required', "Missing required property 'revocation_reason'"); }
-        if (!property_exists($data, "expired") || $data->expired === null) { throw new SdkValidationError("expired", 'required', "Required property 'expired' is missing or null"); }
-        if (!property_exists($data, "expiration")) { throw new SdkValidationError("expiration", 'required', "Missing required property 'expiration'"); }
-        if (!property_exists($data, "created_by")) { throw new SdkValidationError("created_by", 'required', "Missing required property 'created_by'"); }
-        if (!property_exists($data, "last_used_at")) { throw new SdkValidationError("last_used_at", 'required', "Missing required property 'last_used_at'"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "subject") || $data->subject === null) {
+            throw new SdkValidationError("subject", 'required', "Required property 'subject' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "claims")) {
+            throw new SdkValidationError("claims", 'required', "Missing required property 'claims'");
+        }
+        if (!property_exists($data, "scopes") || $data->scopes === null) {
+            throw new SdkValidationError("scopes", 'required', "Required property 'scopes' is missing or null");
+        }
+        if (!property_exists($data, "secret") || $data->secret === null) {
+            throw new SdkValidationError("secret", 'required', "Required property 'secret' is missing or null");
+        }
+        if (!property_exists($data, "revoked") || $data->revoked === null) {
+            throw new SdkValidationError("revoked", 'required', "Required property 'revoked' is missing or null");
+        }
+        if (!property_exists($data, "revocation_reason")) {
+            throw new SdkValidationError("revocation_reason", 'required', "Missing required property 'revocation_reason'");
+        }
+        if (!property_exists($data, "expired") || $data->expired === null) {
+            throw new SdkValidationError("expired", 'required', "Required property 'expired' is missing or null");
+        }
+        if (!property_exists($data, "expiration")) {
+            throw new SdkValidationError("expiration", 'required', "Missing required property 'expiration'");
+        }
+        if (!property_exists($data, "created_by")) {
+            throw new SdkValidationError("created_by", 'required', "Missing required property 'created_by'");
+        }
+        if (!property_exists($data, "last_used_at")) {
+            throw new SdkValidationError("last_used_at", 'required', "Missing required property 'last_used_at'");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
+            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, CreateApiKeyResponseObjectEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -217,9 +279,24 @@ final readonly class ListApiKeysResponseDataItemObjectEnum implements SdkOpenEnu
 {
     public const API_KEY = "api_key";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

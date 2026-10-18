@@ -85,11 +85,21 @@ class OrganizationDomainVerification implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "strategy") || $data->strategy === null) { throw new SdkValidationError("strategy", 'required', "Required property 'strategy' is missing or null"); }
-        if (!property_exists($data, "attempts")) { throw new SdkValidationError("attempts", 'required', "Missing required property 'attempts'"); }
-        if (!property_exists($data, "expire_at")) { throw new SdkValidationError("expire_at", 'required', "Missing required property 'expire_at'"); }
-        if (!property_exists($data, "verified_at")) { throw new SdkValidationError("verified_at", 'required', "Missing required property 'verified_at'"); }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "strategy") || $data->strategy === null) {
+            throw new SdkValidationError("strategy", 'required', "Required property 'strategy' is missing or null");
+        }
+        if (!property_exists($data, "attempts")) {
+            throw new SdkValidationError("attempts", 'required', "Missing required property 'attempts'");
+        }
+        if (!property_exists($data, "expire_at")) {
+            throw new SdkValidationError("expire_at", 'required', "Missing required property 'expire_at'");
+        }
+        if (!property_exists($data, "verified_at")) {
+            throw new SdkValidationError("verified_at", 'required', "Missing required property 'verified_at'");
+        }
         return new self(
             status: SdkClient::stringValue($data->status),
             strategy: SdkClient::stringValue($data->strategy),

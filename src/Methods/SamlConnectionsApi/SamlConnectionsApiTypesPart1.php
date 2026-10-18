@@ -14,11 +14,26 @@ final readonly class CreateSAMLConnectionProvider implements SdkOpenEnum
     public const SAML_GOOGLE = "saml_google";
     public const SAML_MICROSOFT = "saml_microsoft";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -99,11 +114,26 @@ final readonly class CreateSAMLConnectionLoginHintModeEnum implements SdkOpenEnu
     public const CUSTOM_ATTRIBUTE = "custom_attribute";
     public const OFF = "off";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -156,7 +186,9 @@ class CreateSAMLConnectionLoginHint implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "mode") || $data->mode === null) { throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null"); }
+        if (!property_exists($data, "mode") || $data->mode === null) {
+            throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null");
+        }
         return new self(
             mode: SdkClient::hydrateStringEnumOrString($data->mode, CreateSAMLConnectionLoginHintModeEnum::class),
             source: (property_exists($data, "source") && $data->source !== null ? SdkClient::stringValue($data->source) : SdkNotGiven::Value),
@@ -242,11 +274,26 @@ final readonly class UpdateSAMLConnectionLoginHintModeEnum implements SdkOpenEnu
     public const CUSTOM_ATTRIBUTE = "custom_attribute";
     public const OFF = "off";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -299,7 +346,9 @@ class UpdateSAMLConnectionLoginHint implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "mode") || $data->mode === null) { throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null"); }
+        if (!property_exists($data, "mode") || $data->mode === null) {
+            throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null");
+        }
         return new self(
             mode: SdkClient::hydrateStringEnumOrString($data->mode, UpdateSAMLConnectionLoginHintModeEnum::class),
             source: (property_exists($data, "source") && $data->source !== null ? SdkClient::stringValue($data->source) : SdkNotGiven::Value),
