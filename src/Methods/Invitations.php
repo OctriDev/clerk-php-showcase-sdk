@@ -12,26 +12,11 @@ final readonly class CreateInvitationTemplateSlug implements SdkOpenEnum
     public const INVITATION = "invitation";
     public const WAITLIST_INVITATION = "waitlist_invitation";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class ListInvitationsStatus implements SdkOpenEnum
@@ -41,26 +26,11 @@ final readonly class ListInvitationsStatus implements SdkOpenEnum
     public const REVOKED = "revoked";
     public const EXPIRED = "expired";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -71,26 +41,11 @@ final readonly class CreateBulkInvitationsBodyItemTemplateSlugEnum implements Sd
     public const INVITATION = "invitation";
     public const WAITLIST_INVITATION = "waitlist_invitation";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class CreateBulkInvitationsBodyItem implements \JsonSerializable
@@ -200,9 +155,7 @@ class CreateBulkInvitationsBodyItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "email_address") || $data->email_address === null) {
-            throw new SdkValidationError("email_address", 'required', "Required property 'email_address' is missing or null");
-        }
+        if (!property_exists($data, "email_address") || $data->email_address === null) { throw new SdkValidationError("email_address", 'required', "Required property 'email_address' is missing or null"); }
         return new self(
             emailAddress: SdkClient::stringValue($data->email_address),
             publicMetadata: (property_exists($data, "public_metadata") ? ($data->public_metadata === null ? null : SdkClient::stringMapValue($data->public_metadata)) : SdkNotGiven::Value),
@@ -238,7 +191,7 @@ class Invitations
             Validation::validateRange('expires_in_days', $expiresInDays, min: 1, max: 365);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/invitations", $clientConfig, body: ['email_address' => $emailAddress, 'public_metadata' => $publicMetadata, 'redirect_url' => $redirectUrl, 'notify' => $notify, 'ignore_existing' => $ignoreExisting, 'expires_in_days' => $expiresInDays, 'template_slug' => $templateSlug], returnType: Invitation::class, decoder: 'json', operationId: 'createInvitation', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/invitations", $clientConfig, body: ['email_address' => $emailAddress, 'public_metadata' => $publicMetadata, 'redirect_url' => $redirectUrl, 'notify' => $notify, 'ignore_existing' => $ignoreExisting, 'expires_in_days' => $expiresInDays, 'template_slug' => $templateSlug], returnType: Invitation::class, decoder: 'json', operationId: 'createInvitation', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Invitation::class));
     }
 
@@ -287,7 +240,7 @@ class Invitations
             Validation::validateItems('body', $body, min: 1, max: 10);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/invitations/bulk", $clientConfig, body: $body, decoder: 'json', operationId: 'createBulkInvitations', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/invitations/bulk", $clientConfig, body: $body, decoder: 'json', operationId: 'createBulkInvitations', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, Invitation::class), SdkClient::arrayValue($sdkResponse->data))));
     }
 
@@ -303,7 +256,7 @@ class Invitations
     public static function deleteInvitation(ClientConfig $clientConfig, string $invitationId, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/invitations/" . SdkClient::encodePathSegment($invitationId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteInvitation', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/invitations/" . SdkClient::encodePathSegment($invitationId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteInvitation', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 
@@ -319,7 +272,7 @@ class Invitations
     public static function revokeInvitation(ClientConfig $clientConfig, string $invitationId, ?RequestOptions $requestOptions = null): InvitationRevoked
     {
 
-        $sdkResponse = SdkClient::request('POST', "/invitations/" . SdkClient::encodePathSegment($invitationId) . "/revoke", $clientConfig, returnType: InvitationRevoked::class, decoder: 'json', operationId: 'revokeInvitation', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/invitations/" . SdkClient::encodePathSegment($invitationId) . "/revoke", $clientConfig, returnType: InvitationRevoked::class, decoder: 'json', operationId: 'revokeInvitation', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, InvitationRevoked::class));
     }
 }

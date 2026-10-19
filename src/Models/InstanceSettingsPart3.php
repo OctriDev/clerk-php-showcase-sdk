@@ -183,36 +183,16 @@ class OrganizationSettings implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "enabled") || $data->enabled === null) {
-            throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null");
-        }
-        if (!property_exists($data, "max_allowed_memberships") || $data->max_allowed_memberships === null) {
-            throw new SdkValidationError("max_allowed_memberships", 'required', "Required property 'max_allowed_memberships' is missing or null");
-        }
-        if (!property_exists($data, "max_allowed_roles") || $data->max_allowed_roles === null) {
-            throw new SdkValidationError("max_allowed_roles", 'required', "Required property 'max_allowed_roles' is missing or null");
-        }
-        if (!property_exists($data, "max_allowed_domains") || $data->max_allowed_domains === null) {
-            throw new SdkValidationError("max_allowed_domains", 'required', "Required property 'max_allowed_domains' is missing or null");
-        }
-        if (!property_exists($data, "creator_role") || $data->creator_role === null) {
-            throw new SdkValidationError("creator_role", 'required', "Required property 'creator_role' is missing or null");
-        }
-        if (!property_exists($data, "admin_delete_enabled") || $data->admin_delete_enabled === null) {
-            throw new SdkValidationError("admin_delete_enabled", 'required', "Required property 'admin_delete_enabled' is missing or null");
-        }
-        if (!property_exists($data, "domains_enabled") || $data->domains_enabled === null) {
-            throw new SdkValidationError("domains_enabled", 'required', "Required property 'domains_enabled' is missing or null");
-        }
-        if (!property_exists($data, "domains_enrollment_modes") || $data->domains_enrollment_modes === null) {
-            throw new SdkValidationError("domains_enrollment_modes", 'required', "Required property 'domains_enrollment_modes' is missing or null");
-        }
-        if (!property_exists($data, "domains_default_role") || $data->domains_default_role === null) {
-            throw new SdkValidationError("domains_default_role", 'required', "Required property 'domains_default_role' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "enabled") || $data->enabled === null) { throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null"); }
+        if (!property_exists($data, "max_allowed_memberships") || $data->max_allowed_memberships === null) { throw new SdkValidationError("max_allowed_memberships", 'required', "Required property 'max_allowed_memberships' is missing or null"); }
+        if (!property_exists($data, "max_allowed_roles") || $data->max_allowed_roles === null) { throw new SdkValidationError("max_allowed_roles", 'required', "Required property 'max_allowed_roles' is missing or null"); }
+        if (!property_exists($data, "max_allowed_domains") || $data->max_allowed_domains === null) { throw new SdkValidationError("max_allowed_domains", 'required', "Required property 'max_allowed_domains' is missing or null"); }
+        if (!property_exists($data, "creator_role") || $data->creator_role === null) { throw new SdkValidationError("creator_role", 'required', "Required property 'creator_role' is missing or null"); }
+        if (!property_exists($data, "admin_delete_enabled") || $data->admin_delete_enabled === null) { throw new SdkValidationError("admin_delete_enabled", 'required', "Required property 'admin_delete_enabled' is missing or null"); }
+        if (!property_exists($data, "domains_enabled") || $data->domains_enabled === null) { throw new SdkValidationError("domains_enabled", 'required', "Required property 'domains_enabled' is missing or null"); }
+        if (!property_exists($data, "domains_enrollment_modes") || $data->domains_enrollment_modes === null) { throw new SdkValidationError("domains_enrollment_modes", 'required', "Required property 'domains_enrollment_modes' is missing or null"); }
+        if (!property_exists($data, "domains_default_role") || $data->domains_default_role === null) { throw new SdkValidationError("domains_default_role", 'required', "Required property 'domains_default_role' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, OrganizationSettingsObjectEnum::class),
             enabled: SdkClient::boolValue($data->enabled),

@@ -87,18 +87,10 @@ class OrganizationInvitationPublicOrganizationData implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "slug") || $data->slug === null) {
-            throw new SdkValidationError("slug", 'required', "Required property 'slug' is missing or null");
-        }
-        if (!property_exists($data, "has_image") || $data->has_image === null) {
-            throw new SdkValidationError("has_image", 'required', "Required property 'has_image' is missing or null");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "slug") || $data->slug === null) { throw new SdkValidationError("slug", 'required', "Required property 'slug' is missing or null"); }
+        if (!property_exists($data, "has_image") || $data->has_image === null) { throw new SdkValidationError("has_image", 'required', "Required property 'has_image' is missing or null"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             name: SdkClient::stringValue($data->name),
@@ -197,24 +189,12 @@ class OrganizationInvitationPublicUserData implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "user_id") || $data->user_id === null) {
-            throw new SdkValidationError("user_id", 'required', "Required property 'user_id' is missing or null");
-        }
-        if (!property_exists($data, "first_name")) {
-            throw new SdkValidationError("first_name", 'required', "Missing required property 'first_name'");
-        }
-        if (!property_exists($data, "last_name")) {
-            throw new SdkValidationError("last_name", 'required', "Missing required property 'last_name'");
-        }
-        if (!property_exists($data, "image_url") || $data->image_url === null) {
-            throw new SdkValidationError("image_url", 'required', "Required property 'image_url' is missing or null");
-        }
-        if (!property_exists($data, "has_image") || $data->has_image === null) {
-            throw new SdkValidationError("has_image", 'required', "Required property 'has_image' is missing or null");
-        }
-        if (!property_exists($data, "identifier") || $data->identifier === null) {
-            throw new SdkValidationError("identifier", 'required', "Required property 'identifier' is missing or null");
-        }
+        if (!property_exists($data, "user_id") || $data->user_id === null) { throw new SdkValidationError("user_id", 'required', "Required property 'user_id' is missing or null"); }
+        if (!property_exists($data, "first_name")) { throw new SdkValidationError("first_name", 'required', "Missing required property 'first_name'"); }
+        if (!property_exists($data, "last_name")) { throw new SdkValidationError("last_name", 'required', "Missing required property 'last_name'"); }
+        if (!property_exists($data, "image_url") || $data->image_url === null) { throw new SdkValidationError("image_url", 'required', "Required property 'image_url' is missing or null"); }
+        if (!property_exists($data, "has_image") || $data->has_image === null) { throw new SdkValidationError("has_image", 'required', "Required property 'has_image' is missing or null"); }
+        if (!property_exists($data, "identifier") || $data->identifier === null) { throw new SdkValidationError("identifier", 'required', "Required property 'identifier' is missing or null"); }
         return new self(
             userId: SdkClient::stringValue($data->user_id),
             firstName: ($data->first_name === null ? null : SdkClient::stringValue($data->first_name)),
@@ -274,12 +254,8 @@ class OrganizationInvitationsWithPublicOrganizationData implements \JsonSerializ
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data") || $data->data === null) {
-            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
-        }
-        if (!property_exists($data, "total_count") || $data->total_count === null) {
-            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
-        }
+        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
         return new self(
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, OrganizationInvitationWithPublicOrganizationData::class), SdkClient::arrayValue($data->data))),
             totalCount: SdkClient::intValue($data->total_count),
@@ -294,24 +270,9 @@ final readonly class OrganizationInvitationWithPublicOrganizationDataVariant0Obj
 {
     public const ORGANIZATION_INVITATION = "organization_invitation";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

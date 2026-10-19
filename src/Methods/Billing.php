@@ -12,26 +12,11 @@ final readonly class GetCommercePlanListPayerType implements SdkOpenEnum
     public const USER = "user";
     public const ORG = "org";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class CreateBillingPriceSupportedBillingPeriods implements SdkOpenEnum
@@ -40,26 +25,11 @@ final readonly class CreateBillingPriceSupportedBillingPeriods implements SdkOpe
     public const ANNUAL = "annual";
     public const BOTH = "both";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class GetCommerceSubscriptionItemListStatus implements SdkOpenEnum
@@ -70,26 +40,11 @@ final readonly class GetCommerceSubscriptionItemListStatus implements SdkOpenEnu
     public const UPCOMING = "upcoming";
     public const FREE_TRIAL = "free_trial";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class GetCommerceSubscriptionItemListPayerType implements SdkOpenEnum
@@ -97,26 +52,11 @@ final readonly class GetCommerceSubscriptionItemListPayerType implements SdkOpen
     public const USER = "user";
     public const ORG = "org";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class Billing
@@ -143,7 +83,7 @@ class Billing
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/billing/plans", $clientConfig, query: ['paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true), 'payer_type' => new SdkQueryValue($payerType, "form", true)], returnType: PaginatedCommercePlanResponse::class, decoder: 'json', operationId: 'getCommercePlanList', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/billing/plans", $clientConfig, query: ['paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true), 'payer_type' => new SdkQueryValue($payerType, "form", true)], returnType: PaginatedCommercePlanResponse::class, decoder: 'json', operationId: 'getCommercePlanList', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, PaginatedCommercePlanResponse::class));
     }
 
@@ -170,7 +110,7 @@ class Billing
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/billing/prices", $clientConfig, query: ['paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true), 'plan_id' => new SdkQueryValue($planId, "form", true)], returnType: PaginatedBillingPriceResponse::class, decoder: 'json', operationId: 'getBillingPriceList', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/billing/prices", $clientConfig, query: ['paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true), 'plan_id' => new SdkQueryValue($planId, "form", true)], returnType: PaginatedBillingPriceResponse::class, decoder: 'json', operationId: 'getBillingPriceList', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, PaginatedBillingPriceResponse::class));
     }
 
@@ -191,7 +131,7 @@ class Billing
     public static function createBillingPrice(ClientConfig $clientConfig, string $planId, ?int $amount, string|SdkNotGiven $currency = SdkNotGiven::Value, int|null|SdkNotGiven $annualMonthlyAmount = SdkNotGiven::Value, string|SdkNotGiven $description = SdkNotGiven::Value, CreateBillingPriceSupportedBillingPeriods|SdkNotGiven $supportedBillingPeriods = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): BillingPriceResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/billing/prices", $clientConfig, body: ['plan_id' => $planId, 'amount' => $amount, 'currency' => $currency, 'annual_monthly_amount' => $annualMonthlyAmount, 'description' => $description, 'supported_billing_periods' => $supportedBillingPeriods], returnType: BillingPriceResponse::class, decoder: 'json', operationId: 'createBillingPrice', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/billing/prices", $clientConfig, body: ['plan_id' => $planId, 'amount' => $amount, 'currency' => $currency, 'annual_monthly_amount' => $annualMonthlyAmount, 'description' => $description, 'supported_billing_periods' => $supportedBillingPeriods], returnType: BillingPriceResponse::class, decoder: 'json', operationId: 'createBillingPrice', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, BillingPriceResponse::class));
     }
 
@@ -222,7 +162,7 @@ class Billing
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/billing/subscription_items", $clientConfig, query: ['paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true), 'status' => new SdkQueryValue($status, "form", true), 'payer_type' => new SdkQueryValue($payerType, "form", true), 'plan_id' => new SdkQueryValue($planId, "form", true), 'include_free' => new SdkQueryValue($includeFree, "form", true), 'query' => new SdkQueryValue($query, "form", true)], returnType: PaginatedCommerceSubscriptionItemResponse::class, decoder: 'json', operationId: 'getCommerceSubscriptionItemList', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/billing/subscription_items", $clientConfig, query: ['paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true), 'status' => new SdkQueryValue($status, "form", true), 'payer_type' => new SdkQueryValue($payerType, "form", true), 'plan_id' => new SdkQueryValue($planId, "form", true), 'include_free' => new SdkQueryValue($includeFree, "form", true), 'query' => new SdkQueryValue($query, "form", true)], returnType: PaginatedCommerceSubscriptionItemResponse::class, decoder: 'json', operationId: 'getCommerceSubscriptionItemList', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, PaginatedCommerceSubscriptionItemResponse::class));
     }
 
@@ -239,7 +179,7 @@ class Billing
     public static function cancelCommerceSubscriptionItem(ClientConfig $clientConfig, string $subscriptionItemId, bool|SdkNotGiven $endNow = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): CommerceSubscriptionItem
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/billing/subscription_items/" . SdkClient::encodePathSegment($subscriptionItemId) . "", $clientConfig, query: ['end_now' => new SdkQueryValue($endNow, "form", true)], returnType: CommerceSubscriptionItem::class, decoder: 'json', operationId: 'cancelCommerceSubscriptionItem', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/billing/subscription_items/" . SdkClient::encodePathSegment($subscriptionItemId) . "", $clientConfig, query: ['end_now' => new SdkQueryValue($endNow, "form", true)], returnType: CommerceSubscriptionItem::class, decoder: 'json', operationId: 'cancelCommerceSubscriptionItem', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, CommerceSubscriptionItem::class));
     }
 
@@ -258,7 +198,7 @@ class Billing
 
         Validation::validateDateTime('extend_to', $extendTo);
 
-        $sdkResponse = SdkClient::request('POST', "/billing/subscription_items/" . SdkClient::encodePathSegment($subscriptionItemId) . "/extend_free_trial", $clientConfig, body: ['extend_to' => $extendTo], returnType: CommerceSubscriptionItem2::class, decoder: 'json', operationId: 'extendBillingSubscriptionItemFreeTrial', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/billing/subscription_items/" . SdkClient::encodePathSegment($subscriptionItemId) . "/extend_free_trial", $clientConfig, body: ['extend_to' => $extendTo], returnType: CommerceSubscriptionItem2::class, decoder: 'json', operationId: 'extendBillingSubscriptionItemFreeTrial', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, CommerceSubscriptionItem2::class));
     }
 
@@ -276,7 +216,7 @@ class Billing
     public static function createBillingPriceTransition(ClientConfig $clientConfig, string $subscriptionItemId, string $fromPriceId, string $toPriceId, ?RequestOptions $requestOptions = null): CommercePriceTransitionResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/billing/subscription_items/" . SdkClient::encodePathSegment($subscriptionItemId) . "/price_transition", $clientConfig, body: ['from_price_id' => $fromPriceId, 'to_price_id' => $toPriceId], returnType: CommercePriceTransitionResponse::class, decoder: 'json', operationId: 'createBillingPriceTransition', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/billing/subscription_items/" . SdkClient::encodePathSegment($subscriptionItemId) . "/price_transition", $clientConfig, body: ['from_price_id' => $fromPriceId, 'to_price_id' => $toPriceId], returnType: CommercePriceTransitionResponse::class, decoder: 'json', operationId: 'createBillingPriceTransition', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, CommercePriceTransitionResponse::class));
     }
 
@@ -293,7 +233,7 @@ class Billing
     public static function applyBillingSubscriptionItemDiscount(ClientConfig $clientConfig, string $subscriptionItemId, string $discountId, ?RequestOptions $requestOptions = null): CommerceDiscountRedemptionResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/billing/subscription_items/" . SdkClient::encodePathSegment($subscriptionItemId) . "/discounts", $clientConfig, body: ['discount_id' => $discountId], returnType: CommerceDiscountRedemptionResponse::class, decoder: 'json', operationId: 'applyBillingSubscriptionItemDiscount', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/billing/subscription_items/" . SdkClient::encodePathSegment($subscriptionItemId) . "/discounts", $clientConfig, body: ['discount_id' => $discountId], returnType: CommerceDiscountRedemptionResponse::class, decoder: 'json', operationId: 'applyBillingSubscriptionItemDiscount', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, CommerceDiscountRedemptionResponse::class));
     }
 
@@ -310,7 +250,7 @@ class Billing
     public static function removeBillingSubscriptionItemDiscount(ClientConfig $clientConfig, string $subscriptionItemId, string $discountId, ?RequestOptions $requestOptions = null): CommerceDiscountRedemptionResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/billing/subscription_items/" . SdkClient::encodePathSegment($subscriptionItemId) . "/discounts/" . SdkClient::encodePathSegment($discountId) . "", $clientConfig, returnType: CommerceDiscountRedemptionResponse::class, decoder: 'json', operationId: 'removeBillingSubscriptionItemDiscount', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/billing/subscription_items/" . SdkClient::encodePathSegment($subscriptionItemId) . "/discounts/" . SdkClient::encodePathSegment($discountId) . "", $clientConfig, returnType: CommerceDiscountRedemptionResponse::class, decoder: 'json', operationId: 'removeBillingSubscriptionItemDiscount', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, CommerceDiscountRedemptionResponse::class));
     }
 
@@ -336,7 +276,7 @@ class Billing
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/billing/statements", $clientConfig, query: ['paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: PaginatedBillingStatementResponse::class, decoder: 'json', operationId: 'getBillingStatementList', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/billing/statements", $clientConfig, query: ['paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: PaginatedBillingStatementResponse::class, decoder: 'json', operationId: 'getBillingStatementList', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, PaginatedBillingStatementResponse::class));
     }
 
@@ -352,7 +292,7 @@ class Billing
     public static function getBillingStatement(ClientConfig $clientConfig, string $statementId, ?RequestOptions $requestOptions = null): BillingStatement
     {
 
-        $sdkResponse = SdkClient::request('GET', "/billing/statements/" . SdkClient::encodePathSegment($statementId) . "", $clientConfig, returnType: BillingStatement::class, decoder: 'json', operationId: 'getBillingStatement', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/billing/statements/" . SdkClient::encodePathSegment($statementId) . "", $clientConfig, returnType: BillingStatement::class, decoder: 'json', operationId: 'getBillingStatement', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, BillingStatement::class));
     }
 
@@ -379,7 +319,7 @@ class Billing
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/billing/statements/" . SdkClient::encodePathSegment($statementId) . "/payment_attempts", $clientConfig, query: ['paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: PaginatedBillingPaymentAttemptResponse::class, decoder: 'json', operationId: 'getBillingStatementPaymentAttempts', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/billing/statements/" . SdkClient::encodePathSegment($statementId) . "/payment_attempts", $clientConfig, query: ['paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: PaginatedBillingPaymentAttemptResponse::class, decoder: 'json', operationId: 'getBillingStatementPaymentAttempts', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, PaginatedBillingPaymentAttemptResponse::class));
     }
 }

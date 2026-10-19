@@ -14,26 +14,11 @@ final readonly class SAMLConnectionObjectEnum implements SdkOpenEnum
 {
     public const SAML_CONNECTION = "saml_connection";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -94,15 +79,9 @@ class SAMLConnectionIdpCertificatesItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "certificate") || $data->certificate === null) {
-            throw new SdkValidationError("certificate", 'required', "Required property 'certificate' is missing or null");
-        }
-        if (!property_exists($data, "issued_at")) {
-            throw new SdkValidationError("issued_at", 'required', "Missing required property 'issued_at'");
-        }
-        if (!property_exists($data, "expires_at")) {
-            throw new SdkValidationError("expires_at", 'required', "Missing required property 'expires_at'");
-        }
+        if (!property_exists($data, "certificate") || $data->certificate === null) { throw new SdkValidationError("certificate", 'required', "Required property 'certificate' is missing or null"); }
+        if (!property_exists($data, "issued_at")) { throw new SdkValidationError("issued_at", 'required', "Missing required property 'issued_at'"); }
+        if (!property_exists($data, "expires_at")) { throw new SdkValidationError("expires_at", 'required', "Missing required property 'expires_at'"); }
         return new self(
             certificate: SdkClient::stringValue($data->certificate),
             issuedAt: ($data->issued_at === null ? null : SdkClient::intValue($data->issued_at)),

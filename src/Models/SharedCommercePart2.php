@@ -75,18 +75,10 @@ class CommerceMoneyResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "amount") || $data->amount === null) {
-            throw new SdkValidationError("amount", 'required', "Required property 'amount' is missing or null");
-        }
-        if (!property_exists($data, "amount_formatted") || $data->amount_formatted === null) {
-            throw new SdkValidationError("amount_formatted", 'required', "Required property 'amount_formatted' is missing or null");
-        }
-        if (!property_exists($data, "currency") || $data->currency === null) {
-            throw new SdkValidationError("currency", 'required', "Required property 'currency' is missing or null");
-        }
-        if (!property_exists($data, "currency_symbol") || $data->currency_symbol === null) {
-            throw new SdkValidationError("currency_symbol", 'required', "Required property 'currency_symbol' is missing or null");
-        }
+        if (!property_exists($data, "amount") || $data->amount === null) { throw new SdkValidationError("amount", 'required', "Required property 'amount' is missing or null"); }
+        if (!property_exists($data, "amount_formatted") || $data->amount_formatted === null) { throw new SdkValidationError("amount_formatted", 'required', "Required property 'amount_formatted' is missing or null"); }
+        if (!property_exists($data, "currency") || $data->currency === null) { throw new SdkValidationError("currency", 'required', "Required property 'currency' is missing or null"); }
+        if (!property_exists($data, "currency_symbol") || $data->currency_symbol === null) { throw new SdkValidationError("currency_symbol", 'required', "Required property 'currency_symbol' is missing or null"); }
         return new self(
             amount: SdkClient::intValue($data->amount),
             amountFormatted: SdkClient::stringValue($data->amount_formatted),
@@ -144,12 +136,8 @@ class CommercePayerCreditResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "remaining_balance") || $data->remaining_balance === null) {
-            throw new SdkValidationError("remaining_balance", 'required', "Required property 'remaining_balance' is missing or null");
-        }
-        if (!property_exists($data, "applied_amount") || $data->applied_amount === null) {
-            throw new SdkValidationError("applied_amount", 'required', "Required property 'applied_amount' is missing or null");
-        }
+        if (!property_exists($data, "remaining_balance") || $data->remaining_balance === null) { throw new SdkValidationError("remaining_balance", 'required', "Required property 'remaining_balance' is missing or null"); }
+        if (!property_exists($data, "applied_amount") || $data->applied_amount === null) { throw new SdkValidationError("applied_amount", 'required', "Required property 'applied_amount' is missing or null"); }
         return new self(
             remainingBalance: SdkClient::hydrateClass($data->remaining_balance, CommerceMoneyResponse::class),
             appliedAmount: SdkClient::hydrateClass($data->applied_amount, CommerceMoneyResponse::class),
@@ -164,24 +152,9 @@ final readonly class CommercePayerResponseObjectEnum implements SdkOpenEnum
 {
     public const COMMERCE_PAYER = "commerce_payer";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

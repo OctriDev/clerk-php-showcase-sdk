@@ -15,26 +15,11 @@ final readonly class CommercePriceTransitionDetailsEffectiveModeEnum implements 
     public const IMMEDIATE = "immediate";
     public const END_OF_PERIOD = "end_of_period";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -46,26 +31,11 @@ final readonly class CommercePriceTransitionDetailsPreviousSubscriptionItemStatu
     public const ENDED = "ended";
     public const ABANDONED = "abandoned";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -190,27 +160,13 @@ class CommercePriceTransitionDetails implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "previous_plan") || $data->previous_plan === null) {
-            throw new SdkValidationError("previous_plan", 'required', "Required property 'previous_plan' is missing or null");
-        }
-        if (!property_exists($data, "previous_price") || $data->previous_price === null) {
-            throw new SdkValidationError("previous_price", 'required', "Required property 'previous_price' is missing or null");
-        }
-        if (!property_exists($data, "effective_at") || $data->effective_at === null) {
-            throw new SdkValidationError("effective_at", 'required', "Required property 'effective_at' is missing or null");
-        }
-        if (!property_exists($data, "effective_mode") || $data->effective_mode === null) {
-            throw new SdkValidationError("effective_mode", 'required', "Required property 'effective_mode' is missing or null");
-        }
-        if (!property_exists($data, "charged_immediately") || $data->charged_immediately === null) {
-            throw new SdkValidationError("charged_immediately", 'required', "Required property 'charged_immediately' is missing or null");
-        }
-        if (!property_exists($data, "previous_subscription_item_status") || $data->previous_subscription_item_status === null) {
-            throw new SdkValidationError("previous_subscription_item_status", 'required', "Required property 'previous_subscription_item_status' is missing or null");
-        }
-        if (!property_exists($data, "previous_subscription_item_id") || $data->previous_subscription_item_id === null) {
-            throw new SdkValidationError("previous_subscription_item_id", 'required', "Required property 'previous_subscription_item_id' is missing or null");
-        }
+        if (!property_exists($data, "previous_plan") || $data->previous_plan === null) { throw new SdkValidationError("previous_plan", 'required', "Required property 'previous_plan' is missing or null"); }
+        if (!property_exists($data, "previous_price") || $data->previous_price === null) { throw new SdkValidationError("previous_price", 'required', "Required property 'previous_price' is missing or null"); }
+        if (!property_exists($data, "effective_at") || $data->effective_at === null) { throw new SdkValidationError("effective_at", 'required', "Required property 'effective_at' is missing or null"); }
+        if (!property_exists($data, "effective_mode") || $data->effective_mode === null) { throw new SdkValidationError("effective_mode", 'required', "Required property 'effective_mode' is missing or null"); }
+        if (!property_exists($data, "charged_immediately") || $data->charged_immediately === null) { throw new SdkValidationError("charged_immediately", 'required', "Required property 'charged_immediately' is missing or null"); }
+        if (!property_exists($data, "previous_subscription_item_status") || $data->previous_subscription_item_status === null) { throw new SdkValidationError("previous_subscription_item_status", 'required', "Required property 'previous_subscription_item_status' is missing or null"); }
+        if (!property_exists($data, "previous_subscription_item_id") || $data->previous_subscription_item_id === null) { throw new SdkValidationError("previous_subscription_item_id", 'required', "Required property 'previous_subscription_item_id' is missing or null"); }
         return new self(
             previousPlan: SdkClient::hydrateClass($data->previous_plan, CommercePlan2::class),
             previousPrice: SdkClient::hydrateClass($data->previous_price, BillingPriceResponse::class),
@@ -232,26 +188,11 @@ final readonly class CommercePriceTransitionResponseObjectEnum implements SdkOpe
 {
     public const COMMERCE_PRICE_TRANSITION = "commerce_price_transition";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -312,15 +253,9 @@ class CommercePriceTransitionResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "subscription_item") || $data->subscription_item === null) {
-            throw new SdkValidationError("subscription_item", 'required', "Required property 'subscription_item' is missing or null");
-        }
-        if (!property_exists($data, "transition") || $data->transition === null) {
-            throw new SdkValidationError("transition", 'required', "Required property 'transition' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "subscription_item") || $data->subscription_item === null) { throw new SdkValidationError("subscription_item", 'required', "Required property 'subscription_item' is missing or null"); }
+        if (!property_exists($data, "transition") || $data->transition === null) { throw new SdkValidationError("transition", 'required', "Required property 'transition' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, CommercePriceTransitionResponseObjectEnum::class),
             subscriptionItem: SdkClient::hydrateClass($data->subscription_item, CommerceSubscriptionItem2::class),
@@ -336,26 +271,11 @@ final readonly class CommerceSubscriptionItem2ObjectEnum implements SdkOpenEnum
 {
     public const COMMERCE_SUBSCRIPTION_ITEM = "commerce_subscription_item";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -370,26 +290,11 @@ final readonly class CommerceSubscriptionItem2StatusEnum implements SdkOpenEnum
     public const INCOMPLETE = "incomplete";
     public const ABANDONED = "abandoned";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -400,24 +305,9 @@ final readonly class CommerceSubscriptionItem2PlanPeriodEnum implements SdkOpenE
     public const MONTH = "month";
     public const ANNUAL = "annual";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

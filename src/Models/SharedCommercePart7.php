@@ -67,12 +67,8 @@ class CommercePlanUnitPriceTier implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "starts_at_block") || $data->starts_at_block === null) {
-            throw new SdkValidationError("starts_at_block", 'required', "Required property 'starts_at_block' is missing or null");
-        }
-        if (!property_exists($data, "fee_per_block") || $data->fee_per_block === null) {
-            throw new SdkValidationError("fee_per_block", 'required', "Required property 'fee_per_block' is missing or null");
-        }
+        if (!property_exists($data, "starts_at_block") || $data->starts_at_block === null) { throw new SdkValidationError("starts_at_block", 'required', "Required property 'starts_at_block' is missing or null"); }
+        if (!property_exists($data, "fee_per_block") || $data->fee_per_block === null) { throw new SdkValidationError("fee_per_block", 'required', "Required property 'fee_per_block' is missing or null"); }
         return new self(
             startsAtBlock: SdkClient::intValue($data->starts_at_block),
             feePerBlock: SdkClient::hydrateClass($data->fee_per_block, CommerceMoneyResponse::class),
@@ -149,18 +145,10 @@ class CommerceProrationCreditDetailResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "amount") || $data->amount === null) {
-            throw new SdkValidationError("amount", 'required', "Required property 'amount' is missing or null");
-        }
-        if (!property_exists($data, "cycle_days_remaining") || $data->cycle_days_remaining === null) {
-            throw new SdkValidationError("cycle_days_remaining", 'required', "Required property 'cycle_days_remaining' is missing or null");
-        }
-        if (!property_exists($data, "cycle_days_total") || $data->cycle_days_total === null) {
-            throw new SdkValidationError("cycle_days_total", 'required', "Required property 'cycle_days_total' is missing or null");
-        }
-        if (!property_exists($data, "cycle_remaining_percent") || $data->cycle_remaining_percent === null) {
-            throw new SdkValidationError("cycle_remaining_percent", 'required', "Required property 'cycle_remaining_percent' is missing or null");
-        }
+        if (!property_exists($data, "amount") || $data->amount === null) { throw new SdkValidationError("amount", 'required', "Required property 'amount' is missing or null"); }
+        if (!property_exists($data, "cycle_days_remaining") || $data->cycle_days_remaining === null) { throw new SdkValidationError("cycle_days_remaining", 'required', "Required property 'cycle_days_remaining' is missing or null"); }
+        if (!property_exists($data, "cycle_days_total") || $data->cycle_days_total === null) { throw new SdkValidationError("cycle_days_total", 'required', "Required property 'cycle_days_total' is missing or null"); }
+        if (!property_exists($data, "cycle_remaining_percent") || $data->cycle_remaining_percent === null) { throw new SdkValidationError("cycle_remaining_percent", 'required', "Required property 'cycle_remaining_percent' is missing or null"); }
         return new self(
             amount: SdkClient::hydrateClass($data->amount, CommerceMoneyResponse::class),
             cycleDaysRemaining: SdkClient::intValue($data->cycle_days_remaining),
@@ -238,18 +226,10 @@ class CommerceProrationDiscountResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "amount") || $data->amount === null) {
-            throw new SdkValidationError("amount", 'required', "Required property 'amount' is missing or null");
-        }
-        if (!property_exists($data, "cycle_days_passed") || $data->cycle_days_passed === null) {
-            throw new SdkValidationError("cycle_days_passed", 'required', "Required property 'cycle_days_passed' is missing or null");
-        }
-        if (!property_exists($data, "cycle_days_total") || $data->cycle_days_total === null) {
-            throw new SdkValidationError("cycle_days_total", 'required', "Required property 'cycle_days_total' is missing or null");
-        }
-        if (!property_exists($data, "cycle_passed_percent") || $data->cycle_passed_percent === null) {
-            throw new SdkValidationError("cycle_passed_percent", 'required', "Required property 'cycle_passed_percent' is missing or null");
-        }
+        if (!property_exists($data, "amount") || $data->amount === null) { throw new SdkValidationError("amount", 'required', "Required property 'amount' is missing or null"); }
+        if (!property_exists($data, "cycle_days_passed") || $data->cycle_days_passed === null) { throw new SdkValidationError("cycle_days_passed", 'required', "Required property 'cycle_days_passed' is missing or null"); }
+        if (!property_exists($data, "cycle_days_total") || $data->cycle_days_total === null) { throw new SdkValidationError("cycle_days_total", 'required', "Required property 'cycle_days_total' is missing or null"); }
+        if (!property_exists($data, "cycle_passed_percent") || $data->cycle_passed_percent === null) { throw new SdkValidationError("cycle_passed_percent", 'required', "Required property 'cycle_passed_percent' is missing or null"); }
         return new self(
             amount: SdkClient::hydrateClass($data->amount, CommerceMoneyResponse::class),
             cycleDaysPassed: SdkClient::intValue($data->cycle_days_passed),
@@ -266,26 +246,11 @@ final readonly class CommerceSubscriptionObjectEnum implements SdkOpenEnum
 {
     public const COMMERCE_SUBSCRIPTION = "commerce_subscription";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -300,24 +265,9 @@ final readonly class CommerceSubscriptionStatusEnum implements SdkOpenEnum
     public const ABANDONED = "abandoned";
     public const INCOMPLETE = "incomplete";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

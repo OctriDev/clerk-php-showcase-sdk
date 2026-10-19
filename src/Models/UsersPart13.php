@@ -14,26 +14,11 @@ final readonly class Web3WalletObjectEnum implements SdkOpenEnum
 {
     public const WEB3_WALLET = "web3_wallet";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -126,21 +111,11 @@ class Web3Wallet implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "web3_wallet") || $data->web3_wallet === null) {
-            throw new SdkValidationError("web3_wallet", 'required', "Required property 'web3_wallet' is missing or null");
-        }
-        if (!property_exists($data, "verification")) {
-            throw new SdkValidationError("verification", 'required', "Missing required property 'verification'");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
-            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "web3_wallet") || $data->web3_wallet === null) { throw new SdkValidationError("web3_wallet", 'required', "Required property 'web3_wallet' is missing or null"); }
+        if (!property_exists($data, "verification")) { throw new SdkValidationError("verification", 'required', "Missing required property 'verification'"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, Web3WalletObjectEnum::class),
             web3Wallet: SdkClient::stringValue($data->web3_wallet),

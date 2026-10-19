@@ -14,26 +14,11 @@ final readonly class ListInstanceOrganizationInvitationsStatus implements SdkOpe
     public const REVOKED = "revoked";
     public const EXPIRED = "expired";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class ListOrganizationInvitationsStatus implements SdkOpenEnum
@@ -43,26 +28,11 @@ final readonly class ListOrganizationInvitationsStatus implements SdkOpenEnum
     public const REVOKED = "revoked";
     public const EXPIRED = "expired";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class CreateOrganizationInvitationBulkBodyItem implements \JsonSerializable
@@ -182,12 +152,8 @@ class CreateOrganizationInvitationBulkBodyItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "email_address") || $data->email_address === null) {
-            throw new SdkValidationError("email_address", 'required', "Required property 'email_address' is missing or null");
-        }
-        if (!property_exists($data, "role") || $data->role === null) {
-            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
-        }
+        if (!property_exists($data, "email_address") || $data->email_address === null) { throw new SdkValidationError("email_address", 'required', "Required property 'email_address' is missing or null"); }
+        if (!property_exists($data, "role") || $data->role === null) { throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null"); }
         return new self(
             emailAddress: SdkClient::stringValue($data->email_address),
             role: SdkClient::stringValue($data->role),
@@ -226,7 +192,7 @@ class OrganizationInvitationsApi
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/organization_invitations", $clientConfig, query: ['order_by' => new SdkQueryValue($orderBy, "form", true), 'status' => new SdkQueryValue($status, "form", true), 'query' => new SdkQueryValue($query, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: OrganizationInvitationsWithPublicOrganizationData::class, decoder: 'json', operationId: 'listInstanceOrganizationInvitations', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization_invitations", $clientConfig, query: ['order_by' => new SdkQueryValue($orderBy, "form", true), 'status' => new SdkQueryValue($status, "form", true), 'query' => new SdkQueryValue($query, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: OrganizationInvitationsWithPublicOrganizationData::class, decoder: 'json', operationId: 'listInstanceOrganizationInvitations', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationInvitationsWithPublicOrganizationData::class));
     }
 
@@ -254,7 +220,7 @@ class OrganizationInvitationsApi
             Validation::validateRange('expires_in_days', $expiresInDays, min: 1, max: 365);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/organizations/" . SdkClient::encodePathSegment($organizationId) . "/invitations", $clientConfig, body: ['email_address' => $emailAddress, 'role' => $role, 'inviter_user_id' => $inviterUserId, 'public_metadata' => $publicMetadata, 'private_metadata' => $privateMetadata, 'redirect_url' => $redirectUrl, 'expires_in_days' => $expiresInDays, 'notify' => $notify], returnType: OrganizationInvitation::class, decoder: 'json', operationId: 'createOrganizationInvitation', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organizations/" . SdkClient::encodePathSegment($organizationId) . "/invitations", $clientConfig, body: ['email_address' => $emailAddress, 'role' => $role, 'inviter_user_id' => $inviterUserId, 'public_metadata' => $publicMetadata, 'private_metadata' => $privateMetadata, 'redirect_url' => $redirectUrl, 'expires_in_days' => $expiresInDays, 'notify' => $notify], returnType: OrganizationInvitation::class, decoder: 'json', operationId: 'createOrganizationInvitation', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationInvitation::class));
     }
 
@@ -283,7 +249,7 @@ class OrganizationInvitationsApi
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/organizations/" . SdkClient::encodePathSegment($organizationId) . "/invitations", $clientConfig, query: ['status' => new SdkQueryValue($status, "form", true), 'email_address' => new SdkQueryValue($emailAddress, "form", true), 'order_by' => new SdkQueryValue($orderBy, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: OrganizationInvitations::class, decoder: 'json', operationId: 'listOrganizationInvitations', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organizations/" . SdkClient::encodePathSegment($organizationId) . "/invitations", $clientConfig, query: ['status' => new SdkQueryValue($status, "form", true), 'email_address' => new SdkQueryValue($emailAddress, "form", true), 'order_by' => new SdkQueryValue($orderBy, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: OrganizationInvitations::class, decoder: 'json', operationId: 'listOrganizationInvitations', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationInvitations::class));
     }
 
@@ -302,7 +268,7 @@ class OrganizationInvitationsApi
 
         Validation::validateItems('body', $body, min: 1, max: 10);
 
-        $sdkResponse = SdkClient::request('POST', "/organizations/" . SdkClient::encodePathSegment($organizationId) . "/invitations/bulk", $clientConfig, body: $body, returnType: OrganizationInvitations::class, decoder: 'json', operationId: 'createOrganizationInvitationBulk', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organizations/" . SdkClient::encodePathSegment($organizationId) . "/invitations/bulk", $clientConfig, body: $body, returnType: OrganizationInvitations::class, decoder: 'json', operationId: 'createOrganizationInvitationBulk', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationInvitations::class));
     }
 
@@ -330,7 +296,7 @@ class OrganizationInvitationsApi
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/organizations/" . SdkClient::encodePathSegment($organizationId) . "/invitations/pending", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: OrganizationInvitations::class, decoder: 'json', operationId: 'listPendingOrganizationInvitations', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organizations/" . SdkClient::encodePathSegment($organizationId) . "/invitations/pending", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: OrganizationInvitations::class, decoder: 'json', operationId: 'listPendingOrganizationInvitations', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationInvitations::class));
     }
 
@@ -347,7 +313,7 @@ class OrganizationInvitationsApi
     public static function getOrganizationInvitation(ClientConfig $clientConfig, string $organizationId, string $invitationId, ?RequestOptions $requestOptions = null): OrganizationInvitation
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organizations/" . SdkClient::encodePathSegment($organizationId) . "/invitations/" . SdkClient::encodePathSegment($invitationId) . "", $clientConfig, returnType: OrganizationInvitation::class, decoder: 'json', operationId: 'getOrganizationInvitation', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organizations/" . SdkClient::encodePathSegment($organizationId) . "/invitations/" . SdkClient::encodePathSegment($invitationId) . "", $clientConfig, returnType: OrganizationInvitation::class, decoder: 'json', operationId: 'getOrganizationInvitation', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationInvitation::class));
     }
 
@@ -365,7 +331,7 @@ class OrganizationInvitationsApi
     public static function revokeOrganizationInvitation(ClientConfig $clientConfig, string $organizationId, string $invitationId, string|null|SdkNotGiven $requestingUserId = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): OrganizationInvitation
     {
 
-        $sdkResponse = SdkClient::request('POST', "/organizations/" . SdkClient::encodePathSegment($organizationId) . "/invitations/" . SdkClient::encodePathSegment($invitationId) . "/revoke", $clientConfig, body: ['requesting_user_id' => $requestingUserId], returnType: OrganizationInvitation::class, decoder: 'json', operationId: 'revokeOrganizationInvitation', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organizations/" . SdkClient::encodePathSegment($organizationId) . "/invitations/" . SdkClient::encodePathSegment($invitationId) . "/revoke", $clientConfig, body: ['requesting_user_id' => $requestingUserId], returnType: OrganizationInvitation::class, decoder: 'json', operationId: 'revokeOrganizationInvitation', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationInvitation::class));
     }
 }

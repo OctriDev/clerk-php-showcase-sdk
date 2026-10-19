@@ -21,7 +21,7 @@ class ProxyChecks
     public static function verifyDomainProxy(ClientConfig $clientConfig, string|SdkNotGiven $domainId = SdkNotGiven::Value, string|SdkNotGiven $proxyUrl = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ProxyCheck
     {
 
-        $sdkResponse = SdkClient::request('POST', "/proxy_checks", $clientConfig, body: ['domain_id' => $domainId, 'proxy_url' => $proxyUrl], returnType: ProxyCheck::class, decoder: 'json', operationId: 'verifyDomainProxy', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/proxy_checks", $clientConfig, body: ['domain_id' => $domainId, 'proxy_url' => $proxyUrl], returnType: ProxyCheck::class, decoder: 'json', operationId: 'verifyDomainProxy', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ProxyCheck::class));
     }
 }

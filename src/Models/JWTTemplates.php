@@ -14,26 +14,11 @@ final readonly class JWTTemplateObjectEnum implements SdkOpenEnum
 {
     public const JWT_TEMPLATE = "jwt_template";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -164,36 +149,16 @@ class JWTTemplate implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "claims") || $data->claims === null) {
-            throw new SdkValidationError("claims", 'required', "Required property 'claims' is missing or null");
-        }
-        if (!property_exists($data, "lifetime") || $data->lifetime === null) {
-            throw new SdkValidationError("lifetime", 'required', "Required property 'lifetime' is missing or null");
-        }
-        if (!property_exists($data, "allowed_clock_skew") || $data->allowed_clock_skew === null) {
-            throw new SdkValidationError("allowed_clock_skew", 'required', "Required property 'allowed_clock_skew' is missing or null");
-        }
-        if (!property_exists($data, "custom_signing_key") || $data->custom_signing_key === null) {
-            throw new SdkValidationError("custom_signing_key", 'required', "Required property 'custom_signing_key' is missing or null");
-        }
-        if (!property_exists($data, "signing_algorithm") || $data->signing_algorithm === null) {
-            throw new SdkValidationError("signing_algorithm", 'required', "Required property 'signing_algorithm' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
-            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "claims") || $data->claims === null) { throw new SdkValidationError("claims", 'required', "Required property 'claims' is missing or null"); }
+        if (!property_exists($data, "lifetime") || $data->lifetime === null) { throw new SdkValidationError("lifetime", 'required', "Required property 'lifetime' is missing or null"); }
+        if (!property_exists($data, "allowed_clock_skew") || $data->allowed_clock_skew === null) { throw new SdkValidationError("allowed_clock_skew", 'required', "Required property 'allowed_clock_skew' is missing or null"); }
+        if (!property_exists($data, "custom_signing_key") || $data->custom_signing_key === null) { throw new SdkValidationError("custom_signing_key", 'required', "Required property 'custom_signing_key' is missing or null"); }
+        if (!property_exists($data, "signing_algorithm") || $data->signing_algorithm === null) { throw new SdkValidationError("signing_algorithm", 'required', "Required property 'signing_algorithm' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, JWTTemplateObjectEnum::class),
             id: SdkClient::stringValue($data->id),

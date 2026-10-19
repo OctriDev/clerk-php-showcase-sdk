@@ -31,7 +31,7 @@ class OrganizationPermissions
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/organization_permissions", $clientConfig, query: ['query' => new SdkQueryValue($query, "form", true), 'order_by' => new SdkQueryValue($orderBy, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: Permissions::class, decoder: 'json', operationId: 'listOrganizationPermissions', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization_permissions", $clientConfig, query: ['query' => new SdkQueryValue($query, "form", true), 'order_by' => new SdkQueryValue($orderBy, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: Permissions::class, decoder: 'json', operationId: 'listOrganizationPermissions', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Permissions::class));
     }
 
@@ -49,7 +49,7 @@ class OrganizationPermissions
     public static function createOrganizationPermission(ClientConfig $clientConfig, string $name, string $key, string|SdkNotGiven $description = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Permission
     {
 
-        $sdkResponse = SdkClient::request('POST', "/organization_permissions", $clientConfig, body: ['name' => $name, 'key' => $key, 'description' => $description], returnType: Permission::class, decoder: 'json', operationId: 'createOrganizationPermission', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization_permissions", $clientConfig, body: ['name' => $name, 'key' => $key, 'description' => $description], returnType: Permission::class, decoder: 'json', operationId: 'createOrganizationPermission', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Permission::class));
     }
 
@@ -65,7 +65,7 @@ class OrganizationPermissions
     public static function getOrganizationPermission(ClientConfig $clientConfig, string $permissionId, ?RequestOptions $requestOptions = null): Permission
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization_permissions/" . SdkClient::encodePathSegment($permissionId) . "", $clientConfig, returnType: Permission::class, decoder: 'json', operationId: 'getOrganizationPermission', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization_permissions/" . SdkClient::encodePathSegment($permissionId) . "", $clientConfig, returnType: Permission::class, decoder: 'json', operationId: 'getOrganizationPermission', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Permission::class));
     }
 
@@ -84,7 +84,7 @@ class OrganizationPermissions
     public static function updateOrganizationPermission(ClientConfig $clientConfig, string $permissionId, string|SdkNotGiven $name = SdkNotGiven::Value, string|SdkNotGiven $key = SdkNotGiven::Value, string|SdkNotGiven $description = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Permission
     {
 
-        $sdkResponse = SdkClient::request('PATCH', "/organization_permissions/" . SdkClient::encodePathSegment($permissionId) . "", $clientConfig, body: ['name' => $name, 'key' => $key, 'description' => $description], returnType: Permission::class, decoder: 'json', operationId: 'updateOrganizationPermission', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/organization_permissions/" . SdkClient::encodePathSegment($permissionId) . "", $clientConfig, body: ['name' => $name, 'key' => $key, 'description' => $description], returnType: Permission::class, decoder: 'json', operationId: 'updateOrganizationPermission', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Permission::class));
     }
 
@@ -100,7 +100,7 @@ class OrganizationPermissions
     public static function deleteOrganizationPermission(ClientConfig $clientConfig, string $permissionId, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/organization_permissions/" . SdkClient::encodePathSegment($permissionId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteOrganizationPermission', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/organization_permissions/" . SdkClient::encodePathSegment($permissionId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteOrganizationPermission', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 }
