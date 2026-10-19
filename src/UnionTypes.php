@@ -20,9 +20,7 @@ interface Web3WalletVerification {}
 /** A tagged union member whose tag names no branch this SDK knows, kept as received. */
 abstract class SdkUnknownMember implements \JsonSerializable
 {
-    final public function __construct(public readonly mixed $raw)
-    {
-    }
+    final public function __construct(public readonly mixed $raw) {}
 
     public function jsonSerialize(): mixed
     {
@@ -31,36 +29,22 @@ abstract class SdkUnknownMember implements \JsonSerializable
 }
 
 /** A `SessionRefresh` whose tag names no branch this SDK knows, kept as received. */
-final class UnknownSessionRefresh extends SdkUnknownMember implements SessionRefresh
-{
-}
+final class UnknownSessionRefresh extends SdkUnknownMember implements SessionRefresh {}
 
 /** A `EmailAddressVerification` whose tag names no branch this SDK knows, kept as received. */
-final class UnknownEmailAddressVerification extends SdkUnknownMember implements EmailAddressVerification
-{
-}
+final class UnknownEmailAddressVerification extends SdkUnknownMember implements EmailAddressVerification {}
 
 /** A `PhoneNumberVerification` whose tag names no branch this SDK knows, kept as received. */
-final class UnknownPhoneNumberVerification extends SdkUnknownMember implements PhoneNumberVerification
-{
-}
+final class UnknownPhoneNumberVerification extends SdkUnknownMember implements PhoneNumberVerification {}
 
 /** A `Web3WalletVerification` whose tag names no branch this SDK knows, kept as received. */
-final class UnknownWeb3WalletVerification extends SdkUnknownMember implements Web3WalletVerification
-{
-}
+final class UnknownWeb3WalletVerification extends SdkUnknownMember implements Web3WalletVerification {}
 
 /** A `ExternalAccountWithVerificationVerification` whose tag names no branch this SDK knows, kept as received. */
-final class UnknownExternalAccountWithVerificationVerification extends SdkUnknownMember implements ExternalAccountWithVerificationVerification
-{
-}
+final class UnknownExternalAccountWithVerificationVerification extends SdkUnknownMember implements ExternalAccountWithVerificationVerification {}
 
 /** A `SAMLAccountVerification` whose tag names no branch this SDK knows, kept as received. */
-final class UnknownSAMLAccountVerification extends SdkUnknownMember implements SAMLAccountVerification
-{
-}
+final class UnknownSAMLAccountVerification extends SdkUnknownMember implements SAMLAccountVerification {}
 
 /** A `EnterpriseAccountVerification` whose tag names no branch this SDK knows, kept as received. */
-final class UnknownEnterpriseAccountVerification extends SdkUnknownMember implements EnterpriseAccountVerification
-{
-}
+final class UnknownEnterpriseAccountVerification extends SdkUnknownMember implements EnterpriseAccountVerification {}

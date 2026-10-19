@@ -63,8 +63,12 @@ class Cookies implements SessionRefresh, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "cookies") || $data->cookies === null) { throw new SdkValidationError("cookies", 'required', "Required property 'cookies' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "cookies") || $data->cookies === null) {
+            throw new SdkValidationError("cookies", 'required', "Required property 'cookies' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateEnum($data->object, CookiesObjectEnum::class),
             cookies: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->cookies))),
@@ -79,11 +83,26 @@ final readonly class ReverificationObjectEnum implements SdkOpenEnum
 {
     public const REVERIFICATION = "reverification";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -95,11 +114,26 @@ final readonly class ReverificationLevelEnum implements SdkOpenEnum
     public const SECOND_FACTOR = "second_factor";
     public const MULTI_FACTOR = "multi_factor";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -111,11 +145,26 @@ final readonly class ReverificationStatusEnum implements SdkOpenEnum
     public const NEEDS_SECOND_FACTOR = "needs_second_factor";
     public const COMPLETE = "complete";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -246,16 +295,36 @@ class Reverification implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "session_id") || $data->session_id === null) { throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null"); }
-        if (!property_exists($data, "user_id") || $data->user_id === null) { throw new SdkValidationError("user_id", 'required', "Required property 'user_id' is missing or null"); }
-        if (!property_exists($data, "level") || $data->level === null) { throw new SdkValidationError("level", 'required', "Required property 'level' is missing or null"); }
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "first_factor_verified_at")) { throw new SdkValidationError("first_factor_verified_at", 'required', "Missing required property 'first_factor_verified_at'"); }
-        if (!property_exists($data, "second_factor_verified_at")) { throw new SdkValidationError("second_factor_verified_at", 'required', "Missing required property 'second_factor_verified_at'"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "session_id") || $data->session_id === null) {
+            throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null");
+        }
+        if (!property_exists($data, "user_id") || $data->user_id === null) {
+            throw new SdkValidationError("user_id", 'required', "Required property 'user_id' is missing or null");
+        }
+        if (!property_exists($data, "level") || $data->level === null) {
+            throw new SdkValidationError("level", 'required', "Required property 'level' is missing or null");
+        }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "first_factor_verified_at")) {
+            throw new SdkValidationError("first_factor_verified_at", 'required', "Missing required property 'first_factor_verified_at'");
+        }
+        if (!property_exists($data, "second_factor_verified_at")) {
+            throw new SdkValidationError("second_factor_verified_at", 'required', "Missing required property 'second_factor_verified_at'");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
+            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, ReverificationObjectEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -327,8 +396,12 @@ class Token implements SessionRefresh, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "jwt") || $data->jwt === null) { throw new SdkValidationError("jwt", 'required', "Required property 'jwt' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "jwt") || $data->jwt === null) {
+            throw new SdkValidationError("jwt", 'required', "Required property 'jwt' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateEnum($data->object, TokenObjectEnum::class),
             jwt: SdkClient::stringValue($data->jwt),

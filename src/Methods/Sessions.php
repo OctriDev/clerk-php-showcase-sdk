@@ -17,11 +17,26 @@ final readonly class ListSessionsStatus implements SdkOpenEnum
     public const REPLACED = "replaced";
     public const REVOKED = "revoked";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 final readonly class RefreshSessionFormat implements SdkOpenEnum
@@ -29,22 +44,52 @@ final readonly class RefreshSessionFormat implements SdkOpenEnum
     public const TOKEN = "token";
     public const COOKIE = "cookie";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 final readonly class CreateSessionTokenResponseObjectEnum implements SdkOpenEnum
 {
     public const TOKEN = "token";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 class CreateSessionTokenResponse implements \JsonSerializable
@@ -99,11 +144,26 @@ final readonly class CreateSessionTokenFromTemplateResponseObjectEnum implements
 {
     public const TOKEN = "token";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 class CreateSessionTokenFromTemplateResponse implements \JsonSerializable
@@ -180,7 +240,7 @@ class Sessions
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/sessions", $clientConfig, query: ['client_id' => new SdkQueryValue($clientId, "form", true), 'user_id' => new SdkQueryValue($userId, "form", true), 'status' => new SdkQueryValue($status, "form", true), 'paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], decoder: 'json', operationId: 'listSessions', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/sessions", $clientConfig, query: ['client_id' => new SdkQueryValue($clientId, "form", true), 'user_id' => new SdkQueryValue($userId, "form", true), 'status' => new SdkQueryValue($status, "form", true), 'paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], decoder: 'json', operationId: 'listSessions', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, Session::class), SdkClient::arrayValue($sdkResponse->data))));
     }
 
@@ -197,7 +257,7 @@ class Sessions
     public static function createSession(ClientConfig $clientConfig, string $userId, string|SdkNotGiven $activeOrganizationId = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Session
     {
 
-        $sdkResponse = SdkClient::request('POST', "/sessions", $clientConfig, body: ['user_id' => $userId, 'active_organization_id' => $activeOrganizationId], returnType: Session::class, decoder: 'json', operationId: 'createSession', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/sessions", $clientConfig, body: ['user_id' => $userId, 'active_organization_id' => $activeOrganizationId], returnType: Session::class, decoder: 'json', operationId: 'createSession', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Session::class));
     }
 
@@ -213,7 +273,7 @@ class Sessions
     public static function getSession(ClientConfig $clientConfig, string $sessionId, ?RequestOptions $requestOptions = null): Session
     {
 
-        $sdkResponse = SdkClient::request('GET', "/sessions/" . SdkClient::encodePathSegment($sessionId) . "", $clientConfig, returnType: Session::class, decoder: 'json', operationId: 'getSession', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/sessions/" . SdkClient::encodePathSegment($sessionId) . "", $clientConfig, returnType: Session::class, decoder: 'json', operationId: 'getSession', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Session::class));
     }
 
@@ -235,7 +295,7 @@ class Sessions
     public static function refreshSession(ClientConfig $clientConfig, string $sessionId, string $expiredToken, string $refreshToken, string $requestOrigin, array|null|SdkNotGiven $requestHeaders = SdkNotGiven::Value, RefreshSessionFormat|null|SdkNotGiven $format = SdkNotGiven::Value, string|null|SdkNotGiven $requestOriginatingIp = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): SessionRefresh
     {
 
-        $sdkResponse = SdkClient::request('POST', "/sessions/" . SdkClient::encodePathSegment($sessionId) . "/refresh", $clientConfig, body: ['expired_token' => $expiredToken, 'refresh_token' => $refreshToken, 'request_origin' => $requestOrigin, 'request_headers' => $requestHeaders, 'format' => $format, 'request_originating_ip' => $requestOriginatingIp], decoder: 'json', operationId: 'refreshSession', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/sessions/" . SdkClient::encodePathSegment($sessionId) . "/refresh", $clientConfig, body: ['expired_token' => $expiredToken, 'refresh_token' => $refreshToken, 'request_origin' => $requestOrigin, 'request_headers' => $requestHeaders, 'format' => $format, 'request_originating_ip' => $requestOriginatingIp], decoder: 'json', operationId: 'refreshSession', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::hydrateUnionAs($sdkResponse->data, SessionRefresh::class, [Token::class, Cookies::class], "object", ["token" => Token::class, "cookies" => Cookies::class], UnknownSessionRefresh::class));
     }
 
@@ -252,7 +312,7 @@ class Sessions
     public static function getReverification(ClientConfig $clientConfig, string $sessionId, string $reverificationId, ?RequestOptions $requestOptions = null): Reverification
     {
 
-        $sdkResponse = SdkClient::request('GET', "/sessions/" . SdkClient::encodePathSegment($sessionId) . "/reverifications/" . SdkClient::encodePathSegment($reverificationId) . "", $clientConfig, returnType: Reverification::class, decoder: 'json', operationId: 'getReverification', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/sessions/" . SdkClient::encodePathSegment($sessionId) . "/reverifications/" . SdkClient::encodePathSegment($reverificationId) . "", $clientConfig, returnType: Reverification::class, decoder: 'json', operationId: 'getReverification', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Reverification::class));
     }
 
@@ -268,7 +328,7 @@ class Sessions
     public static function revokeSession(ClientConfig $clientConfig, string $sessionId, ?RequestOptions $requestOptions = null): Session
     {
 
-        $sdkResponse = SdkClient::request('POST', "/sessions/" . SdkClient::encodePathSegment($sessionId) . "/revoke", $clientConfig, returnType: Session::class, decoder: 'json', operationId: 'revokeSession', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/sessions/" . SdkClient::encodePathSegment($sessionId) . "/revoke", $clientConfig, returnType: Session::class, decoder: 'json', operationId: 'revokeSession', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Session::class));
     }
 
@@ -289,7 +349,7 @@ class Sessions
             Validation::validateRange('expires_in_seconds', $expiresInSeconds, min: 30, max: 315360000);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/sessions/" . SdkClient::encodePathSegment($sessionId) . "/tokens", $clientConfig, body: ['expires_in_seconds' => $expiresInSeconds], returnType: CreateSessionTokenResponse::class, decoder: 'json', operationId: 'createSessionToken', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/sessions/" . SdkClient::encodePathSegment($sessionId) . "/tokens", $clientConfig, body: ['expires_in_seconds' => $expiresInSeconds], returnType: CreateSessionTokenResponse::class, decoder: 'json', operationId: 'createSessionToken', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, CreateSessionTokenResponse::class));
     }
 
@@ -311,7 +371,7 @@ class Sessions
             Validation::validateRange('expires_in_seconds', $expiresInSeconds, min: 30, max: 315360000);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/sessions/" . SdkClient::encodePathSegment($sessionId) . "/tokens/" . SdkClient::encodePathSegment($templateName) . "", $clientConfig, body: ['expires_in_seconds' => $expiresInSeconds], returnType: CreateSessionTokenFromTemplateResponse::class, decoder: 'json', operationId: 'createSessionTokenFromTemplate', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/sessions/" . SdkClient::encodePathSegment($sessionId) . "/tokens/" . SdkClient::encodePathSegment($templateName) . "", $clientConfig, body: ['expires_in_seconds' => $expiresInSeconds], returnType: CreateSessionTokenFromTemplateResponse::class, decoder: 'json', operationId: 'createSessionTokenFromTemplate', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, CreateSessionTokenFromTemplateResponse::class));
     }
 }

@@ -13,11 +13,26 @@ final readonly class ReplaceUserPhoneNumberIdentificationStatus implements SdkOp
     public const RESERVED = "reserved";
     public const UNVERIFIED = "unverified";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 class PhoneNumbers
@@ -37,7 +52,7 @@ class PhoneNumbers
     public static function createPhoneNumber(ClientConfig $clientConfig, string $userId, string $phoneNumber, bool|null|SdkNotGiven $verified = SdkNotGiven::Value, bool|null|SdkNotGiven $primary = SdkNotGiven::Value, bool|null|SdkNotGiven $reservedForSecondFactor = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): PhoneNumber
     {
 
-        $sdkResponse = SdkClient::request('POST', "/phone_numbers", $clientConfig, body: ['user_id' => $userId, 'phone_number' => $phoneNumber, 'verified' => $verified, 'primary' => $primary, 'reserved_for_second_factor' => $reservedForSecondFactor], returnType: PhoneNumber::class, decoder: 'json', operationId: 'createPhoneNumber', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/phone_numbers", $clientConfig, body: ['user_id' => $userId, 'phone_number' => $phoneNumber, 'verified' => $verified, 'primary' => $primary, 'reserved_for_second_factor' => $reservedForSecondFactor], returnType: PhoneNumber::class, decoder: 'json', operationId: 'createPhoneNumber', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, PhoneNumber::class));
     }
 
@@ -53,7 +68,7 @@ class PhoneNumbers
     public static function getPhoneNumber(ClientConfig $clientConfig, string $phoneNumberId, ?RequestOptions $requestOptions = null): PhoneNumber
     {
 
-        $sdkResponse = SdkClient::request('GET', "/phone_numbers/" . SdkClient::encodePathSegment($phoneNumberId) . "", $clientConfig, returnType: PhoneNumber::class, decoder: 'json', operationId: 'getPhoneNumber', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/phone_numbers/" . SdkClient::encodePathSegment($phoneNumberId) . "", $clientConfig, returnType: PhoneNumber::class, decoder: 'json', operationId: 'getPhoneNumber', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, PhoneNumber::class));
     }
 
@@ -69,7 +84,7 @@ class PhoneNumbers
     public static function deletePhoneNumber(ClientConfig $clientConfig, string $phoneNumberId, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/phone_numbers/" . SdkClient::encodePathSegment($phoneNumberId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deletePhoneNumber', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/phone_numbers/" . SdkClient::encodePathSegment($phoneNumberId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deletePhoneNumber', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 
@@ -88,7 +103,7 @@ class PhoneNumbers
     public static function updatePhoneNumber(ClientConfig $clientConfig, string $phoneNumberId, bool|null|SdkNotGiven $verified = SdkNotGiven::Value, bool|null|SdkNotGiven $primary = SdkNotGiven::Value, bool|null|SdkNotGiven $reservedForSecondFactor = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): PhoneNumber
     {
 
-        $sdkResponse = SdkClient::request('PATCH', "/phone_numbers/" . SdkClient::encodePathSegment($phoneNumberId) . "", $clientConfig, body: ['verified' => $verified, 'primary' => $primary, 'reserved_for_second_factor' => $reservedForSecondFactor], returnType: PhoneNumber::class, decoder: 'json', operationId: 'updatePhoneNumber', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/phone_numbers/" . SdkClient::encodePathSegment($phoneNumberId) . "", $clientConfig, body: ['verified' => $verified, 'primary' => $primary, 'reserved_for_second_factor' => $reservedForSecondFactor], returnType: PhoneNumber::class, decoder: 'json', operationId: 'updatePhoneNumber', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, PhoneNumber::class));
     }
 
@@ -104,7 +119,7 @@ class PhoneNumbers
     public static function preparePhoneNumberVerification(ClientConfig $clientConfig, string $phoneNumberId, ?RequestOptions $requestOptions = null): VerificationResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/phone_numbers/" . SdkClient::encodePathSegment($phoneNumberId) . "/prepare_verification", $clientConfig, returnType: VerificationResponse::class, decoder: 'json', operationId: 'preparePhoneNumberVerification', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/phone_numbers/" . SdkClient::encodePathSegment($phoneNumberId) . "/prepare_verification", $clientConfig, returnType: VerificationResponse::class, decoder: 'json', operationId: 'preparePhoneNumberVerification', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VerificationResponse::class));
     }
 
@@ -122,7 +137,7 @@ class PhoneNumbers
     public static function attemptPhoneNumberVerification(ClientConfig $clientConfig, string $phoneNumberId, string $verificationId, string $code, ?RequestOptions $requestOptions = null): VerificationResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/phone_numbers/" . SdkClient::encodePathSegment($phoneNumberId) . "/attempt_verification", $clientConfig, body: ['verification_id' => $verificationId, 'code' => $code], returnType: VerificationResponse::class, decoder: 'json', operationId: 'attemptPhoneNumberVerification', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/phone_numbers/" . SdkClient::encodePathSegment($phoneNumberId) . "/attempt_verification", $clientConfig, body: ['verification_id' => $verificationId, 'code' => $code], returnType: VerificationResponse::class, decoder: 'json', operationId: 'attemptPhoneNumberVerification', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VerificationResponse::class));
     }
 
@@ -140,7 +155,7 @@ class PhoneNumbers
     public static function replaceUserPhoneNumber(ClientConfig $clientConfig, string $userId, string $phoneNumber, ReplaceUserPhoneNumberIdentificationStatus|SdkNotGiven $identificationStatus = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): PhoneNumber
     {
 
-        $sdkResponse = SdkClient::request('PUT', "/users/" . SdkClient::encodePathSegment($userId) . "/phone_number", $clientConfig, body: ['phone_number' => $phoneNumber, 'identification_status' => $identificationStatus], returnType: PhoneNumber::class, decoder: 'json', operationId: 'replaceUserPhoneNumber', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PUT', "/users/" . SdkClient::encodePathSegment($userId) . "/phone_number", $clientConfig, body: ['phone_number' => $phoneNumber, 'identification_status' => $identificationStatus], returnType: PhoneNumber::class, decoder: 'json', operationId: 'replaceUserPhoneNumber', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, PhoneNumber::class));
     }
 }

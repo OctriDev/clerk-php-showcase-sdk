@@ -55,8 +55,12 @@ class BillingDiscountsResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "proration")) { throw new SdkValidationError("proration", 'required', "Missing required property 'proration'"); }
-        if (!property_exists($data, "total") || $data->total === null) { throw new SdkValidationError("total", 'required', "Required property 'total' is missing or null"); }
+        if (!property_exists($data, "proration")) {
+            throw new SdkValidationError("proration", 'required', "Missing required property 'proration'");
+        }
+        if (!property_exists($data, "total") || $data->total === null) {
+            throw new SdkValidationError("total", 'required', "Required property 'total' is missing or null");
+        }
         return new self(
             proration: ($data->proration === null ? null : SdkClient::hydrateClass($data->proration, BillingProrationDiscountDetail::class)),
             total: SdkClient::hydrateClass($data->total, CommerceMoneyResponse::class),
@@ -132,10 +136,18 @@ class BillingProrationDiscountDetail implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "amount") || $data->amount === null) { throw new SdkValidationError("amount", 'required', "Required property 'amount' is missing or null"); }
-        if (!property_exists($data, "cycle_days_passed") || $data->cycle_days_passed === null) { throw new SdkValidationError("cycle_days_passed", 'required', "Required property 'cycle_days_passed' is missing or null"); }
-        if (!property_exists($data, "cycle_days_total") || $data->cycle_days_total === null) { throw new SdkValidationError("cycle_days_total", 'required', "Required property 'cycle_days_total' is missing or null"); }
-        if (!property_exists($data, "cycle_passed_percent") || $data->cycle_passed_percent === null) { throw new SdkValidationError("cycle_passed_percent", 'required', "Required property 'cycle_passed_percent' is missing or null"); }
+        if (!property_exists($data, "amount") || $data->amount === null) {
+            throw new SdkValidationError("amount", 'required', "Required property 'amount' is missing or null");
+        }
+        if (!property_exists($data, "cycle_days_passed") || $data->cycle_days_passed === null) {
+            throw new SdkValidationError("cycle_days_passed", 'required', "Required property 'cycle_days_passed' is missing or null");
+        }
+        if (!property_exists($data, "cycle_days_total") || $data->cycle_days_total === null) {
+            throw new SdkValidationError("cycle_days_total", 'required', "Required property 'cycle_days_total' is missing or null");
+        }
+        if (!property_exists($data, "cycle_passed_percent") || $data->cycle_passed_percent === null) {
+            throw new SdkValidationError("cycle_passed_percent", 'required', "Required property 'cycle_passed_percent' is missing or null");
+        }
         return new self(
             amount: SdkClient::hydrateClass($data->amount, CommerceMoneyResponse::class),
             cycleDaysPassed: SdkClient::intValue($data->cycle_days_passed),

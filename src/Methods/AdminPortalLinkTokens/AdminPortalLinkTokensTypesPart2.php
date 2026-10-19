@@ -138,19 +138,45 @@ class RevokeAdminPortalLinkTokenResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "admin_portal_link_id") || $data->admin_portal_link_id === null) { throw new SdkValidationError("admin_portal_link_id", 'required', "Required property 'admin_portal_link_id' is missing or null"); }
-        if (!property_exists($data, "instance_id") || $data->instance_id === null) { throw new SdkValidationError("instance_id", 'required', "Required property 'instance_id' is missing or null"); }
-        if (!property_exists($data, "organization_id")) { throw new SdkValidationError("organization_id", 'required', "Missing required property 'organization_id'"); }
-        if (!property_exists($data, "it_contact_id")) { throw new SdkValidationError("it_contact_id", 'required', "Missing required property 'it_contact_id'"); }
-        if (!property_exists($data, "scopes")) { throw new SdkValidationError("scopes", 'required', "Missing required property 'scopes'"); }
-        if (!property_exists($data, "revoked") || $data->revoked === null) { throw new SdkValidationError("revoked", 'required', "Required property 'revoked' is missing or null"); }
-        if (!property_exists($data, "revocation_reason")) { throw new SdkValidationError("revocation_reason", 'required', "Missing required property 'revocation_reason'"); }
-        if (!property_exists($data, "expired") || $data->expired === null) { throw new SdkValidationError("expired", 'required', "Required property 'expired' is missing or null"); }
-        if (!property_exists($data, "expiration")) { throw new SdkValidationError("expiration", 'required', "Missing required property 'expiration'"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "admin_portal_link_id") || $data->admin_portal_link_id === null) {
+            throw new SdkValidationError("admin_portal_link_id", 'required', "Required property 'admin_portal_link_id' is missing or null");
+        }
+        if (!property_exists($data, "instance_id") || $data->instance_id === null) {
+            throw new SdkValidationError("instance_id", 'required', "Required property 'instance_id' is missing or null");
+        }
+        if (!property_exists($data, "organization_id")) {
+            throw new SdkValidationError("organization_id", 'required', "Missing required property 'organization_id'");
+        }
+        if (!property_exists($data, "it_contact_id")) {
+            throw new SdkValidationError("it_contact_id", 'required', "Missing required property 'it_contact_id'");
+        }
+        if (!property_exists($data, "scopes")) {
+            throw new SdkValidationError("scopes", 'required', "Missing required property 'scopes'");
+        }
+        if (!property_exists($data, "revoked") || $data->revoked === null) {
+            throw new SdkValidationError("revoked", 'required', "Required property 'revoked' is missing or null");
+        }
+        if (!property_exists($data, "revocation_reason")) {
+            throw new SdkValidationError("revocation_reason", 'required', "Missing required property 'revocation_reason'");
+        }
+        if (!property_exists($data, "expired") || $data->expired === null) {
+            throw new SdkValidationError("expired", 'required', "Required property 'expired' is missing or null");
+        }
+        if (!property_exists($data, "expiration")) {
+            throw new SdkValidationError("expiration", 'required', "Missing required property 'expiration'");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
+            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, RevokeAdminPortalLinkTokenResponseObjectEnum::class),
             id: SdkClient::stringValue($data->id),

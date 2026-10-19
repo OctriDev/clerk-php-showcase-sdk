@@ -45,7 +45,9 @@ class SvixURL implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "svix_url") || $data->svix_url === null) { throw new SdkValidationError("svix_url", 'required', "Required property 'svix_url' is missing or null"); }
+        if (!property_exists($data, "svix_url") || $data->svix_url === null) {
+            throw new SdkValidationError("svix_url", 'required', "Required property 'svix_url' is missing or null");
+        }
         return new self(
             svixUrl: SdkClient::stringValue($data->svix_url),
         );

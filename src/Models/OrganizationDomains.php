@@ -14,11 +14,26 @@ final readonly class OrganizationDomainObjectEnum implements SdkOpenEnum
 {
     public const ORGANIZATION_DOMAIN = "organization_domain";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -31,11 +46,26 @@ final readonly class OrganizationDomainEnrollmentModeEnum implements SdkOpenEnum
     public const AUTOMATIC_SUGGESTION = "automatic_suggestion";
     public const ENTERPRISE_SSO = "enterprise_sso";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -208,19 +238,45 @@ class OrganizationDomain implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "organization_id") || $data->organization_id === null) { throw new SdkValidationError("organization_id", 'required', "Required property 'organization_id' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "enrollment_mode") || $data->enrollment_mode === null) { throw new SdkValidationError("enrollment_mode", 'required', "Required property 'enrollment_mode' is missing or null"); }
-        if (!property_exists($data, "affiliation_email_address")) { throw new SdkValidationError("affiliation_email_address", 'required', "Missing required property 'affiliation_email_address'"); }
-        if (!property_exists($data, "affiliation_verification")) { throw new SdkValidationError("affiliation_verification", 'required', "Missing required property 'affiliation_verification'"); }
-        if (!property_exists($data, "ownership_verification")) { throw new SdkValidationError("ownership_verification", 'required', "Missing required property 'ownership_verification'"); }
-        if (!property_exists($data, "verification")) { throw new SdkValidationError("verification", 'required', "Missing required property 'verification'"); }
-        if (!property_exists($data, "total_pending_invitations") || $data->total_pending_invitations === null) { throw new SdkValidationError("total_pending_invitations", 'required', "Required property 'total_pending_invitations' is missing or null"); }
-        if (!property_exists($data, "total_pending_suggestions") || $data->total_pending_suggestions === null) { throw new SdkValidationError("total_pending_suggestions", 'required', "Required property 'total_pending_suggestions' is missing or null"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "organization_id") || $data->organization_id === null) {
+            throw new SdkValidationError("organization_id", 'required', "Required property 'organization_id' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "enrollment_mode") || $data->enrollment_mode === null) {
+            throw new SdkValidationError("enrollment_mode", 'required', "Required property 'enrollment_mode' is missing or null");
+        }
+        if (!property_exists($data, "affiliation_email_address")) {
+            throw new SdkValidationError("affiliation_email_address", 'required', "Missing required property 'affiliation_email_address'");
+        }
+        if (!property_exists($data, "affiliation_verification")) {
+            throw new SdkValidationError("affiliation_verification", 'required', "Missing required property 'affiliation_verification'");
+        }
+        if (!property_exists($data, "ownership_verification")) {
+            throw new SdkValidationError("ownership_verification", 'required', "Missing required property 'ownership_verification'");
+        }
+        if (!property_exists($data, "verification")) {
+            throw new SdkValidationError("verification", 'required', "Missing required property 'verification'");
+        }
+        if (!property_exists($data, "total_pending_invitations") || $data->total_pending_invitations === null) {
+            throw new SdkValidationError("total_pending_invitations", 'required', "Required property 'total_pending_invitations' is missing or null");
+        }
+        if (!property_exists($data, "total_pending_suggestions") || $data->total_pending_suggestions === null) {
+            throw new SdkValidationError("total_pending_suggestions", 'required', "Required property 'total_pending_suggestions' is missing or null");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
+            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, OrganizationDomainObjectEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -288,8 +344,12 @@ class OrganizationDomains implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "total_count") || $data->total_count === null) {
+            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
+        }
         return new self(
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, OrganizationDomain::class), SdkClient::arrayValue($data->data))),
             totalCount: SdkClient::intValue($data->total_count),

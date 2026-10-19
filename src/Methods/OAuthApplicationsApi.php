@@ -31,7 +31,7 @@ class OAuthApplicationsApi
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/oauth_applications", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true), 'order_by' => new SdkQueryValue($orderBy, "form", true), 'name_query' => new SdkQueryValue($nameQuery, "form", true)], returnType: OAuthApplications::class, decoder: 'json', operationId: 'listOAuthApplications', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/oauth_applications", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true), 'order_by' => new SdkQueryValue($orderBy, "form", true), 'name_query' => new SdkQueryValue($nameQuery, "form", true)], returnType: OAuthApplications::class, decoder: 'json', operationId: 'listOAuthApplications', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OAuthApplications::class));
     }
 
@@ -65,7 +65,7 @@ class OAuthApplicationsApi
             Validation::validateLength('scopes', $scopes, max: 1024);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/oauth_applications", $clientConfig, body: ['name' => $name, 'redirect_uris' => $redirectUris, 'callback_url' => $callbackUrl, 'scopes' => $scopes, 'consent_screen_enabled' => $consentScreenEnabled, 'pkce_required' => $pkceRequired, 'audience_uri' => $audienceUri, 'token_exchange_enabled' => $tokenExchangeEnabled, 'adopt_audience_resource' => $adoptAudienceResource, 'device_authorization_grant_enabled' => $deviceAuthorizationGrantEnabled, 'public' => $public], returnType: OAuthApplicationWithSecret::class, decoder: 'json', operationId: 'createOAuthApplication', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/oauth_applications", $clientConfig, body: ['name' => $name, 'redirect_uris' => $redirectUris, 'callback_url' => $callbackUrl, 'scopes' => $scopes, 'consent_screen_enabled' => $consentScreenEnabled, 'pkce_required' => $pkceRequired, 'audience_uri' => $audienceUri, 'token_exchange_enabled' => $tokenExchangeEnabled, 'adopt_audience_resource' => $adoptAudienceResource, 'device_authorization_grant_enabled' => $deviceAuthorizationGrantEnabled, 'public' => $public], returnType: OAuthApplicationWithSecret::class, decoder: 'json', operationId: 'createOAuthApplication', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OAuthApplicationWithSecret::class));
     }
 
@@ -81,7 +81,7 @@ class OAuthApplicationsApi
     public static function getOAuthApplication(ClientConfig $clientConfig, string $oauthApplicationId, ?RequestOptions $requestOptions = null): OAuthApplication
     {
 
-        $sdkResponse = SdkClient::request('GET', "/oauth_applications/" . SdkClient::encodePathSegment($oauthApplicationId) . "", $clientConfig, returnType: OAuthApplication::class, decoder: 'json', operationId: 'getOAuthApplication', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/oauth_applications/" . SdkClient::encodePathSegment($oauthApplicationId) . "", $clientConfig, returnType: OAuthApplication::class, decoder: 'json', operationId: 'getOAuthApplication', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OAuthApplication::class));
     }
 
@@ -116,7 +116,7 @@ class OAuthApplicationsApi
             Validation::validateLength('scopes', $scopes, max: 1024);
         }
 
-        $sdkResponse = SdkClient::request('PATCH', "/oauth_applications/" . SdkClient::encodePathSegment($oauthApplicationId) . "", $clientConfig, body: ['name' => $name, 'redirect_uris' => $redirectUris, 'callback_url' => $callbackUrl, 'scopes' => $scopes, 'consent_screen_enabled' => $consentScreenEnabled, 'pkce_required' => $pkceRequired, 'audience_uri' => $audienceUri, 'token_exchange_enabled' => $tokenExchangeEnabled, 'adopt_audience_resource' => $adoptAudienceResource, 'device_authorization_grant_enabled' => $deviceAuthorizationGrantEnabled, 'public' => $public], returnType: OAuthApplication::class, decoder: 'json', operationId: 'updateOAuthApplication', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/oauth_applications/" . SdkClient::encodePathSegment($oauthApplicationId) . "", $clientConfig, body: ['name' => $name, 'redirect_uris' => $redirectUris, 'callback_url' => $callbackUrl, 'scopes' => $scopes, 'consent_screen_enabled' => $consentScreenEnabled, 'pkce_required' => $pkceRequired, 'audience_uri' => $audienceUri, 'token_exchange_enabled' => $tokenExchangeEnabled, 'adopt_audience_resource' => $adoptAudienceResource, 'device_authorization_grant_enabled' => $deviceAuthorizationGrantEnabled, 'public' => $public], returnType: OAuthApplication::class, decoder: 'json', operationId: 'updateOAuthApplication', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OAuthApplication::class));
     }
 
@@ -132,7 +132,7 @@ class OAuthApplicationsApi
     public static function deleteOAuthApplication(ClientConfig $clientConfig, string $oauthApplicationId, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/oauth_applications/" . SdkClient::encodePathSegment($oauthApplicationId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteOAuthApplication', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/oauth_applications/" . SdkClient::encodePathSegment($oauthApplicationId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteOAuthApplication', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 
@@ -150,7 +150,7 @@ class OAuthApplicationsApi
     public static function uploadOAuthApplicationLogo(ClientConfig $clientConfig, string $oauthApplicationId, SdkUploadFile $file, string|SdkNotGiven $uploaderUserId = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): OAuthApplication
     {
 
-        $sdkResponse = SdkClient::request('PUT', "/oauth_applications/" . SdkClient::encodePathSegment($oauthApplicationId) . "/logo", $clientConfig, body: ['file' => $file, 'uploader_user_id' => $uploaderUserId], contentType: 'multipart/form-data', returnType: OAuthApplication::class, decoder: 'json', operationId: 'uploadOAuthApplicationLogo', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 413 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PUT', "/oauth_applications/" . SdkClient::encodePathSegment($oauthApplicationId) . "/logo", $clientConfig, body: ['file' => $file, 'uploader_user_id' => $uploaderUserId], contentType: 'multipart/form-data', returnType: OAuthApplication::class, decoder: 'json', operationId: 'uploadOAuthApplicationLogo', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 413 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OAuthApplication::class));
     }
 
@@ -166,7 +166,7 @@ class OAuthApplicationsApi
     public static function rotateOAuthApplicationSecret(ClientConfig $clientConfig, string $oauthApplicationId, ?RequestOptions $requestOptions = null): OAuthApplicationWithSecret
     {
 
-        $sdkResponse = SdkClient::request('POST', "/oauth_applications/" . SdkClient::encodePathSegment($oauthApplicationId) . "/rotate_secret", $clientConfig, returnType: OAuthApplicationWithSecret::class, decoder: 'json', operationId: 'rotateOAuthApplicationSecret', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/oauth_applications/" . SdkClient::encodePathSegment($oauthApplicationId) . "/rotate_secret", $clientConfig, returnType: OAuthApplicationWithSecret::class, decoder: 'json', operationId: 'rotateOAuthApplicationSecret', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OAuthApplicationWithSecret::class));
     }
 
@@ -182,6 +182,6 @@ class OAuthApplicationsApi
     public static function revokeOAuthApplicationToken(ClientConfig $clientConfig, string $oauthApplicationId, string $token, ?RequestOptions $requestOptions = null): mixed
     {
 
-        return SdkClient::request('POST', "/oauth_applications/" . SdkClient::encodePathSegment($oauthApplicationId) . "/revoke_token", $clientConfig, body: ['token' => $token], decoder: 'empty', operationId: 'revokeOAuthApplicationToken', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)])->data;
+        return SdkClient::request('POST', "/oauth_applications/" . SdkClient::encodePathSegment($oauthApplicationId) . "/revoke_token", $clientConfig, body: ['token' => $token], decoder: 'empty', operationId: 'revokeOAuthApplicationToken', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)])->data;
     }
 }
