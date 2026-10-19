@@ -23,7 +23,7 @@ class BetaFeatures
     public static function updateInstanceAuthConfig(ClientConfig $clientConfig, bool|null|SdkNotGiven $restrictedToAllowlist = SdkNotGiven::Value, string|null|SdkNotGiven $fromEmailAddress = SdkNotGiven::Value, bool|null|SdkNotGiven $progressiveSignUp = SdkNotGiven::Value, bool|null|SdkNotGiven $testMode = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): InstanceSettings
     {
 
-        $sdkResponse = SdkClient::request('PATCH', "/beta_features/instance_settings", $clientConfig, body: ['restricted_to_allowlist' => $restrictedToAllowlist, 'from_email_address' => $fromEmailAddress, 'progressive_sign_up' => $progressiveSignUp, 'test_mode' => $testMode], returnType: InstanceSettings::class, decoder: 'json', operationId: 'updateInstanceAuthConfig', requestOptions: $requestOptions, errors: [402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/beta_features/instance_settings", $clientConfig, body: ['restricted_to_allowlist' => $restrictedToAllowlist, 'from_email_address' => $fromEmailAddress, 'progressive_sign_up' => $progressiveSignUp, 'test_mode' => $testMode], returnType: InstanceSettings::class, decoder: 'json', operationId: 'updateInstanceAuthConfig', requestOptions: $requestOptions, errors: [402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, InstanceSettings::class));
     }
 
@@ -41,7 +41,7 @@ class BetaFeatures
     public static function updateProductionInstanceDomain(ClientConfig $clientConfig, string|SdkNotGiven $homeUrl = SdkNotGiven::Value, bool|SdkNotGiven $isSecondary = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): mixed
     {
 
-        return SdkClient::request('PUT', "/beta_features/domain", $clientConfig, body: ['home_url' => $homeUrl, 'is_secondary' => $isSecondary], decoder: 'empty', operationId: 'updateProductionInstanceDomain', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)])->data;
+        return SdkClient::request('PUT', "/beta_features/domain", $clientConfig, body: ['home_url' => $homeUrl, 'is_secondary' => $isSecondary], decoder: 'empty', operationId: 'updateProductionInstanceDomain', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)])->data;
     }
 
 
@@ -56,6 +56,6 @@ class BetaFeatures
     public static function changeProductionInstanceDomain(ClientConfig $clientConfig, string|SdkNotGiven $homeUrl = SdkNotGiven::Value, bool|SdkNotGiven $isSecondary = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): mixed
     {
 
-        return SdkClient::request('POST', "/instance/change_domain", $clientConfig, body: ['home_url' => $homeUrl, 'is_secondary' => $isSecondary], decoder: 'empty', operationId: 'changeProductionInstanceDomain', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)])->data;
+        return SdkClient::request('POST', "/instance/change_domain", $clientConfig, body: ['home_url' => $homeUrl, 'is_secondary' => $isSecondary], decoder: 'empty', operationId: 'changeProductionInstanceDomain', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)])->data;
     }
 }

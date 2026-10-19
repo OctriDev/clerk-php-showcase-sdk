@@ -12,22 +12,52 @@ final readonly class CreateRoleSetType implements SdkOpenEnum
     public const INITIAL = "initial";
     public const CUSTOM = "custom";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 final readonly class UpdateRoleSetType implements SdkOpenEnum
 {
     public const INITIAL = "initial";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 class RoleSetsApi
@@ -54,7 +84,7 @@ class RoleSetsApi
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/role_sets", $clientConfig, query: ['query' => new SdkQueryValue($query, "form", true), 'order_by' => new SdkQueryValue($orderBy, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: RoleSets::class, decoder: 'json', operationId: 'listRoleSets', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/role_sets", $clientConfig, query: ['query' => new SdkQueryValue($query, "form", true), 'order_by' => new SdkQueryValue($orderBy, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: RoleSets::class, decoder: 'json', operationId: 'listRoleSets', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RoleSets::class));
     }
 
@@ -76,7 +106,7 @@ class RoleSetsApi
     public static function createRoleSet(ClientConfig $clientConfig, string $name, string $defaultRoleKey, string $creatorRoleKey, array $roles, string|SdkNotGiven $key = SdkNotGiven::Value, string|null|SdkNotGiven $description = SdkNotGiven::Value, CreateRoleSetType|SdkNotGiven $type = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): RoleSet
     {
 
-        $sdkResponse = SdkClient::request('POST', "/role_sets", $clientConfig, body: ['name' => $name, 'default_role_key' => $defaultRoleKey, 'creator_role_key' => $creatorRoleKey, 'roles' => $roles, 'key' => $key, 'description' => $description, 'type' => $type], returnType: RoleSet::class, decoder: 'json', operationId: 'createRoleSet', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/role_sets", $clientConfig, body: ['name' => $name, 'default_role_key' => $defaultRoleKey, 'creator_role_key' => $creatorRoleKey, 'roles' => $roles, 'key' => $key, 'description' => $description, 'type' => $type], returnType: RoleSet::class, decoder: 'json', operationId: 'createRoleSet', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RoleSet::class));
     }
 
@@ -92,7 +122,7 @@ class RoleSetsApi
     public static function getRoleSet(ClientConfig $clientConfig, string $roleSetKeyOrId, ?RequestOptions $requestOptions = null): RoleSet
     {
 
-        $sdkResponse = SdkClient::request('GET', "/role_sets/" . SdkClient::encodePathSegment($roleSetKeyOrId) . "", $clientConfig, returnType: RoleSet::class, decoder: 'json', operationId: 'getRoleSet', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/role_sets/" . SdkClient::encodePathSegment($roleSetKeyOrId) . "", $clientConfig, returnType: RoleSet::class, decoder: 'json', operationId: 'getRoleSet', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RoleSet::class));
     }
 
@@ -114,7 +144,7 @@ class RoleSetsApi
     public static function updateRoleSet(ClientConfig $clientConfig, string $roleSetKeyOrId, string|null|SdkNotGiven $name = SdkNotGiven::Value, string|null|SdkNotGiven $key = SdkNotGiven::Value, string|null|SdkNotGiven $description = SdkNotGiven::Value, UpdateRoleSetType|null|SdkNotGiven $type = SdkNotGiven::Value, string|null|SdkNotGiven $defaultRoleKey = SdkNotGiven::Value, string|null|SdkNotGiven $creatorRoleKey = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): RoleSet
     {
 
-        $sdkResponse = SdkClient::request('PATCH', "/role_sets/" . SdkClient::encodePathSegment($roleSetKeyOrId) . "", $clientConfig, body: ['name' => $name, 'key' => $key, 'description' => $description, 'type' => $type, 'default_role_key' => $defaultRoleKey, 'creator_role_key' => $creatorRoleKey], returnType: RoleSet::class, decoder: 'json', operationId: 'updateRoleSet', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/role_sets/" . SdkClient::encodePathSegment($roleSetKeyOrId) . "", $clientConfig, body: ['name' => $name, 'key' => $key, 'description' => $description, 'type' => $type, 'default_role_key' => $defaultRoleKey, 'creator_role_key' => $creatorRoleKey], returnType: RoleSet::class, decoder: 'json', operationId: 'updateRoleSet', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RoleSet::class));
     }
 
@@ -132,7 +162,7 @@ class RoleSetsApi
     public static function replaceRoleSet(ClientConfig $clientConfig, string $roleSetKeyOrId, string $destRoleSetKey, array|SdkNotGiven $reassignmentMappings = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('POST', "/role_sets/" . SdkClient::encodePathSegment($roleSetKeyOrId) . "/replace", $clientConfig, body: ['dest_role_set_key' => $destRoleSetKey, 'reassignment_mappings' => $reassignmentMappings], returnType: DeletedObject::class, decoder: 'json', operationId: 'replaceRoleSet', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/role_sets/" . SdkClient::encodePathSegment($roleSetKeyOrId) . "/replace", $clientConfig, body: ['dest_role_set_key' => $destRoleSetKey, 'reassignment_mappings' => $reassignmentMappings], returnType: DeletedObject::class, decoder: 'json', operationId: 'replaceRoleSet', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 
@@ -151,7 +181,7 @@ class RoleSetsApi
     public static function addRolesToRoleSet(ClientConfig $clientConfig, string $roleSetKeyOrId, array $roleKeys, string|SdkNotGiven $defaultRoleKey = SdkNotGiven::Value, string|SdkNotGiven $creatorRoleKey = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): RoleSet
     {
 
-        $sdkResponse = SdkClient::request('POST', "/role_sets/" . SdkClient::encodePathSegment($roleSetKeyOrId) . "/roles", $clientConfig, body: ['role_keys' => $roleKeys, 'default_role_key' => $defaultRoleKey, 'creator_role_key' => $creatorRoleKey], returnType: RoleSet::class, decoder: 'json', operationId: 'addRolesToRoleSet', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/role_sets/" . SdkClient::encodePathSegment($roleSetKeyOrId) . "/roles", $clientConfig, body: ['role_keys' => $roleKeys, 'default_role_key' => $defaultRoleKey, 'creator_role_key' => $creatorRoleKey], returnType: RoleSet::class, decoder: 'json', operationId: 'addRolesToRoleSet', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RoleSet::class));
     }
 
@@ -169,7 +199,7 @@ class RoleSetsApi
     public static function replaceRoleInRoleSet(ClientConfig $clientConfig, string $roleSetKeyOrId, string $roleKey, string $toRoleKey, ?RequestOptions $requestOptions = null): RoleSet
     {
 
-        $sdkResponse = SdkClient::request('POST', "/role_sets/" . SdkClient::encodePathSegment($roleSetKeyOrId) . "/roles/replace", $clientConfig, body: ['role_key' => $roleKey, 'to_role_key' => $toRoleKey], returnType: RoleSet::class, decoder: 'json', operationId: 'replaceRoleInRoleSet', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/role_sets/" . SdkClient::encodePathSegment($roleSetKeyOrId) . "/roles/replace", $clientConfig, body: ['role_key' => $roleKey, 'to_role_key' => $toRoleKey], returnType: RoleSet::class, decoder: 'json', operationId: 'replaceRoleInRoleSet', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RoleSet::class));
     }
 }

@@ -55,8 +55,12 @@ class PaginatedBillingPriceResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "total_count") || $data->total_count === null) {
+            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
+        }
         return new self(
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BillingPriceResponse::class), SdkClient::arrayValue($data->data))),
             totalCount: SdkClient::intValue($data->total_count),
@@ -112,8 +116,12 @@ class PaginatedBillingStatementResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "total_count") || $data->total_count === null) {
+            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
+        }
         return new self(
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BillingStatement::class), SdkClient::arrayValue($data->data))),
             totalCount: SdkClient::intValue($data->total_count),
@@ -169,8 +177,12 @@ class PaginatedCommercePlanResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "total_count") || $data->total_count === null) {
+            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
+        }
         return new self(
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CommercePlan::class), SdkClient::arrayValue($data->data))),
             totalCount: SdkClient::intValue($data->total_count),
@@ -226,8 +238,12 @@ class PaginatedCommerceSubscriptionItemResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "total_count") || $data->total_count === null) { throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "total_count") || $data->total_count === null) {
+            throw new SdkValidationError("total_count", 'required', "Required property 'total_count' is missing or null");
+        }
         return new self(
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CommerceSubscriptionItem::class), SdkClient::arrayValue($data->data))),
             totalCount: SdkClient::intValue($data->total_count),
@@ -283,8 +299,12 @@ class PriceTransitionRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "from_price_id") || $data->from_price_id === null) { throw new SdkValidationError("from_price_id", 'required', "Required property 'from_price_id' is missing or null"); }
-        if (!property_exists($data, "to_price_id") || $data->to_price_id === null) { throw new SdkValidationError("to_price_id", 'required', "Required property 'to_price_id' is missing or null"); }
+        if (!property_exists($data, "from_price_id") || $data->from_price_id === null) {
+            throw new SdkValidationError("from_price_id", 'required', "Required property 'from_price_id' is missing or null");
+        }
+        if (!property_exists($data, "to_price_id") || $data->to_price_id === null) {
+            throw new SdkValidationError("to_price_id", 'required', "Required property 'to_price_id' is missing or null");
+        }
         return new self(
             fromPriceId: SdkClient::stringValue($data->from_price_id),
             toPriceId: SdkClient::stringValue($data->to_price_id),
