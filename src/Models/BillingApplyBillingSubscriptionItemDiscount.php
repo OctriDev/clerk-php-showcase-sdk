@@ -45,7 +45,9 @@ class ApplyCommerceDiscountRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "discount_id") || $data->discount_id === null) { throw new SdkValidationError("discount_id", 'required', "Required property 'discount_id' is missing or null"); }
+        if (!property_exists($data, "discount_id") || $data->discount_id === null) {
+            throw new SdkValidationError("discount_id", 'required', "Required property 'discount_id' is missing or null");
+        }
         return new self(
             discountId: SdkClient::stringValue($data->discount_id),
         );

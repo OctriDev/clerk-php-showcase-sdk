@@ -305,27 +305,69 @@ class SignUp implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "required_fields") || $data->required_fields === null) { throw new SdkValidationError("required_fields", 'required', "Required property 'required_fields' is missing or null"); }
-        if (!property_exists($data, "optional_fields") || $data->optional_fields === null) { throw new SdkValidationError("optional_fields", 'required', "Required property 'optional_fields' is missing or null"); }
-        if (!property_exists($data, "missing_fields") || $data->missing_fields === null) { throw new SdkValidationError("missing_fields", 'required', "Required property 'missing_fields' is missing or null"); }
-        if (!property_exists($data, "unverified_fields") || $data->unverified_fields === null) { throw new SdkValidationError("unverified_fields", 'required', "Required property 'unverified_fields' is missing or null"); }
-        if (!property_exists($data, "verifications") || $data->verifications === null) { throw new SdkValidationError("verifications", 'required', "Required property 'verifications' is missing or null"); }
-        if (!property_exists($data, "username")) { throw new SdkValidationError("username", 'required', "Missing required property 'username'"); }
-        if (!property_exists($data, "email_address")) { throw new SdkValidationError("email_address", 'required', "Missing required property 'email_address'"); }
-        if (!property_exists($data, "phone_number")) { throw new SdkValidationError("phone_number", 'required', "Missing required property 'phone_number'"); }
-        if (!property_exists($data, "web3_wallet")) { throw new SdkValidationError("web3_wallet", 'required', "Missing required property 'web3_wallet'"); }
-        if (!property_exists($data, "password_enabled") || $data->password_enabled === null) { throw new SdkValidationError("password_enabled", 'required', "Required property 'password_enabled' is missing or null"); }
-        if (!property_exists($data, "first_name")) { throw new SdkValidationError("first_name", 'required', "Missing required property 'first_name'"); }
-        if (!property_exists($data, "last_name")) { throw new SdkValidationError("last_name", 'required', "Missing required property 'last_name'"); }
-        if (!property_exists($data, "custom_action") || $data->custom_action === null) { throw new SdkValidationError("custom_action", 'required', "Required property 'custom_action' is missing or null"); }
-        if (!property_exists($data, "external_id")) { throw new SdkValidationError("external_id", 'required', "Missing required property 'external_id'"); }
-        if (!property_exists($data, "created_session_id")) { throw new SdkValidationError("created_session_id", 'required', "Missing required property 'created_session_id'"); }
-        if (!property_exists($data, "created_user_id")) { throw new SdkValidationError("created_user_id", 'required', "Missing required property 'created_user_id'"); }
-        if (!property_exists($data, "abandon_at") || $data->abandon_at === null) { throw new SdkValidationError("abandon_at", 'required', "Required property 'abandon_at' is missing or null"); }
-        if (!property_exists($data, "legal_accepted_at")) { throw new SdkValidationError("legal_accepted_at", 'required', "Missing required property 'legal_accepted_at'"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "required_fields") || $data->required_fields === null) {
+            throw new SdkValidationError("required_fields", 'required', "Required property 'required_fields' is missing or null");
+        }
+        if (!property_exists($data, "optional_fields") || $data->optional_fields === null) {
+            throw new SdkValidationError("optional_fields", 'required', "Required property 'optional_fields' is missing or null");
+        }
+        if (!property_exists($data, "missing_fields") || $data->missing_fields === null) {
+            throw new SdkValidationError("missing_fields", 'required', "Required property 'missing_fields' is missing or null");
+        }
+        if (!property_exists($data, "unverified_fields") || $data->unverified_fields === null) {
+            throw new SdkValidationError("unverified_fields", 'required', "Required property 'unverified_fields' is missing or null");
+        }
+        if (!property_exists($data, "verifications") || $data->verifications === null) {
+            throw new SdkValidationError("verifications", 'required', "Required property 'verifications' is missing or null");
+        }
+        if (!property_exists($data, "username")) {
+            throw new SdkValidationError("username", 'required', "Missing required property 'username'");
+        }
+        if (!property_exists($data, "email_address")) {
+            throw new SdkValidationError("email_address", 'required', "Missing required property 'email_address'");
+        }
+        if (!property_exists($data, "phone_number")) {
+            throw new SdkValidationError("phone_number", 'required', "Missing required property 'phone_number'");
+        }
+        if (!property_exists($data, "web3_wallet")) {
+            throw new SdkValidationError("web3_wallet", 'required', "Missing required property 'web3_wallet'");
+        }
+        if (!property_exists($data, "password_enabled") || $data->password_enabled === null) {
+            throw new SdkValidationError("password_enabled", 'required', "Required property 'password_enabled' is missing or null");
+        }
+        if (!property_exists($data, "first_name")) {
+            throw new SdkValidationError("first_name", 'required', "Missing required property 'first_name'");
+        }
+        if (!property_exists($data, "last_name")) {
+            throw new SdkValidationError("last_name", 'required', "Missing required property 'last_name'");
+        }
+        if (!property_exists($data, "custom_action") || $data->custom_action === null) {
+            throw new SdkValidationError("custom_action", 'required', "Required property 'custom_action' is missing or null");
+        }
+        if (!property_exists($data, "external_id")) {
+            throw new SdkValidationError("external_id", 'required', "Missing required property 'external_id'");
+        }
+        if (!property_exists($data, "created_session_id")) {
+            throw new SdkValidationError("created_session_id", 'required', "Missing required property 'created_session_id'");
+        }
+        if (!property_exists($data, "created_user_id")) {
+            throw new SdkValidationError("created_user_id", 'required', "Missing required property 'created_user_id'");
+        }
+        if (!property_exists($data, "abandon_at") || $data->abandon_at === null) {
+            throw new SdkValidationError("abandon_at", 'required', "Required property 'abandon_at' is missing or null");
+        }
+        if (!property_exists($data, "legal_accepted_at")) {
+            throw new SdkValidationError("legal_accepted_at", 'required', "Missing required property 'legal_accepted_at'");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, SignUpObjectEnum::class),
             id: SdkClient::stringValue($data->id),

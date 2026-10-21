@@ -209,15 +209,33 @@ class CommerceDiscountRedemptionResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "subscription_item_id") || $data->subscription_item_id === null) { throw new SdkValidationError("subscription_item_id", 'required', "Required property 'subscription_item_id' is missing or null"); }
-        if (!property_exists($data, "discount_id") || $data->discount_id === null) { throw new SdkValidationError("discount_id", 'required', "Required property 'discount_id' is missing or null"); }
-        if (!property_exists($data, "source") || $data->source === null) { throw new SdkValidationError("source", 'required', "Required property 'source' is missing or null"); }
-        if (!property_exists($data, "cycles_remaining")) { throw new SdkValidationError("cycles_remaining", 'required', "Missing required property 'cycles_remaining'"); }
-        if (!property_exists($data, "cycles_applied") || $data->cycles_applied === null) { throw new SdkValidationError("cycles_applied", 'required', "Required property 'cycles_applied' is missing or null"); }
-        if (!property_exists($data, "redeemed_at") || $data->redeemed_at === null) { throw new SdkValidationError("redeemed_at", 'required', "Required property 'redeemed_at' is missing or null"); }
-        if (!property_exists($data, "redeemed_by")) { throw new SdkValidationError("redeemed_by", 'required', "Missing required property 'redeemed_by'"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "subscription_item_id") || $data->subscription_item_id === null) {
+            throw new SdkValidationError("subscription_item_id", 'required', "Required property 'subscription_item_id' is missing or null");
+        }
+        if (!property_exists($data, "discount_id") || $data->discount_id === null) {
+            throw new SdkValidationError("discount_id", 'required', "Required property 'discount_id' is missing or null");
+        }
+        if (!property_exists($data, "source") || $data->source === null) {
+            throw new SdkValidationError("source", 'required', "Required property 'source' is missing or null");
+        }
+        if (!property_exists($data, "cycles_remaining")) {
+            throw new SdkValidationError("cycles_remaining", 'required', "Missing required property 'cycles_remaining'");
+        }
+        if (!property_exists($data, "cycles_applied") || $data->cycles_applied === null) {
+            throw new SdkValidationError("cycles_applied", 'required', "Required property 'cycles_applied' is missing or null");
+        }
+        if (!property_exists($data, "redeemed_at") || $data->redeemed_at === null) {
+            throw new SdkValidationError("redeemed_at", 'required', "Required property 'redeemed_at' is missing or null");
+        }
+        if (!property_exists($data, "redeemed_by")) {
+            throw new SdkValidationError("redeemed_by", 'required', "Missing required property 'redeemed_by'");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, CommerceDiscountRedemptionResponseObjectEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -246,9 +264,24 @@ final readonly class CommercePayerResponse2ObjectEnum implements SdkOpenEnum
 {
     public const COMMERCE_PAYER = "commerce_payer";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

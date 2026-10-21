@@ -14,11 +14,26 @@ final readonly class ClientObjectEnum implements SdkOpenEnum
 {
     public const CLIENT = "client";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -149,16 +164,36 @@ class Client implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "session_ids") || $data->session_ids === null) { throw new SdkValidationError("session_ids", 'required', "Required property 'session_ids' is missing or null"); }
-        if (!property_exists($data, "sessions") || $data->sessions === null) { throw new SdkValidationError("sessions", 'required', "Required property 'sessions' is missing or null"); }
-        if (!property_exists($data, "sign_in_id")) { throw new SdkValidationError("sign_in_id", 'required', "Missing required property 'sign_in_id'"); }
-        if (!property_exists($data, "sign_up_id")) { throw new SdkValidationError("sign_up_id", 'required', "Missing required property 'sign_up_id'"); }
-        if (!property_exists($data, "last_active_session_id")) { throw new SdkValidationError("last_active_session_id", 'required', "Missing required property 'last_active_session_id'"); }
-        if (!property_exists($data, "last_authentication_strategy")) { throw new SdkValidationError("last_authentication_strategy", 'required', "Missing required property 'last_authentication_strategy'"); }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "session_ids") || $data->session_ids === null) {
+            throw new SdkValidationError("session_ids", 'required', "Required property 'session_ids' is missing or null");
+        }
+        if (!property_exists($data, "sessions") || $data->sessions === null) {
+            throw new SdkValidationError("sessions", 'required', "Required property 'sessions' is missing or null");
+        }
+        if (!property_exists($data, "sign_in_id")) {
+            throw new SdkValidationError("sign_in_id", 'required', "Missing required property 'sign_in_id'");
+        }
+        if (!property_exists($data, "sign_up_id")) {
+            throw new SdkValidationError("sign_up_id", 'required', "Missing required property 'sign_up_id'");
+        }
+        if (!property_exists($data, "last_active_session_id")) {
+            throw new SdkValidationError("last_active_session_id", 'required', "Missing required property 'last_active_session_id'");
+        }
+        if (!property_exists($data, "last_authentication_strategy")) {
+            throw new SdkValidationError("last_authentication_strategy", 'required', "Missing required property 'last_authentication_strategy'");
+        }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
+            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, ClientObjectEnum::class),
             id: SdkClient::stringValue($data->id),

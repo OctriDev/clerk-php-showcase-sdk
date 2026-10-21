@@ -20,7 +20,7 @@ trait UsersBiometricCredentialsMethods
     public static function listUserBiometricCredentials(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): BiometricCredentialList
     {
 
-        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/biometric_credentials", $clientConfig, returnType: BiometricCredentialList::class, decoder: 'json', operationId: 'listUserBiometricCredentials', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/biometric_credentials", $clientConfig, returnType: BiometricCredentialList::class, decoder: 'json', operationId: 'listUserBiometricCredentials', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, BiometricCredentialList::class));
     }
 
@@ -37,7 +37,7 @@ trait UsersBiometricCredentialsMethods
     public static function revokeUserBiometricCredential(ClientConfig $clientConfig, string $userId, string $biometricCredentialId, ?RequestOptions $requestOptions = null): BiometricCredential
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/biometric_credentials/" . SdkClient::encodePathSegment($biometricCredentialId) . "", $clientConfig, returnType: BiometricCredential::class, decoder: 'json', operationId: 'revokeUserBiometricCredential', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/biometric_credentials/" . SdkClient::encodePathSegment($biometricCredentialId) . "", $clientConfig, returnType: BiometricCredential::class, decoder: 'json', operationId: 'revokeUserBiometricCredential', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, BiometricCredential::class));
     }
 }

@@ -147,16 +147,36 @@ class OAuthApplicationSettings implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "dynamic_oauth_client_registration") || $data->dynamic_oauth_client_registration === null) { throw new SdkValidationError("dynamic_oauth_client_registration", 'required', "Required property 'dynamic_oauth_client_registration' is missing or null"); }
-        if (!property_exists($data, "default_scopes")) { throw new SdkValidationError("default_scopes", 'required', "Missing required property 'default_scopes'"); }
-        if (!property_exists($data, "oauth_jwt_access_tokens") || $data->oauth_jwt_access_tokens === null) { throw new SdkValidationError("oauth_jwt_access_tokens", 'required', "Required property 'oauth_jwt_access_tokens' is missing or null"); }
-        if (!property_exists($data, "aud_claim_enabled") || $data->aud_claim_enabled === null) { throw new SdkValidationError("aud_claim_enabled", 'required', "Required property 'aud_claim_enabled' is missing or null"); }
-        if (!property_exists($data, "aud_claim_refresh_backfill_enabled") || $data->aud_claim_refresh_backfill_enabled === null) { throw new SdkValidationError("aud_claim_refresh_backfill_enabled", 'required', "Required property 'aud_claim_refresh_backfill_enabled' is missing or null"); }
-        if (!property_exists($data, "pkce_required") || $data->pkce_required === null) { throw new SdkValidationError("pkce_required", 'required', "Required property 'pkce_required' is missing or null"); }
-        if (!property_exists($data, "client_id_metadata_documents_advertised") || $data->client_id_metadata_documents_advertised === null) { throw new SdkValidationError("client_id_metadata_documents_advertised", 'required', "Required property 'client_id_metadata_documents_advertised' is missing or null"); }
-        if (!property_exists($data, "client_id_metadata_documents_only_allow_pre_registered_clients") || $data->client_id_metadata_documents_only_allow_pre_registered_clients === null) { throw new SdkValidationError("client_id_metadata_documents_only_allow_pre_registered_clients", 'required', "Required property 'client_id_metadata_documents_only_allow_pre_registered_clients' is missing or null"); }
-        if (!property_exists($data, "client_id_metadata_documents_block_implicitly_allowed_clients") || $data->client_id_metadata_documents_block_implicitly_allowed_clients === null) { throw new SdkValidationError("client_id_metadata_documents_block_implicitly_allowed_clients", 'required', "Required property 'client_id_metadata_documents_block_implicitly_allowed_clients' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "dynamic_oauth_client_registration") || $data->dynamic_oauth_client_registration === null) {
+            throw new SdkValidationError("dynamic_oauth_client_registration", 'required', "Required property 'dynamic_oauth_client_registration' is missing or null");
+        }
+        if (!property_exists($data, "default_scopes")) {
+            throw new SdkValidationError("default_scopes", 'required', "Missing required property 'default_scopes'");
+        }
+        if (!property_exists($data, "oauth_jwt_access_tokens") || $data->oauth_jwt_access_tokens === null) {
+            throw new SdkValidationError("oauth_jwt_access_tokens", 'required', "Required property 'oauth_jwt_access_tokens' is missing or null");
+        }
+        if (!property_exists($data, "aud_claim_enabled") || $data->aud_claim_enabled === null) {
+            throw new SdkValidationError("aud_claim_enabled", 'required', "Required property 'aud_claim_enabled' is missing or null");
+        }
+        if (!property_exists($data, "aud_claim_refresh_backfill_enabled") || $data->aud_claim_refresh_backfill_enabled === null) {
+            throw new SdkValidationError("aud_claim_refresh_backfill_enabled", 'required', "Required property 'aud_claim_refresh_backfill_enabled' is missing or null");
+        }
+        if (!property_exists($data, "pkce_required") || $data->pkce_required === null) {
+            throw new SdkValidationError("pkce_required", 'required', "Required property 'pkce_required' is missing or null");
+        }
+        if (!property_exists($data, "client_id_metadata_documents_advertised") || $data->client_id_metadata_documents_advertised === null) {
+            throw new SdkValidationError("client_id_metadata_documents_advertised", 'required', "Required property 'client_id_metadata_documents_advertised' is missing or null");
+        }
+        if (!property_exists($data, "client_id_metadata_documents_only_allow_pre_registered_clients") || $data->client_id_metadata_documents_only_allow_pre_registered_clients === null) {
+            throw new SdkValidationError("client_id_metadata_documents_only_allow_pre_registered_clients", 'required', "Required property 'client_id_metadata_documents_only_allow_pre_registered_clients' is missing or null");
+        }
+        if (!property_exists($data, "client_id_metadata_documents_block_implicitly_allowed_clients") || $data->client_id_metadata_documents_block_implicitly_allowed_clients === null) {
+            throw new SdkValidationError("client_id_metadata_documents_block_implicitly_allowed_clients", 'required', "Required property 'client_id_metadata_documents_block_implicitly_allowed_clients' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, OAuthApplicationSettingsObjectEnum::class),
             dynamicOauthClientRegistration: SdkClient::boolValue($data->dynamic_oauth_client_registration),
@@ -180,11 +200,26 @@ final readonly class OrganizationSettingsObjectEnum implements SdkOpenEnum
 {
     public const ORGANIZATION_SETTINGS = "organization_settings";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -196,9 +231,24 @@ final readonly class OrganizationSettingsDomainsEnrollmentModesItemEnum implemen
     public const AUTOMATIC_INVITATION = "automatic_invitation";
     public const AUTOMATIC_SUGGESTION = "automatic_suggestion";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

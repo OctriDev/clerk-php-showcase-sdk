@@ -29,7 +29,7 @@ trait DirectoriesMethods
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/directories", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: DirectoryList::class, decoder: 'json', operationId: 'listDirectories', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/directories", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: DirectoryList::class, decoder: 'json', operationId: 'listDirectories', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DirectoryList::class));
     }
 
@@ -48,7 +48,7 @@ trait DirectoriesMethods
     public static function createDirectory(ClientConfig $clientConfig, string $enterpriseConnectionId, string $provider, string|SdkNotGiven $name = SdkNotGiven::Value, array|SdkNotGiven $groupRoleMappings = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Directory
     {
 
-        $sdkResponse = SdkClient::request('POST', "/directories", $clientConfig, body: ['enterprise_connection_id' => $enterpriseConnectionId, 'provider' => $provider, 'name' => $name, 'group_role_mappings' => $groupRoleMappings], returnType: Directory::class, decoder: 'json', operationId: 'createDirectory', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/directories", $clientConfig, body: ['enterprise_connection_id' => $enterpriseConnectionId, 'provider' => $provider, 'name' => $name, 'group_role_mappings' => $groupRoleMappings], returnType: Directory::class, decoder: 'json', operationId: 'createDirectory', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Directory::class));
     }
 
@@ -64,7 +64,7 @@ trait DirectoriesMethods
     public static function getDirectory(ClientConfig $clientConfig, string $directoryId, ?RequestOptions $requestOptions = null): Directory
     {
 
-        $sdkResponse = SdkClient::request('GET', "/directories/" . SdkClient::encodePathSegment($directoryId) . "", $clientConfig, returnType: Directory::class, decoder: 'json', operationId: 'getDirectory', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/directories/" . SdkClient::encodePathSegment($directoryId) . "", $clientConfig, returnType: Directory::class, decoder: 'json', operationId: 'getDirectory', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Directory::class));
     }
 
@@ -85,7 +85,7 @@ trait DirectoriesMethods
     public static function updateDirectory(ClientConfig $clientConfig, string $directoryId, string|SdkNotGiven $name = SdkNotGiven::Value, bool|SdkNotGiven $enabled = SdkNotGiven::Value, string|SdkNotGiven $provider = SdkNotGiven::Value, array|SdkNotGiven $attributeMapping = SdkNotGiven::Value, bool|SdkNotGiven $groupRoleMappingEnabled = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Directory
     {
 
-        $sdkResponse = SdkClient::request('PATCH', "/directories/" . SdkClient::encodePathSegment($directoryId) . "", $clientConfig, body: ['name' => $name, 'enabled' => $enabled, 'provider' => $provider, 'attribute_mapping' => $attributeMapping, 'group_role_mapping_enabled' => $groupRoleMappingEnabled], returnType: Directory::class, decoder: 'json', operationId: 'updateDirectory', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/directories/" . SdkClient::encodePathSegment($directoryId) . "", $clientConfig, body: ['name' => $name, 'enabled' => $enabled, 'provider' => $provider, 'attribute_mapping' => $attributeMapping, 'group_role_mapping_enabled' => $groupRoleMappingEnabled], returnType: Directory::class, decoder: 'json', operationId: 'updateDirectory', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Directory::class));
     }
 
@@ -101,7 +101,7 @@ trait DirectoriesMethods
     public static function deleteDirectory(ClientConfig $clientConfig, string $directoryId, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/directories/" . SdkClient::encodePathSegment($directoryId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteDirectory', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/directories/" . SdkClient::encodePathSegment($directoryId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteDirectory', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 
@@ -117,7 +117,7 @@ trait DirectoriesMethods
     public static function rotateDirectoryApiKey(ClientConfig $clientConfig, string $directoryId, ?RequestOptions $requestOptions = null): Directory
     {
 
-        $sdkResponse = SdkClient::request('POST', "/directories/" . SdkClient::encodePathSegment($directoryId) . "/rotate_api_key", $clientConfig, returnType: Directory::class, decoder: 'json', operationId: 'rotateDirectoryApiKey', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/directories/" . SdkClient::encodePathSegment($directoryId) . "/rotate_api_key", $clientConfig, returnType: Directory::class, decoder: 'json', operationId: 'rotateDirectoryApiKey', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Directory::class));
     }
 
@@ -133,7 +133,7 @@ trait DirectoriesMethods
     public static function listDirectoryGroupRoleMappings(ClientConfig $clientConfig, string $directoryId, ?RequestOptions $requestOptions = null): DirectoryGroupRoleMappingList
     {
 
-        $sdkResponse = SdkClient::request('GET', "/directories/" . SdkClient::encodePathSegment($directoryId) . "/group_role_mappings", $clientConfig, returnType: DirectoryGroupRoleMappingList::class, decoder: 'json', operationId: 'listDirectoryGroupRoleMappings', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/directories/" . SdkClient::encodePathSegment($directoryId) . "/group_role_mappings", $clientConfig, returnType: DirectoryGroupRoleMappingList::class, decoder: 'json', operationId: 'listDirectoryGroupRoleMappings', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DirectoryGroupRoleMappingList::class));
     }
 
@@ -157,7 +157,7 @@ trait DirectoriesMethods
             Validation::validateRange('precedence', $precedence, min: 1);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/directories/" . SdkClient::encodePathSegment($directoryId) . "/group_role_mappings", $clientConfig, body: ['role_id' => $roleId, 'directory_group_id' => $directoryGroupId, 'scim_group_id' => $scimGroupId, 'precedence' => $precedence], returnType: DirectoryGroupRoleMapping::class, decoder: 'json', operationId: 'createDirectoryGroupRoleMapping', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/directories/" . SdkClient::encodePathSegment($directoryId) . "/group_role_mappings", $clientConfig, body: ['role_id' => $roleId, 'directory_group_id' => $directoryGroupId, 'scim_group_id' => $scimGroupId, 'precedence' => $precedence], returnType: DirectoryGroupRoleMapping::class, decoder: 'json', operationId: 'createDirectoryGroupRoleMapping', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DirectoryGroupRoleMapping::class));
     }
 
@@ -174,7 +174,7 @@ trait DirectoriesMethods
     public static function replaceDirectoryGroupRoleMappings(ClientConfig $clientConfig, string $directoryId, array $mappings, ?RequestOptions $requestOptions = null): DirectoryGroupRoleMappingList
     {
 
-        $sdkResponse = SdkClient::request('PUT', "/directories/" . SdkClient::encodePathSegment($directoryId) . "/group_role_mappings", $clientConfig, body: ['mappings' => $mappings], returnType: DirectoryGroupRoleMappingList::class, decoder: 'json', operationId: 'replaceDirectoryGroupRoleMappings', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PUT', "/directories/" . SdkClient::encodePathSegment($directoryId) . "/group_role_mappings", $clientConfig, body: ['mappings' => $mappings], returnType: DirectoryGroupRoleMappingList::class, decoder: 'json', operationId: 'replaceDirectoryGroupRoleMappings', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DirectoryGroupRoleMappingList::class));
     }
 
@@ -191,7 +191,7 @@ trait DirectoriesMethods
     public static function deleteDirectoryGroupRoleMapping(ClientConfig $clientConfig, string $directoryId, string $mappingId, ?RequestOptions $requestOptions = null): DirectoryGroupRoleMappingDeleted
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/directories/" . SdkClient::encodePathSegment($directoryId) . "/group_role_mappings/" . SdkClient::encodePathSegment($mappingId) . "", $clientConfig, returnType: DirectoryGroupRoleMappingDeleted::class, decoder: 'json', operationId: 'deleteDirectoryGroupRoleMapping', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/directories/" . SdkClient::encodePathSegment($directoryId) . "/group_role_mappings/" . SdkClient::encodePathSegment($mappingId) . "", $clientConfig, returnType: DirectoryGroupRoleMappingDeleted::class, decoder: 'json', operationId: 'deleteDirectoryGroupRoleMapping', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DirectoryGroupRoleMappingDeleted::class));
     }
 }

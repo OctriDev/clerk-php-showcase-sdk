@@ -22,7 +22,7 @@ trait UsersTrustedDevicesMethods
     public static function listUserTrustedDevices(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): TrustedDeviceList
     {
 
-        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/trusted_devices", $clientConfig, returnType: TrustedDeviceList::class, decoder: 'json', operationId: 'listUserTrustedDevices', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/trusted_devices", $clientConfig, returnType: TrustedDeviceList::class, decoder: 'json', operationId: 'listUserTrustedDevices', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, TrustedDeviceList::class));
     }
 
@@ -41,7 +41,7 @@ trait UsersTrustedDevicesMethods
     public static function revokeUserTrustedDevice(ClientConfig $clientConfig, string $userId, string $trustedDeviceId, ?RequestOptions $requestOptions = null): TrustedDevice
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/trusted_devices/" . SdkClient::encodePathSegment($trustedDeviceId) . "", $clientConfig, returnType: TrustedDevice::class, decoder: 'json', operationId: 'revokeUserTrustedDevice', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/trusted_devices/" . SdkClient::encodePathSegment($trustedDeviceId) . "", $clientConfig, returnType: TrustedDevice::class, decoder: 'json', operationId: 'revokeUserTrustedDevice', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, TrustedDevice::class));
     }
 }

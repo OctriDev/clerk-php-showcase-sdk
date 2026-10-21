@@ -30,7 +30,7 @@ trait InvitationsMethodsPart1
             Validation::validateRange('expires_in_days', $expiresInDays, min: 1, max: 365);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/invitations", $clientConfig, body: ['email_address' => $emailAddress, 'public_metadata' => $publicMetadata, 'redirect_url' => $redirectUrl, 'notify' => $notify, 'ignore_existing' => $ignoreExisting, 'expires_in_days' => $expiresInDays, 'template_slug' => $templateSlug], returnType: Invitation::class, decoder: 'json', operationId: 'createInvitation', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/invitations", $clientConfig, body: ['email_address' => $emailAddress, 'public_metadata' => $publicMetadata, 'redirect_url' => $redirectUrl, 'notify' => $notify, 'ignore_existing' => $ignoreExisting, 'expires_in_days' => $expiresInDays, 'template_slug' => $templateSlug], returnType: Invitation::class, decoder: 'json', operationId: 'createInvitation', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Invitation::class));
     }
 
@@ -79,7 +79,7 @@ trait InvitationsMethodsPart1
             Validation::validateItems('body', $body, min: 1, max: 10);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/invitations/bulk", $clientConfig, body: $body, decoder: 'json', operationId: 'createBulkInvitations', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/invitations/bulk", $clientConfig, body: $body, decoder: 'json', operationId: 'createBulkInvitations', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, Invitation::class), SdkClient::arrayValue($sdkResponse->data))));
     }
 
@@ -95,7 +95,7 @@ trait InvitationsMethodsPart1
     public static function deleteInvitation(ClientConfig $clientConfig, string $invitationId, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/invitations/" . SdkClient::encodePathSegment($invitationId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteInvitation', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/invitations/" . SdkClient::encodePathSegment($invitationId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteInvitation', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 
@@ -111,7 +111,7 @@ trait InvitationsMethodsPart1
     public static function revokeInvitation(ClientConfig $clientConfig, string $invitationId, ?RequestOptions $requestOptions = null): RevokeInvitationResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/invitations/" . SdkClient::encodePathSegment($invitationId) . "/revoke", $clientConfig, returnType: RevokeInvitationResponse::class, decoder: 'json', operationId: 'revokeInvitation', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/invitations/" . SdkClient::encodePathSegment($invitationId) . "/revoke", $clientConfig, returnType: RevokeInvitationResponse::class, decoder: 'json', operationId: 'revokeInvitation', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RevokeInvitationResponse::class));
     }
 }

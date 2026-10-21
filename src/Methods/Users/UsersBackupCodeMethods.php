@@ -20,7 +20,7 @@ trait UsersBackupCodeMethods
     public static function deleteBackupCode(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): DeleteBackupCodeResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/backup_code", $clientConfig, returnType: DeleteBackupCodeResponse::class, decoder: 'json', operationId: 'deleteBackupCode', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/backup_code", $clientConfig, returnType: DeleteBackupCodeResponse::class, decoder: 'json', operationId: 'deleteBackupCode', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeleteBackupCodeResponse::class));
     }
 }
