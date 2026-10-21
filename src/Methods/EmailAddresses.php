@@ -13,26 +13,11 @@ final readonly class ReplaceUserEmailAddressIdentificationStatus implements SdkO
     public const RESERVED = "reserved";
     public const UNVERIFIED = "unverified";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class EmailAddresses
@@ -52,7 +37,7 @@ class EmailAddresses
     public static function createEmailAddress(ClientConfig $clientConfig, string $userId, string $emailAddress, bool|null|SdkNotGiven $verified = SdkNotGiven::Value, bool|null|SdkNotGiven $primary = SdkNotGiven::Value, bool|null|SdkNotGiven $notifyPrimaryEmailAddressChanged = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): EmailAddress
     {
 
-        $sdkResponse = SdkClient::request('POST', "/email_addresses", $clientConfig, body: ['user_id' => $userId, 'email_address' => $emailAddress, 'verified' => $verified, 'primary' => $primary, 'notify_primary_email_address_changed' => $notifyPrimaryEmailAddressChanged], returnType: EmailAddress::class, decoder: 'json', operationId: 'createEmailAddress', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/email_addresses", $clientConfig, body: ['user_id' => $userId, 'email_address' => $emailAddress, 'verified' => $verified, 'primary' => $primary, 'notify_primary_email_address_changed' => $notifyPrimaryEmailAddressChanged], returnType: EmailAddress::class, decoder: 'json', operationId: 'createEmailAddress', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, EmailAddress::class));
     }
 
@@ -68,7 +53,7 @@ class EmailAddresses
     public static function getEmailAddress(ClientConfig $clientConfig, string $emailAddressId, ?RequestOptions $requestOptions = null): EmailAddress
     {
 
-        $sdkResponse = SdkClient::request('GET', "/email_addresses/" . SdkClient::encodePathSegment($emailAddressId) . "", $clientConfig, returnType: EmailAddress::class, decoder: 'json', operationId: 'getEmailAddress', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/email_addresses/" . SdkClient::encodePathSegment($emailAddressId) . "", $clientConfig, returnType: EmailAddress::class, decoder: 'json', operationId: 'getEmailAddress', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, EmailAddress::class));
     }
 
@@ -84,7 +69,7 @@ class EmailAddresses
     public static function deleteEmailAddress(ClientConfig $clientConfig, string $emailAddressId, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/email_addresses/" . SdkClient::encodePathSegment($emailAddressId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteEmailAddress', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/email_addresses/" . SdkClient::encodePathSegment($emailAddressId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteEmailAddress', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 
@@ -103,7 +88,7 @@ class EmailAddresses
     public static function updateEmailAddress(ClientConfig $clientConfig, string $emailAddressId, bool|null|SdkNotGiven $verified = SdkNotGiven::Value, bool|null|SdkNotGiven $primary = SdkNotGiven::Value, bool|null|SdkNotGiven $notifyPrimaryEmailAddressChanged = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): EmailAddress
     {
 
-        $sdkResponse = SdkClient::request('PATCH', "/email_addresses/" . SdkClient::encodePathSegment($emailAddressId) . "", $clientConfig, body: ['verified' => $verified, 'primary' => $primary, 'notify_primary_email_address_changed' => $notifyPrimaryEmailAddressChanged], returnType: EmailAddress::class, decoder: 'json', operationId: 'updateEmailAddress', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/email_addresses/" . SdkClient::encodePathSegment($emailAddressId) . "", $clientConfig, body: ['verified' => $verified, 'primary' => $primary, 'notify_primary_email_address_changed' => $notifyPrimaryEmailAddressChanged], returnType: EmailAddress::class, decoder: 'json', operationId: 'updateEmailAddress', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, EmailAddress::class));
     }
 
@@ -119,7 +104,7 @@ class EmailAddresses
     public static function prepareEmailAddressVerification(ClientConfig $clientConfig, string $emailAddressId, ?RequestOptions $requestOptions = null): VerificationResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/email_addresses/" . SdkClient::encodePathSegment($emailAddressId) . "/prepare_verification", $clientConfig, returnType: VerificationResponse::class, decoder: 'json', operationId: 'prepareEmailAddressVerification', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/email_addresses/" . SdkClient::encodePathSegment($emailAddressId) . "/prepare_verification", $clientConfig, returnType: VerificationResponse::class, decoder: 'json', operationId: 'prepareEmailAddressVerification', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VerificationResponse::class));
     }
 
@@ -137,7 +122,7 @@ class EmailAddresses
     public static function attemptEmailAddressVerification(ClientConfig $clientConfig, string $emailAddressId, string $verificationId, string $code, ?RequestOptions $requestOptions = null): VerificationResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/email_addresses/" . SdkClient::encodePathSegment($emailAddressId) . "/attempt_verification", $clientConfig, body: ['verification_id' => $verificationId, 'code' => $code], returnType: VerificationResponse::class, decoder: 'json', operationId: 'attemptEmailAddressVerification', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/email_addresses/" . SdkClient::encodePathSegment($emailAddressId) . "/attempt_verification", $clientConfig, body: ['verification_id' => $verificationId, 'code' => $code], returnType: VerificationResponse::class, decoder: 'json', operationId: 'attemptEmailAddressVerification', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VerificationResponse::class));
     }
 
@@ -156,7 +141,7 @@ class EmailAddresses
     public static function replaceUserEmailAddress(ClientConfig $clientConfig, string $userId, string $emailAddress, ReplaceUserEmailAddressIdentificationStatus|SdkNotGiven $identificationStatus = SdkNotGiven::Value, bool|null|SdkNotGiven $notifyPrimaryEmailAddressChanged = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): EmailAddress
     {
 
-        $sdkResponse = SdkClient::request('PUT', "/users/" . SdkClient::encodePathSegment($userId) . "/email_address", $clientConfig, body: ['email_address' => $emailAddress, 'identification_status' => $identificationStatus, 'notify_primary_email_address_changed' => $notifyPrimaryEmailAddressChanged], returnType: EmailAddress::class, decoder: 'json', operationId: 'replaceUserEmailAddress', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PUT', "/users/" . SdkClient::encodePathSegment($userId) . "/email_address", $clientConfig, body: ['email_address' => $emailAddress, 'identification_status' => $identificationStatus, 'notify_primary_email_address_changed' => $notifyPrimaryEmailAddressChanged], returnType: EmailAddress::class, decoder: 'json', operationId: 'replaceUserEmailAddress', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, EmailAddress::class));
     }
 }

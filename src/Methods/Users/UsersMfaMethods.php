@@ -20,7 +20,7 @@ trait UsersMfaMethods
     public static function disableMfa(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): DisableMFAResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/mfa", $clientConfig, returnType: DisableMFAResponse::class, decoder: 'json', operationId: 'disableMfa', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/mfa", $clientConfig, returnType: DisableMFAResponse::class, decoder: 'json', operationId: 'disableMfa', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DisableMFAResponse::class));
     }
 }

@@ -14,26 +14,11 @@ final readonly class TestingTokenObjectEnum implements SdkOpenEnum
 {
     public const TESTING_TOKEN = "testing_token";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -94,15 +79,9 @@ class TestingToken implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "token") || $data->token === null) {
-            throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null");
-        }
-        if (!property_exists($data, "expires_at") || $data->expires_at === null) {
-            throw new SdkValidationError("expires_at", 'required', "Required property 'expires_at' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "token") || $data->token === null) { throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null"); }
+        if (!property_exists($data, "expires_at") || $data->expires_at === null) { throw new SdkValidationError("expires_at", 'required', "Required property 'expires_at' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, TestingTokenObjectEnum::class),
             token: SdkClient::stringValue($data->token),

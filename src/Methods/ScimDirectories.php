@@ -76,12 +76,8 @@ class CreateSCIMDirectoryGroupRoleMappingsItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "scim_group_id") || $data->scim_group_id === null) {
-            throw new SdkValidationError("scim_group_id", 'required', "Required property 'scim_group_id' is missing or null");
-        }
-        if (!property_exists($data, "role_id") || $data->role_id === null) {
-            throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null");
-        }
+        if (!property_exists($data, "scim_group_id") || $data->scim_group_id === null) { throw new SdkValidationError("scim_group_id", 'required', "Required property 'scim_group_id' is missing or null"); }
+        if (!property_exists($data, "role_id") || $data->role_id === null) { throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null"); }
         return new self(
             scimGroupId: SdkClient::stringValue($data->scim_group_id),
             roleId: SdkClient::stringValue($data->role_id),
@@ -136,12 +132,8 @@ class ReplaceSCIMGroupRoleMappingsMappingsItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "scim_group_id") || $data->scim_group_id === null) {
-            throw new SdkValidationError("scim_group_id", 'required', "Required property 'scim_group_id' is missing or null");
-        }
-        if (!property_exists($data, "role_id") || $data->role_id === null) {
-            throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null");
-        }
+        if (!property_exists($data, "scim_group_id") || $data->scim_group_id === null) { throw new SdkValidationError("scim_group_id", 'required', "Required property 'scim_group_id' is missing or null"); }
+        if (!property_exists($data, "role_id") || $data->role_id === null) { throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null"); }
         return new self(
             scimGroupId: SdkClient::stringValue($data->scim_group_id),
             roleId: SdkClient::stringValue($data->role_id),
@@ -171,7 +163,7 @@ class ScimDirectories
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/scim_directories", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: SCIMDirectoryList::class, decoder: 'json', operationId: 'listScimDirectories', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/scim_directories", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: SCIMDirectoryList::class, decoder: 'json', operationId: 'listScimDirectories', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMDirectoryList::class));
     }
 
@@ -190,7 +182,7 @@ class ScimDirectories
     public static function createScimDirectory(ClientConfig $clientConfig, string $enterpriseConnectionId, string $provider, string|SdkNotGiven $name = SdkNotGiven::Value, array|SdkNotGiven $groupRoleMappings = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): SCIMDirectory
     {
 
-        $sdkResponse = SdkClient::request('POST', "/scim_directories", $clientConfig, body: ['enterprise_connection_id' => $enterpriseConnectionId, 'provider' => $provider, 'name' => $name, 'group_role_mappings' => $groupRoleMappings], returnType: SCIMDirectory::class, decoder: 'json', operationId: 'createScimDirectory', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/scim_directories", $clientConfig, body: ['enterprise_connection_id' => $enterpriseConnectionId, 'provider' => $provider, 'name' => $name, 'group_role_mappings' => $groupRoleMappings], returnType: SCIMDirectory::class, decoder: 'json', operationId: 'createScimDirectory', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMDirectory::class));
     }
 
@@ -206,7 +198,7 @@ class ScimDirectories
     public static function getScimDirectory(ClientConfig $clientConfig, string $scimDirectoryId, ?RequestOptions $requestOptions = null): SCIMDirectory
     {
 
-        $sdkResponse = SdkClient::request('GET', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "", $clientConfig, returnType: SCIMDirectory::class, decoder: 'json', operationId: 'getScimDirectory', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "", $clientConfig, returnType: SCIMDirectory::class, decoder: 'json', operationId: 'getScimDirectory', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMDirectory::class));
     }
 
@@ -227,7 +219,7 @@ class ScimDirectories
     public static function updateScimDirectory(ClientConfig $clientConfig, string $scimDirectoryId, string|SdkNotGiven $name = SdkNotGiven::Value, bool|SdkNotGiven $enabled = SdkNotGiven::Value, string|SdkNotGiven $provider = SdkNotGiven::Value, array|SdkNotGiven $attributeMapping = SdkNotGiven::Value, bool|SdkNotGiven $groupRoleMappingEnabled = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): SCIMDirectory
     {
 
-        $sdkResponse = SdkClient::request('PATCH', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "", $clientConfig, body: ['name' => $name, 'enabled' => $enabled, 'provider' => $provider, 'attribute_mapping' => $attributeMapping, 'group_role_mapping_enabled' => $groupRoleMappingEnabled], returnType: SCIMDirectory::class, decoder: 'json', operationId: 'updateScimDirectory', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "", $clientConfig, body: ['name' => $name, 'enabled' => $enabled, 'provider' => $provider, 'attribute_mapping' => $attributeMapping, 'group_role_mapping_enabled' => $groupRoleMappingEnabled], returnType: SCIMDirectory::class, decoder: 'json', operationId: 'updateScimDirectory', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMDirectory::class));
     }
 
@@ -243,7 +235,7 @@ class ScimDirectories
     public static function deleteScimDirectory(ClientConfig $clientConfig, string $scimDirectoryId, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteScimDirectory', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteScimDirectory', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 
@@ -259,7 +251,7 @@ class ScimDirectories
     public static function rotateScimDirectoryApiKey(ClientConfig $clientConfig, string $scimDirectoryId, ?RequestOptions $requestOptions = null): SCIMDirectory
     {
 
-        $sdkResponse = SdkClient::request('POST', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "/rotate_api_key", $clientConfig, returnType: SCIMDirectory::class, decoder: 'json', operationId: 'rotateScimDirectoryApiKey', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "/rotate_api_key", $clientConfig, returnType: SCIMDirectory::class, decoder: 'json', operationId: 'rotateScimDirectoryApiKey', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMDirectory::class));
     }
 
@@ -275,7 +267,7 @@ class ScimDirectories
     public static function listScimGroupRoleMappings(ClientConfig $clientConfig, string $scimDirectoryId, ?RequestOptions $requestOptions = null): SCIMGroupRoleMappingList
     {
 
-        $sdkResponse = SdkClient::request('GET', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "/group_role_mappings", $clientConfig, returnType: SCIMGroupRoleMappingList::class, decoder: 'json', operationId: 'listScimGroupRoleMappings', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "/group_role_mappings", $clientConfig, returnType: SCIMGroupRoleMappingList::class, decoder: 'json', operationId: 'listScimGroupRoleMappings', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMGroupRoleMappingList::class));
     }
 
@@ -298,7 +290,7 @@ class ScimDirectories
             Validation::validateRange('precedence', $precedence, min: 1);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "/group_role_mappings", $clientConfig, body: ['scim_group_id' => $scimGroupId, 'role_id' => $roleId, 'precedence' => $precedence], returnType: SCIMGroupRoleMapping::class, decoder: 'json', operationId: 'createScimGroupRoleMapping', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "/group_role_mappings", $clientConfig, body: ['scim_group_id' => $scimGroupId, 'role_id' => $roleId, 'precedence' => $precedence], returnType: SCIMGroupRoleMapping::class, decoder: 'json', operationId: 'createScimGroupRoleMapping', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMGroupRoleMapping::class));
     }
 
@@ -315,7 +307,7 @@ class ScimDirectories
     public static function replaceScimGroupRoleMappings(ClientConfig $clientConfig, string $scimDirectoryId, array $mappings, ?RequestOptions $requestOptions = null): SCIMGroupRoleMappingList
     {
 
-        $sdkResponse = SdkClient::request('PUT', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "/group_role_mappings", $clientConfig, body: ['mappings' => $mappings], returnType: SCIMGroupRoleMappingList::class, decoder: 'json', operationId: 'replaceScimGroupRoleMappings', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PUT', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "/group_role_mappings", $clientConfig, body: ['mappings' => $mappings], returnType: SCIMGroupRoleMappingList::class, decoder: 'json', operationId: 'replaceScimGroupRoleMappings', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMGroupRoleMappingList::class));
     }
 
@@ -332,7 +324,7 @@ class ScimDirectories
     public static function deleteScimGroupRoleMapping(ClientConfig $clientConfig, string $scimDirectoryId, string $mappingId, ?RequestOptions $requestOptions = null): SCIMGroupRoleMappingDeleted
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "/group_role_mappings/" . SdkClient::encodePathSegment($mappingId) . "", $clientConfig, returnType: SCIMGroupRoleMappingDeleted::class, decoder: 'json', operationId: 'deleteScimGroupRoleMapping', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/scim_directories/" . SdkClient::encodePathSegment($scimDirectoryId) . "/group_role_mappings/" . SdkClient::encodePathSegment($mappingId) . "", $clientConfig, returnType: SCIMGroupRoleMappingDeleted::class, decoder: 'json', operationId: 'deleteScimGroupRoleMapping', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SCIMGroupRoleMappingDeleted::class));
     }
 }

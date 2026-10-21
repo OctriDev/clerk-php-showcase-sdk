@@ -65,15 +65,9 @@ class CommercePerUnitTotal2 implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "block_size") || $data->block_size === null) {
-            throw new SdkValidationError("block_size", 'required', "Required property 'block_size' is missing or null");
-        }
-        if (!property_exists($data, "tiers") || $data->tiers === null) {
-            throw new SdkValidationError("tiers", 'required', "Required property 'tiers' is missing or null");
-        }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "block_size") || $data->block_size === null) { throw new SdkValidationError("block_size", 'required', "Required property 'block_size' is missing or null"); }
+        if (!property_exists($data, "tiers") || $data->tiers === null) { throw new SdkValidationError("tiers", 'required', "Required property 'tiers' is missing or null"); }
         return new self(
             name: SdkClient::stringValue($data->name),
             blockSize: SdkClient::intValue($data->block_size),
@@ -142,12 +136,8 @@ class CommercePerUnitTotalTier implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "fee_per_block") || $data->fee_per_block === null) {
-            throw new SdkValidationError("fee_per_block", 'required', "Required property 'fee_per_block' is missing or null");
-        }
-        if (!property_exists($data, "total") || $data->total === null) {
-            throw new SdkValidationError("total", 'required', "Required property 'total' is missing or null");
-        }
+        if (!property_exists($data, "fee_per_block") || $data->fee_per_block === null) { throw new SdkValidationError("fee_per_block", 'required', "Required property 'fee_per_block' is missing or null"); }
+        if (!property_exists($data, "total") || $data->total === null) { throw new SdkValidationError("total", 'required', "Required property 'total' is missing or null"); }
         return new self(
             feePerBlock: SdkClient::hydrateClass($data->fee_per_block, CommerceMoneyResponse::class),
             total: SdkClient::hydrateClass($data->total, CommerceMoneyResponse::class),
@@ -216,12 +206,8 @@ class CommercePerUnitTotalTier2 implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "fee_per_block") || $data->fee_per_block === null) {
-            throw new SdkValidationError("fee_per_block", 'required', "Required property 'fee_per_block' is missing or null");
-        }
-        if (!property_exists($data, "total") || $data->total === null) {
-            throw new SdkValidationError("total", 'required', "Required property 'total' is missing or null");
-        }
+        if (!property_exists($data, "fee_per_block") || $data->fee_per_block === null) { throw new SdkValidationError("fee_per_block", 'required', "Required property 'fee_per_block' is missing or null"); }
+        if (!property_exists($data, "total") || $data->total === null) { throw new SdkValidationError("total", 'required', "Required property 'total' is missing or null"); }
         return new self(
             feePerBlock: SdkClient::hydrateClass($data->fee_per_block, CommerceMoneyResponse::class),
             total: SdkClient::hydrateClass($data->total, CommerceMoneyResponse::class),
@@ -237,24 +223,9 @@ final readonly class CommercePlanObjectEnum implements SdkOpenEnum
 {
     public const COMMERCE_PLAN = "commerce_plan";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

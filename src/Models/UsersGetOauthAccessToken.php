@@ -11,26 +11,11 @@ final readonly class OAuthAccessTokenItemObjectEnum implements SdkOpenEnum
 {
     public const OAUTH_ACCESS_TOKEN = "oauth_access_token";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class OAuthAccessTokenItem implements \JsonSerializable
@@ -162,30 +147,14 @@ class OAuthAccessTokenItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "external_account_id") || $data->external_account_id === null) {
-            throw new SdkValidationError("external_account_id", 'required', "Required property 'external_account_id' is missing or null");
-        }
-        if (!property_exists($data, "provider_user_id") || $data->provider_user_id === null) {
-            throw new SdkValidationError("provider_user_id", 'required', "Required property 'provider_user_id' is missing or null");
-        }
-        if (!property_exists($data, "token") || $data->token === null) {
-            throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null");
-        }
-        if (!property_exists($data, "expires_at")) {
-            throw new SdkValidationError("expires_at", 'required', "Missing required property 'expires_at'");
-        }
-        if (!property_exists($data, "provider") || $data->provider === null) {
-            throw new SdkValidationError("provider", 'required', "Required property 'provider' is missing or null");
-        }
-        if (!property_exists($data, "public_metadata") || $data->public_metadata === null) {
-            throw new SdkValidationError("public_metadata", 'required', "Required property 'public_metadata' is missing or null");
-        }
-        if (!property_exists($data, "label")) {
-            throw new SdkValidationError("label", 'required', "Missing required property 'label'");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "external_account_id") || $data->external_account_id === null) { throw new SdkValidationError("external_account_id", 'required', "Required property 'external_account_id' is missing or null"); }
+        if (!property_exists($data, "provider_user_id") || $data->provider_user_id === null) { throw new SdkValidationError("provider_user_id", 'required', "Required property 'provider_user_id' is missing or null"); }
+        if (!property_exists($data, "token") || $data->token === null) { throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null"); }
+        if (!property_exists($data, "expires_at")) { throw new SdkValidationError("expires_at", 'required', "Missing required property 'expires_at'"); }
+        if (!property_exists($data, "provider") || $data->provider === null) { throw new SdkValidationError("provider", 'required', "Required property 'provider' is missing or null"); }
+        if (!property_exists($data, "public_metadata") || $data->public_metadata === null) { throw new SdkValidationError("public_metadata", 'required', "Required property 'public_metadata' is missing or null"); }
+        if (!property_exists($data, "label")) { throw new SdkValidationError("label", 'required', "Missing required property 'label'"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, OAuthAccessTokenItemObjectEnum::class),
             externalAccountId: SdkClient::stringValue($data->external_account_id),

@@ -229,57 +229,23 @@ class CommercePlan implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "fee")) {
-            throw new SdkValidationError("fee", 'required', "Missing required property 'fee'");
-        }
-        if (!property_exists($data, "annual_monthly_fee")) {
-            throw new SdkValidationError("annual_monthly_fee", 'required', "Missing required property 'annual_monthly_fee'");
-        }
-        if (!property_exists($data, "annual_fee")) {
-            throw new SdkValidationError("annual_fee", 'required', "Missing required property 'annual_fee'");
-        }
-        if (!property_exists($data, "description")) {
-            throw new SdkValidationError("description", 'required', "Missing required property 'description'");
-        }
-        if (!property_exists($data, "product_id") || $data->product_id === null) {
-            throw new SdkValidationError("product_id", 'required', "Required property 'product_id' is missing or null");
-        }
-        if (!property_exists($data, "is_default") || $data->is_default === null) {
-            throw new SdkValidationError("is_default", 'required', "Required property 'is_default' is missing or null");
-        }
-        if (!property_exists($data, "is_recurring") || $data->is_recurring === null) {
-            throw new SdkValidationError("is_recurring", 'required', "Required property 'is_recurring' is missing or null");
-        }
-        if (!property_exists($data, "publicly_visible") || $data->publicly_visible === null) {
-            throw new SdkValidationError("publicly_visible", 'required', "Required property 'publicly_visible' is missing or null");
-        }
-        if (!property_exists($data, "has_base_fee") || $data->has_base_fee === null) {
-            throw new SdkValidationError("has_base_fee", 'required', "Required property 'has_base_fee' is missing or null");
-        }
-        if (!property_exists($data, "for_payer_type") || $data->for_payer_type === null) {
-            throw new SdkValidationError("for_payer_type", 'required', "Required property 'for_payer_type' is missing or null");
-        }
-        if (!property_exists($data, "slug") || $data->slug === null) {
-            throw new SdkValidationError("slug", 'required', "Required property 'slug' is missing or null");
-        }
-        if (!property_exists($data, "avatar_url")) {
-            throw new SdkValidationError("avatar_url", 'required', "Missing required property 'avatar_url'");
-        }
-        if (!property_exists($data, "free_trial_enabled") || $data->free_trial_enabled === null) {
-            throw new SdkValidationError("free_trial_enabled", 'required', "Required property 'free_trial_enabled' is missing or null");
-        }
-        if (!property_exists($data, "free_trial_days")) {
-            throw new SdkValidationError("free_trial_days", 'required', "Missing required property 'free_trial_days'");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "fee")) { throw new SdkValidationError("fee", 'required', "Missing required property 'fee'"); }
+        if (!property_exists($data, "annual_monthly_fee")) { throw new SdkValidationError("annual_monthly_fee", 'required', "Missing required property 'annual_monthly_fee'"); }
+        if (!property_exists($data, "annual_fee")) { throw new SdkValidationError("annual_fee", 'required', "Missing required property 'annual_fee'"); }
+        if (!property_exists($data, "description")) { throw new SdkValidationError("description", 'required', "Missing required property 'description'"); }
+        if (!property_exists($data, "product_id") || $data->product_id === null) { throw new SdkValidationError("product_id", 'required', "Required property 'product_id' is missing or null"); }
+        if (!property_exists($data, "is_default") || $data->is_default === null) { throw new SdkValidationError("is_default", 'required', "Required property 'is_default' is missing or null"); }
+        if (!property_exists($data, "is_recurring") || $data->is_recurring === null) { throw new SdkValidationError("is_recurring", 'required', "Required property 'is_recurring' is missing or null"); }
+        if (!property_exists($data, "publicly_visible") || $data->publicly_visible === null) { throw new SdkValidationError("publicly_visible", 'required', "Required property 'publicly_visible' is missing or null"); }
+        if (!property_exists($data, "has_base_fee") || $data->has_base_fee === null) { throw new SdkValidationError("has_base_fee", 'required', "Required property 'has_base_fee' is missing or null"); }
+        if (!property_exists($data, "for_payer_type") || $data->for_payer_type === null) { throw new SdkValidationError("for_payer_type", 'required', "Required property 'for_payer_type' is missing or null"); }
+        if (!property_exists($data, "slug") || $data->slug === null) { throw new SdkValidationError("slug", 'required', "Required property 'slug' is missing or null"); }
+        if (!property_exists($data, "avatar_url")) { throw new SdkValidationError("avatar_url", 'required', "Missing required property 'avatar_url'"); }
+        if (!property_exists($data, "free_trial_enabled") || $data->free_trial_enabled === null) { throw new SdkValidationError("free_trial_enabled", 'required', "Required property 'free_trial_enabled' is missing or null"); }
+        if (!property_exists($data, "free_trial_days")) { throw new SdkValidationError("free_trial_days", 'required', "Missing required property 'free_trial_days'"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, CommercePlanObjectEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -362,15 +328,9 @@ class CommercePlanUnitPrice implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "block_size") || $data->block_size === null) {
-            throw new SdkValidationError("block_size", 'required', "Required property 'block_size' is missing or null");
-        }
-        if (!property_exists($data, "tiers") || $data->tiers === null) {
-            throw new SdkValidationError("tiers", 'required', "Required property 'tiers' is missing or null");
-        }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "block_size") || $data->block_size === null) { throw new SdkValidationError("block_size", 'required', "Required property 'block_size' is missing or null"); }
+        if (!property_exists($data, "tiers") || $data->tiers === null) { throw new SdkValidationError("tiers", 'required', "Required property 'tiers' is missing or null"); }
         return new self(
             name: SdkClient::stringValue($data->name),
             blockSize: SdkClient::intValue($data->block_size),

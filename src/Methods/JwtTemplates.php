@@ -60,7 +60,7 @@ class JwtTemplates
             Validation::validateRange('allowed_clock_skew', $allowedClockSkew, min: 0, max: 300);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/jwt_templates", $clientConfig, body: ['name' => $name, 'claims' => $claims, 'lifetime' => $lifetime, 'allowed_clock_skew' => $allowedClockSkew, 'custom_signing_key' => $customSigningKey, 'signing_algorithm' => $signingAlgorithm, 'signing_key' => $signingKey], returnType: JWTTemplate::class, decoder: 'json', operationId: 'createJwtTemplate', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/jwt_templates", $clientConfig, body: ['name' => $name, 'claims' => $claims, 'lifetime' => $lifetime, 'allowed_clock_skew' => $allowedClockSkew, 'custom_signing_key' => $customSigningKey, 'signing_algorithm' => $signingAlgorithm, 'signing_key' => $signingKey], returnType: JWTTemplate::class, decoder: 'json', operationId: 'createJwtTemplate', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, JWTTemplate::class));
     }
 
@@ -76,7 +76,7 @@ class JwtTemplates
     public static function getJwtTemplate(ClientConfig $clientConfig, string $templateId, ?RequestOptions $requestOptions = null): JWTTemplate
     {
 
-        $sdkResponse = SdkClient::request('GET', "/jwt_templates/" . SdkClient::encodePathSegment($templateId) . "", $clientConfig, returnType: JWTTemplate::class, decoder: 'json', operationId: 'getJwtTemplate', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/jwt_templates/" . SdkClient::encodePathSegment($templateId) . "", $clientConfig, returnType: JWTTemplate::class, decoder: 'json', operationId: 'getJwtTemplate', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, JWTTemplate::class));
     }
 
@@ -107,7 +107,7 @@ class JwtTemplates
             Validation::validateRange('allowed_clock_skew', $allowedClockSkew, min: 0, max: 300);
         }
 
-        $sdkResponse = SdkClient::request('PATCH', "/jwt_templates/" . SdkClient::encodePathSegment($templateId) . "", $clientConfig, body: ['name' => $name, 'claims' => $claims, 'lifetime' => $lifetime, 'allowed_clock_skew' => $allowedClockSkew, 'custom_signing_key' => $customSigningKey, 'signing_algorithm' => $signingAlgorithm, 'signing_key' => $signingKey], returnType: JWTTemplate::class, decoder: 'json', operationId: 'updateJwtTemplate', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/jwt_templates/" . SdkClient::encodePathSegment($templateId) . "", $clientConfig, body: ['name' => $name, 'claims' => $claims, 'lifetime' => $lifetime, 'allowed_clock_skew' => $allowedClockSkew, 'custom_signing_key' => $customSigningKey, 'signing_algorithm' => $signingAlgorithm, 'signing_key' => $signingKey], returnType: JWTTemplate::class, decoder: 'json', operationId: 'updateJwtTemplate', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, JWTTemplate::class));
     }
 
@@ -123,7 +123,7 @@ class JwtTemplates
     public static function deleteJwtTemplate(ClientConfig $clientConfig, string $templateId, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/jwt_templates/" . SdkClient::encodePathSegment($templateId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteJwtTemplate', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/jwt_templates/" . SdkClient::encodePathSegment($templateId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteJwtTemplate', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 }

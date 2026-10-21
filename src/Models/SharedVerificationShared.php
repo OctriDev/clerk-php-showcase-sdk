@@ -22,26 +22,11 @@ final readonly class VerificationAdminStatusEnum implements SdkOpenEnum
 {
     public const VERIFIED = "verified";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -51,26 +36,11 @@ final readonly class VerificationAdminStrategyEnum implements SdkOpenEnum
 {
     public const ADMIN = "admin";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -165,18 +135,10 @@ class VerificationAdmin implements EmailAddressVerification, PhoneNumberVerifica
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "status") || $data->status === null) {
-            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
-        }
-        if (!property_exists($data, "strategy") || $data->strategy === null) {
-            throw new SdkValidationError("strategy", 'required', "Required property 'strategy' is missing or null");
-        }
-        if (!property_exists($data, "attempts")) {
-            throw new SdkValidationError("attempts", 'required', "Missing required property 'attempts'");
-        }
-        if (!property_exists($data, "expire_at")) {
-            throw new SdkValidationError("expire_at", 'required', "Missing required property 'expire_at'");
-        }
+        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
+        if (!property_exists($data, "strategy") || $data->strategy === null) { throw new SdkValidationError("strategy", 'required', "Required property 'strategy' is missing or null"); }
+        if (!property_exists($data, "attempts")) { throw new SdkValidationError("attempts", 'required', "Missing required property 'attempts'"); }
+        if (!property_exists($data, "expire_at")) { throw new SdkValidationError("expire_at", 'required', "Missing required property 'expire_at'"); }
         return new self(
             status: SdkClient::hydrateStringEnumOrString($data->status, VerificationAdminStatusEnum::class),
             strategy: SdkClient::hydrateStringEnumOrString($data->strategy, VerificationAdminStrategyEnum::class),
@@ -206,26 +168,11 @@ final readonly class VerificationEmailLinkStatusEnum implements SdkOpenEnum
     public const FAILED = "failed";
     public const EXPIRED = "expired";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -235,26 +182,11 @@ final readonly class VerificationEmailLinkStrategyEnum implements SdkOpenEnum
 {
     public const EMAIL_LINK = "email_link";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -349,18 +281,10 @@ class VerificationEmailLink implements EmailAddressVerification, \JsonSerializab
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "status") || $data->status === null) {
-            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
-        }
-        if (!property_exists($data, "strategy") || $data->strategy === null) {
-            throw new SdkValidationError("strategy", 'required', "Required property 'strategy' is missing or null");
-        }
-        if (!property_exists($data, "attempts")) {
-            throw new SdkValidationError("attempts", 'required', "Missing required property 'attempts'");
-        }
-        if (!property_exists($data, "expire_at")) {
-            throw new SdkValidationError("expire_at", 'required', "Missing required property 'expire_at'");
-        }
+        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
+        if (!property_exists($data, "strategy") || $data->strategy === null) { throw new SdkValidationError("strategy", 'required', "Required property 'strategy' is missing or null"); }
+        if (!property_exists($data, "attempts")) { throw new SdkValidationError("attempts", 'required', "Missing required property 'attempts'"); }
+        if (!property_exists($data, "expire_at")) { throw new SdkValidationError("expire_at", 'required', "Missing required property 'expire_at'"); }
         return new self(
             status: SdkClient::hydrateStringEnumOrString($data->status, VerificationEmailLinkStatusEnum::class),
             strategy: SdkClient::hydrateStringEnumOrString($data->strategy, VerificationEmailLinkStrategyEnum::class),
@@ -388,24 +312,9 @@ final readonly class VerificationFromOauthStatusEnum implements SdkOpenEnum
     public const UNVERIFIED = "unverified";
     public const VERIFIED = "verified";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

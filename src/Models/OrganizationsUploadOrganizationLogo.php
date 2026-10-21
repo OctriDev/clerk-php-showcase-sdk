@@ -52,12 +52,8 @@ class OrganizationWithLogoVariant1 implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "image_url") || $data->image_url === null) {
-            throw new SdkValidationError("image_url", 'required', "Required property 'image_url' is missing or null");
-        }
-        if (!property_exists($data, "has_image") || $data->has_image === null) {
-            throw new SdkValidationError("has_image", 'required', "Required property 'has_image' is missing or null");
-        }
+        if (!property_exists($data, "image_url") || $data->image_url === null) { throw new SdkValidationError("image_url", 'required', "Required property 'image_url' is missing or null"); }
+        if (!property_exists($data, "has_image") || $data->has_image === null) { throw new SdkValidationError("has_image", 'required', "Required property 'has_image' is missing or null"); }
         return new self(
             imageUrl: SdkClient::stringValue($data->image_url),
             hasImage: SdkClient::boolValue($data->has_image),
@@ -73,24 +69,9 @@ final readonly class OrganizationWithLogoObjectEnum implements SdkOpenEnum
 {
     public const ORGANIZATION = "organization";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

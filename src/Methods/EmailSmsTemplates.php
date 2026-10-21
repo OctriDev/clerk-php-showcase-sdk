@@ -12,26 +12,11 @@ final readonly class GetTemplateListTemplateType implements SdkOpenEnum
     public const EMAIL = "email";
     public const SMS = "sms";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class GetTemplateTemplateType implements SdkOpenEnum
@@ -39,26 +24,11 @@ final readonly class GetTemplateTemplateType implements SdkOpenEnum
     public const EMAIL = "email";
     public const SMS = "sms";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class UpsertTemplateTemplateType implements SdkOpenEnum
@@ -66,26 +36,11 @@ final readonly class UpsertTemplateTemplateType implements SdkOpenEnum
     public const EMAIL = "email";
     public const SMS = "sms";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class RevertTemplateTemplateType implements SdkOpenEnum
@@ -93,26 +48,11 @@ final readonly class RevertTemplateTemplateType implements SdkOpenEnum
     public const EMAIL = "email";
     public const SMS = "sms";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class ToggleTemplateDeliveryTemplateType implements SdkOpenEnum
@@ -120,26 +60,11 @@ final readonly class ToggleTemplateDeliveryTemplateType implements SdkOpenEnum
     public const EMAIL = "email";
     public const SMS = "sms";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class EmailSmsTemplates
@@ -168,7 +93,7 @@ class EmailSmsTemplates
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/templates/" . SdkClient::encodePathSegment($templateType) . "", $clientConfig, query: ['paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], decoder: 'json', operationId: 'getTemplateList', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/templates/" . SdkClient::encodePathSegment($templateType) . "", $clientConfig, query: ['paginated' => new SdkQueryValue($paginated, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], decoder: 'json', operationId: 'getTemplateList', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, Template::class), SdkClient::arrayValue($sdkResponse->data))));
     }
 
@@ -187,7 +112,7 @@ class EmailSmsTemplates
     public static function getTemplate(ClientConfig $clientConfig, GetTemplateTemplateType $templateType, string $slug, ?RequestOptions $requestOptions = null): Template
     {
 
-        $sdkResponse = SdkClient::request('GET', "/templates/" . SdkClient::encodePathSegment($templateType) . "/" . SdkClient::encodePathSegment($slug) . "", $clientConfig, returnType: Template::class, decoder: 'json', operationId: 'getTemplate', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/templates/" . SdkClient::encodePathSegment($templateType) . "/" . SdkClient::encodePathSegment($slug) . "", $clientConfig, returnType: Template::class, decoder: 'json', operationId: 'getTemplate', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Template::class));
     }
 
@@ -213,7 +138,7 @@ class EmailSmsTemplates
     public static function upsertTemplate(ClientConfig $clientConfig, UpsertTemplateTemplateType $templateType, string $slug, string|SdkNotGiven $name = SdkNotGiven::Value, string|null|SdkNotGiven $subject = SdkNotGiven::Value, string|null|SdkNotGiven $markup = SdkNotGiven::Value, string|SdkNotGiven $body = SdkNotGiven::Value, bool|null|SdkNotGiven $deliveredByClerk = SdkNotGiven::Value, string|SdkNotGiven $fromEmailName = SdkNotGiven::Value, string|SdkNotGiven $replyToEmailName = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Template
     {
 
-        $sdkResponse = SdkClient::request('PUT', "/templates/" . SdkClient::encodePathSegment($templateType) . "/" . SdkClient::encodePathSegment($slug) . "", $clientConfig, body: ['name' => $name, 'subject' => $subject, 'markup' => $markup, 'body' => $body, 'delivered_by_clerk' => $deliveredByClerk, 'from_email_name' => $fromEmailName, 'reply_to_email_name' => $replyToEmailName], returnType: Template::class, decoder: 'json', operationId: 'upsertTemplate', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 423 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PUT', "/templates/" . SdkClient::encodePathSegment($templateType) . "/" . SdkClient::encodePathSegment($slug) . "", $clientConfig, body: ['name' => $name, 'subject' => $subject, 'markup' => $markup, 'body' => $body, 'delivered_by_clerk' => $deliveredByClerk, 'from_email_name' => $fromEmailName, 'reply_to_email_name' => $replyToEmailName], returnType: Template::class, decoder: 'json', operationId: 'upsertTemplate', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 423 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Template::class));
     }
 
@@ -232,7 +157,7 @@ class EmailSmsTemplates
     public static function revertTemplate(ClientConfig $clientConfig, RevertTemplateTemplateType $templateType, string $slug, ?RequestOptions $requestOptions = null): Template
     {
 
-        $sdkResponse = SdkClient::request('POST', "/templates/" . SdkClient::encodePathSegment($templateType) . "/" . SdkClient::encodePathSegment($slug) . "/revert", $clientConfig, returnType: Template::class, decoder: 'json', operationId: 'revertTemplate', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/templates/" . SdkClient::encodePathSegment($templateType) . "/" . SdkClient::encodePathSegment($slug) . "/revert", $clientConfig, returnType: Template::class, decoder: 'json', operationId: 'revertTemplate', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Template::class));
     }
 
@@ -255,7 +180,7 @@ class EmailSmsTemplates
     public static function previewTemplate(ClientConfig $clientConfig, string $templateType, string $slug, string|null|SdkNotGiven $subject = SdkNotGiven::Value, string|SdkNotGiven $body = SdkNotGiven::Value, string|SdkNotGiven $fromEmailName = SdkNotGiven::Value, string|SdkNotGiven $replyToEmailName = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): array
     {
 
-        $sdkResponse = SdkClient::request('POST', "/templates/" . SdkClient::encodePathSegment($templateType) . "/" . SdkClient::encodePathSegment($slug) . "/preview", $clientConfig, body: ['subject' => $subject, 'body' => $body, 'from_email_name' => $fromEmailName, 'reply_to_email_name' => $replyToEmailName], decoder: 'json', operationId: 'previewTemplate', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/templates/" . SdkClient::encodePathSegment($templateType) . "/" . SdkClient::encodePathSegment($slug) . "/preview", $clientConfig, body: ['subject' => $subject, 'body' => $body, 'from_email_name' => $fromEmailName, 'reply_to_email_name' => $replyToEmailName], decoder: 'json', operationId: 'previewTemplate', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::stringMapValue($sdkResponse->data));
     }
 
@@ -275,7 +200,7 @@ class EmailSmsTemplates
     public static function toggleTemplateDelivery(ClientConfig $clientConfig, ToggleTemplateDeliveryTemplateType $templateType, string $slug, bool|SdkNotGiven $deliveredByClerk = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Template
     {
 
-        $sdkResponse = SdkClient::request('POST', "/templates/" . SdkClient::encodePathSegment($templateType) . "/" . SdkClient::encodePathSegment($slug) . "/toggle_delivery", $clientConfig, body: ['delivered_by_clerk' => $deliveredByClerk], returnType: Template::class, decoder: 'json', operationId: 'toggleTemplateDelivery', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 423 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/templates/" . SdkClient::encodePathSegment($templateType) . "/" . SdkClient::encodePathSegment($slug) . "/toggle_delivery", $clientConfig, body: ['delivered_by_clerk' => $deliveredByClerk], returnType: Template::class, decoder: 'json', operationId: 'toggleTemplateDelivery', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 423 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Template::class));
     }
 }

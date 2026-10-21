@@ -45,9 +45,7 @@ class ExtendFreeTrialRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "extend_to") || $data->extend_to === null) {
-            throw new SdkValidationError("extend_to", 'required', "Required property 'extend_to' is missing or null");
-        }
+        if (!property_exists($data, "extend_to") || $data->extend_to === null) { throw new SdkValidationError("extend_to", 'required', "Required property 'extend_to' is missing or null"); }
         return new self(
             extendTo: SdkClient::stringValue($data->extend_to),
         );

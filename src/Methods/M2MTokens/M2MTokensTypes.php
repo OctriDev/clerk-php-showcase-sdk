@@ -12,52 +12,22 @@ final readonly class CreateM2MTokenTokenFormat implements SdkOpenEnum
     public const OPAQUE = "opaque";
     public const JWT = "jwt";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class CreateM2MTokenResponseObjectEnum implements SdkOpenEnum
 {
     public const MACHINE_TO_MACHINE_TOKEN = "machine_to_machine_token";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class CreateM2MTokenResponse implements \JsonSerializable
@@ -183,39 +153,17 @@ class CreateM2MTokenResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "subject") || $data->subject === null) {
-            throw new SdkValidationError("subject", 'required', "Required property 'subject' is missing or null");
-        }
-        if (!property_exists($data, "token") || $data->token === null) {
-            throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null");
-        }
-        if (!property_exists($data, "revoked") || $data->revoked === null) {
-            throw new SdkValidationError("revoked", 'required', "Required property 'revoked' is missing or null");
-        }
-        if (!property_exists($data, "revocation_reason")) {
-            throw new SdkValidationError("revocation_reason", 'required', "Missing required property 'revocation_reason'");
-        }
-        if (!property_exists($data, "expired") || $data->expired === null) {
-            throw new SdkValidationError("expired", 'required', "Required property 'expired' is missing or null");
-        }
-        if (!property_exists($data, "expiration")) {
-            throw new SdkValidationError("expiration", 'required', "Missing required property 'expiration'");
-        }
-        if (!property_exists($data, "last_used_at")) {
-            throw new SdkValidationError("last_used_at", 'required', "Missing required property 'last_used_at'");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
-            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "subject") || $data->subject === null) { throw new SdkValidationError("subject", 'required', "Required property 'subject' is missing or null"); }
+        if (!property_exists($data, "token") || $data->token === null) { throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null"); }
+        if (!property_exists($data, "revoked") || $data->revoked === null) { throw new SdkValidationError("revoked", 'required', "Required property 'revoked' is missing or null"); }
+        if (!property_exists($data, "revocation_reason")) { throw new SdkValidationError("revocation_reason", 'required', "Missing required property 'revocation_reason'"); }
+        if (!property_exists($data, "expired") || $data->expired === null) { throw new SdkValidationError("expired", 'required', "Required property 'expired' is missing or null"); }
+        if (!property_exists($data, "expiration")) { throw new SdkValidationError("expiration", 'required', "Missing required property 'expiration'"); }
+        if (!property_exists($data, "last_used_at")) { throw new SdkValidationError("last_used_at", 'required', "Missing required property 'last_used_at'"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, CreateM2MTokenResponseObjectEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -238,26 +186,11 @@ final readonly class GetM2MTokensResponseM2mTokensItemObjectEnum implements SdkO
 {
     public const MACHINE_TO_MACHINE_TOKEN = "machine_to_machine_token";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class GetM2MTokensResponseM2mTokensItem implements \JsonSerializable
@@ -377,36 +310,16 @@ class GetM2MTokensResponseM2mTokensItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "subject") || $data->subject === null) {
-            throw new SdkValidationError("subject", 'required', "Required property 'subject' is missing or null");
-        }
-        if (!property_exists($data, "revoked") || $data->revoked === null) {
-            throw new SdkValidationError("revoked", 'required', "Required property 'revoked' is missing or null");
-        }
-        if (!property_exists($data, "revocation_reason")) {
-            throw new SdkValidationError("revocation_reason", 'required', "Missing required property 'revocation_reason'");
-        }
-        if (!property_exists($data, "expired") || $data->expired === null) {
-            throw new SdkValidationError("expired", 'required', "Required property 'expired' is missing or null");
-        }
-        if (!property_exists($data, "expiration")) {
-            throw new SdkValidationError("expiration", 'required', "Missing required property 'expiration'");
-        }
-        if (!property_exists($data, "last_used_at")) {
-            throw new SdkValidationError("last_used_at", 'required', "Missing required property 'last_used_at'");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
-            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "subject") || $data->subject === null) { throw new SdkValidationError("subject", 'required', "Required property 'subject' is missing or null"); }
+        if (!property_exists($data, "revoked") || $data->revoked === null) { throw new SdkValidationError("revoked", 'required', "Required property 'revoked' is missing or null"); }
+        if (!property_exists($data, "revocation_reason")) { throw new SdkValidationError("revocation_reason", 'required', "Missing required property 'revocation_reason'"); }
+        if (!property_exists($data, "expired") || $data->expired === null) { throw new SdkValidationError("expired", 'required', "Required property 'expired' is missing or null"); }
+        if (!property_exists($data, "expiration")) { throw new SdkValidationError("expiration", 'required', "Missing required property 'expiration'"); }
+        if (!property_exists($data, "last_used_at")) { throw new SdkValidationError("last_used_at", 'required', "Missing required property 'last_used_at'"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, GetM2MTokensResponseM2mTokensItemObjectEnum::class),
             id: SdkClient::stringValue($data->id),

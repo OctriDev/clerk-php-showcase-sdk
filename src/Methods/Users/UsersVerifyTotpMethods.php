@@ -21,7 +21,7 @@ trait UsersVerifyTotpMethods
     public static function verifyTotp(ClientConfig $clientConfig, string $userId, string $code, ?RequestOptions $requestOptions = null): VerifyTOTPResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/verify_totp", $clientConfig, body: ['code' => $code], returnType: VerifyTOTPResponse::class, decoder: 'json', operationId: 'verifyTotp', requestOptions: $requestOptions, errors: [500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/verify_totp", $clientConfig, body: ['code' => $code], returnType: VerifyTOTPResponse::class, decoder: 'json', operationId: 'verifyTotp', requestOptions: $requestOptions, errors: [500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VerifyTOTPResponse::class));
     }
 }

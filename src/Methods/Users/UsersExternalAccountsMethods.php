@@ -21,7 +21,7 @@ trait UsersExternalAccountsMethods
     public static function deleteExternalAccount(ClientConfig $clientConfig, string $userId, string $externalAccountId, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/external_accounts/" . SdkClient::encodePathSegment($externalAccountId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteExternalAccount', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/external_accounts/" . SdkClient::encodePathSegment($externalAccountId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteExternalAccount', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 }

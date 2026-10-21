@@ -14,26 +14,11 @@ final readonly class InstanceCommunicationObjectEnum implements SdkOpenEnum
 {
     public const INSTANCE_COMMUNICATION = "instance_communication";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -84,12 +69,8 @@ class InstanceCommunication implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "blocked_country_codes") || $data->blocked_country_codes === null) {
-            throw new SdkValidationError("blocked_country_codes", 'required', "Required property 'blocked_country_codes' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "blocked_country_codes") || $data->blocked_country_codes === null) { throw new SdkValidationError("blocked_country_codes", 'required', "Required property 'blocked_country_codes' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, InstanceCommunicationObjectEnum::class),
             blockedCountryCodes: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->blocked_country_codes))),
@@ -104,26 +85,11 @@ final readonly class InstanceProtectObjectEnum implements SdkOpenEnum
 {
     public const INSTANCE_PROTECT = "instance_protect";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -214,24 +180,12 @@ class InstanceProtect implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "rules_enabled") || $data->rules_enabled === null) {
-            throw new SdkValidationError("rules_enabled", 'required', "Required property 'rules_enabled' is missing or null");
-        }
-        if (!property_exists($data, "specter_enabled") || $data->specter_enabled === null) {
-            throw new SdkValidationError("specter_enabled", 'required', "Required property 'specter_enabled' is missing or null");
-        }
-        if (!property_exists($data, "checks_bypassed") || $data->checks_bypassed === null) {
-            throw new SdkValidationError("checks_bypassed", 'required', "Required property 'checks_bypassed' is missing or null");
-        }
-        if (!property_exists($data, "checks_verified") || $data->checks_verified === null) {
-            throw new SdkValidationError("checks_verified", 'required', "Required property 'checks_verified' is missing or null");
-        }
-        if (!property_exists($data, "checks_exempt") || $data->checks_exempt === null) {
-            throw new SdkValidationError("checks_exempt", 'required', "Required property 'checks_exempt' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "rules_enabled") || $data->rules_enabled === null) { throw new SdkValidationError("rules_enabled", 'required', "Required property 'rules_enabled' is missing or null"); }
+        if (!property_exists($data, "specter_enabled") || $data->specter_enabled === null) { throw new SdkValidationError("specter_enabled", 'required', "Required property 'specter_enabled' is missing or null"); }
+        if (!property_exists($data, "checks_bypassed") || $data->checks_bypassed === null) { throw new SdkValidationError("checks_bypassed", 'required', "Required property 'checks_bypassed' is missing or null"); }
+        if (!property_exists($data, "checks_verified") || $data->checks_verified === null) { throw new SdkValidationError("checks_verified", 'required', "Required property 'checks_verified' is missing or null"); }
+        if (!property_exists($data, "checks_exempt") || $data->checks_exempt === null) { throw new SdkValidationError("checks_exempt", 'required', "Required property 'checks_exempt' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, InstanceProtectObjectEnum::class),
             rulesEnabled: SdkClient::boolValue($data->rules_enabled),
@@ -250,24 +204,9 @@ final readonly class OAuthApplicationSettingsObjectEnum implements SdkOpenEnum
 {
     public const OAUTH_APPLICATION_SETTINGS = "oauth_application_settings";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

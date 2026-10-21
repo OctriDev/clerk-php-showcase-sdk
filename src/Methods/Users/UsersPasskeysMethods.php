@@ -21,7 +21,7 @@ trait UsersPasskeysMethods
     public static function deleteUserPasskey(ClientConfig $clientConfig, string $userId, string $passkeyIdentificationId, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/passkeys/" . SdkClient::encodePathSegment($passkeyIdentificationId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteUserPasskey', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/passkeys/" . SdkClient::encodePathSegment($passkeyIdentificationId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteUserPasskey', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 }

@@ -21,7 +21,7 @@ trait UsersVerifyPasswordMethods
     public static function verifyPassword(ClientConfig $clientConfig, string $userId, string $password, ?RequestOptions $requestOptions = null): VerifyPasswordResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/verify_password", $clientConfig, body: ['password' => $password], returnType: VerifyPasswordResponse::class, decoder: 'json', operationId: 'verifyPassword', requestOptions: $requestOptions, errors: [500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/verify_password", $clientConfig, body: ['password' => $password], returnType: VerifyPasswordResponse::class, decoder: 'json', operationId: 'verifyPassword', requestOptions: $requestOptions, errors: [500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VerifyPasswordResponse::class));
     }
 }

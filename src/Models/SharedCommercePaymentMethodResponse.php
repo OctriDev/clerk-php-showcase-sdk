@@ -219,36 +219,16 @@ class CommercePaymentMethodResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "payer_id") || $data->payer_id === null) {
-            throw new SdkValidationError("payer_id", 'required', "Required property 'payer_id' is missing or null");
-        }
-        if (!property_exists($data, "payment_type") || $data->payment_type === null) {
-            throw new SdkValidationError("payment_type", 'required', "Required property 'payment_type' is missing or null");
-        }
-        if (!property_exists($data, "gateway") || $data->gateway === null) {
-            throw new SdkValidationError("gateway", 'required', "Required property 'gateway' is missing or null");
-        }
-        if (!property_exists($data, "gateway_external_id") || $data->gateway_external_id === null) {
-            throw new SdkValidationError("gateway_external_id", 'required', "Required property 'gateway_external_id' is missing or null");
-        }
-        if (!property_exists($data, "gateway_external_account_id")) {
-            throw new SdkValidationError("gateway_external_account_id", 'required', "Missing required property 'gateway_external_account_id'");
-        }
-        if (!property_exists($data, "last4")) {
-            throw new SdkValidationError("last4", 'required', "Missing required property 'last4'");
-        }
-        if (!property_exists($data, "status") || $data->status === null) {
-            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
-        }
-        if (!property_exists($data, "card_type")) {
-            throw new SdkValidationError("card_type", 'required', "Missing required property 'card_type'");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "payer_id") || $data->payer_id === null) { throw new SdkValidationError("payer_id", 'required', "Required property 'payer_id' is missing or null"); }
+        if (!property_exists($data, "payment_type") || $data->payment_type === null) { throw new SdkValidationError("payment_type", 'required', "Required property 'payment_type' is missing or null"); }
+        if (!property_exists($data, "gateway") || $data->gateway === null) { throw new SdkValidationError("gateway", 'required', "Required property 'gateway' is missing or null"); }
+        if (!property_exists($data, "gateway_external_id") || $data->gateway_external_id === null) { throw new SdkValidationError("gateway_external_id", 'required', "Required property 'gateway_external_id' is missing or null"); }
+        if (!property_exists($data, "gateway_external_account_id")) { throw new SdkValidationError("gateway_external_account_id", 'required', "Missing required property 'gateway_external_account_id'"); }
+        if (!property_exists($data, "last4")) { throw new SdkValidationError("last4", 'required', "Missing required property 'last4'"); }
+        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
+        if (!property_exists($data, "card_type")) { throw new SdkValidationError("card_type", 'required', "Missing required property 'card_type'"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, CommercePaymentMethodResponseObjectEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -329,15 +309,9 @@ class CommercePerUnitTotal implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "block_size") || $data->block_size === null) {
-            throw new SdkValidationError("block_size", 'required', "Required property 'block_size' is missing or null");
-        }
-        if (!property_exists($data, "tiers") || $data->tiers === null) {
-            throw new SdkValidationError("tiers", 'required', "Required property 'tiers' is missing or null");
-        }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "block_size") || $data->block_size === null) { throw new SdkValidationError("block_size", 'required', "Required property 'block_size' is missing or null"); }
+        if (!property_exists($data, "tiers") || $data->tiers === null) { throw new SdkValidationError("tiers", 'required', "Required property 'tiers' is missing or null"); }
         return new self(
             name: SdkClient::stringValue($data->name),
             blockSize: SdkClient::intValue($data->block_size),

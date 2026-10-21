@@ -107,24 +107,12 @@ class SSOBypassAllowlistPublicUserData implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "first_name")) {
-            throw new SdkValidationError("first_name", 'required', "Missing required property 'first_name'");
-        }
-        if (!property_exists($data, "last_name")) {
-            throw new SdkValidationError("last_name", 'required', "Missing required property 'last_name'");
-        }
-        if (!property_exists($data, "has_image") || $data->has_image === null) {
-            throw new SdkValidationError("has_image", 'required', "Required property 'has_image' is missing or null");
-        }
-        if (!property_exists($data, "identifier") || $data->identifier === null) {
-            throw new SdkValidationError("identifier", 'required', "Required property 'identifier' is missing or null");
-        }
-        if (!property_exists($data, "username")) {
-            throw new SdkValidationError("username", 'required', "Missing required property 'username'");
-        }
-        if (!property_exists($data, "profile_image_url")) {
-            throw new SdkValidationError("profile_image_url", 'required', "Missing required property 'profile_image_url'");
-        }
+        if (!property_exists($data, "first_name")) { throw new SdkValidationError("first_name", 'required', "Missing required property 'first_name'"); }
+        if (!property_exists($data, "last_name")) { throw new SdkValidationError("last_name", 'required', "Missing required property 'last_name'"); }
+        if (!property_exists($data, "has_image") || $data->has_image === null) { throw new SdkValidationError("has_image", 'required', "Required property 'has_image' is missing or null"); }
+        if (!property_exists($data, "identifier") || $data->identifier === null) { throw new SdkValidationError("identifier", 'required', "Required property 'identifier' is missing or null"); }
+        if (!property_exists($data, "username")) { throw new SdkValidationError("username", 'required', "Missing required property 'username'"); }
+        if (!property_exists($data, "profile_image_url")) { throw new SdkValidationError("profile_image_url", 'required', "Missing required property 'profile_image_url'"); }
         return new self(
             firstName: ($data->first_name === null ? null : SdkClient::stringValue($data->first_name)),
             lastName: ($data->last_name === null ? null : SdkClient::stringValue($data->last_name)),
@@ -144,26 +132,11 @@ final readonly class SSOBypassAllowlistUserObjectEnum implements SdkOpenEnum
 {
     public const SSO_BYPASS_ALLOWLIST_USER = "sso_bypass_allowlist_user";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -244,21 +217,11 @@ class SSOBypassAllowlistUser implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "user_id") || $data->user_id === null) {
-            throw new SdkValidationError("user_id", 'required', "Required property 'user_id' is missing or null");
-        }
-        if (!property_exists($data, "public_user_data") || $data->public_user_data === null) {
-            throw new SdkValidationError("public_user_data", 'required', "Required property 'public_user_data' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
-            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "user_id") || $data->user_id === null) { throw new SdkValidationError("user_id", 'required', "Required property 'user_id' is missing or null"); }
+        if (!property_exists($data, "public_user_data") || $data->public_user_data === null) { throw new SdkValidationError("public_user_data", 'required', "Required property 'public_user_data' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, SSOBypassAllowlistUserObjectEnum::class),
             userId: SdkClient::stringValue($data->user_id),

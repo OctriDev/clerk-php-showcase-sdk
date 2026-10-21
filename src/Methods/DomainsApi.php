@@ -35,7 +35,7 @@ class DomainsApi
     public static function addDomain(ClientConfig $clientConfig, string $name, bool $isSatellite, string|null|SdkNotGiven $proxyUrl = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Domain
     {
 
-        $sdkResponse = SdkClient::request('POST', "/domains", $clientConfig, body: ['name' => $name, 'is_satellite' => $isSatellite, 'proxy_url' => $proxyUrl], returnType: Domain::class, decoder: 'json', operationId: 'addDomain', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/domains", $clientConfig, body: ['name' => $name, 'is_satellite' => $isSatellite, 'proxy_url' => $proxyUrl], returnType: Domain::class, decoder: 'json', operationId: 'addDomain', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Domain::class));
     }
 
@@ -51,7 +51,7 @@ class DomainsApi
     public static function deleteDomain(ClientConfig $clientConfig, string $domainId, ?RequestOptions $requestOptions = null): DeletedObject
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/domains/" . SdkClient::encodePathSegment($domainId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteDomain', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/domains/" . SdkClient::encodePathSegment($domainId) . "", $clientConfig, returnType: DeletedObject::class, decoder: 'json', operationId: 'deleteDomain', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedObject::class));
     }
 
@@ -70,7 +70,7 @@ class DomainsApi
     public static function updateDomain(ClientConfig $clientConfig, string $domainId, string|null|SdkNotGiven $name = SdkNotGiven::Value, string|null|SdkNotGiven $proxyUrl = SdkNotGiven::Value, bool|null|SdkNotGiven $isSecondary = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Domain
     {
 
-        $sdkResponse = SdkClient::request('PATCH', "/domains/" . SdkClient::encodePathSegment($domainId) . "", $clientConfig, body: ['name' => $name, 'proxy_url' => $proxyUrl, 'is_secondary' => $isSecondary], returnType: Domain::class, decoder: 'json', operationId: 'updateDomain', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/domains/" . SdkClient::encodePathSegment($domainId) . "", $clientConfig, body: ['name' => $name, 'proxy_url' => $proxyUrl, 'is_secondary' => $isSecondary], returnType: Domain::class, decoder: 'json', operationId: 'updateDomain', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 422 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Domain::class));
     }
 }

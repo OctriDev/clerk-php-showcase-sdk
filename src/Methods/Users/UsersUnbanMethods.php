@@ -20,7 +20,7 @@ trait UsersUnbanMethods
     public static function unbanUser(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): User
     {
 
-        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/unban", $clientConfig, returnType: User::class, decoder: 'json', operationId: 'unbanUser', requestOptions: $requestOptions, errors: [402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/unban", $clientConfig, returnType: User::class, decoder: 'json', operationId: 'unbanUser', requestOptions: $requestOptions, errors: [402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, User::class));
     }
 
@@ -38,7 +38,7 @@ trait UsersUnbanMethods
 
         Validation::validateItems('user_ids', $userIds, min: 1, max: 50);
 
-        $sdkResponse = SdkClient::request('POST', "/users/unban", $clientConfig, body: ['user_ids' => $userIds], decoder: 'json', operationId: 'unbanUsersBulk', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/users/unban", $clientConfig, body: ['user_ids' => $userIds], decoder: 'json', operationId: 'unbanUsersBulk', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 402 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, User::class), SdkClient::arrayValue($sdkResponse->data))));
     }
 }

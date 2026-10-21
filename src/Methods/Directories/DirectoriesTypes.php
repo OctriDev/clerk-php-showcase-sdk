@@ -102,9 +102,7 @@ class CreateDirectoryGroupRoleMappingsItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "role_id") || $data->role_id === null) {
-            throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null");
-        }
+        if (!property_exists($data, "role_id") || $data->role_id === null) { throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null"); }
         return new self(
             roleId: SdkClient::stringValue($data->role_id),
             directoryGroupId: (property_exists($data, "directory_group_id") && $data->directory_group_id !== null ? SdkClient::stringValue($data->directory_group_id) : SdkNotGiven::Value),
@@ -175,9 +173,7 @@ class ReplaceDirectoryGroupRoleMappingsMappingsItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "role_id") || $data->role_id === null) {
-            throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null");
-        }
+        if (!property_exists($data, "role_id") || $data->role_id === null) { throw new SdkValidationError("role_id", 'required', "Required property 'role_id' is missing or null"); }
         return new self(
             roleId: SdkClient::stringValue($data->role_id),
             directoryGroupId: (property_exists($data, "directory_group_id") && $data->directory_group_id !== null ? SdkClient::stringValue($data->directory_group_id) : SdkNotGiven::Value),
