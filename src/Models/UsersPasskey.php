@@ -87,10 +87,18 @@ class Passkey implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "last_used_at") || $data->last_used_at === null) { throw new SdkValidationError("last_used_at", 'required', "Required property 'last_used_at' is missing or null"); }
-        if (!property_exists($data, "verification")) { throw new SdkValidationError("verification", 'required', "Missing required property 'verification'"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "last_used_at") || $data->last_used_at === null) {
+            throw new SdkValidationError("last_used_at", 'required', "Required property 'last_used_at' is missing or null");
+        }
+        if (!property_exists($data, "verification")) {
+            throw new SdkValidationError("verification", 'required', "Missing required property 'verification'");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, PasskeyObjectEnum::class),
             name: SdkClient::stringValue($data->name),
@@ -108,11 +116,26 @@ final readonly class SAMLAccountObjectEnum implements SdkOpenEnum
 {
     public const SAML_ACCOUNT = "saml_account";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -275,12 +298,24 @@ class SAMLAccount implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "provider") || $data->provider === null) { throw new SdkValidationError("provider", 'required', "Required property 'provider' is missing or null"); }
-        if (!property_exists($data, "active") || $data->active === null) { throw new SdkValidationError("active", 'required', "Required property 'active' is missing or null"); }
-        if (!property_exists($data, "email_address") || $data->email_address === null) { throw new SdkValidationError("email_address", 'required', "Required property 'email_address' is missing or null"); }
-        if (!property_exists($data, "verification")) { throw new SdkValidationError("verification", 'required', "Missing required property 'verification'"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "provider") || $data->provider === null) {
+            throw new SdkValidationError("provider", 'required', "Required property 'provider' is missing or null");
+        }
+        if (!property_exists($data, "active") || $data->active === null) {
+            throw new SdkValidationError("active", 'required', "Required property 'active' is missing or null");
+        }
+        if (!property_exists($data, "email_address") || $data->email_address === null) {
+            throw new SdkValidationError("email_address", 'required', "Required property 'email_address' is missing or null");
+        }
+        if (!property_exists($data, "verification")) {
+            throw new SdkValidationError("verification", 'required', "Missing required property 'verification'");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, SAMLAccountObjectEnum::class),

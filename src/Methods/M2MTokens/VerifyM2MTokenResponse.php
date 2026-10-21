@@ -124,16 +124,36 @@ class VerifyM2MTokenResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "subject") || $data->subject === null) { throw new SdkValidationError("subject", 'required', "Required property 'subject' is missing or null"); }
-        if (!property_exists($data, "revoked") || $data->revoked === null) { throw new SdkValidationError("revoked", 'required', "Required property 'revoked' is missing or null"); }
-        if (!property_exists($data, "revocation_reason")) { throw new SdkValidationError("revocation_reason", 'required', "Missing required property 'revocation_reason'"); }
-        if (!property_exists($data, "expired") || $data->expired === null) { throw new SdkValidationError("expired", 'required', "Required property 'expired' is missing or null"); }
-        if (!property_exists($data, "expiration")) { throw new SdkValidationError("expiration", 'required', "Missing required property 'expiration'"); }
-        if (!property_exists($data, "last_used_at")) { throw new SdkValidationError("last_used_at", 'required', "Missing required property 'last_used_at'"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "subject") || $data->subject === null) {
+            throw new SdkValidationError("subject", 'required', "Required property 'subject' is missing or null");
+        }
+        if (!property_exists($data, "revoked") || $data->revoked === null) {
+            throw new SdkValidationError("revoked", 'required', "Required property 'revoked' is missing or null");
+        }
+        if (!property_exists($data, "revocation_reason")) {
+            throw new SdkValidationError("revocation_reason", 'required', "Missing required property 'revocation_reason'");
+        }
+        if (!property_exists($data, "expired") || $data->expired === null) {
+            throw new SdkValidationError("expired", 'required', "Required property 'expired' is missing or null");
+        }
+        if (!property_exists($data, "expiration")) {
+            throw new SdkValidationError("expiration", 'required', "Missing required property 'expiration'");
+        }
+        if (!property_exists($data, "last_used_at")) {
+            throw new SdkValidationError("last_used_at", 'required', "Missing required property 'last_used_at'");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
+            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, VerifyM2MTokenResponseObjectEnum::class),
             id: SdkClient::stringValue($data->id),

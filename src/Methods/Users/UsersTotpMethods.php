@@ -20,7 +20,7 @@ trait UsersTotpMethods
     public static function deleteTotp(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): DeleteTOTPResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/totp", $clientConfig, returnType: DeleteTOTPResponse::class, decoder: 'json', operationId: 'deleteTotp', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/totp", $clientConfig, returnType: DeleteTOTPResponse::class, decoder: 'json', operationId: 'deleteTotp', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeleteTOTPResponse::class));
     }
 }

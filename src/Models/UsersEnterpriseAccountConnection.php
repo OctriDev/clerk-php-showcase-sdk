@@ -179,18 +179,42 @@ class EnterpriseAccountConnection implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "protocol") || $data->protocol === null) { throw new SdkValidationError("protocol", 'required', "Required property 'protocol' is missing or null"); }
-        if (!property_exists($data, "provider") || $data->provider === null) { throw new SdkValidationError("provider", 'required', "Required property 'provider' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "logo_public_url")) { throw new SdkValidationError("logo_public_url", 'required', "Missing required property 'logo_public_url'"); }
-        if (!property_exists($data, "active") || $data->active === null) { throw new SdkValidationError("active", 'required', "Required property 'active' is missing or null"); }
-        if (!property_exists($data, "sync_user_attributes") || $data->sync_user_attributes === null) { throw new SdkValidationError("sync_user_attributes", 'required', "Required property 'sync_user_attributes' is missing or null"); }
-        if (!property_exists($data, "allow_subdomains") || $data->allow_subdomains === null) { throw new SdkValidationError("allow_subdomains", 'required', "Required property 'allow_subdomains' is missing or null"); }
-        if (!property_exists($data, "allow_idp_initiated") || $data->allow_idp_initiated === null) { throw new SdkValidationError("allow_idp_initiated", 'required', "Required property 'allow_idp_initiated' is missing or null"); }
-        if (!property_exists($data, "disable_additional_identifications") || $data->disable_additional_identifications === null) { throw new SdkValidationError("disable_additional_identifications", 'required', "Required property 'disable_additional_identifications' is missing or null"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "protocol") || $data->protocol === null) {
+            throw new SdkValidationError("protocol", 'required', "Required property 'protocol' is missing or null");
+        }
+        if (!property_exists($data, "provider") || $data->provider === null) {
+            throw new SdkValidationError("provider", 'required', "Required property 'provider' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "logo_public_url")) {
+            throw new SdkValidationError("logo_public_url", 'required', "Missing required property 'logo_public_url'");
+        }
+        if (!property_exists($data, "active") || $data->active === null) {
+            throw new SdkValidationError("active", 'required', "Required property 'active' is missing or null");
+        }
+        if (!property_exists($data, "sync_user_attributes") || $data->sync_user_attributes === null) {
+            throw new SdkValidationError("sync_user_attributes", 'required', "Required property 'sync_user_attributes' is missing or null");
+        }
+        if (!property_exists($data, "allow_subdomains") || $data->allow_subdomains === null) {
+            throw new SdkValidationError("allow_subdomains", 'required', "Required property 'allow_subdomains' is missing or null");
+        }
+        if (!property_exists($data, "allow_idp_initiated") || $data->allow_idp_initiated === null) {
+            throw new SdkValidationError("allow_idp_initiated", 'required', "Required property 'allow_idp_initiated' is missing or null");
+        }
+        if (!property_exists($data, "disable_additional_identifications") || $data->disable_additional_identifications === null) {
+            throw new SdkValidationError("disable_additional_identifications", 'required', "Required property 'disable_additional_identifications' is missing or null");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
+            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             protocol: SdkClient::stringValue($data->protocol),
@@ -219,9 +243,24 @@ final readonly class ExternalAccountWithVerificationObjectEnum implements SdkOpe
     public const FACEBOOK_ACCOUNT = "facebook_account";
     public const GOOGLE_ACCOUNT = "google_account";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

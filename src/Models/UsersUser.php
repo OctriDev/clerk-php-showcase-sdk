@@ -553,41 +553,111 @@ class User implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "external_id")) { throw new SdkValidationError("external_id", 'required', "Missing required property 'external_id'"); }
-        if (!property_exists($data, "primary_email_address_id")) { throw new SdkValidationError("primary_email_address_id", 'required', "Missing required property 'primary_email_address_id'"); }
-        if (!property_exists($data, "primary_phone_number_id")) { throw new SdkValidationError("primary_phone_number_id", 'required', "Missing required property 'primary_phone_number_id'"); }
-        if (!property_exists($data, "primary_web3_wallet_id")) { throw new SdkValidationError("primary_web3_wallet_id", 'required', "Missing required property 'primary_web3_wallet_id'"); }
-        if (!property_exists($data, "username")) { throw new SdkValidationError("username", 'required', "Missing required property 'username'"); }
-        if (!property_exists($data, "first_name")) { throw new SdkValidationError("first_name", 'required', "Missing required property 'first_name'"); }
-        if (!property_exists($data, "last_name")) { throw new SdkValidationError("last_name", 'required', "Missing required property 'last_name'"); }
-        if (!property_exists($data, "has_image") || $data->has_image === null) { throw new SdkValidationError("has_image", 'required', "Required property 'has_image' is missing or null"); }
-        if (!property_exists($data, "public_metadata") || $data->public_metadata === null) { throw new SdkValidationError("public_metadata", 'required', "Required property 'public_metadata' is missing or null"); }
-        if (!property_exists($data, "email_addresses") || $data->email_addresses === null) { throw new SdkValidationError("email_addresses", 'required', "Required property 'email_addresses' is missing or null"); }
-        if (!property_exists($data, "phone_numbers") || $data->phone_numbers === null) { throw new SdkValidationError("phone_numbers", 'required', "Required property 'phone_numbers' is missing or null"); }
-        if (!property_exists($data, "web3_wallets") || $data->web3_wallets === null) { throw new SdkValidationError("web3_wallets", 'required', "Required property 'web3_wallets' is missing or null"); }
-        if (!property_exists($data, "passkeys") || $data->passkeys === null) { throw new SdkValidationError("passkeys", 'required', "Required property 'passkeys' is missing or null"); }
-        if (!property_exists($data, "password_enabled") || $data->password_enabled === null) { throw new SdkValidationError("password_enabled", 'required', "Required property 'password_enabled' is missing or null"); }
-        if (!property_exists($data, "two_factor_enabled") || $data->two_factor_enabled === null) { throw new SdkValidationError("two_factor_enabled", 'required', "Required property 'two_factor_enabled' is missing or null"); }
-        if (!property_exists($data, "totp_enabled") || $data->totp_enabled === null) { throw new SdkValidationError("totp_enabled", 'required', "Required property 'totp_enabled' is missing or null"); }
-        if (!property_exists($data, "backup_code_enabled") || $data->backup_code_enabled === null) { throw new SdkValidationError("backup_code_enabled", 'required', "Required property 'backup_code_enabled' is missing or null"); }
-        if (!property_exists($data, "mfa_enabled_at")) { throw new SdkValidationError("mfa_enabled_at", 'required', "Missing required property 'mfa_enabled_at'"); }
-        if (!property_exists($data, "mfa_disabled_at")) { throw new SdkValidationError("mfa_disabled_at", 'required', "Missing required property 'mfa_disabled_at'"); }
-        if (!property_exists($data, "external_accounts") || $data->external_accounts === null) { throw new SdkValidationError("external_accounts", 'required', "Required property 'external_accounts' is missing or null"); }
-        if (!property_exists($data, "saml_accounts") || $data->saml_accounts === null) { throw new SdkValidationError("saml_accounts", 'required', "Required property 'saml_accounts' is missing or null"); }
-        if (!property_exists($data, "enterprise_accounts") || $data->enterprise_accounts === null) { throw new SdkValidationError("enterprise_accounts", 'required', "Required property 'enterprise_accounts' is missing or null"); }
-        if (!property_exists($data, "last_sign_in_at")) { throw new SdkValidationError("last_sign_in_at", 'required', "Missing required property 'last_sign_in_at'"); }
-        if (!property_exists($data, "banned") || $data->banned === null) { throw new SdkValidationError("banned", 'required', "Required property 'banned' is missing or null"); }
-        if (!property_exists($data, "locked") || $data->locked === null) { throw new SdkValidationError("locked", 'required', "Required property 'locked' is missing or null"); }
-        if (!property_exists($data, "lockout_expires_in_seconds")) { throw new SdkValidationError("lockout_expires_in_seconds", 'required', "Missing required property 'lockout_expires_in_seconds'"); }
-        if (!property_exists($data, "verification_attempts_remaining")) { throw new SdkValidationError("verification_attempts_remaining", 'required', "Missing required property 'verification_attempts_remaining'"); }
-        if (!property_exists($data, "updated_at") || $data->updated_at === null) { throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "delete_self_enabled") || $data->delete_self_enabled === null) { throw new SdkValidationError("delete_self_enabled", 'required', "Required property 'delete_self_enabled' is missing or null"); }
-        if (!property_exists($data, "create_organization_enabled") || $data->create_organization_enabled === null) { throw new SdkValidationError("create_organization_enabled", 'required', "Required property 'create_organization_enabled' is missing or null"); }
-        if (!property_exists($data, "last_active_at")) { throw new SdkValidationError("last_active_at", 'required', "Missing required property 'last_active_at'"); }
-        if (!property_exists($data, "legal_accepted_at")) { throw new SdkValidationError("legal_accepted_at", 'required', "Missing required property 'legal_accepted_at'"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "external_id")) {
+            throw new SdkValidationError("external_id", 'required', "Missing required property 'external_id'");
+        }
+        if (!property_exists($data, "primary_email_address_id")) {
+            throw new SdkValidationError("primary_email_address_id", 'required', "Missing required property 'primary_email_address_id'");
+        }
+        if (!property_exists($data, "primary_phone_number_id")) {
+            throw new SdkValidationError("primary_phone_number_id", 'required', "Missing required property 'primary_phone_number_id'");
+        }
+        if (!property_exists($data, "primary_web3_wallet_id")) {
+            throw new SdkValidationError("primary_web3_wallet_id", 'required', "Missing required property 'primary_web3_wallet_id'");
+        }
+        if (!property_exists($data, "username")) {
+            throw new SdkValidationError("username", 'required', "Missing required property 'username'");
+        }
+        if (!property_exists($data, "first_name")) {
+            throw new SdkValidationError("first_name", 'required', "Missing required property 'first_name'");
+        }
+        if (!property_exists($data, "last_name")) {
+            throw new SdkValidationError("last_name", 'required', "Missing required property 'last_name'");
+        }
+        if (!property_exists($data, "has_image") || $data->has_image === null) {
+            throw new SdkValidationError("has_image", 'required', "Required property 'has_image' is missing or null");
+        }
+        if (!property_exists($data, "public_metadata") || $data->public_metadata === null) {
+            throw new SdkValidationError("public_metadata", 'required', "Required property 'public_metadata' is missing or null");
+        }
+        if (!property_exists($data, "email_addresses") || $data->email_addresses === null) {
+            throw new SdkValidationError("email_addresses", 'required', "Required property 'email_addresses' is missing or null");
+        }
+        if (!property_exists($data, "phone_numbers") || $data->phone_numbers === null) {
+            throw new SdkValidationError("phone_numbers", 'required', "Required property 'phone_numbers' is missing or null");
+        }
+        if (!property_exists($data, "web3_wallets") || $data->web3_wallets === null) {
+            throw new SdkValidationError("web3_wallets", 'required', "Required property 'web3_wallets' is missing or null");
+        }
+        if (!property_exists($data, "passkeys") || $data->passkeys === null) {
+            throw new SdkValidationError("passkeys", 'required', "Required property 'passkeys' is missing or null");
+        }
+        if (!property_exists($data, "password_enabled") || $data->password_enabled === null) {
+            throw new SdkValidationError("password_enabled", 'required', "Required property 'password_enabled' is missing or null");
+        }
+        if (!property_exists($data, "two_factor_enabled") || $data->two_factor_enabled === null) {
+            throw new SdkValidationError("two_factor_enabled", 'required', "Required property 'two_factor_enabled' is missing or null");
+        }
+        if (!property_exists($data, "totp_enabled") || $data->totp_enabled === null) {
+            throw new SdkValidationError("totp_enabled", 'required', "Required property 'totp_enabled' is missing or null");
+        }
+        if (!property_exists($data, "backup_code_enabled") || $data->backup_code_enabled === null) {
+            throw new SdkValidationError("backup_code_enabled", 'required', "Required property 'backup_code_enabled' is missing or null");
+        }
+        if (!property_exists($data, "mfa_enabled_at")) {
+            throw new SdkValidationError("mfa_enabled_at", 'required', "Missing required property 'mfa_enabled_at'");
+        }
+        if (!property_exists($data, "mfa_disabled_at")) {
+            throw new SdkValidationError("mfa_disabled_at", 'required', "Missing required property 'mfa_disabled_at'");
+        }
+        if (!property_exists($data, "external_accounts") || $data->external_accounts === null) {
+            throw new SdkValidationError("external_accounts", 'required', "Required property 'external_accounts' is missing or null");
+        }
+        if (!property_exists($data, "saml_accounts") || $data->saml_accounts === null) {
+            throw new SdkValidationError("saml_accounts", 'required', "Required property 'saml_accounts' is missing or null");
+        }
+        if (!property_exists($data, "enterprise_accounts") || $data->enterprise_accounts === null) {
+            throw new SdkValidationError("enterprise_accounts", 'required', "Required property 'enterprise_accounts' is missing or null");
+        }
+        if (!property_exists($data, "last_sign_in_at")) {
+            throw new SdkValidationError("last_sign_in_at", 'required', "Missing required property 'last_sign_in_at'");
+        }
+        if (!property_exists($data, "banned") || $data->banned === null) {
+            throw new SdkValidationError("banned", 'required', "Required property 'banned' is missing or null");
+        }
+        if (!property_exists($data, "locked") || $data->locked === null) {
+            throw new SdkValidationError("locked", 'required', "Required property 'locked' is missing or null");
+        }
+        if (!property_exists($data, "lockout_expires_in_seconds")) {
+            throw new SdkValidationError("lockout_expires_in_seconds", 'required', "Missing required property 'lockout_expires_in_seconds'");
+        }
+        if (!property_exists($data, "verification_attempts_remaining")) {
+            throw new SdkValidationError("verification_attempts_remaining", 'required', "Missing required property 'verification_attempts_remaining'");
+        }
+        if (!property_exists($data, "updated_at") || $data->updated_at === null) {
+            throw new SdkValidationError("updated_at", 'required', "Required property 'updated_at' is missing or null");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "delete_self_enabled") || $data->delete_self_enabled === null) {
+            throw new SdkValidationError("delete_self_enabled", 'required', "Required property 'delete_self_enabled' is missing or null");
+        }
+        if (!property_exists($data, "create_organization_enabled") || $data->create_organization_enabled === null) {
+            throw new SdkValidationError("create_organization_enabled", 'required', "Required property 'create_organization_enabled' is missing or null");
+        }
+        if (!property_exists($data, "last_active_at")) {
+            throw new SdkValidationError("last_active_at", 'required', "Missing required property 'last_active_at'");
+        }
+        if (!property_exists($data, "legal_accepted_at")) {
+            throw new SdkValidationError("legal_accepted_at", 'required', "Missing required property 'legal_accepted_at'");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, UserObjectEnum::class),

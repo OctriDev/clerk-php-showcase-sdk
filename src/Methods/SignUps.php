@@ -20,7 +20,7 @@ class SignUps
     public static function getSignUp(ClientConfig $clientConfig, string $id, ?RequestOptions $requestOptions = null): SignUp
     {
 
-        $sdkResponse = SdkClient::request('GET', "/sign_ups/" . SdkClient::encodePathSegment($id) . "", $clientConfig, returnType: SignUp::class, decoder: 'json', operationId: 'getSignUp', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/sign_ups/" . SdkClient::encodePathSegment($id) . "", $clientConfig, returnType: SignUp::class, decoder: 'json', operationId: 'getSignUp', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SignUp::class));
     }
 
@@ -38,7 +38,7 @@ class SignUps
     public static function updateSignUp(ClientConfig $clientConfig, string $id, string|null|SdkNotGiven $externalId = SdkNotGiven::Value, bool|null|SdkNotGiven $customAction = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): SignUp
     {
 
-        $sdkResponse = SdkClient::request('PATCH', "/sign_ups/" . SdkClient::encodePathSegment($id) . "", $clientConfig, body: ['external_id' => $externalId, 'custom_action' => $customAction], returnType: SignUp::class, decoder: 'json', operationId: 'updateSignUp', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('PATCH', "/sign_ups/" . SdkClient::encodePathSegment($id) . "", $clientConfig, body: ['external_id' => $externalId, 'custom_action' => $customAction], returnType: SignUp::class, decoder: 'json', operationId: 'updateSignUp', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SignUp::class));
     }
 }

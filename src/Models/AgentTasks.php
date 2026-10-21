@@ -14,11 +14,26 @@ final readonly class AgentTaskObjectEnum implements SdkOpenEnum
 {
     public const AGENT_TASK = "agent_task";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -101,10 +116,18 @@ class AgentTask implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "agent_id") || $data->agent_id === null) { throw new SdkValidationError("agent_id", 'required', "Required property 'agent_id' is missing or null"); }
-        if (!property_exists($data, "agent_task_id") || $data->agent_task_id === null) { throw new SdkValidationError("agent_task_id", 'required', "Required property 'agent_task_id' is missing or null"); }
-        if (!property_exists($data, "task_id") || $data->task_id === null) { throw new SdkValidationError("task_id", 'required', "Required property 'task_id' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "agent_id") || $data->agent_id === null) {
+            throw new SdkValidationError("agent_id", 'required', "Required property 'agent_id' is missing or null");
+        }
+        if (!property_exists($data, "agent_task_id") || $data->agent_task_id === null) {
+            throw new SdkValidationError("agent_task_id", 'required', "Required property 'agent_task_id' is missing or null");
+        }
+        if (!property_exists($data, "task_id") || $data->task_id === null) {
+            throw new SdkValidationError("task_id", 'required', "Required property 'task_id' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, AgentTaskObjectEnum::class),
             agentId: SdkClient::stringValue($data->agent_id),

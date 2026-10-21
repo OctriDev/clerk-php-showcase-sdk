@@ -21,7 +21,7 @@ trait UsersProfileImageMethods
     public static function setUserProfileImage(ClientConfig $clientConfig, string $userId, SdkUploadFile|SdkNotGiven $file = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): User
     {
 
-        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/profile_image", $clientConfig, body: ['file' => $file], contentType: 'multipart/form-data', returnType: User::class, decoder: 'json', operationId: 'setUserProfileImage', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('POST', "/users/" . SdkClient::encodePathSegment($userId) . "/profile_image", $clientConfig, body: ['file' => $file], contentType: 'multipart/form-data', returnType: User::class, decoder: 'json', operationId: 'setUserProfileImage', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, User::class));
     }
 
@@ -37,7 +37,7 @@ trait UsersProfileImageMethods
     public static function deleteUserProfileImage(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): User
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/profile_image", $clientConfig, returnType: User::class, decoder: 'json', operationId: 'deleteUserProfileImage', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/users/" . SdkClient::encodePathSegment($userId) . "/profile_image", $clientConfig, returnType: User::class, decoder: 'json', operationId: 'deleteUserProfileImage', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, User::class));
     }
 }

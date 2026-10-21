@@ -30,7 +30,7 @@ trait UsersOrganizationMembershipsMethods
             Validation::validateRange('offset', $offset, min: 0);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/organization_memberships", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: OrganizationMemberships::class, decoder: 'json', operationId: 'usersGetOrganizationMemberships', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
+        $sdkResponse = SdkClient::request('GET', "/users/" . SdkClient::encodePathSegment($userId) . "/organization_memberships", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'offset' => new SdkQueryValue($offset, "form", true)], returnType: OrganizationMemberships::class, decoder: 'json', operationId: 'usersGetOrganizationMemberships', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ClerkErrors::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationMemberships::class));
     }
 }
