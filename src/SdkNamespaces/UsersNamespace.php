@@ -475,7 +475,7 @@ class UsersNamespace
      */
     public function deletePasskey(string $userId, string $passkeyIdentificationId, ?RequestOptions $requestOptions = null): DeletedObject
     {
-        return Users::deleteUsersPasskey($this->clientConfig, $userId, $passkeyIdentificationId, $requestOptions);
+        return Users::deleteUserPasskey($this->clientConfig, $userId, $passkeyIdentificationId, $requestOptions);
     }
     /**
      * Returns the active trusted devices enrolled by the user.

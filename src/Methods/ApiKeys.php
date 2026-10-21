@@ -9,5 +9,5 @@ namespace octridev_clerk;
 
 class ApiKeys
 {
-    use ApiKeysMethodsPart1;
+    use ApiKeysMethods;
 }

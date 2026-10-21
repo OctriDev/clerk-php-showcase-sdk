@@ -9,5 +9,5 @@ namespace octridev_clerk;
 
 class M2MTokens
 {
-    use M2MTokensMethodsPart1;
+    use M2MTokensMethods;
 }

@@ -9,5 +9,5 @@ namespace octridev_clerk;
 
 class Directories
 {
-    use DirectoriesMethodsPart1;
+    use DirectoriesMethods;
 }

@@ -9,5 +9,5 @@ namespace octridev_clerk;
 
 class SamlConnectionsApi
 {
-    use SamlConnectionsApiMethodsPart1;
+    use SamlConnectionsApiMethods;
 }
