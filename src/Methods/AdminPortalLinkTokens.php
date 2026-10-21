@@ -9,5 +9,5 @@ namespace octridev_clerk;
 
 class AdminPortalLinkTokens
 {
-    use AdminPortalLinkTokensMethodsPart1;
+    use AdminPortalLinkTokensMethods;
 }

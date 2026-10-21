@@ -9,5 +9,5 @@ namespace octridev_clerk;
 
 class EnterpriseConnectionsApi
 {
-    use EnterpriseConnectionsApiMethodsPart1;
+    use EnterpriseConnectionsApiMethods;
 }

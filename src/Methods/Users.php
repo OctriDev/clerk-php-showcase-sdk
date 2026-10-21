@@ -9,7 +9,28 @@ namespace octridev_clerk;
 
 class Users
 {
-    use UsersMethodsPart1;
-    use UsersMethodsPart2;
-    use UsersMethodsPart3;
+    use UsersMethods;
+    use UsersCountMethods;
+    use UsersBanMethods;
+    use UsersUnbanMethods;
+    use UsersLockMethods;
+    use UsersUnlockMethods;
+    use UsersProfileImageMethods;
+    use UsersMetadataMethods;
+    use UsersBillingMethods;
+    use UsersOauthAccessTokensMethods;
+    use UsersOrganizationMembershipsMethods;
+    use UsersOrganizationInvitationsMethods;
+    use UsersRemovePasswordMethods;
+    use UsersVerifyPasswordMethods;
+    use UsersVerifyTotpMethods;
+    use UsersMfaMethods;
+    use UsersBackupCodeMethods;
+    use UsersPasskeysMethods;
+    use UsersTrustedDevicesMethods;
+    use UsersBiometricCredentialsMethods;
+    use UsersWeb3WalletsMethods;
+    use UsersTotpMethods;
+    use UsersExternalAccountsMethods;
+    use UsersPasswordMethods;
 }
